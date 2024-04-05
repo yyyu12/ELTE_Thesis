@@ -1,10 +1,12 @@
 package hu.elte.inf.backend.controller;
 
 import hu.elte.inf.backend.common.Result;
+import hu.elte.inf.backend.controller.request.LoginRequest;
 import hu.elte.inf.backend.service.impl.UserServiceImpl;
 import hu.elte.inf.backend.sqlEntity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Objects;
@@ -24,8 +26,10 @@ public class UserController {
         return ResponseEntity.ok("User registered successfully");
     }
 
-    @GetMapping ("/login")
-    public Result login(String username ,String password){
+    @PostMapping ("/login")
+    public Result login(@Validated @RequestBody LoginRequest loginRequest){
+        String username = loginRequest.getUsername();
+        String password = loginRequest.getPassword();
         if(username == null||password == null){
             return Result.error("Username or password can not be null");
         }
