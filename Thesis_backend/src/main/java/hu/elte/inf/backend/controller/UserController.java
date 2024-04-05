@@ -2,8 +2,10 @@ package hu.elte.inf.backend.controller;
 
 import hu.elte.inf.backend.common.Result;
 import hu.elte.inf.backend.controller.request.LoginRequest;
+import hu.elte.inf.backend.controller.response.UserLoginResponse;
 import hu.elte.inf.backend.service.impl.UserServiceImpl;
 import hu.elte.inf.backend.sqlEntity.User;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -37,7 +39,9 @@ public class UserController {
         if(user == null){
             return Result.error("User couldn't find");
         } else if (Objects.equals(user.getPassword(), password)) {
-            return Result.ok("User login success").put("User info",user);
+            UserLoginResponse userLoginResponse = new UserLoginResponse();
+            BeanUtils.copyProperties(user,userLoginResponse);
+            return Result.ok("User login success").put("User info",userLoginResponse);
         } else{
             return Result.error(("User password is wrong"));
         }

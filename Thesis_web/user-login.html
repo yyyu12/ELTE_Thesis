@@ -226,7 +226,7 @@
                             <!-- 登入逻辑 -->
                             <form id="loginForm" action="#" method="post">
                                 <div class="mb-4">
-                                    <label class="form-label" for="email">Email</label>
+                                    <label class="form-label" for="email">Username</label>
                                     <input class="form-control" id="email" type="email" name="email" required>
                                 </div>
                                 <div class="mb-4">
@@ -401,32 +401,33 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js" integrity="sha512-7Pi/otdlbbCR+LnW+F7PwFcSDJOuUJB3OxtEHbg4vSMvzvJjde4Po1v4BR9Gdc9aXNUNFVUY+SK51wWT8WF0Gg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
         /* ======== user login start ======== */
-        document.getElementById('loginForm').addEventListener('submit', function(event) {
-            event.preventDefault(); // 阻止表单默认提交
+    document.getElementById('loginForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // 阻止表单默认提交
 
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password1').value;
+        const username = document.getElementById('email').value; 
+        const password = document.getElementById('password1').value;
 
-            fetch('/users/login', { // 假设您的后端登录API路径为'/users/login'
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    email: email,
-                    password: password
-                }),
-            })
-            .then(response => {
-                if (response.ok) {
-                    return response.json();
-                } else {
-                    throw new Error('Something went wrong');
-                }
-            })
-            .then(data => console.log(data)) // 处理返回的数据
-            .catch(error => console.error('Error:', error));
-        });
+        fetch('http://localhost:8080/users/login', { 
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                username: username, 
+                password: password
+            }),
+        })
+        .then(response => response.json()) 
+        .then(data => {
+            console.log(data);
+            if (data.status === 'ok') {
+                window.location.href = '/index.html'; 
+            } else {
+                alert(data.message);
+            }
+        })
+        .catch(error => console.error('Error:', error));
+    });
         /* ======== user login end ======== */
 
         /* ======== user register start ======== */
