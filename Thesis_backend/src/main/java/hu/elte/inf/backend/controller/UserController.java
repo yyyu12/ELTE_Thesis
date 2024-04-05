@@ -41,7 +41,7 @@ public class UserController {
         } else if (Objects.equals(user.getPassword(), password)) {
             UserLoginResponse userLoginResponse = new UserLoginResponse();
             BeanUtils.copyProperties(user,userLoginResponse);
-            return Result.ok("User login success").put("User info",userLoginResponse);
+            return Result.ok("User login success").put("info",userLoginResponse);
         } else{
             return Result.error(("User password is wrong"));
         }
