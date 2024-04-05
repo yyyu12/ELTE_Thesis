@@ -1,0 +1,53 @@
+/* 基本的CSS样式 */
+
+.nav-link {
+    display: block;
+    padding: var(--bs-nav-link-padding-y) var(--bs-nav-link-padding-x);
+    font-size: var(--bs-nav-link-font-size);
+    font-weight: var(--bs-nav-link-font-weight);
+    color: var(--bs-nav-link-color);
+    background: none;
+    border: 0;
+    -webkit-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+}
+
+
+.nav-tabs {
+    position: relative;
+}
+
+.nav-tabs .nav-item {
+    margin-bottom: -1px; /* 确保在激活时，下划线和选项卡之间没有间隙 */
+}
+
+.nav-tabs .nav-link {
+    display: inline-block; /* 确保链接是inline-block，使得它们可以有padding */
+    padding: 8px 16px; /* 设置您想要的选项卡内边距 */
+    border: none; /* 去除默认边框 */
+    color: #000; /* 设置您想要的非激活选项卡颜色 */
+}
+
+.nav-tabs .nav-link.active {
+    border: none;
+    color: #007bff; /* 设置您想要的激活选项卡颜色 */
+}
+
+.nav.nav-bottom-line .nav-link {
+    background: transparent;
+    border: transparent;
+    border-bottom: 3px solid transparent;
+    font-weight: 600;
+    padding: 0.6rem 0.75rem;
+    white-space: nowrap;
+}
+
+.nav.nav-bottom-line .nav-link.active {
+    background: transparent;
+    color: var(--bs-primary);
+    border-bottom: 3px solid var(--bs-primary);
+}
+
+.nav-link:hover, .nav-link:focus {
+    color: var(--bs-primary);
+}

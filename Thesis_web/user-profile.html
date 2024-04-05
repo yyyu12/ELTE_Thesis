@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>User Login</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex">
+    <!-- Google fonts - Playfair Display-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700">
+    <!-- owl carousel-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Lightbox -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/glightbox/3.3.0/css/glightbox.min.css" integrity="sha512-T+KoG3fbDoSnlgEXFQqwcTC9AdkFIxhBlmoaFqYaIjq2ShhNwNao9AKaLUPMfwiBPL0ScxAtc+UYbHAgvd+sjQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="https://demo.bootstrapious.com/sell/2-0-1/css/style.default.7acfaf01.css" id="theme-stylesheet">
+    <link rel="stylesheet" href="assets/css/vendor/theme.min.css">
+    <!-- Favicon-->
+    <link rel="shortcut icon" href="assets/images/favicon.png">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="assets/css/vendor/fontawesome.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/index.css">
+    <style>
+        @media (min-width:1200px) {
+            .navbar .dropdown-menu.show {
+                display: block;
+                opacity: 1;
+                visibility: visible;
+                transform: translate(-50%);
+                transition: all .3s ease-in-out;
+            }
+        }
+
+        .avatar-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%; /* 圆形 */
+            border: 1px solid #dee2e6; /* 白色边框 */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 轻微阴影 */
+        }
+
+
+
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <!-- Top Bar-->
+        <div class="top-bar">
+            <div class="container-fluid">
+                <div class="row d-flex align-items-center">
+                    <div class="col-sm-7 d-none d-sm-block">
+                        <ul class="list-inline topbar-text mb-0 d-flex justify-content-end">
+                            <li class="list-inline-item px-3">Free shipping on orders over $300</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Top Bar End-->
+        <!-- Navbar-->
+        <nav class="navbar navbar-expand-lg navbar-sticky navbar-airy navbar-light bg-white">
+            <div class="container-fluid">
+                <!-- Navbar Header  -->
+                <a href="index.html"><img src="assets/images/logo.png" alt="Logo" width="200"></a>
+
+                <!-- Navbar Collapse -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+                    aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <ul class="navbar-nav mx-auto">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="blind-Box.html">Blind Box</a>
+                        <li class="nav-item"><a class="nav-link" href="direct-Buy.html">Shop</a></li>
+                        <li class="nav-item"><a class="nav-link" href="mailto:wd2m91@inf.elte.hu">Contact</a></li>
+                    </ul>
+
+                    <div
+                        class="d-flex align-items-center justify-content-between justify-content-lg-end mt-1 mb-2 my-lg-0">
+                        <!-- Search Button-->
+                        <div class="nav-item navbar-icon-link" data-bs-toggle="offcanvas"
+                            data-bs-target="#searchOffcanvas" aria-controls="searchOffcanvas">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <!-- User Not Logged - link to login page-->
+                        <!-- User Did Logged - link to accout info-->
+                        <div class="nav-item">
+                            <a class="navbar-icon-link" href="user-login.html" id="userLoginLink">
+                                <i class="far fa-user"></i>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="userDropdownMenu" style="display: none;"
+                                id="userDropdownMenu">
+                                <a class="dropdown-item" href="user-profile.html">Profile</a>
+                                <a class="dropdown-item" href="user-wishlist.html">My Wish List</a>
+                                <a class="dropdown-item" href="#">Logout</a>
+                            </div>
+                        </div>
+                        <!-- Offcanvas Cart Trigger -->
+                        <div class="nav-item">
+                            <a class="navbar-icon-link" href="#" data-bs-toggle="offcanvas"
+                                data-bs-target="#offcanvasCart" aria-controls="offcanvasCart">
+                                <i class="fas fa-shopping-cart"></i>
+                                <div class="navbar-icon-link-badge">3</div>
+                            </a>
+                        </div>
+
+                        <div class="nav-item">
+                            <div class="color-modes position-relative ps-2">
+                                <a class="bd-theme btn btn-link nav-link dropdown-toggle d-inline-flex align-items-center justify-content-center text-primary p-0 position-relative rounded-circle"
+                                    href="#" aria-expanded="true" data-bs-toggle="dropdown" data-bs-display="static"
+                                    aria-label="Toggle theme (light)">
+                                    <i class="fa-regular fa-sun"></i>
+                                </a>
+
+                                <ul class="dropdown-menu dropdown-menu-end fs-14px" data-bs-popper="static">
+                                    <li>
+                                        <button type="button" class="dropdown-item d-flex align-items-center active"
+                                            data-bs-theme-value="light" aria-pressed="true">
+                                            <i class="fa-regular fa-sun me-4 opacity-50 theme-icon"></i>
+                                            Light
+                                            <i class="fa-solid fa-check ms-auto d-none"></i>
+                                        </button>
+
+                                    </li>
+                                    <li>
+                                        <button type="button" class="dropdown-item d-flex align-items-center"
+                                            data-bs-theme-value="dark" aria-pressed="false">
+                                            <i class="fa-solid fa-moon me-4 opacity-50 theme-icon"></i>
+                                            Dark
+                                            <i class="fa-solid fa-check ms-auto d-none"></i>
+                                        </button>
+
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <!-- /Navbar -->
+
+        <!-- Offcanvas Cart -->
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasCart" aria-labelledby="offcanvasCartLabel">
+            <div class="offcanvas-header">
+                <h5 id="offcanvasCartLabel">Cart</h5>
+                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                    aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <!-- 添加 Cart items -->
+                <!-- Cart items here -->
+                <!-- Repeat your cart item structure here as needed -->
+                <ul class="minicart-product-list">
+                    <!-- 得修改成添加商品进购物车的逻辑！！！-->
+                    <li>
+                        <a href="product-details.html" class="image"><img src="#" alt="Cart product Image"></a>
+                        <div class="content">
+                            <!-- 得从数据库/其他地方提取信息 -->
+                            <a href="product-details.html" class="title">Walnut Cutting Board</a>
+                            <span class="quantity-price">1 x <span class="amount">$100.00</span></span>
+                            <a href="#" class="remove">×</a> <!-- 修改逻辑 -->
+                        </div>
+                    </li>
+                </ul>
+
+                <!-- Total Price -->
+                <div class="navbar-cart-total"><span class="text-uppercase text-muted">Total</span><strong
+                        class="text-uppercase">$225.00</strong></div>
+                <!-- Buttons -->
+                <div class="buttons">
+                    <a href="user-cart.html" class="btn btn-dark btn-hover-primary">view cart</a>
+                    <a href="user-checkout.html" class="btn btn-outline-dark">checkout</a>
+                </div>
+                <p class="minicart-message" style="text-align: center; margin-top: 20px;">Free Shipping on All Orders
+                    Over $100!</p>
+            </div>
+        </div>
+
+        <!-- Search Offcanvas -->
+        <div class="offcanvas offcanvas-top" tabindex="-1" id="searchOffcanvas" aria-labelledby="searchOffcanvasLabel">
+            <div class="offcanvas-header">
+                <h5 id="searchOffcanvasLabel">Search</h5>
+                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                    aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <form class="search-area-form" action="#">
+                    <div class="mb-4 position-relative">
+                        <input class="search-area-input form-control" type="search" name="search" id="search"
+                            placeholder="What are you looking for?">
+
+                        <div class="d-grid gap-2 col-6 mx-auto">
+                            <button class="btn btn-primary" type="submit" style="margin-top: 25px;">Search</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </header>
+
+    <!-- Hero Section-->
+    <section class="hero">
+        <div class="container">
+            <!-- Hero Content-->
+            <div class="hero-content pb-5 text-center">
+                <h2 class="hero-heading mb-0">Customer Profile</h2>
+            </div>
+        </div>
+    </section>
+
+    <main>
+
+        <!-- ======================= Content START -->
+        <section class="pt-3">
+            <div class="container">
+                <div class="row">
+
+                    <!-- Sidebar START -->
+                    <div class="col-lg-4 col-xl-3">
+                        <!-- Responsive offcanvas body START -->
+                        <div class="offcanvas-lg offcanvas-end" tabindex="-1" id="offcanvasSidebar">
+                            <!-- Offcanvas header -->
+                            <div class="offcanvas-header justify-content-end pb-2">
+                                <button type="button" class="btn-close" data-bs-dismiss="offcanvas"
+                                    data-bs-target="#offcanvasSidebar" aria-label="Close"></button>
+                            </div>
+
+                            <!-- Offcanvas body -->
+                            <div class="offcanvas-body p-3 p-lg-0">
+                                <div class="card bg-light w-100">
+
+                                    <!-- Edit profile button -->
+                                    <div class="position-absolute top-0 end-0 p-3">
+                                        <a href="user-profile.html" class="text-primary-hover" data-bs-toggle="tooltip"
+                                            data-bs-title="Edit profile">
+                                            <i class="fa-solid fa-pen-to-square"></i>
+                                        </a>
+                                    </div>
+
+                                    <!-- Card body START -->
+                                    <div class="card-body p-3">
+                                        <!-- Avatar and content -->
+                                        <div class="text-center mb-3">
+                                            <!-- Avatar -->
+                                            <div class="avatar avatar-xl mb-2">
+                                                <img class="avatar-img  border-2" src="assets/images/01.jpg" alt="">
+                                            </div>
+                                            <h6 >Jacqueline Miller</h6>
+                                            <a href="#" class="text-reset text-primary-hover small">hello@gmail.com</a>
+                                            <hr>
+                                        </div>
+
+                                        <!-- Sidebar menu item START -->
+                                        <ul class="nav nav-pills-primary-soft flex-column">
+                                            <li class="nav-item">
+                                                <a class="nav-link active" href="user-profile.html">
+                                                    <i class="fa-regular fa-user"></i> <span style="margin-left: 8px;">
+                                                        My Profile </span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="user-orders.html">
+                                                    <i class="fa-solid fa-cart-shopping"></i></i><span
+                                                        style="margin-left: 8px;"> My order history </span>
+                                                </a>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="user-wishlist.html">
+                                                    <i class="fa-regular fa-heart"></i><span style="margin-left: 8px;">
+                                                        Wishlist </span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="user-payment-details.html">
+                                                    <i class="fa-solid fa-credit-card"></i><span
+                                                        style="margin-left: 8px;"> Payment Details </span>
+                                                </a>
+                                            </li>
+
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="user-delete.html">
+                                                    <i class="fa-solid fa-trash"></i><span
+                                                        style="margin-left: 16px;">Delete Profile</span></a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link text-danger bg-danger-soft-hover" href="#">
+                                                    <i class="fas fa-sign-out-alt fa-fw me-2"></i>Sign Out</a>
+                                            </li>
+                                        </ul>
+                                        <!-- Sidebar menu item END -->
+                                    </div>
+                                    <!-- Card body END -->
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Responsive offcanvas body END -->
+                    </div>
+                    <!-- Sidebar END -->
+
+                    <!-- Main content START -->
+                    <div class="col-lg-8 col-xl-9 mb-8">
+
+                        <!-- Offcanvas menu button -->
+                        <div class="d-grid mb-0 d-lg-none w-100">
+                            <button class="btn btn-primary mb-4" type="button" data-bs-toggle="offcanvas"
+                                data-bs-target="#offcanvasSidebar" aria-controls="offcanvasSidebar">
+                                <i class="fas fa-sliders-h"></i> Menu
+                            </button>
+                        </div>
+
+                        <div class="vstack gap-4">
+                            <!-- Personal info START -->
+                            <div class="card border">
+                                <!-- Card header -->
+                                <div class="card-header border-bottom">
+                                    <h4 class="card-header-title">Personal Information</h4>
+                                </div>
+
+                                <!-- Card body START -->
+                                <div class="card-body">
+                                    <!-- Form START -->
+                                    <form class="row g-3">
+                                        <!-- Profile photo -->
+                                        <div class="col-12">
+                                            <label class="form-label">Upload your profile photo<span
+                                                    class="text-danger">*</span></label>
+                                            <div class="d-flex align-items-center">
+                                                <label class="position-relative me-4" for="uploadfile-1"
+                                                    title="Replace this pic">
+                                                    <!-- Avatar place holder -->
+                                                    <span class="avatar avatar-xl">
+                                                        <img id="uploadfile-1-preview"
+                                                            class="rounded-circle border border-white border-3 shadow"
+                                                            src="assets/images/01.jpg" alt="" style="height: 90px;">
+                                                    </span>
+                                                </label>
+                                                <!-- Upload button -->
+                                                <label class="btn btn-primary mb-0" for="uploadfile-1">Change</label>
+                                                <input id="uploadfile-1" class="form-control d-none" type="file">
+                                            </div>
+                                        </div>
+
+                                        <!-- Name -->
+                                        <div class="col-md-6">
+                                            <label class="form-label">Full Name<span
+                                                    class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" value="Jacqueline Miller"
+                                                placeholder="Enter your full name">
+                                        </div>
+
+                                        <!-- Email -->
+                                        <div class="col-md-6">
+                                            <label class="form-label">Email address<span
+                                                    class="text-danger">*</span></label>
+                                            <input type="email" class="form-control" value="hello@gmail.com"
+                                                placeholder="Enter your email id">
+                                        </div>
+
+                                        <!-- Mobile -->
+                                        <div class="col-md-6">
+                                            <label class="form-label">Mobile number<span
+                                                    class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" value="222 555 666"
+                                                placeholder="Enter your mobile number">
+                                        </div>
+
+                                        <!-- Nationality -->
+                                        <div class="col-md-6">
+                                            <label class="form-label">Nationality<span
+                                                    class="text-danger">*</span></label>
+                                            <select class="form-select js-choice">
+                                                <option value="">Select your country</option>
+                                                <option>USA</option>
+                                                <option selected>Paris</option>
+                                                <option>India</option>
+                                                <option>UK</option>
+                                            </select>
+                                        </div>
+
+                                        <!-- Date of birth -->
+                                        <div class="col-md-6">
+                                            <label class="form-label">Date of Birth<span
+                                                    class="text-danger">*</span></label>
+                                            <input type="text" class="form-control flatpickr" value="29 Aug 1996"
+                                                placeholder="Enter date of birth" data-date-format="d M Y">
+                                        </div>
+
+                                        <!-- Gender -->
+                                        <div class="col-md-6">
+                                            <label class="form-label">Select Gender<span
+                                                    class="text-danger">*</span></label>
+                                            <div class="d-flex gap-4">
+                                                <div class="form-check radio-bg-light">
+                                                    <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                                        id="flexRadioDefault1" checked="">
+                                                    <label class="form-check-label" for="flexRadioDefault1">
+                                                        Male
+                                                    </label>
+                                                </div>
+                                                <div class="form-check radio-bg-light">
+                                                    <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                                        id="flexRadioDefault2">
+                                                    <label class="form-check-label" for="flexRadioDefault2">
+                                                        Female
+                                                    </label>
+                                                </div>
+                                                <div class="form-check radio-bg-light">
+                                                    <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                                        id="flexRadioDefault3">
+                                                    <label class="form-check-label" for="flexRadioDefault3">
+                                                        Others
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Address -->
+                                        <div class="col-12">
+                                            <label class="form-label">Address</label>
+                                            <textarea class="form-control" rows="3"
+                                                spellcheck="false">2119 N Division Ave, New Hampshire, York, United States</textarea>
+                                        </div>
+
+                                        <!-- Button -->
+                                        <div class="col-12 text-end">
+                                            <a href="#" class="btn btn-primary mb-0">Save Changes</a>
+                                        </div>
+                                    </form>
+                                    <!-- Form END -->
+                                </div>
+                                <!-- Card body END -->
+                            </div>
+                            <!-- Personal info END --
+
+                            <!-- Update Password START -->
+                            <div class="card border">
+                                <!-- Card header -->
+                                <div class="card-header border-bottom">
+                                    <h4 class="card-header-title">Update Password</h4>
+                                </div>
+
+                                <!-- Card body START -->
+                                <form class="card-body">
+                                    <!-- Current password -->
+                                    <div class="mb-3">
+                                        <label class="form-label">Current password</label>
+                                        <input class="form-control" type="password"
+                                            placeholder="Enter current password">
+                                    </div>
+                                    <!-- New password -->
+                                    <div class="mb-3">
+                                        <label class="form-label"> Enter new password</label>
+                                        <div class="input-group">
+                                            <input class="form-control fakepassword" placeholder="Enter new password"
+                                                type="password" id="psw-input">
+                                            <span class="input-group-text p-0 bg-transparent">
+                                                <i class="fakepasswordicon fas fa-eye-slash cursor-pointer p-2"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <!-- Confirm -->
+                                    <div class="mb-3">
+                                        <label class="form-label">Confirm new password</label>
+                                        <input class="form-control" type="password" placeholder="Confirm new password">
+                                    </div>
+
+                                    <div class="text-end">
+                                        <a href="#" class="btn btn-primary mb-0">Change Password</a>
+                                    </div>
+                                </form>
+                                <!-- Card body END -->
+                            </div>
+                            <!-- Update Password END -->
+                        </div>
+                    </div>
+                    <!-- Main content END -->
+
+                </div>
+            </div>
+        </section>
+        <!-- =======================
+        Content END -->
+
+    </main>
+
+
+    <!-- Footer Start-->
+    <footer class="main-footer">
+        <!-- Services block-->
+        <div class="service-block bg-gray-100 text-dark-700 py-6">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 service-column">
+                        <i class="fas fa-shipping-fast fa-3x service-icon"></i>
+                        <div class="service-text">
+                            <h6 class="text-uppercase">Free shipping &amp; return</h6>
+                            <p class="text-muted fw-light text-sm mb-0">Free Shipping over $300</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 service-column">
+                        <i class="fas fa-money-bill-wave fa-3x service-icon"></i>
+                        <div class="service-text">
+                            <h6 class="text-uppercase">Money back guarantee</h6>
+                            <p class="text-muted fw-light text-sm mb-0">30 Days Money Back Guarantee</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 service-column">
+                        <i class="fas fa-headset fa-3x service-icon"></i>
+                        <div class="service-text">
+                            <h6 class="text-uppercase">000-800-056-000</h6>
+                            <p class="text-muted fw-light text-sm mb-0">Available Support </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Main block - menus, subscribe form-->
+        <div class="footer-main py-6 bg-gray-300 text-muted">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 mb-5 mb-lg-0">
+                        <div class="fw-bold text-uppercase text-lg text-dark mb-3">
+                            Blend
+                            <span class="text-primary">.</span>
+                            Art
+                        </div>
+                        <p>Purchase directly what you fancy Or Try the Blind Box to get a surprise.</p>
+                        <ul class="list-inline">
+                            <li class="list-inline-item"><a class="text-muted text-primary-hover" href="#"
+                                    target="_blank" title="twitter"><i class="fab fa-twitter"></i></a>
+                            </li>
+                            <li class="list-inline-item"><a class="text-muted text-primary-hover" href="#"
+                                    target="_blank" title="facebook"><i class="fab fa-facebook"></i></a>
+                            </li>
+                            <li class="list-inline-item"><a class="text-muted text-primary-hover" href="#"
+                                    target="_blank" title="instagram"><i class="fab fa-instagram"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-2 col-md-6 mb-5 mb-lg-0">
+                        <h6 class="text-uppercase text-dark mb-3">Shop</h6>
+                        <ul class="list-unstyled">
+                            <li> <a class="text-muted" href="direct-Buy.html">Directly Purchase</a></li>
+                            <li> <a class="text-muted" href="blind-Box.html">For Blind Box</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-2 col-md-6 mb-5 mb-lg-0">
+                        <h6 class="text-uppercase text-dark mb-3">Easy-going</h6>
+                        <ul class="list-unstyled">
+                            <li> <a class="text-muted" href="user-wishlist.html">Wishlist </a></li>
+                            <li> <a class="text-muted" href="user-checkout-overview.html">Checkouts </a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-4">
+                        <h6 class="text-uppercase text-dark mb-3">Daily Offers & Discounts</h6>
+                        <p class="mb-3"> Want to get newsletter in time? Subscribe our website!</p>
+                        <form action="#" id="newsletter-form">
+                            <div class="input-group mb-3">
+                                <input class="form-control bg-transparent border-secondary " type="email"
+                                    placeholder="Your Email Address" aria-label="Your Email Address"
+                                    style="margin-right: 10px;">
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary border-start-0" type="submit">
+                                        <i class="fa fa-paper-plane text-lg text-dark"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Copyright section of the footer-->
+        <div class="py-4 fw-light footer-botton text-gray-300">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-6 text-center text-md-start">
+                        <p class="mb-md-0">&copy; 2024 ELTE Thesis. All rights reserved.</p>
+                    </div>
+                    <div class="col-md-6">
+                        <ul class="list-inline mb-0 mt-2 mt-md-0 text-center text-md-end">
+                            <li class="list-inline-item"><img class="w-2rem" src="assets/images/visa.svg" alt="visa">
+                            </li>
+                            <li class="list-inline-item"><img class="w-2rem" src="assets/images/mastercard.svg"
+                                    alt="mastercard"></li>
+                            <li class="list-inline-item"><img class="w-2rem" src="assets/images/paypal.svg"
+                                    alt="paypal"> </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- /Footer end-->
+
+    <div id="scrollTop"><i class="fa fa-long-arrow-alt-up"></i></div>
+
+    <!-- JavaScript files-->
+    <!-- jQuery-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"
+        integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- Bootstrap JavaScript Bundle (Popper.js included)-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js" integrity="sha512-7Pi/otdlbbCR+LnW+F7PwFcSDJOuUJB3OxtEHbg4vSMvzvJjde4Po1v4BR9Gdc9aXNUNFVUY+SK51wWT8WF0Gg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- Owl Carousel-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="assets/js/vendor/owl.carousel2.thumbs.min.js"></script>
+    <!-- Smooth scrolling-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/smooth-scroll/16.1.3/smooth-scroll.polyfills.min.js" integrity="sha512-LZ6YBzwuQvIG41twjliX3HUVeAd+ErnJ0UsqRnkI4firX2l71jxbKJoax/hu7XY2tiyLl0YA2kcnz/XEW+9O3g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- Lightbox gallery-->
+    <script src="assets/js/vendor/glightbox.min.js"></script>
+    <!-- Object Fit Images - Fallback for browsers that don't support object-fit-->
+    <script src="assets/js/index.js"></script>
+    <script src="https://kit.fontawesome.com/e85815ae07.js" crossorigin="anonymous"></script>
+    <script src="assets/js/vendor/ofi.min.js"></script>
+    <script> var basePath = ''; </script>
+    <script src="assets/js/theme.js"></script>
+    <script src="assets/js/vendor/jquery.cookie.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/choices.js/10.2.0/choices.min.js" integrity="sha512-OrRY3yVhfDckdPBIjU2/VXGGDjq3GPcnILWTT39iYiuV6O3cEcAxkgCBVR49viQ99vBFeu+a6/AoFAkNHgFteg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</body>
+
+</html>

@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Home</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex">
+    <!-- Google fonts - Playfair Display-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700">
+    <!-- owl carousel-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Lightbox -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/glightbox/3.3.0/css/glightbox.min.css" integrity="sha512-T+KoG3fbDoSnlgEXFQqwcTC9AdkFIxhBlmoaFqYaIjq2ShhNwNao9AKaLUPMfwiBPL0ScxAtc+UYbHAgvd+sjQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="https://demo.bootstrapious.com/sell/2-0-1/css/style.default.7acfaf01.css" id="theme-stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/10.2.0/swiper-bundle.min.css" integrity="sha512-s6khMl5GDS1HbQ5/SwL1wzMayPwHXPjKoBN5kHUTDqKEPkkGyEZWKyH2lQ3YO2q3dxueG3rE0NHjRawMHd2b6g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="assets/css/vendor/theme.min.css">
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="assets/images/favicon.png">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="assets/css/vendor/fontawesome.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/index.css">
+    <style>
+        @media (min-width:1200px) {
+            .navbar .dropdown-menu.show {
+                display: block;
+                opacity: 1;
+                visibility: visible;
+                transform: translate(-50%);
+                transition: all .3s ease-in-out;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+    <header class="header">
+        <!-- Top Bar-->
+        <div class="top-bar">
+            <div class="container-fluid">
+                <div class="row d-flex align-items-center">
+                    <div class="col-sm-7 d-none d-sm-block">
+                        <ul class="list-inline topbar-text mb-0 d-flex justify-content-end">
+                            <li class="list-inline-item px-3">Free shipping on orders over $300</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Top Bar End-->
+        <!-- Navbar-->
+        <nav class="navbar navbar-expand-lg navbar-sticky navbar-airy navbar-light bg-white">
+            <div class="container-fluid">
+                <!-- Navbar Header  -->
+                <a href="index.html"><img src="assets/images/logo.png" alt="Logo" width="200"></a>
+
+                <!-- Navbar Collapse -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+                    aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <ul class="navbar-nav mx-auto">
+                        <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="blind-Box.html">Blind Box</a>
+                        <li class="nav-item"><a class="nav-link" href="direct-Buy.html">Shop</a></li>
+                        <li class="nav-item"><a class="nav-link" href="mailto:wd2m91@inf.elte.hu" title="Click to send email">Contact</a></li>
+                    </ul>
+
+                    <div
+                        class="d-flex align-items-center justify-content-between justify-content-lg-end mt-1 mb-2 my-lg-0">
+                        <!-- Search Button-->
+                        <div class="nav-item navbar-icon-link" data-bs-toggle="offcanvas"
+                            data-bs-target="#searchOffcanvas" aria-controls="searchOffcanvas">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <!-- User Not Logged - link to login page-->
+                        <!-- User Did Logged - link to accout info-->
+                        <div class="nav-item">
+                            <a class="navbar-icon-link" href="user-login.html" id="userLoginLink">
+                                <i class="far fa-user"></i>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="userDropdownMenu" style="display: none;"
+                                id="userDropdownMenu">
+                                <a class="dropdown-item" href="user-profile.html">Profile</a>
+                                <a class="dropdown-item" href="user-wishlist.html">My Wish List</a>
+                                <a class="dropdown-item" href="#">Logout</a>
+                            </div>
+                        </div>
+                        <!-- Offcanvas Cart Trigger -->
+                        <div class="nav-item">
+                            <a class="navbar-icon-link" href="#" data-bs-toggle="offcanvas"
+                                data-bs-target="#offcanvasCart" aria-controls="offcanvasCart">
+                                <i class="fas fa-shopping-cart"></i>
+                                <div class="navbar-icon-link-badge">3</div>
+                            </a>
+                        </div>
+
+                        <div class="nav-item">
+                            <div class="color-modes position-relative ps-2">
+                                <a class="bd-theme btn btn-link nav-link dropdown-toggle d-inline-flex align-items-center justify-content-center text-primary p-0 position-relative rounded-circle"
+                                    href="#" aria-expanded="true" data-bs-toggle="dropdown" data-bs-display="static"
+                                    aria-label="Toggle theme (light)">
+                                    <i class="fa-regular fa-sun"></i>
+                                </a>
+
+                                <ul class="dropdown-menu dropdown-menu-end fs-14px" data-bs-popper="static">
+                                    <li>
+                                        <button type="button" class="dropdown-item d-flex align-items-center active"
+                                            data-bs-theme-value="light" aria-pressed="true">
+                                            <i class="fa-regular fa-sun me-4 opacity-50 theme-icon"></i>
+                                            Light
+                                            <i class="fa-solid fa-check ms-auto d-none"></i>
+                                        </button>
+
+                                    </li>
+                                    <li>
+                                        <button type="button" class="dropdown-item d-flex align-items-center"
+                                            data-bs-theme-value="dark" aria-pressed="false">
+                                            <i class="fa-solid fa-moon me-4 opacity-50 theme-icon"></i>
+                                            Dark
+                                            <i class="fa-solid fa-check ms-auto d-none"></i>
+                                        </button>
+
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <!-- /Navbar -->
+
+        <!-- Offcanvas Cart -->
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasCart" aria-labelledby="offcanvasCartLabel">
+            <div class="offcanvas-header">
+                <h5 id="offcanvasCartLabel">Cart</h5>
+                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                    aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <!-- 添加 Cart items -->
+                <!-- Cart items here -->
+                <!-- Repeat your cart item structure here as needed -->
+                <ul class="minicart-product-list">
+                    <!-- 得修改成添加商品进购物车的逻辑！！！-->
+                    <li>
+                        <a href="product-details.html" class="image"><img src="#" alt="Cart product Image"></a>
+                        <div class="content">
+                            <!-- 得从数据库/其他地方提取信息 -->
+                            <a href="product-details.html" class="title">Walnut Cutting Board</a>
+                            <span class="quantity-price">1 x <span class="amount">$100.00</span></span>
+                            <a href="#" class="remove">×</a> <!-- 修改逻辑 -->
+                        </div>
+                    </li>
+                </ul>
+
+                <!-- Total Price -->
+                <div class="navbar-cart-total"><span class="text-uppercase text-muted">Total</span><strong
+                        class="text-uppercase">$225.00</strong></div>
+                <!-- Buttons -->
+                <div class="buttons">
+                    <a href="user-cart.html" class="btn btn-dark btn-hover-primary">view cart</a>
+                    <a href="user-checkout.html" class="btn btn-outline-dark">checkout</a>
+                </div>
+                <p class="minicart-message" style="text-align: center; margin-top: 20px;">Free Shipping on All Orders
+                    Over $100!</p>
+            </div>
+        </div>
+
+
+
+        <!-- Search Offcanvas -->
+        <div class="offcanvas offcanvas-top" tabindex="-1" id="searchOffcanvas" aria-labelledby="searchOffcanvasLabel">
+            <div class="offcanvas-header">
+                <h5 id="searchOffcanvasLabel">Search</h5>
+                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                    aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <form class="search-area-form" action="#">
+                    <div class="mb-4 position-relative">
+                        <input class="search-area-input form-control" type="search" name="search" id="search"
+                            placeholder="What are you looking for?">
+
+                        <div class="d-grid gap-2 col-6 mx-auto">
+                            <button class="btn btn-primary" type="submit" style="margin-top: 25px;">Search</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </header>
+
+    <!-- Hero Section-->
+    <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active" data-bs-interval="3000">
+                <div title="Blind Box Suprise">
+                    <img src="assets/images/box.png" class="d-block w-100" style="max-height: 800px; object-fit: cover;"
+                        alt="blind-box">
+                </div>
+                <div class="carousel-caption d-block">
+                    <h2 class="h2-color">Welcome to Blind Box World!</h2>
+                    <p>Don't know what want to buy?</p>
+                    <a class="btn btn-light btn-primary" href="blind-Box.html">Start Adventure</a>
+                </div>
+            </div>
+            <div class="carousel-item" data-bs-interval="3000">
+                <div title="Tradition Shop">
+                    <img src="assets/images/direct-shop.png" class="d-block w-100"
+                        style="max-height: 800px; object-fit: cover;" alt="tradition-shop">
+                </div>
+                <div class="carousel-caption d-block">
+                    <h2 class="h2-color">Welcome to Art Trading Platform World!</h2>
+                    <p>Already have aim?</p>
+                    <a class="btn btn-light btn-primary" href="direct-Buy.html">Start Shop</a>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+    <section class="product-section py-6">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-8 mx-auto text-center mb-5">
+                    <h2 class="text-uppercase">BUY AND SELL ART COMMISSION-FREE</h2>
+                    <p class="lead text-muted">PHYSICAL | DIGITAL | NFT</p>
+                </div>
+            </div>
+            <!-- Products Slider-->
+            <div class="owl-carousel owl-theme product-slider">
+                <!-- product-->
+                <div class="item product-slider-item">
+                    <div class="product">
+                        <div class="product-image"><img class="img-fluid"
+                                src="https://d19m59y37dris4.cloudfront.net/sell/2-0-1/img/product/serrah-galos-494231-unsplash.jpg"
+                                alt="product" />
+                            <div class="product-hover-overlay"><a class="product-hover-overlay-link"
+                                    href="detail.html"></a>
+                                <div class="product-hover-overlay-buttons"><a class="btn btn-dark btn-buy"
+                                        href="detail.html"><i class="fa-search fa"></i><span
+                                            class="btn-buy-label ms-2">View</span></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="py-2">
+                            <p class="text-muted text-sm mb-1">Jackets</p>
+                            <h3 class="h6 text-uppercase mb-1"><a class="text-dark" href="detail.html">Striped
+                                    T-Shirt</a></h3><span class="text-muted">$40.00</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- /product-->
+                <!-- product-->
+                <div class="product-slider-item">
+                    <div class="product">
+                        <div class="product-image"><img class="img-fluid"
+                                src="https://d19m59y37dris4.cloudfront.net/sell/2-0-1/img/product/averie-woodard-319832-unsplash.jpg"
+                                alt="product" />
+                            <div class="product-hover-overlay"><a class="product-hover-overlay-link"
+                                    href="detail.html"></a>
+                                <div class="product-hover-overlay-buttons"><a class="btn btn-dark btn-buy"
+                                        href="detail.html"><i class="fa-search fa"></i><span
+                                            class="btn-buy-label ms-2">View</span></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="py-2">
+                            <p class="text-muted text-sm mb-1">Shirts</p>
+                            <h3 class="h6 text-uppercase mb-1"><a class="text-dark" href="detail.html">Short top</a>
+                            </h3><span class="text-muted">$40.00</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- /product-->
+                <!-- product-->
+                <div class="product-slider-item">
+                    <div class="product">
+                        <div class="product-image">
+                            <div class="ribbon ribbon-danger">Sold out</div><img class="img-fluid"
+                                src="https://d19m59y37dris4.cloudfront.net/sell/2-0-1/img/product/serrah-galos-494279-unsplash.jpg"
+                                alt="product" />
+                            <div class="product-hover-overlay"><a class="product-hover-overlay-link"
+                                    href="detail.html"></a>
+                                <div class="product-hover-overlay-buttons"><a class="btn btn-dark btn-buy"
+                                        href="detail.html"><i class="fa-search fa"></i><span
+                                            class="btn-buy-label ms-2">View</span></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="py-2">
+                            <p class="text-muted text-sm mb-1">Sweaters</p>
+                            <h3 class="h6 text-uppercase mb-1"><a class="text-dark" href="detail.html">Ethnic
+                                    Sweater</a></h3><span class="text-muted">$40.00</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- /product-->
+                <!-- product-->
+                <div class="product-slider-item">
+                    <div class="product">
+                        <div class="product-image"><img class="img-fluid"
+                                src="https://d19m59y37dris4.cloudfront.net/sell/2-0-1/img/product/dmitriy-ilkevich-437760-unsplash.jpg"
+                                alt="product" />
+                            <div class="product-hover-overlay"><a class="product-hover-overlay-link"
+                                    href="detail.html"></a>
+                                <div class="product-hover-overlay-buttons"><a class="btn btn-dark btn-buy"
+                                        href="detail.html"><i class="fa-search fa"></i><span
+                                            class="btn-buy-label ms-2">View</span></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="py-2">
+                            <p class="text-muted text-sm mb-1">Coats</p>
+                            <h3 class="h6 text-uppercase mb-1"><a class="text-dark" href="detail.html">Beige</a></h3>
+                            <span class="text-muted">$40.00</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- /product-->
+                <!-- product-->
+                <div class="product-slider-item">
+                    <div class="product">
+                        <div class="product-image"><img class="img-fluid"
+                                src="https://d19m59y37dris4.cloudfront.net/sell/2-0-1/img/product/ian-dooley-347968-unsplash.jpg"
+                                alt="product" />
+                            <div class="product-hover-overlay"><a class="product-hover-overlay-link"
+                                    href="detail.html"></a>
+                                <div class="product-hover-overlay-buttons"><a class="btn btn-dark btn-buy"
+                                        href="detail.html"><i class="fa-search fa"></i><span
+                                            class="btn-buy-label ms-2">View</span></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="py-2">
+                            <p class="text-muted text-sm mb-1">T-Shirts</p>
+                            <h3 class="h6 text-uppercase mb-1"><a class="text-dark" href="detail.html">Skull Tee</a>
+                            </h3><span class="text-muted">$40.00</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- /product-->
+                <!-- product-->
+                <div class="product-slider-item">
+                    <div class="product">
+                        <div class="product-image"><img class="img-fluid"
+                                src="https://d19m59y37dris4.cloudfront.net/sell/2-0-1/img/product/alex-holyoake-571682-unsplash.jpg"
+                                alt="product" />
+                            <div class="product-hover-overlay"><a class="product-hover-overlay-link"
+                                    href="detail.html"></a>
+                                <div class="product-hover-overlay-buttons"><a class="btn btn-dark btn-buy"
+                                        href="detail.html"><i class="fa-search fa"></i><span
+                                            class="btn-buy-label ms-2">View</span></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="py-2">
+                            <p class="text-muted text-sm mb-1">Denim</p>
+                            <h3 class="h6 text-uppercase mb-1"><a class="text-dark" href="detail.html">Trucker
+                                    jacket</a></h3><span class="text-muted">$40.00</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- /product-->
+                <!-- product-->
+                <div class="product-slider-item">
+                    <div class="product">
+                        <div class="product-image"><img class="img-fluid"
+                                src="https://d19m59y37dris4.cloudfront.net/sell/2-0-1/img/product/ao-456813-unsplash.jpg"
+                                alt="product" />
+                            <div class="product-hover-overlay"><a class="product-hover-overlay-link"
+                                    href="detail.html"></a>
+                                <div class="product-hover-overlay-buttons"><a class="btn btn-dark btn-buy"
+                                        href="detail.html"><i class="fa-search fa"></i><span
+                                            class="btn-buy-label ms-2">View</span></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="py-2">
+                            <p class="text-muted text-sm mb-1">Denim</p>
+                            <h3 class="h6 text-uppercase mb-1"><a class="text-dark" href="detail.html">Blouse</a></h3>
+                            <span class="text-muted">$40.00</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- /product-->
+                <!-- product-->
+                <div class="product-slider-item">
+                    <div class="product">
+                        <div class="product-image"><img class="img-fluid"
+                                src="https://d19m59y37dris4.cloudfront.net/sell/2-0-1/img/product/kyle-loftus-592041-unsplash.jpg"
+                                alt="product" />
+                            <div class="product-hover-overlay"><a class="product-hover-overlay-link"
+                                    href="detail.html"></a>
+                                <div class="product-hover-overlay-buttons"><a class="btn btn-dark btn-buy"
+                                        href="detail.html"><i class="fa-search fa"></i><span
+                                            class="btn-buy-label ms-2">View</span></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="py-2">
+                            <p class="text-muted text-sm mb-1">Denim</p>
+                            <h3 class="h6 text-uppercase mb-1"><a class="text-dark" href="detail.html">Shirt</a></h3>
+                            <span class="text-muted">$40.00</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- /product-->
+            </div>
+            <div class="text-center mt-4">
+                <a href="direct-Buy.html" class="btn btn-info">See more...</a>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="py-lg-8 py-5">
+        <div class="container">
+           <div class="row">
+              <div class="col-12">
+                 <!--card-->
+
+                    <div class="row">
+                       <div class="col-md-12">
+                          <div class="tab-content pt-6" id="pills-tabTwoContent">
+                             <div class="tab-pane tab-example-preview fade show active" id="pills-example-preview" role="tabpanel" aria-labelledby="pills-example-preview-tab">
+                                <!--Case study start-->
+                                <section class="py-xl-9 py-5 artist-section">
+                                   <div class="container">
+                                      <div class="row">
+                                         <div class="col-lg-8 offset-lg-2 col-12">
+                                            <div class="text-center mb-xl-7 mb-5">
+                                               <small class="text-uppercase ls-md fw-semibold text-primary">Case study</small>
+                                               <h2 class="my-3 text-white-stable">Explore Success Stories</h2>
+                                               <p class="mb-0 text-body">Explore Success Stories: Real-World Impact through Our Customer Case Studies</p>
+                                            </div>
+                                         </div>
+                                      </div>
+                                      <div class="swiper sliderSwiperThumbanil">
+                                         <div class="swiper-wrapper pb-lg-8 pb-4 pt-1">
+                                            <div class="swiper-slide">
+                                               <div class="card border-0 h-100 card-lift">
+                                                  <a href="#!"><img src="assets/images/avatar01.jpeg" alt="about" class="img-fluid rounded-top-3" /></a>
+                                                  <div class="card-body">
+                                                     <div class="d-flex flex-column gap-2">
+                                                        <div>
+                                                           <img src="../assets/images/landings/it-company/casestudy-logo-1.svg" alt="case-study" />
+                                                        </div>
+                                                        <div class="d-flex flex-column gap-4">
+                                                           <h4><a href="#!" class="text-reset">Revolutionizing Healthcare Delivery</a></h4>
+                                                           <a href="#!" class="icon-link icon-link-hover">
+                                                              Read Case Study
+                                                              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                                                                 <path
+                                                                    fill-rule="evenodd"
+                                                                    d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"></path>
+                                                              </svg>
+                                                           </a>
+                                                        </div>
+                                                     </div>
+                                                  </div>
+                                               </div>
+                                            </div>
+
+                                            <div class="swiper-slide">
+                                               <div class="card border-0 h-100 card-lift">
+                                                  <a href="#!"><img src="assets/images/avatar02.jpeg" alt="about" class="img-fluid rounded-top-3" /></a>
+                                                  <div class="card-body">
+                                                     <div class="d-flex flex-column gap-2">
+                                                        <div>
+                                                           <img src="../assets/images/landings/it-company/casestudy-logo-2.svg" alt="case-study" />
+                                                        </div>
+                                                        <div class="d-flex flex-column gap-4">
+                                                           <h4><a href="#!" class="text-reset">Financial Institution Fin-tech Success Story</a></h4>
+
+                                                           <a href="#!" class="icon-link icon-link-hover">
+                                                              Read Case Study
+                                                              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                                                                 <path
+                                                                    fill-rule="evenodd"
+                                                                    d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"></path>
+                                                              </svg>
+                                                           </a>
+                                                        </div>
+                                                     </div>
+                                                  </div>
+                                               </div>
+                                            </div>
+                                            <div class="swiper-slide">
+                                               <div class="card border-0 h-100 card-lift">
+                                                  <a href="#!"><img src="assets/images/avatar03.jpeg" alt="about" class="img-fluid rounded-top-3" /></a>
+                                                  <div class="card-body">
+                                                     <div class="d-flex flex-column gap-2">
+                                                        <div>
+                                                           <img src="../assets/images/landings/it-company/casestudy-logo-3.svg" alt="case-study" />
+                                                        </div>
+                                                        <div class="d-flex flex-column gap-4">
+                                                           <h4><a href="#!" class="text-reset">Digital Educational Learning Innovation</a></h4>
+
+                                                           <a href="#!" class="icon-link icon-link-hover">
+                                                              Read Case Study
+                                                              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                                                                 <path
+                                                                    fill-rule="evenodd"
+                                                                    d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"></path>
+                                                              </svg>
+                                                           </a>
+                                                        </div>
+                                                     </div>
+                                                  </div>
+                                               </div>
+                                            </div>
+                                            <div class="swiper-slide">
+                                               <div class="card border-0 h-100 card-lift">
+                                                  <a href="#!"><img src=".assets/images/avatar04.jpeg" alt="about" class="img-fluid rounded-top-3" /></a>
+                                                  <div class="card-body">
+                                                     <div class="d-flex flex-column gap-2">
+                                                        <div>
+                                                           <img src="../assets/images/landings/it-company/casestudy-logo-4.svg" alt="case-study" />
+                                                        </div>
+                                                        <div class="d-flex flex-column gap-4">
+                                                           <h4><a href="#!" class="text-reset">Revolutionizing Efficiency: How Codescandy Enhanced Operations for Client</a></h4>
+
+                                                           <a href="#!" class="icon-link icon-link-hover">
+                                                              Read Case Study
+                                                              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                                                                 <path
+                                                                    fill-rule="evenodd"
+                                                                    d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"></path>
+                                                              </svg>
+                                                           </a>
+                                                        </div>
+                                                     </div>
+                                                  </div>
+                                               </div>
+                                            </div>
+
+                                            <div class="swiper-slide">
+                                               <div class="card border-0 h-100 card-lift">
+                                                  <a href="#!"><img src="assets/images/avatar05.jpeg" alt="about" class="img-fluid rounded-top-3" /></a>
+                                                  <div class="card-body">
+                                                     <div class="d-flex flex-column gap-2">
+                                                        <div>
+                                                           <img src="../assets/images/landings/it-company/casestudy-logo-5.svg" alt="case-study" />
+                                                        </div>
+                                                        <div class="d-flex flex-column gap-4">
+                                                           <h4><a href="#!" class="text-reset">From Challenge to Triumph: The [Client Name] Success Story</a></h4>
+
+                                                           <a href="#!" class="icon-link icon-link-hover">
+                                                              Read Case Study
+                                                              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                                                                 <path
+                                                                    fill-rule="evenodd"
+                                                                    d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"></path>
+                                                              </svg>
+                                                           </a>
+                                                        </div>
+                                                     </div>
+                                                  </div>
+                                               </div>
+                                            </div>
+                                            <div class="swiper-slide">
+                                               <div class="card border-0 h-100 card-lift">
+                                                  <a href="#!"><img src="assets/images/avatar06.jpeg" alt="about" class="img-fluid rounded-top-3" /></a>
+                                                  <div class="card-body">
+                                                     <div class="d-flex flex-column gap-2">
+                                                        <div>
+                                                           <img src="../assets/images/landings/it-company/casestudy-logo-6.svg" alt="case-study" />
+                                                        </div>
+                                                        <div class="d-flex flex-column gap-4">
+                                                           <h4><a href="#!" class="text-reset">A Deep Dive into [Client Name]'s Digital Transformation Journey</a></h4>
+
+                                                           <a href="#!" class="icon-link icon-link-hover">
+                                                              Read Case Study
+                                                              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                                                                 <path
+                                                                    fill-rule="evenodd"
+                                                                    d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"></path>
+                                                              </svg>
+                                                           </a>
+                                                        </div>
+                                                     </div>
+                                                  </div>
+                                               </div>
+                                            </div>
+                                         </div>
+                                         <div class="d-flex gap-3 justify-content-center">
+                                            <div class="btn-prev btn btn-icon btn-white rounded-pill">
+                                                <i class="fa-solid fa-arrow-left"></i>
+                                            </div>
+                                            <div class="btn-next btn btn-icon btn-white rounded-pill">
+                                                <i class="fa-solid fa-arrow-right"></i>
+                                            </div>
+                                         </div>
+                                      </div>
+                                   </div>
+                                </section>
+                                <!--Case study end-->
+                             </div>
+                          </div>
+                       </div>
+                    </div>
+                 </div>
+              </div>
+           </div>
+        </div>
+     </section>
+
+
+    <!-- Footer-->
+    <footer class="main-footer">
+        <!-- Services block-->
+        <div class="service-block bg-gray-100 text-dark-700 py-6">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 service-column">
+                        <i class="fas fa-shipping-fast fa-3x service-icon"></i>
+                        <div class="service-text">
+                            <h6 class="text-uppercase">Free shipping &amp; return</h6>
+                            <p class="text-muted fw-light text-sm mb-0">Free Shipping over $300</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 service-column">
+                        <i class="fas fa-money-bill-wave fa-3x service-icon"></i>
+                        <div class="service-text">
+                            <h6 class="text-uppercase">Money back guarantee</h6>
+                            <p class="text-muted fw-light text-sm mb-0">30 Days Money Back Guarantee</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 service-column">
+                        <i class="fas fa-headset fa-3x service-icon"></i>
+                        <div class="service-text">
+                            <h6 class="text-uppercase">000-800-056-000</h6>
+                            <p class="text-muted fw-light text-sm mb-0">Available Support </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Main block - menus, subscribe form-->
+        <div class="footer-main py-6 bg-gray-300 text-muted">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 mb-5 mb-lg-0">
+                        <div class="fw-bold text-uppercase text-lg text-dark mb-3">
+                            Blend
+                            <span class="text-primary">.</span>
+                            Art
+                        </div>
+                        <p>Purchase directly what you fancy Or Try the Blind Box to get a surprise.</p>
+                        <ul class="list-inline">
+                            <li class="list-inline-item"><a class="text-muted text-primary-hover" href="#"
+                                    target="_blank" title="twitter"><i class="fab fa-twitter"></i></a>
+                            </li>
+                            <li class="list-inline-item"><a class="text-muted text-primary-hover" href="#"
+                                    target="_blank" title="facebook"><i class="fab fa-facebook"></i></a>
+                            </li>
+                            <li class="list-inline-item"><a class="text-muted text-primary-hover" href="#"
+                                    target="_blank" title="instagram"><i class="fab fa-instagram"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-2 col-md-6 mb-5 mb-lg-0">
+                        <h6 class="text-uppercase text-dark mb-3">Shop</h6>
+                        <ul class="list-unstyled">
+                            <li> <a class="text-muted" href="direct-Buy.html">Directly Purchase</a></li>
+                            <li> <a class="text-muted" href="blind-Box.html">For Blind Box</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-2 col-md-6 mb-5 mb-lg-0">
+                        <h6 class="text-uppercase text-dark mb-3">Easy-going</h6>
+                        <ul class="list-unstyled">
+                            <li> <a class="text-muted" href="user-wishlist.html">Wishlist </a></li>
+                            <li> <a class="text-muted" href="user-checkout-overview.html">Checkouts </a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-4">
+                        <h6 class="text-uppercase text-dark mb-3">Daily Offers & Discounts</h6>
+                        <p class="mb-3"> Want to get newsletter in time? Subscribe our website!</p>
+                        <form action="#" id="newsletter-form">
+                            <div class="input-group mb-3">
+                                <input class="form-control bg-transparent border-secondary " type="email"
+                                    placeholder="Your Email Address" aria-label="Your Email Address"
+                                    style="margin-right: 10px;">
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary border-start-0" type="submit">
+                                        <i class="fa fa-paper-plane text-lg text-dark"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Copyright section of the footer-->
+        <div class="py-4 fw-light footer-botton text-gray-300">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-6 text-center text-md-start">
+                        <p class="mb-md-0">&copy; 2024 ELTE Thesis. All rights reserved.</p>
+                    </div>
+                    <div class="col-md-6">
+                        <ul class="list-inline mb-0 mt-2 mt-md-0 text-center text-md-end">
+                            <li class="list-inline-item"><img class="w-2rem" src="assets/images/visa.svg" alt="visa">
+                            </li>
+                            <li class="list-inline-item"><img class="w-2rem" src="assets/images/mastercard.svg"
+                                    alt="mastercard"></li>
+                            <li class="list-inline-item"><img class="w-2rem" src="assets/images/paypal.svg"
+                                    alt="paypal"> </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- /Footer end-->
+
+    <div id="scrollTop"><i class="fa fa-long-arrow-alt-up"></i></div>
+
+    <!-- JavaScript files-->
+    <!-- jQuery-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"
+        integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- Bootstrap JavaScript Bundle (Popper.js included)-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"
+        integrity="sha512-7Pi/otdlbbCR+LnW+F7PwFcSDJOuUJB3OxtEHbg4vSMvzvJjde4Po1v4BR9Gdc9aXNUNFVUY+SK51wWT8WF0Gg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- Swiper Carousel-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/10.2.0/swiper-bundle.min.js" integrity="sha512-QwpsxtdZRih55GaU/Ce2Baqoy2tEv9GltjAG8yuTy2k9lHqK7VHHp3wWWe+yITYKZlsT3AaCj49ZxMYPp46iJQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="assets/js/vendor/swiper.js"></script>
+    <!-- Owl Carousel-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
+        integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="assets/js/vendor/owl.carousel2.thumbs.min.js"></script>
+    <!-- Smooth scrolling-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/smooth-scroll/16.1.3/smooth-scroll.polyfills.min.js" integrity="sha512-LZ6YBzwuQvIG41twjliX3HUVeAd+ErnJ0UsqRnkI4firX2l71jxbKJoax/hu7XY2tiyLl0YA2kcnz/XEW+9O3g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- Lightbox gallery-->
+    <script src="assets/js/vendor/glightbox.min.js"></script>
+    <!-- Object Fit Images - Fallback for browsers that don't support object-fit-->
+    <script src="assets/js/vendor/ofi.min.js"></script>
+    <script> var basePath = ''; </script>
+    <script src="assets/js/theme.js"></script>
+    <script src="assets/js/vendor/jquery.cookie.js"></script>
+    <script src="assets/js/index.js"></script>
+    <script src="https://kit.fontawesome.com/e85815ae07.js" crossorigin="anonymous"></script>
+
+
+</body>
+
+</html>
