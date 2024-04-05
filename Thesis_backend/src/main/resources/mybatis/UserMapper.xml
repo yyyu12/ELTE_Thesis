@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="hu.elte.inf.backend.dao.UserMapper">
+
+    <!-- 插入新用户 -->
+    <insert id="insertUser" parameterType="hu.elte.inf.backend.sqlEntity.User">
+        INSERT INTO user (username, password, email, )
+        values(#{userName,jdbcType=VARCHAR},#{password,jdbcType=VARCHAR},#{fullName,jdbcType=VARCHAR},#{roles,jdbcType=VARCHAR})
+    </insert>
+
+    <!-- 通过用户名查询用户 -->
+    <select id="getUserByUserName" parameterType="String" resultType="com.guohaohome.moviedb.sqlEntity.User">
+        select * from movie_user where username = #{UserName}
+    </select>
+
+    <delete id="deleteUserByUserName" parameterType="String">
+        delete from movie_user where username = #{UserName}
+    </delete>
+
+</mapper>
+
+<insert id="insertUser" parameterType="com.yourcompany.yourproject.model.User">
+INSERT INTO user (username, password, email)
+VALUES (#{username}, #{password}, #{email})
+</insert>
