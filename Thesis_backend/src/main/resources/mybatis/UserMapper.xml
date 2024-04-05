@@ -6,10 +6,12 @@
 <mapper namespace="hu.elte.inf.backend.dao.UserMapper">
 
     <!-- 插入新用户 -->
-    <insert id="insertUser" parameterType="hu.elte.inf.backend.sqlEntity.User">
-        INSERT INTO user (username, password, email)
-        values(#{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR})
+    <insert id="insertUser" parameterType="hu.elte.inf.backend.sqlEntity.User" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO user (username, password, email, isAdmin)
+        VALUES (#{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{isAdmin,jdbcType=BOOLEAN})
     </insert>
+
+
 
 
     <!-- 通过用户名查询用户 -->

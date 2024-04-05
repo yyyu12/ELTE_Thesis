@@ -18,13 +18,9 @@ public class UserServiceImpl implements  Service{
         userMapper.insertUser(user);
     }
 
-    // 查找用户
-
-
-
-    // 检查用户是否为管理员
-    public boolean isAdmin(String username) {
-        User user = userMapper.getUserByUserName(username);
-        return user != null && Boolean.TRUE.equals(user.getIsAdmin());
+    @Override
+    public User login(String username ){
+        return userMapper.getUserByUserName(username);
     }
+    // 查找用户
 }

@@ -7,4 +7,5 @@ import org.mybatis.spring.annotation.MapperScan;
 public interface UserMapper {
     void insertUser(User user);
     User getUserByUserName(String username);
+
 }
