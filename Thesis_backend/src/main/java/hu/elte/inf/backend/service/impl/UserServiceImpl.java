@@ -6,7 +6,7 @@ import hu.elte.inf.backend.service.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
 // 实现rest业务逻辑 -- 前端和后端交互的地方
-
+@org.springframework.stereotype.Service
 public class UserServiceImpl implements  Service{
 
     @Autowired

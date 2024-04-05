@@ -7,22 +7,14 @@
 
     <!-- 插入新用户 -->
     <insert id="insertUser" parameterType="hu.elte.inf.backend.sqlEntity.User">
-        INSERT INTO user (username, password, email, )
-        values(#{userName,jdbcType=VARCHAR},#{password,jdbcType=VARCHAR},#{fullName,jdbcType=VARCHAR},#{roles,jdbcType=VARCHAR})
+        INSERT INTO user (username, password, email)
+        values(#{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR})
     </insert>
 
+
     <!-- 通过用户名查询用户 -->
-    <select id="getUserByUserName" parameterType="String" resultType="com.guohaohome.moviedb.sqlEntity.User">
-        select * from movie_user where username = #{UserName}
+    <select id="getUserByUserName" parameterType="String" resultType="hu.elte.inf.backend.sqlEntity.User">
+        SELECT * FROM user WHERE username = #{username}
     </select>
 
-    <delete id="deleteUserByUserName" parameterType="String">
-        delete from movie_user where username = #{UserName}
-    </delete>
-
 </mapper>
-
-<insert id="insertUser" parameterType="com.yourcompany.yourproject.model.User">
-INSERT INTO user (username, password, email)
-VALUES (#{username}, #{password}, #{email})
-</insert>
