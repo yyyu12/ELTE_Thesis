@@ -743,6 +743,17 @@
     <div id="scrollTop"><i class="fa fa-long-arrow-alt-up"></i></div>
 
     <!-- JavaScript files-->
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+    const isAdmin = localStorage.getItem('isAdmin') === '1'; 
+
+    if (isAdmin) {
+        // 如果是管理员登录，执行相关操作，例如显示管理员提示框
+        document.getElementById('adminAlertBox').style.display = 'block';
+    }
+});
+
+    </script>
     <!-- jQuery-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"
         integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="

@@ -422,6 +422,7 @@
             console.log(data);
             if (data.status === 'ok') {
                 window.location.href = '/index.html'; 
+                localStorage.setItem('isAdmin', data.info.isAdmin);
             } else {
                 alert(data.message);
             }
