@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>User Login</title>
+    <title>User Main Profile</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noindex">
@@ -90,18 +90,11 @@
                             data-bs-target="#searchOffcanvas" aria-controls="searchOffcanvas">
                             <i class="fas fa-search"></i>
                         </div>
-                        <!-- User Not Logged - link to login page-->
-                        <!-- User Did Logged - link to accout info-->
-                        <div class="nav-item">
+                        <div class="nav-item" id="userAccount">
+                            <!-- 登录链接 -->
                             <a class="navbar-icon-link" href="user-login.html" id="userLoginLink">
                                 <i class="far fa-user"></i>
                             </a>
-                            <div class="dropdown-menu" aria-labelledby="userDropdownMenu" style="display: none;"
-                                id="userDropdownMenu">
-                                <a class="dropdown-item" href="user-profile.html">Profile</a>
-                                <a class="dropdown-item" href="user-wishlist.html">My Wish List</a>
-                                <a class="dropdown-item" href="#">Logout</a>
-                            </div>
                         </div>
                         <!-- Offcanvas Cart Trigger -->
                         <div class="nav-item">
@@ -249,15 +242,8 @@
 
                                     <!-- Card body START -->
                                     <div class="card-body p-3">
-                                        <!-- Avatar and content -->
-                                        <div class="text-center mb-3">
-                                            <!-- Avatar -->
-                                            <div class="avatar avatar-xl mb-2">
-                                                <img class="avatar-img  border-2" src="assets/images/01.jpg" alt="">
-                                            </div>
-                                            <h6 >Jacqueline Miller</h6>
-                                            <a href="#" class="text-reset text-primary-hover small">hello@gmail.com</a>
-                                            <hr>
+                                        <div class="text-center mb-3" id="userNameAndEmail">
+                                            
                                         </div>
 
                                         <!-- Sidebar menu item START -->
@@ -328,97 +314,40 @@
                                 <!-- Card body START -->
                                 <div class="card-body">
                                     <!-- Form START -->
-                                    <form class="row g-3">
-                                        <!-- Profile photo -->
-                                        <div class="col-12">
-                                            <label class="form-label">Upload your profile photo<span
-                                                    class="text-danger">*</span></label>
-                                            <div class="d-flex align-items-center">
-                                                <label class="position-relative me-4" for="uploadfile-1"
-                                                    title="Replace this pic">
-                                                    <!-- Avatar place holder -->
-                                                    <span class="avatar avatar-xl">
-                                                        <img id="uploadfile-1-preview"
-                                                            class="rounded-circle border border-white border-3 shadow"
-                                                            src="assets/images/01.jpg" alt="" style="height: 90px;">
-                                                    </span>
-                                                </label>
-                                                <!-- Upload button -->
-                                                <label class="btn btn-primary mb-0" for="uploadfile-1">Change</label>
-                                                <input id="uploadfile-1" class="form-control d-none" type="file">
-                                            </div>
-                                        </div>
-
+                                    <form id="userUpdateForm" class="row g-3">
                                         <!-- Name -->
                                         <div class="col-md-6">
-                                            <label class="form-label">Full Name<span
-                                                    class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" value="Jacqueline Miller"
-                                                placeholder="Enter your full name">
+                                            <label class="form-label">User Name<span class="text-danger">*</span></label>
+                                            <input type="text" name="username" class="form-control" placeholder="Enter your username">
                                         </div>
 
                                         <!-- Email -->
                                         <div class="col-md-6">
-                                            <label class="form-label">Email address<span
-                                                    class="text-danger">*</span></label>
-                                            <input type="email" class="form-control" value="hello@gmail.com"
-                                                placeholder="Enter your email id">
-                                        </div>
-
-                                        <!-- Mobile -->
-                                        <div class="col-md-6">
-                                            <label class="form-label">Mobile number<span
-                                                    class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" value="222 555 666"
-                                                placeholder="Enter your mobile number">
-                                        </div>
-
-                                        <!-- Nationality -->
-                                        <div class="col-md-6">
-                                            <label class="form-label">Nationality<span
-                                                    class="text-danger">*</span></label>
-                                            <select class="form-select js-choice">
-                                                <option value="">Select your country</option>
-                                                <option>USA</option>
-                                                <option selected>Paris</option>
-                                                <option>India</option>
-                                                <option>UK</option>
-                                            </select>
+                                            <label class="form-label">Email address<span class="text-danger">*</span></label>
+                                            <input type="email" name="email" class="form-control" placeholder="Enter your email">
                                         </div>
 
                                         <!-- Date of birth -->
                                         <div class="col-md-6">
-                                            <label class="form-label">Date of Birth<span
-                                                    class="text-danger">*</span></label>
-                                            <input type="text" class="form-control flatpickr" value="29 Aug 1996"
-                                                placeholder="Enter date of birth" data-date-format="d M Y">
+                                            <label class="form-label">Date of Birth</label>
+                                            <input class="form-control" name="birthdate" type="date">
                                         </div>
 
                                         <!-- Gender -->
                                         <div class="col-md-6">
-                                            <label class="form-label">Select Gender<span
-                                                    class="text-danger">*</span></label>
+                                            <label class="form-label">Select Gender</label>
                                             <div class="d-flex gap-4">
                                                 <div class="form-check radio-bg-light">
-                                                    <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                                        id="flexRadioDefault1" checked="">
-                                                    <label class="form-check-label" for="flexRadioDefault1">
-                                                        Male
-                                                    </label>
+                                                    <input class="form-check-input" type="radio" name="gender" value="Male" id="flexRadioDefault1">
+                                                    <label class="form-check-label" for="flexRadioDefault1">Male</label>
                                                 </div>
                                                 <div class="form-check radio-bg-light">
-                                                    <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                                        id="flexRadioDefault2">
-                                                    <label class="form-check-label" for="flexRadioDefault2">
-                                                        Female
-                                                    </label>
+                                                    <input class="form-check-input" type="radio" name="gender" value="Female" id="flexRadioDefault2">
+                                                    <label class="form-check-label" for="flexRadioDefault2">Female</label>
                                                 </div>
                                                 <div class="form-check radio-bg-light">
-                                                    <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                                        id="flexRadioDefault3">
-                                                    <label class="form-check-label" for="flexRadioDefault3">
-                                                        Others
-                                                    </label>
+                                                    <input class="form-check-input" type="radio" name="gender" value="Others" id="flexRadioDefault3">
+                                                    <label class="form-check-label" for="flexRadioDefault3">Others</label>
                                                 </div>
                                             </div>
                                         </div>
@@ -426,15 +355,15 @@
                                         <!-- Address -->
                                         <div class="col-12">
                                             <label class="form-label">Address</label>
-                                            <textarea class="form-control" rows="3"
-                                                spellcheck="false">2119 N Division Ave, New Hampshire, York, United States</textarea>
+                                            <textarea class="form-control" name="address" rows="3" spellcheck="false"></textarea>
                                         </div>
 
                                         <!-- Button -->
                                         <div class="col-12 text-end">
-                                            <a href="#" class="btn btn-primary mb-0">Save Changes</a>
+                                            <button type="submit" class="btn btn-primary mb-0">Save Changes</button>
                                         </div>
                                     </form>
+
                                     <!-- Form END -->
                                 </div>
                                 <!-- Card body END -->
@@ -626,6 +555,90 @@
     <script src="assets/js/theme.js"></script>
     <script src="assets/js/vendor/jquery.cookie.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/choices.js/10.2.0/choices.min.js" integrity="sha512-OrRY3yVhfDckdPBIjU2/VXGGDjq3GPcnILWTT39iYiuV6O3cEcAxkgCBVR49viQ99vBFeu+a6/AoFAkNHgFteg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+   <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 假设用户信息存储在localStorage的userInfo中
+            const userInfoString = localStorage.getItem('userInfo');
+            
+            if (userInfoString) {
+                // 解析存储的字符串以获得用户信息对象
+                const userInfo = JSON.parse(userInfoString);
+
+                // 创建存放用户名的元素
+                const userNameElement = document.createElement('h6');
+                userNameElement.textContent = userInfo.username; // 假设userInfo对象中包含username
+
+                // 创建存放电子邮件的元素
+                const userEmailElement = document.createElement('div'); // 使用div而不是a
+                userEmailElement.textContent = userInfo.email; // 直接设置文本内容为email
+                userEmailElement.setAttribute('class', 'text-reset text-primary-hover small');
+
+                // 创建一个<hr>元素
+                const hrElement = document.createElement('hr');
+
+                // 获取容器元素并添加这些新元素
+                const container = document.getElementById('userNameAndEmail');
+                container.appendChild(userNameElement);
+                container.appendChild(userEmailElement);
+                container.appendChild(hrElement); // 添加<hr>到容器
+            }
+        });
+
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // 从localStorage中读取用户信息
+            const userInfoString = localStorage.getItem('userInfo');
+            if (userInfoString) {
+                const userInfo = JSON.parse(userInfoString);
+
+                // 填充表单
+                document.querySelector('input[name="username"]').value = userInfo.username || '';
+                document.querySelector('input[name="email"]').value = userInfo.email || '';
+                document.querySelector('input[name="birthdate"]').value = userInfo.birthdate || '';
+                document.querySelectorAll('input[name="gender"]').forEach(radio => {
+                    if (radio.value === userInfo.gender) radio.checked = true;
+                });
+                document.querySelector('textarea[name="address"]').value = userInfo.address || '';
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // 监听表单提交事件
+            document.getElementById('userUpdateForm').addEventListener('submit', function(event) {
+                event.preventDefault(); // 阻止表单的默认提交行为
+
+                // 收集表单数据
+                const formData = {
+                    fullName: this.querySelector('input[name="fullName"]').value,
+                    email: this.querySelector('input[name="email"]').value,
+                    birthdate: this.querySelector('input[name="birthdate"]').value,
+                    gender: this.querySelector('input[name="gender"]:checked').value,
+                    address: this.querySelector('textarea[name="address"]').value,
+                };
+
+                // 通过AJAX发送数据到服务器
+                fetch('http://localhost:8080/users/update', {
+                    method: 'POST', 
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData),
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Success:', data);
+                    // 成功提交后的操作，例如显示一个提示消息
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                    // 处理错误情况，例如显示错误消息
+                });
+            });
+        });
+
+
+   </script> 
 </body>
 
 </html>

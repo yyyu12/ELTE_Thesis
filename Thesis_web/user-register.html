@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>User Registeration</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex">
+    <!-- Google fonts - Playfair Display-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700">
+    <!-- owl carousel-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Lightbox -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/glightbox/3.3.0/css/glightbox.min.css" integrity="sha512-T+KoG3fbDoSnlgEXFQqwcTC9AdkFIxhBlmoaFqYaIjq2ShhNwNao9AKaLUPMfwiBPL0ScxAtc+UYbHAgvd+sjQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="https://demo.bootstrapious.com/sell/2-0-1/css/style.default.7acfaf01.css" id="theme-stylesheet">
+    <!-- Favicon-->
+    <link rel="shortcut icon" href="assets/images/favicon.png">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="assets/css/vendor/fontawesome.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/index.css">
+    <style>
+        .hero-heading {
+            padding-bottom: 20px; /* 调整这个值来增减间距 */
+        }
+
+        .input-control {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .input-control input:focus {
+            outline: 0;
+        }
+
+        .input-control.success input {
+            border-color: #28a745;
+        }
+
+        .input-control.error input {
+            border-color: #dc3545;
+        }
+
+        .input-control .error{
+            color: #dc3545;
+            font-size: 1em;
+        }
+
+        
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <!-- Top Bar-->
+        <div class="top-bar">
+            <div class="container-fluid">
+                <div class="row d-flex align-items-center">
+                    <div class="col-sm-7 d-none d-sm-block">
+                        <ul class="list-inline topbar-text mb-0 d-flex justify-content-end">
+                            <li class="list-inline-item px-3">Free shipping on orders over $300</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Top Bar End-->
+        <!-- Navbar-->
+        <nav class="navbar navbar-expand-lg navbar-sticky navbar-airy navbar-light bg-white">
+            <div class="container-fluid">
+                <!-- Navbar Header  -->
+                <a href="index.html"><img src="assets/images/logo.png" alt="Logo" width="200"></a>
+
+                <!-- Navbar Collapse -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+                    aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <ul class="navbar-nav mx-auto">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="blind-Box.html">Blind Box</a>
+                        <li class="nav-item"><a class="nav-link" href="direct-Buy.html">Shop</a></li>
+                        <li class="nav-item"><a class="nav-link" href="mailto:wd2m91@inf.elte.hu">Contact</a></li>
+                    </ul>
+
+                    <div
+                        class="d-flex align-items-center justify-content-between justify-content-lg-end mt-1 mb-2 my-lg-0">
+                        <!-- Search Button-->
+                        <div class="nav-item navbar-icon-link" data-bs-toggle="offcanvas"
+                            data-bs-target="#searchOffcanvas" aria-controls="searchOffcanvas">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <div class="nav-item">
+                            <!-- 登录链接 -->
+                            <a class="navbar-icon-link" href="user-login.html" id="userLoginLink">
+                                <i class="far fa-user"></i>
+                            </a>
+                        </div>
+                        <!-- Offcanvas Cart Trigger -->
+                        <div class="nav-item">
+                            <a class="navbar-icon-link" href="#" data-bs-toggle="offcanvas"
+                                data-bs-target="#offcanvasCart" aria-controls="offcanvasCart">
+                                <i class="fas fa-shopping-cart"></i>
+                                <div class="navbar-icon-link-badge">3</div>
+                            </a>
+                        </div>
+
+                        <div class="nav-item">
+                            <div class="color-modes position-relative ps-2">
+                                <a class="bd-theme btn btn-link nav-link dropdown-toggle d-inline-flex align-items-center justify-content-center text-primary p-0 position-relative rounded-circle"
+                                    href="#" aria-expanded="true" data-bs-toggle="dropdown" data-bs-display="static"
+                                    aria-label="Toggle theme (light)">
+                                    <i class="fa-regular fa-sun"></i>
+                                </a>
+
+                                <ul class="dropdown-menu dropdown-menu-end fs-14px" data-bs-popper="static">
+                                    <li>
+                                        <button type="button" class="dropdown-item d-flex align-items-center active"
+                                            data-bs-theme-value="light" aria-pressed="true">
+                                            <i class="fa-regular fa-sun me-4 opacity-50 theme-icon"></i>
+                                            Light
+                                            <i class="fa-solid fa-check ms-auto d-none"></i>
+                                        </button>
+
+                                    </li>
+                                    <li>
+                                        <button type="button" class="dropdown-item d-flex align-items-center"
+                                            data-bs-theme-value="dark" aria-pressed="false">
+                                            <i class="fa-solid fa-moon me-4 opacity-50 theme-icon"></i>
+                                            Dark
+                                            <i class="fa-solid fa-check ms-auto d-none"></i>
+                                        </button>
+
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <!-- /Navbar -->
+
+        <!-- Offcanvas Cart -->
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasCart" aria-labelledby="offcanvasCartLabel">
+            <div class="offcanvas-header">
+                <h5 id="offcanvasCartLabel">Cart</h5>
+                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                    aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <!-- 添加 Cart items -->
+                <!-- Cart items here -->
+                <!-- Repeat your cart item structure here as needed -->
+                <ul class="minicart-product-list">
+                    <!-- 得修改成添加商品进购物车的逻辑！！！-->
+                    <li>
+                        <a href="product-details.html" class="image"><img src="#" alt="Cart product Image"></a>
+                        <div class="content">
+                            <!-- 得从数据库/其他地方提取信息 -->
+                            <a href="product-details.html" class="title">Walnut Cutting Board</a>
+                            <span class="quantity-price">1 x <span class="amount">$100.00</span></span>
+                            <a href="#" class="remove">×</a> <!-- 修改逻辑 -->
+                        </div>
+                    </li>
+                </ul>
+
+                <!-- Total Price -->
+                <div class="navbar-cart-total"><span class="text-uppercase text-muted">Total</span><strong
+                        class="text-uppercase">$225.00</strong></div>
+                <!-- Buttons -->
+                <div class="buttons">
+                    <a href="user-cart.html" class="btn btn-dark btn-hover-primary">view cart</a>
+                    <a href="user-checkout.html" class="btn btn-outline-dark">checkout</a>
+                </div>
+                <p class="minicart-message" style="text-align: center; margin-top: 20px;">Free Shipping on All Orders
+                    Over $100!</p>
+            </div>
+        </div>
+
+
+
+        <!-- Search Offcanvas -->
+        <div class="offcanvas offcanvas-top" tabindex="-1" id="searchOffcanvas" aria-labelledby="searchOffcanvasLabel">
+            <div class="offcanvas-header">
+                <h5 id="searchOffcanvasLabel">Search</h5>
+                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                    aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <form class="search-area-form" action="#">
+                    <div class="mb-4 position-relative">
+                        <input class="search-area-input form-control" type="search" name="search" id="search"
+                            placeholder="What are you looking for?">
+
+                        <div class="d-grid gap-2 col-6 mx-auto">
+                            <button class="btn btn-primary" type="submit" style="margin-top: 25px;">Search</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </header>
+
+    <!-- Hero Section-->
+    <section class="hero">
+        <div class="container">
+            <!-- Hero Content-->
+            <div class="hero-content pb-5 text-center">
+                <h2 class="hero-heading mb-0">Customer Center</h2>
+                <!-- add >If you have any questions, please feel free to <a href="contact.html">contact us</a>.</p>-->
+                <div class="row">
+                    <div class="col-lg-8 mx-auto">
+                        <p class="text-muted mb-0">If you have any questions, please feel free to <a href="contact.html">contact us</a>.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <!-- customer register -->
+    <section>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-5">
+                    <div class="block">
+                        <div class="block-header">
+                            <h6 class="text-uppercase mb-0">New account</h6>
+                        </div>
+                        <div class="block-body">
+                            <p class="lead">New customer?</p>
+                            <p class="text-muted">
+                                Creating an account has many benefits: check out faster, keep more than one address,
+                                track orders and more.
+                            </p>
+                            <p class="text-muted">
+                                Already have an account? Please <a href="user-login.html"> Login</a> here.
+                            </p>
+                            <hr>
+                            <form id="registerForm">
+                                <div class="input-control mb-4 ">
+                                    <label class="form-label" for="username">Username <span class="text-danger">*</span></label>
+                                    <input class="form-control" id="username" name="username" type="text" placeholder="Enter Username">
+                                    <div class="error"></div>
+                                </div>
+                                <div class="input-control mb-4 ">
+                                    <label class="form-label" for="email">Email <span class="text-danger">*</span></label>
+                                    <input class="form-control" id="email" name="email" type="email" placeholder="Enter Email">
+                                    <div class="error"></div>
+                                </div>
+                                <div class="input-control mb-4 ">
+                                    <label class="form-label" for="password">Password <span class="text-danger">*</span></label>
+                                    <div class="input-group">
+                                        <input class="form-control" id="password" name="password" type="password" placeholder="Enter Password" >
+                                        <span class="input-group-text p-0 bg-transparent" id="togglePassword">
+                                            <i class="fakepasswordicon fas fa-eye-slash cursor-pointer p-2"></i>
+                                        </span>
+                                        <div class="error"></div>
+                                    </div>
+                                </div>
+                                <div class="input-control mb-4 ">
+                                    <label class="form-label" for="passwordConfirm">Confirm Password <span class="text-danger">*</span></label>
+                                    
+                                    <div class="input-group">
+                                        <input class="form-control" id="passwordConfirm" name="passwordConfirm" type="password" placeholder="Enter Confirmation Password" >
+                                        <span class="input-group-text p-0 bg-transparent" id="togglePasswordConfirm">
+                                            <i class="fakepasswordicon fas fa-eye-slash cursor-pointer p-2"></i>
+                                        </span>
+                                        <div class="error"></div>
+                                    </div>
+                                </div>
+                                <div class="mb-4">
+                                    <label class="form-label" for="birthdate">Birthdate (Optional)</label>
+                                    <input class="form-control" id="birthdate" name="birthdate" type="date">
+                                </div>
+                                <div class="mb-4">
+                                    <label class="form-label">Gender (Optional)</label>
+                                    <div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="gender" id="genderMale" value="Male">
+                                            <label class="form-check-label" for="genderMale">Male</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="gender" id="genderFemale" value="Female">
+                                            <label class="form-check-label" for="genderFemale">Female</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="gender" id="genderOther" value="Other">
+                                            <label class="form-check-label" for="genderOther">Other</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-4 text-center">
+                                    <button class="btn btn-outline-dark" type="submit"><i class="far fa-user me-2"></i>Register</button>
+                                </div>
+                            </form>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <footer class="main-footer">
+        <!-- Services block-->
+        <div class="service-block bg-gray-100 text-dark-700 py-6">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 service-column">
+                        <i class="fas fa-shipping-fast fa-3x service-icon"></i>
+                        <div class="service-text">
+                            <h6 class="text-uppercase">Free shipping &amp; return</h6>
+                            <p class="text-muted fw-light text-sm mb-0">Free Shipping over $300</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 service-column">
+                        <i class="fas fa-money-bill-wave fa-3x service-icon"></i>
+                        <div class="service-text">
+                            <h6 class="text-uppercase">Money back guarantee</h6>
+                            <p class="text-muted fw-light text-sm mb-0">30 Days Money Back Guarantee</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 service-column">
+                        <i class="fas fa-headset fa-3x service-icon"></i>
+                        <div class="service-text">
+                            <h6 class="text-uppercase">000-800-056-000</h6>
+                            <p class="text-muted fw-light text-sm mb-0">Available Support </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Main block - menus, subscribe form-->
+        <div class="footer-main py-6 bg-gray-300 text-muted">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 mb-5 mb-lg-0">
+                        <div class="fw-bold text-uppercase text-lg text-dark mb-3">
+                            Blend
+                            <span class="text-primary">.</span>
+                            Art
+                        </div>
+                        <p>Purchase directly what you fancy Or Try the Blind Box to get a surprise.</p>
+                        <ul class="list-inline">
+                            <li class="list-inline-item"><a class="text-muted text-primary-hover" href="#"
+                                    target="_blank" title="twitter"><i class="fab fa-twitter"></i></a>
+                            </li>
+                            <li class="list-inline-item"><a class="text-muted text-primary-hover" href="#"
+                                    target="_blank" title="facebook"><i class="fab fa-facebook"></i></a>
+                            </li>
+                            <li class="list-inline-item"><a class="text-muted text-primary-hover" href="#"
+                                    target="_blank" title="instagram"><i class="fab fa-instagram"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-2 col-md-6 mb-5 mb-lg-0">
+                        <h6 class="text-uppercase text-dark mb-3">Shop</h6>
+                        <ul class="list-unstyled">
+                            <li> <a class="text-muted" href="direct-Buy.html">Directly Purchase</a></li>
+                            <li> <a class="text-muted" href="blind-Box.html">For Blind Box</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-2 col-md-6 mb-5 mb-lg-0">
+                        <h6 class="text-uppercase text-dark mb-3">Easy-going</h6>
+                        <ul class="list-unstyled">
+                            <li> <a class="text-muted" href="user-wishlist.html">Wishlist </a></li>
+                            <li> <a class="text-muted" href="user-checkout-overview.html">Checkouts </a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-4">
+                        <h6 class="text-uppercase text-dark mb-3">Daily Offers & Discounts</h6>
+                        <p class="mb-3"> Want to get newsletter in time? Subscribe our website!</p>
+                        <form action="#" id="newsletter-form">
+                            <div class="input-group mb-3">
+                                <input class="form-control bg-transparent border-secondary " type="email"
+                                    placeholder="Your Email Address" aria-label="Your Email Address"
+                                    style="margin-right: 10px;">
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary border-start-0" type="submit">
+                                        <i class="fa fa-paper-plane text-lg text-dark"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Copyright section of the footer-->
+        <div class="py-4 fw-light bg-gray-800 text-gray-300">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-6 text-center text-md-start">
+                        <p class="mb-md-0">&copy; 2024 ELTE Thesis. All rights reserved.</p>
+                    </div>
+                    <div class="col-md-6">
+                        <ul class="list-inline mb-0 mt-2 mt-md-0 text-center text-md-end">
+                            <li class="list-inline-item"><img class="w-2rem" src="assets/images/visa.svg" alt="visa">
+                            </li>
+                            <li class="list-inline-item"><img class="w-2rem" src="assets/images/mastercard.svg"
+                                    alt="mastercard"></li>
+                            <li class="list-inline-item"><img class="w-2rem" src="assets/images/paypal.svg"
+                                    alt="paypal"> </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- /Footer end-->
+
+    <!-- Back to top button-->
+    <div id="scrollTop"><i class="fa fa-long-arrow-alt-up"></i></div>
+
+    <!-- JavaScript files-->
+    <!-- jQuery-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- Bootstrap JavaScript Bundle (Popper.js included)-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js" integrity="sha512-7Pi/otdlbbCR+LnW+F7PwFcSDJOuUJB3OxtEHbg4vSMvzvJjde4Po1v4BR9Gdc9aXNUNFVUY+SK51wWT8WF0Gg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- Owl Carousel-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="assets/js/vendor/owl.carousel2.thumbs.min.js"></script>
+    <!-- Smooth scrolling-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/smooth-scroll/16.1.3/smooth-scroll.polyfills.min.js" integrity="sha512-LZ6YBzwuQvIG41twjliX3HUVeAd+ErnJ0UsqRnkI4firX2l71jxbKJoax/hu7XY2tiyLl0YA2kcnz/XEW+9O3g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- Lightbox gallery-->
+    <script src="assets/js/vendor/glightbox.min.js"></script>
+    <!-- Object Fit Images - Fallback for browsers that don't support object-fit-->
+    <script src="assets/js/index.js"></script>
+    <script src="https://kit.fontawesome.com/e85815ae07.js" crossorigin="anonymous"></script>
+    <script src="assets/js/vendor/ofi.min.js"></script>
+    <script> var basePath = ''; </script>
+    <script src="assets/js/theme.js"></script>
+    <script src="assets/js/vendor/jquery.cookie.js"></script>
+
+    <script>
+        // 注册表单提交处理
+        const togglePasswordVisibility = (inputElement, toggleElement) => {
+            if(inputElement.type === 'password') {
+                inputElement.type = 'text';
+                toggleElement.innerHTML = '<i class="fas fa-eye cursor-pointer p-2"></i>';
+            } else {
+                inputElement.type = 'password';
+                toggleElement.innerHTML = '<i class="fas fa-eye-slash cursor-pointer p-2"></i>';
+            }
+        }
+
+        const registerForm = document.getElementById('registerForm');
+        const username = document.getElementById('username');
+        const email = document.getElementById('email');
+        const passwordInput = document.getElementById("password");
+        const togglePassword = document.getElementById("togglePassword");
+        const passwordConfirm = document.getElementById("passwordConfirm");
+        const togglePasswordConfirm = document.getElementById("togglePasswordConfirm");
+
+        togglePassword.addEventListener('click', () => {
+            togglePasswordVisibility(passwordInput, togglePassword);
+        });
+
+        togglePasswordConfirm.addEventListener('click', () => {
+            togglePasswordVisibility(passwordConfirm, togglePasswordConfirm);
+        });
+        
+        
+        registerForm.addEventListener('submit', function(event) {
+            event.preventDefault(); // 阻止表单默认提交
+
+            const birthdate = document.getElementById('birthdate').value;
+            const genderElement = document.querySelector('input[name="gender"]:checked');
+            const gender = genderElement ? genderElement.value : null; // 如果没有选中项，则性别为空
+
+            validateInputs();
+
+            // console.log(JSON.stringify({
+            //         username: username.value,
+            //         email: email.value,
+            //         password: password.value,
+            //         birthdate: birthdate || null, // 包含出生日期
+            //         gender: gender, // 包含性别
+            //         address: null
+            //     }));
+            // {"username":"Joden","email":"Joden@example.com","password":"supersecretpassword","isAdmin":false,"birthdate":null,"gender":null,"address":null}
+            fetch('http://localhost:8080/users/register', { 
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    username: username.value,
+                    email: email.value,
+                    password: password.value,
+                    birthdate: birthdate || null, // 包含出生日期
+                    gender: gender, // 包含性别
+                    address: null
+                }),
+            })
+            
+            // .then(response => {
+            //     console.log(response);
+            //     return response.text(); // 先获取文本，以便查看是否为JSON
+            // })
+
+            // .then(text => {
+            //     console.log("Response text:", text); // 在控制台输出原始响应文本
+            //     try {
+            //         return JSON.parse(text); // 尝试将文本解析为JSON
+            //     } catch (error) {
+            //         console.error("Parsing error:", error);
+            //         // 可以根据错误处理需求进一步处理
+            //     }
+            // })
+
+            // .then(data => {
+            //     // 处理数据'
+            //     console.log(data);
+            // })
+
+            // .catch(error => {
+            //     console.error('Error:', error);
+            // });
+
+        });
+
+        const setError = (element, message) => {
+            const inputControl = element.parentElement;
+            const errorDisplay = inputControl.querySelector('.error');
+
+            errorDisplay.innerText = message;
+            inputControl.classList.add('error');
+            inputControl.classList.remove('success');
+        }
+
+        const setSuccess = (element) => {
+            const inputControl = element.parentElement;
+            const errorDisplay = inputControl.querySelector('.error');
+
+            errorDisplay.innerText = '';
+            inputControl.classList.remove('error');
+            inputControl.classList.add('success');
+        }
+
+        const isValidEmail = email => {
+            const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            return re.test(String(email).toLowerCase());
+        }
+
+        const validateInputs = () => {
+            const usernameValue = username.value.trim();
+            const emailValue = email.value.trim();
+            const passwordValue = password.value.trim();
+            const passwordConfirmValue = passwordConfirm.value.trim();
+
+            if(usernameValue === '') {
+                setError(username, 'Username is required');
+            } else {
+                setSuccess(username);
+            }
+
+            if(emailValue === '') {
+                setError(email, 'Email is required');
+            } else if (!isValidEmail(emailValue)) {
+                setError(email, 'Provide a valid email address');
+            } else {
+                setSuccess(email);
+            }
+
+            if(passwordValue === '') {
+                setError(password, 'Password is required');
+            } else if (passwordValue.length < 6) {
+                setError(password, 'Password must be at least 6 character.')
+            } else {
+                setSuccess(password);
+            }
+
+            if(passwordConfirmValue === '') {
+                setError(passwordConfirm, 'Please confirm your password');
+            } else if (passwordValue !== passwordConfirmValue) {
+                setError(passwordConfirm, 'Passwords do not match');
+            } else {
+                setSuccess(passwordConfirm);
+            }
+
+        }
+
+    </script>
+</body>
+
+</html>

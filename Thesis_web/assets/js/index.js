@@ -1,6 +1,66 @@
+function onUserLoggedIn(userInfo) {
+    const navItem = document.querySelector('#userAccount');
+    const userLoginLink = document.getElementById('userLoginLink'); // 获取登录链接元素
+    userLoginLink.style.display = 'none'; // 隐藏登录链接
+    
+    const username = userInfo.username; // 从用户信息中获取用户名
+    // 创建下拉菜单的HTML字符串
+    const dropdownHTML = `
+        <div class="dropdown-center" id="userDropdown">
+            <button class="btn btn-blue-green dropdown-toggle btn-font" type="button" id="userDropdownMenu" data-bs-toggle="dropdown" aria-expanded="false">
+                Hi ${username} <!-- 插入用户名 -->
+            </button>
+            <ul class="dropdown-menu " aria-labelledby="userDropdownMenu">
+                <li><a class="dropdown-item" href="user-profile.html">My Profile</a></li>
+                <li><a class="dropdown-item" href="user-wishlist.html">My Wish List</a></li>
+                <li><a class="dropdown-item" href="user-cart.html">My Cart</a></li>
+                <li><a class="dropdown-item" href="user-orders.html">My Orders</a></li>
+                <li><a class="dropdown-item" href="#" id="logoutLink">Logout</a></li>
+            </ul>
+        </div>
+    `;
+    
+    // 将下拉菜单的HTML添加到.nav-item元素
+    navItem.innerHTML += dropdownHTML;
+
+    
+    
+    // 添加登出事件监听器
+    const logoutLink = document.getElementById('logoutLink');
+    logoutLink.addEventListener('click', onLogoutClicked);
+}
+
+// 登出事件处理函数
+function onLogoutClicked(event) {
+    event.preventDefault();
+    localStorage.removeItem('userInfo');
+    
+    // 删除下拉菜单
+    const userDropdown = document.getElementById('userDropdown');
+    if (userDropdown) {
+        userDropdown.remove();
+    }
+    
+    // 显示登录链接
+    const userLoginLink = document.getElementById('userLoginLink');
+    userLoginLink.style.display = 'block';
+    
+    // 重定向到登录页面或首页
+    window.location.href = 'user-login.html';
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    const userInfo = localStorage.getItem('userInfo');
+    
+    if (userInfo) {
+        onUserLoggedIn(JSON.parse(userInfo));
+    }
+});
 
 
-/* ======== user register end ======== */
+
+
+/* ======== user login end ======== */
 
 /* ======== choice select start ======== */
 // Define the choicesSelect function

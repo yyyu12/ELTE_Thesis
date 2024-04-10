@@ -2,6 +2,8 @@ package hu.elte.inf.backend.controller.request;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Email;
+import java.time.LocalDate;
 import lombok.Data;
 
 @Data
@@ -14,8 +16,11 @@ public class UserRegistrationRequest {
     @NotBlank(message = "Password cannot be empty")
     private String password;
 
-    // @Email(message = "Email should be valid")
+    @NotBlank(message = "Email cannot be empty")
+    @Email(message = "Email should be valid")
     private String email;
 
-    // 可以添加更多字段和校验逻辑
+    private String gender; // 可以为空
+    private LocalDate birthdate; // 可以为空
+    private String address; // 可以为空
 }

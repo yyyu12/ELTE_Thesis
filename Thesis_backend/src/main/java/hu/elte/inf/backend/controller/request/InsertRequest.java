@@ -12,8 +12,7 @@ public class InsertRequest {
 
     @NotBlank(message = "id not empty")
     private String id;
+
     @NotBlank(message = "name not empty")
     private String name;
-    private double IMDb;
-    private int Tomatoes;
 }

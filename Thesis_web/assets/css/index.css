@@ -6,6 +6,10 @@
   color: #4fc3f7 !important; /* 柔和的天蓝色 */
 }
 
+.btn-font{
+  font-size: 1rem;
+}
+
 .navbar-light .navbar-nav .nav-item .nav-link.active, .navbar-light .navbar-nav .nav-item .nav-link:hover {
   background-color: var(--bs-gray-100);
   color: var(--bs-gray-800);
