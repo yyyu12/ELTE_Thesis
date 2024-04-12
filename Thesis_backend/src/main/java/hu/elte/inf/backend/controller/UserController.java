@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
+import org.apache.http.HttpStatus;
 
 import java.util.Objects;
 
@@ -26,39 +27,37 @@ public class UserController {
 
     // 用户注册
     @PostMapping("/register")
-    public Result registerUser(@Validated @RequestBody UserRegistrationRequest userRegistrationRequest) {
+    public ResponseEntity<Result> registerUser(@Validated @RequestBody UserRegistrationRequest userRegistrationRequest) {
         try{
             User user = new User();
             BeanUtils.copyProperties(userRegistrationRequest, user);
             userService.registerUser(user);
-            return Result.ok("User registered successfully.");
+            return ResponseEntity.ok(Result.ok("User registered successfully."));
         }catch (UsernameDuplicatedException e) {
-            return Result.error("Username already used.");
+            return ResponseEntity.status(HttpStatus.SC_CONFLICT).body(Result.error("Username already used."));
         } catch (EmailDuplicateException e) {
-            return Result.error("Email already used.");
+            return ResponseEntity.status(HttpStatus.SC_CONFLICT).body(Result.error("Email already used."));
         } catch (InsertException e) {
-            return Result.error("Insert Error");
+            return ResponseEntity.status(HttpStatus.SC_INTERNAL_SERVER_ERROR).body(Result.error("Internal server error"));
         }
     }
 
     @PostMapping("/login")
-    public Result login(@Validated @RequestBody LoginRequest loginRequest) {
+    public ResponseEntity<Result> login(@Validated @RequestBody LoginRequest loginRequest) {
         String username = loginRequest.getUsername();
         String password = loginRequest.getPassword();
 
-        if(username == null||password == null){
-            return Result.error("Username or password can not be null");
-        }
-
-        User user = userService.login(username);
-        if (user == null) {
-            return Result.error("User couldn't find");
-        } else if (Objects.equals(user.getPassword(), password)) {
+        try {
+            User user = userService.login(username, password);
             UserLoginResponse userLoginResponse = new UserLoginResponse();
             BeanUtils.copyProperties(user, userLoginResponse);
-            return Result.ok("User login success").put("info", userLoginResponse);
-        } else {
-            return Result.error("User password is wrong");
+            return ResponseEntity.ok(Result.ok("User login success").put("info", userLoginResponse));
+        } catch (UserNotFoundException ex) {
+            return ResponseEntity.status(HttpStatus.SC_NOT_FOUND).body(Result.error("User not found"));
+        } catch (PasswordNotMatchException ex) {
+            return ResponseEntity.status(HttpStatus.SC_UNAUTHORIZED).body(Result.error("Password does not match"));
+        } catch (Exception ex) {
+            return ResponseEntity.status(HttpStatus.SC_INTERNAL_SERVER_ERROR).body(Result.error("Internal server error"));
         }
     }
 }

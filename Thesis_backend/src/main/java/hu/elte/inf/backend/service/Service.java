@@ -6,6 +6,13 @@ import hu.elte.inf.backend.sqlEntity.User;
 public interface Service {
 
     void registerUser(User user);
-    User login(String username);
+
+    /**
+     * User login
+     * @param username
+     * @param password
+     * @return User data of successful login
+     */
+    User login(String username, String password);
     void updateUser(User user);
 }

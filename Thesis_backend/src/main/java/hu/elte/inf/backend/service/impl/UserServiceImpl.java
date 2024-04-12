@@ -50,8 +50,18 @@ public class UserServiceImpl implements  Service{
 
     // 用户登入
     @Override
-    public User login(String username ){
-        return userMapper.getUserByUserName(username);
+    public User login(String username, String password ){
+        User user = userMapper.getUserByUserName(username);
+
+        // 如果用户不存在，抛出UserNotFoundException
+        if (user == null) {
+            throw new UserNotFoundException("Username Not Found");
+        }
+        if(!passwordEncoder.matches(password, user.getPassword())){
+            throw  new PasswordNotMatchException("Password Does Not Match");
+        }
+
+        return user;
     }
 
     // 更新用户
