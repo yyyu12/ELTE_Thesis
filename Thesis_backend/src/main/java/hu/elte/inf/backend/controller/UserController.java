@@ -29,6 +29,8 @@ public class UserController {
         User user = new User();
         BeanUtils.copyProperties(userRegistrationRequest, user);
 
+
+
         return null;
     }
 
