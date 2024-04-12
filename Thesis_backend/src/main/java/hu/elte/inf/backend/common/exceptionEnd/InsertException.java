@@ -1,6 +1,6 @@
 package hu.elte.inf.backend.common.exceptionEnd;
 
-public class InsertException extends RuntimeException{
+public class InsertException extends ServiceException{
     public InsertException() {
         super();
     }

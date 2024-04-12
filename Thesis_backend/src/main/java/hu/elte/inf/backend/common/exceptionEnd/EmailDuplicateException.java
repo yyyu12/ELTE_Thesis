@@ -2,6 +2,7 @@ package hu.elte.inf.backend.common.exceptionEnd;
 
 public class EmailDuplicateException extends ServiceException{
     public EmailDuplicateException() {
+        super();
     }
 
     public EmailDuplicateException(String message) {

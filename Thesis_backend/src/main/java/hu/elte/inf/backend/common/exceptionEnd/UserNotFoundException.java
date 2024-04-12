@@ -1,7 +1,8 @@
 package hu.elte.inf.backend.common.exceptionEnd;
 
-public class UserNotFoundException extends RuntimeException{
+public class UserNotFoundException extends ServiceException{
     public UserNotFoundException() {
+        super();
     }
 
     public UserNotFoundException(String message) {

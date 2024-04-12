@@ -34,6 +34,7 @@ public class UserController {
             userService.registerUser(user);
             return ResponseEntity.ok(Result.ok("User registered successfully."));
         }catch (UsernameDuplicatedException e) {
+            System.out.println(ResponseEntity.status(HttpStatus.SC_CONFLICT).body(Result.error("Username already used.")));
             return ResponseEntity.status(HttpStatus.SC_CONFLICT).body(Result.error("Username already used."));
         } catch (EmailDuplicateException e) {
             return ResponseEntity.status(HttpStatus.SC_CONFLICT).body(Result.error("Email already used."));
