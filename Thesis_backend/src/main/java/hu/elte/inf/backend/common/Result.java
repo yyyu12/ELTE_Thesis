@@ -21,6 +21,10 @@ public class Result extends HashMap<String, Object>  {
         return r;
     }
 
+    public static Result error(String msg) {
+        return error(HttpStatus.SC_INTERNAL_SERVER_ERROR, msg);
+    }
+
     public static Result error(int code, String msg){
         Result r = new Result();
         r.put("code",code);
@@ -28,7 +32,4 @@ public class Result extends HashMap<String, Object>  {
         return r;
     }
 
-    public static Result error(String msg) {
-        return error(HttpStatus.SC_INTERNAL_SERVER_ERROR, msg);
-    }
 }
