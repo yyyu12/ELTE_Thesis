@@ -309,7 +309,7 @@
                                 <div class="input-control mb-4 ">
                                     <label class="form-label" for="password">Password <span class="text-danger">*</span></label>
                                     <div class="input-group">
-                                        <input class="form-control" id="password" name="password" type="password" placeholder="Enter Password" >
+                                        <input class=" form-control" id="password" name="password" type="password" placeholder="Enter Password" >
                                         <span class="input-group-text p-0 bg-transparent" id="togglePassword">
                                             <i class="fas fa-eye-slash cursor-pointer p-2"></i>
                                         </span>
@@ -514,11 +514,16 @@
         registerForm.addEventListener('submit', function(event) {
             event.preventDefault(); // 阻止表单默认提交
 
+            const isValidForm = validateInputs(); // 存储验证结果
+
+            if (!isValidForm) {
+                // 如果表单验证失败，停止处理
+                return;
+            }
+
             const birthdate = document.getElementById('birthdate').value;
             const genderElement = document.querySelector('input[name="gender"]:checked');
             const gender = genderElement ? genderElement.value : null; // 如果没有选中项，则性别为空
-
-            validateInputs();
 
             // console.log(JSON.stringify({
             //         username: username.value,
@@ -544,29 +549,23 @@
                 }),
             })
             
-            // .then(response => {
-            //     console.log(response);
-            //     return response.text(); // 先获取文本，以便查看是否为JSON
-            // })
+            .then(response => response.json()) 
 
-            // .then(text => {
-            //     console.log("Response text:", text); // 在控制台输出原始响应文本
-            //     try {
-            //         return JSON.parse(text); // 尝试将文本解析为JSON
-            //     } catch (error) {
-            //         console.error("Parsing error:", error);
-            //         // 可以根据错误处理需求进一步处理
-            //     }
-            // })
+            .then(data => {
+                // 处理数据'
+                // console.log(data);
+                if(data.code === 200){
+                    alert(data.message);
+                    window.location.href = 'user-login.html';
+                } else {
+                    alert("Register failed: " + data.message);
+                }
+            })
 
-            // .then(data => {
-            //     // 处理数据'
-            //     console.log(data);
-            // })
-
-            // .catch(error => {
-            //     console.error('Error:', error);
-            // });
+            .catch(error => {
+                console.error('Error:', error);
+                alert("Login failed: " + error.message);
+            });
 
         });
 
@@ -599,36 +598,46 @@
             const passwordValue = password.value.trim();
             const passwordConfirmValue = passwordConfirm.value.trim();
 
+            let isValid = true; // 增加变量来跟踪验证状态
+
             if(usernameValue === '') {
                 setError(username, 'Username is required');
+                isValid = false;
             } else {
                 setSuccess(username);
             }
 
             if(emailValue === '') {
                 setError(email, 'Email is required');
+                isValid = false;
             } else if (!isValidEmail(emailValue)) {
                 setError(email, 'Provide a valid email address');
+                isValid = false;
             } else {
                 setSuccess(email);
             }
 
             if(passwordValue === '') {
                 setError(password, 'Password is required');
+                isValid = false;
             } else if (passwordValue.length < 6) {
                 setError(password, 'Password must be at least 6 character.')
+                isValid = false;
             } else {
                 setSuccess(password);
             }
 
             if(passwordConfirmValue === '') {
-                setError(passwordConfirm, 'Please confirm your password');
+                setError(passwordConfirm, 'Confirmation Password is required');
+                isValid = false;
             } else if (passwordValue !== passwordConfirmValue) {
                 setError(passwordConfirm, 'Passwords do not match');
+                isValid = false;
             } else {
                 setSuccess(passwordConfirm);
             }
 
+            return isValid;
         }
 
     </script>
