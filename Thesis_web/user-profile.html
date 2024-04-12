@@ -347,7 +347,7 @@
                                 <!-- Card body START -->
                                 <div class="card-body">
                                     <!-- Form START -->
-                                    <form id="userUpdateForm" class="row g-3">
+                                    <form id="userInfoUpdateForm" class="row g-3">
                                         <!-- Name -->
                                         <div class="col-md-6">
                                             <label class="form-label">User Name<span class="text-danger">*</span></label>
@@ -623,7 +623,7 @@
             togglePasswordVisibility(passwordConfirm, togglePasswordConfirm);
         });
 
-        // user profile card information
+        // user profile left card information
         document.addEventListener('DOMContentLoaded', function() {
             // 假设用户信息存储在localStorage的userInfo中
             const userInfoString = localStorage.getItem('userInfo');
@@ -652,7 +652,7 @@
             }
         });
 
-
+        // user profile right card information filled in
         document.addEventListener('DOMContentLoaded', function() {
             // 从localStorage中读取用户信息
             const userInfoString = localStorage.getItem('userInfo');
@@ -670,9 +670,10 @@
             }
         });
 
+        // user profile update form submission
         document.addEventListener('DOMContentLoaded', function() {
             // 监听表单提交事件
-            document.getElementById('userUpdateForm').addEventListener('submit', function(event) {
+            document.getElementById('userInfoUpdateForm').addEventListener('submit', function(event) {
                 event.preventDefault(); // 阻止表单的默认提交行为
 
                 // 收集表单数据
@@ -693,10 +694,12 @@
                     body: JSON.stringify(formData),
                 })
                 .then(response => response.json())
+
                 .then(data => {
                     console.log('Success:', data);
                     // 成功提交后的操作，例如显示一个提示消息
                 })
+
                 .catch((error) => {
                     console.error('Error:', error);
                     // 处理错误情况，例如显示错误消息
