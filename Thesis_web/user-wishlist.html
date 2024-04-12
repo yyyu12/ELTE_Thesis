@@ -36,18 +36,43 @@
                 transform: translate(-50%);
                 transition: all .3s ease-in-out;
             }
+
+            .navbar .dropdown-menu {
+                margin-top: 0;
+                border-radius: 0;
+                border: none;
+                background-color: #fff;
+                width: 100%;
+                left: 50%;
+                right: auto;
+                text-align: center;
+                transform: translateX(-50%);
+                transition: all .3s ease-in-out;
+            }
+
+             /* 深色模式下激活状态的导航链接颜色 */
+            [data-bs-theme="dark"] .navbar-nav .nav-link.active,
+            [data-bs-theme="dark"] .dropdown-menu
+            {
+                background-color: #1E293B !important; /* 深色模式下激活状态的背景颜色 */
+            }
+
+            /* 深色模式下鼠标悬停状态的导航链接颜色 */
+            [data-bs-theme="dark"] .navbar-nav .nav-link:hover {
+                background-color: #1E293B !important;
+                
+            }
+
+            /* 深色模式下 .dropdown-item 的文字颜色 */
+            [data-bs-theme="dark"] .dropdown-menu .dropdown-item {
+            color: #475569 !important; /* 修改为所需的颜色 */
+            }
+
+            /* 深色模式下 .dropdown-item 悬停状态的文字颜色 */
+            [data-bs-theme="dark"] .dropdown-menu .dropdown-item:hover {
+            color: #8B3DFF !important; /* 修改为所需的颜色 */
+            }
         }
-
-        .avatar-img {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%; /* 圆形 */
-            border: 1px solid #dee2e6; /* 白色边框 */
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 轻微阴影 */
-        }
-
-
-
     </style>
 </head>
 
@@ -84,7 +109,7 @@
                         <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
                         <li class="nav-item"><a class="nav-link" href="blind-Box.html">Blind Box</a>
                         <li class="nav-item"><a class="nav-link" href="direct-Buy.html">Shop</a></li>
-                        <li class="nav-item"><a class="nav-link" href="mailto:wd2m91@inf.elte.hu">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
                     </ul>
 
                     <div
@@ -246,16 +271,8 @@
 
                                     <!-- Card body START -->
                                     <div class="card-body p-3">
-                                        <!-- Avatar and content -->
-                                        <div class="text-center mb-3">
-                                            <!-- Avatar -->
-                                            <div class="avatar avatar-xl mb-2">
-                                                <img class="avatar-img rounded-circle border border-2 border-white"
-                                                    src="assets/images/01.jpg" alt="">
-                                            </div>
-                                            <h6 class="mb-0">Jacqueline Miller</h6>
-                                            <a href="#" class="text-reset text-primary-hover small">hello@gmail.com</a>
-                                            <hr>
+                                        <div class="text-center mb-3" id="userNameAndEmail">
+                                            
                                         </div>
 
                                         <!-- Sidebar menu item START -->
@@ -665,7 +682,35 @@
     <script> var basePath = ''; </script>
     <script src="assets/js/theme.js"></script>
     <script src="assets/js/vendor/jquery.cookie.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 假设用户信息存储在localStorage的userInfo中
+            const userInfoString = localStorage.getItem('userInfo');
+            
+            if (userInfoString) {
+                // 解析存储的字符串以获得用户信息对象
+                const userInfo = JSON.parse(userInfoString);
 
+                // 创建存放用户名的元素
+                const userNameElement = document.createElement('h6');
+                userNameElement.textContent = userInfo.username; // 假设userInfo对象中包含username
+
+                // 创建存放电子邮件的元素
+                const userEmailElement = document.createElement('div'); // 使用div而不是a
+                userEmailElement.textContent = userInfo.email; // 直接设置文本内容为email
+                userEmailElement.setAttribute('class', 'text-reset text-primary-hover small');
+
+                // 创建一个<hr>元素
+                const hrElement = document.createElement('hr');
+
+                // 获取容器元素并添加这些新元素
+                const container = document.getElementById('userNameAndEmail');
+                container.appendChild(userNameElement);
+                container.appendChild(userEmailElement);
+                container.appendChild(hrElement); // 添加<hr>到容器
+            }
+        });
+    </script>
 
 </body>
 

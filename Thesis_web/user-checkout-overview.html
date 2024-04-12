@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Check Out View</title>
+    <title>Checkout Review</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noindex">
@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/glightbox/3.3.0/css/glightbox.min.css" integrity="sha512-T+KoG3fbDoSnlgEXFQqwcTC9AdkFIxhBlmoaFqYaIjq2ShhNwNao9AKaLUPMfwiBPL0ScxAtc+UYbHAgvd+sjQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- theme stylesheet-->
     <link rel="stylesheet" href="https://demo.bootstrapious.com/sell/2-0-1/css/style.default.7acfaf01.css" id="theme-stylesheet">
+    <link rel="stylesheet" href="assets/css/vendor/theme.min.css">
     <!-- Favicon-->
     <link rel="shortcut icon" href="assets/images/favicon.png">
     <!-- Font Awesome -->
@@ -27,6 +28,52 @@
         .hero-heading {
             padding-bottom: 20px;
             /* 调整这个值来增减间距 */
+        }
+
+        @media (min-width:1200px) {
+            .navbar .dropdown-menu.show {
+                display: block;
+                opacity: 1;
+                visibility: visible;
+                transform: translate(-50%);
+                transition: all .3s ease-in-out;
+            }
+
+            .navbar .dropdown-menu {
+                margin-top: 0;
+                border-radius: 0;
+                border: none;
+                background-color: #fff;
+                width: 100%;
+                left: 50%;
+                right: auto;
+                text-align: center;
+                transform: translateX(-50%);
+                transition: all .3s ease-in-out;
+            }
+
+             /* 深色模式下激活状态的导航链接颜色 */
+            [data-bs-theme="dark"] .navbar-nav .nav-link.active,
+            [data-bs-theme="dark"] .dropdown-menu
+            {
+                background-color: #1E293B !important; /* 深色模式下激活状态的背景颜色 */
+            }
+
+            /* 深色模式下鼠标悬停状态的导航链接颜色 */
+            [data-bs-theme="dark"] .navbar-nav .nav-link:hover {
+                background-color: #1E293B !important;
+                
+            }
+
+            /* 深色模式下 .dropdown-item 的文字颜色 */
+            [data-bs-theme="dark"] .dropdown-menu .dropdown-item {
+            color: #475569 !important; /* 修改为所需的颜色 */
+            }
+
+            /* 深色模式下 .dropdown-item 悬停状态的文字颜色 */
+            [data-bs-theme="dark"] .dropdown-menu .dropdown-item:hover {
+            color: #8B3DFF !important; /* 修改为所需的颜色 */
+            }
         }
     </style>
 </head>
@@ -63,33 +110,12 @@
                         <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
                         <li class="nav-item"><a class="nav-link" href="blind-Box.html">Blind Box</a>
                         <li class="nav-item"><a class="nav-link" href="direct-Buy.html">Shop</a></li>
-                        <li class="nav-item"><a class="nav-link" href="mailto:wd2m91@inf.elte.hu">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
                     </ul>
 
-                    <div
-                        class="d-flex align-items-center justify-content-between justify-content-lg-end mt-1 mb-2 my-lg-0">
-                        <!-- Search Button-->
-                        <div class="nav-item navbar-icon-link" data-bs-toggle="offcanvas"
-                            data-bs-target="#searchOffcanvas" aria-controls="searchOffcanvas">
-                            <i class="fas fa-search"></i>
-                        </div>
-                        <div class="nav-item" id="userAccount">
-                            <!-- 登录链接 -->
-                            <a class="navbar-icon-link" href="user-login.html" id="userLoginLink" >
-                                <i class="far fa-user"></i>
-                            </a>
-                        </div>
-                        <!-- Offcanvas Cart Trigger -->
+                    <div class="d-flex align-items-center justify-content-between justify-content-lg-end mt-1 mb-2 my-lg-0">
                         <div class="nav-item">
-                            <a class="navbar-icon-link" href="#" data-bs-toggle="offcanvas"
-                                data-bs-target="#offcanvasCart" aria-controls="offcanvasCart">
-                                <i class="fas fa-shopping-cart"></i>
-                                <div class="navbar-icon-link-badge">3</div>
-                            </a>
-                        </div>
-
-                        <div class="nav-item">
-                            <div class="color-modes position-relative ps-2">
+                            <div class="color-modes position-relative ps-3">
                                 <a class="bd-theme btn btn-link nav-link dropdown-toggle d-inline-flex align-items-center justify-content-center text-primary p-0 position-relative rounded-circle"
                                     href="#" aria-expanded="true" data-bs-toggle="dropdown" data-bs-display="static"
                                     aria-label="Toggle theme (light)">
@@ -118,6 +144,26 @@
                                 </ul>
                             </div>
                         </div>
+
+                        <!-- Search Button-->
+                        <div class="nav-item navbar-icon-link" data-bs-toggle="offcanvas"
+                            data-bs-target="#searchOffcanvas" aria-controls="searchOffcanvas">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <div class="nav-item" id="userAccount">
+                            <!-- 登录链接 -->
+                            <a class="navbar-icon-link" href="user-login.html" id="userLoginLink" >
+                                <i class="far fa-user"></i>
+                            </a>
+                        </div>
+                        <!-- Offcanvas Cart Trigger -->
+                        <div class="nav-item">
+                            <a class="navbar-icon-link" href="#" data-bs-toggle="offcanvas"
+                                data-bs-target="#offcanvasCart" aria-controls="offcanvasCart">
+                                <i class="fas fa-shopping-cart"></i>
+                                <div class="navbar-icon-link-badge">3</div>
+                            </a>
+                        </div> 
                     </div>
                 </div>
             </div>
@@ -391,7 +437,7 @@
             </div>
         </div>
         <!-- Copyright section of the footer-->
-        <div class="py-4 fw-light bg-gray-800 text-gray-300">
+        <div class="py-4 fw-light footer-botton text-gray-300">
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-md-6 text-center text-md-start">

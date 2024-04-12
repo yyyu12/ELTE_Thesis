@@ -13,7 +13,7 @@
 .navbar-light .navbar-nav .nav-item .nav-link.active, .navbar-light .navbar-nav .nav-item .nav-link:hover {
   background-color: var(--bs-gray-100);
   color: var(--bs-gray-800);
-  }
+}
 
 .color-modes .dropdown-menu {
   --bs-dropdown-padding-x: .25rem;
@@ -120,6 +120,7 @@ body {
 .footer-botton{
   background-color: #343a40;
 }
+
 
 /* Dark theme */
 /* 使用 !important 关键字确保覆盖 */
