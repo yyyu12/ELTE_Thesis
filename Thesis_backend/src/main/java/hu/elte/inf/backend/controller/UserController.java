@@ -60,4 +60,6 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.SC_INTERNAL_SERVER_ERROR).body(Result.error("Internal server error"));
         }
     }
+
+
 }
