@@ -201,7 +201,7 @@
                 <!-- Buttons -->
                 <div class="buttons">
                     <a href="user-cart.html" class="btn btn-dark btn-hover-primary">view cart</a>
-                    <a href="user-checkout.html" class="btn btn-outline-dark">checkout</a>
+                    <a href="#" id="checkoutButton" class="btn btn-outline-dark">checkout</a>
                 </div>
                 <p class="minicart-message" style="text-align: center; margin-top: 20px;">Free Shipping on All Orders
                     Over $100!</p>
@@ -236,6 +236,12 @@
     <!-- Hero Section-->
     <section class="hero">
         <div class="container">
+            <!-- Breadcrumbs -->
+            <ol class="breadcrumb justify-content-center mt-4">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item active">Customer Center</li>
+            </ol>
+          
             <!-- Hero Content-->
             <div class="hero-content pb-5 text-center">
                 <h2 class="hero-heading mb-0">Customer Center</h2>
@@ -275,7 +281,12 @@
                                 </div>
                                 <div class="mb-4">
                                     <label class="form-label" for="password">Password</label>
-                                    <input class="form-control" id="password" type="password" name="password" required>
+                                    <div class="input-group">
+                                        <input class="form-control" id="password" type="password" name="password" required>
+                                        <span class="input-group-text p-0 bg-transparent" id="togglePassword">
+                                            <i class="fas fa-eye-slash cursor-pointer p-2"></i>
+                                        </span>
+                                    </div>
                                 </div>
                                 <div class="mb-4 text-center">
                                     <button class="btn btn-outline-dark" type="submit">
@@ -407,7 +418,29 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- Bootstrap JavaScript Bundle (Popper.js included)-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js" integrity="sha512-7Pi/otdlbbCR+LnW+F7PwFcSDJOuUJB3OxtEHbg4vSMvzvJjde4Po1v4BR9Gdc9aXNUNFVUY+SK51wWT8WF0Gg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- Owl Carousel-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="assets/js/vendor/owl.carousel2.thumbs.min.js"></script>
+    <!-- Smooth scrolling-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/smooth-scroll/16.1.3/smooth-scroll.polyfills.min.js" integrity="sha512-LZ6YBzwuQvIG41twjliX3HUVeAd+ErnJ0UsqRnkI4firX2l71jxbKJoax/hu7XY2tiyLl0YA2kcnz/XEW+9O3g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- Lightbox gallery-->
+    <script src="assets/js/vendor/glightbox.min.js"></script>
+    <!-- Object Fit Images - Fallback for browsers that don't support object-fit-->
+    <script src="assets/js/index.js"></script>
+    <script src="https://kit.fontawesome.com/e85815ae07.js" crossorigin="anonymous"></script>
+    <script src="assets/js/vendor/ofi.min.js"></script>
+    <script> var basePath = ''; </script>
+    <script src="assets/js/theme.js"></script>
+    <script src="assets/js/vendor/jquery.cookie.js"></script>
+
     <script>
+        // password visibility toggle
+        const passwordInput = document.getElementById('password');
+        const togglePassword = document.getElementById('togglePassword');
+        togglePassword.addEventListener('click', () => {
+            togglePasswordVisibility(passwordInput, togglePassword);
+        });
+
         /* ======== user login start ======== */
         document.getElementById('loginForm').addEventListener('submit', function(event) {
             event.preventDefault(); // 阻止表单默认提交
@@ -446,21 +479,6 @@
         });
         /* ======== user login end ======== */
     </script>
-    
-    <!-- Owl Carousel-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="assets/js/vendor/owl.carousel2.thumbs.min.js"></script>
-    <!-- Smooth scrolling-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/smooth-scroll/16.1.3/smooth-scroll.polyfills.min.js" integrity="sha512-LZ6YBzwuQvIG41twjliX3HUVeAd+ErnJ0UsqRnkI4firX2l71jxbKJoax/hu7XY2tiyLl0YA2kcnz/XEW+9O3g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <!-- Lightbox gallery-->
-    <script src="assets/js/vendor/glightbox.min.js"></script>
-    <!-- Object Fit Images - Fallback for browsers that don't support object-fit-->
-    <script src="assets/js/index.js"></script>
-    <script src="https://kit.fontawesome.com/e85815ae07.js" crossorigin="anonymous"></script>
-    <script src="assets/js/vendor/ofi.min.js"></script>
-    <script> var basePath = ''; </script>
-    <script src="assets/js/theme.js"></script>
-    <script src="assets/js/vendor/jquery.cookie.js"></script>
 </body>
 
 </html>

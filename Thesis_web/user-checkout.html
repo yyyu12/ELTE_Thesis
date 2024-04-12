@@ -2,80 +2,90 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Check out</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="robots" content="noindex">
-    <!-- Google fonts - Playfair Display-->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700">
-    <!-- owl carousel-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <!-- Lightbox -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/glightbox/3.3.0/css/glightbox.min.css" integrity="sha512-T+KoG3fbDoSnlgEXFQqwcTC9AdkFIxhBlmoaFqYaIjq2ShhNwNao9AKaLUPMfwiBPL0ScxAtc+UYbHAgvd+sjQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <!-- theme stylesheet-->
-    <link rel="stylesheet" href="https://demo.bootstrapious.com/sell/2-0-1/css/style.default.7acfaf01.css" id="theme-stylesheet">
-    <link rel="stylesheet" href="assets/css/vendor/theme.min.css">
-    <!-- Favicon-->
-    <link rel="shortcut icon" href="assets/images/favicon.png">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="assets/css/vendor/fontawesome.min.css">
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="assets/css/index.css">
-    <style>
-      .hero-heading {
-        padding-bottom: 20px;
-        /* 调整这个值来增减间距 */
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Checkout Center</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <!-- Google fonts - Playfair Display-->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700">
+  <!-- owl carousel-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
+    integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"
+    integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- Lightbox -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/glightbox/3.3.0/css/glightbox.min.css"
+    integrity="sha512-T+KoG3fbDoSnlgEXFQqwcTC9AdkFIxhBlmoaFqYaIjq2ShhNwNao9AKaLUPMfwiBPL0ScxAtc+UYbHAgvd+sjQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- theme stylesheet-->
+  <link rel="stylesheet" href="https://demo.bootstrapious.com/sell/2-0-1/css/style.default.7acfaf01.css"
+    id="theme-stylesheet">
+  <link rel="stylesheet" href="assets/css/vendor/theme.min.css">
+  <!-- Favicon-->
+  <link rel="shortcut icon" href="assets/images/favicon.png">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="assets/css/vendor/fontawesome.min.css">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="assets/css/index.css">
+  <style>
+    .hero-heading {
+      padding-bottom: 20px;
+      /* 调整这个值来增减间距 */
+    }
+
+    @media (min-width:1200px) {
+      .navbar .dropdown-menu.show {
+        display: block;
+        opacity: 1;
+        visibility: visible;
+        transform: translate(-50%);
+        transition: all .3s ease-in-out;
       }
 
-      @media (min-width:1200px) {
-            .navbar .dropdown-menu.show {
-                display: block;
-                opacity: 1;
-                visibility: visible;
-                transform: translate(-50%);
-                transition: all .3s ease-in-out;
-            }
+      .navbar .dropdown-menu {
+        margin-top: 0;
+        border-radius: 0;
+        border: none;
+        background-color: #fff;
+        width: 100%;
+        left: 50%;
+        right: auto;
+        text-align: center;
+        transform: translateX(-50%);
+        transition: all .3s ease-in-out;
+      }
 
-            .navbar .dropdown-menu {
-                margin-top: 0;
-                border-radius: 0;
-                border: none;
-                background-color: #fff;
-                width: 100%;
-                left: 50%;
-                right: auto;
-                text-align: center;
-                transform: translateX(-50%);
-                transition: all .3s ease-in-out;
-            }
+      /* 深色模式下激活状态的导航链接颜色 */
+      [data-bs-theme="dark"] .navbar-nav .nav-link.active,
+      [data-bs-theme="dark"] .dropdown-menu {
+        background-color: #1E293B !important;
+        /* 深色模式下激活状态的背景颜色 */
+      }
 
-             /* 深色模式下激活状态的导航链接颜色 */
-            [data-bs-theme="dark"] .navbar-nav .nav-link.active,
-            [data-bs-theme="dark"] .dropdown-menu
-            {
-                background-color: #1E293B !important; /* 深色模式下激活状态的背景颜色 */
-            }
+      /* 深色模式下鼠标悬停状态的导航链接颜色 */
+      [data-bs-theme="dark"] .navbar-nav .nav-link:hover {
+        background-color: #1E293B !important;
 
-            /* 深色模式下鼠标悬停状态的导航链接颜色 */
-            [data-bs-theme="dark"] .navbar-nav .nav-link:hover {
-                background-color: #1E293B !important;
-                
-            }
+      }
 
-            /* 深色模式下 .dropdown-item 的文字颜色 */
-            [data-bs-theme="dark"] .dropdown-menu .dropdown-item {
-            color: #475569 !important; /* 修改为所需的颜色 */
-            }
+      /* 深色模式下 .dropdown-item 的文字颜色 */
+      [data-bs-theme="dark"] .dropdown-menu .dropdown-item {
+        color: #475569 !important;
+        /* 修改为所需的颜色 */
+      }
 
-            /* 深色模式下 .dropdown-item 悬停状态的文字颜色 */
-            [data-bs-theme="dark"] .dropdown-menu .dropdown-item:hover {
-            color: #8B3DFF !important; /* 修改为所需的颜色 */
-            }
-        }
-    </style>
+      /* 深色模式下 .dropdown-item 悬停状态的文字颜色 */
+      [data-bs-theme="dark"] .dropdown-menu .dropdown-item:hover {
+        color: #8B3DFF !important;
+        /* 修改为所需的颜色 */
+      }
+    }
+  </style>
 </head>
 
 <body>
@@ -152,8 +162,8 @@
             </div>
             <div class="nav-item" id="userAccount">
               <!-- 登录链接 -->
-              <a class="navbar-icon-link" href="user-login.html" id="userLoginLink" >
-                  <i class="far fa-user"></i>
+              <a class="navbar-icon-link" href="user-login.html" id="userLoginLink">
+                <i class="far fa-user"></i>
               </a>
             </div>
             <!-- Offcanvas Cart Trigger -->
@@ -165,7 +175,7 @@
               </a>
             </div>
 
-            
+
           </div>
         </div>
       </div>
@@ -201,7 +211,7 @@
         <!-- Buttons -->
         <div class="buttons">
           <a href="user-cart.html" class="btn btn-dark btn-hover-primary">view cart</a>
-          <a href="user-checkout.html" class="btn btn-outline-dark">checkout</a>
+          <a href="#" id="checkoutButton" class="btn btn-outline-dark">checkout</a>
         </div>
         <p class="minicart-message" style="text-align: center; margin-top: 20px;">Free Shipping on All Orders
           Over $100!</p>
@@ -235,12 +245,19 @@
   <!-- Hero Section-->
   <section class="hero">
     <div class="container">
+      <!-- Breadcrumbs -->
+      <ol class="breadcrumb justify-content-center mt-4">
+        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+        <li class="breadcrumb-item active">Checkout Center</a></li>
+        <li class="breadcrumb-item"><a href="user-checkout-overview.html">Order Overview</a></li>
+      </ol>
       <!-- Hero Content-->
       <div class="hero-content pb-5 text-center">
         <h2 class="hero-heading mb-0">Checkout Center</h2>
         <div class="row">
           <div class="col-xl-8 offset-xl-2">
-            <p class="lead text-muted">Please fill in your address.</p>
+            <p class="lead text-muted">Please fill in your infomation so that you can get your fancy product in time.
+            </p>
           </div>
         </div>
       </div>
@@ -588,14 +605,18 @@
     integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <!-- Bootstrap JavaScript Bundle (Popper.js included)-->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js" integrity="sha512-7Pi/otdlbbCR+LnW+F7PwFcSDJOuUJB3OxtEHbg4vSMvzvJjde4Po1v4BR9Gdc9aXNUNFVUY+SK51wWT8WF0Gg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <!-- Owl Carousel-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
-        integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="assets/js/vendor/owl.carousel2.thumbs.min.js"></script>
-    <!-- Smooth scrolling-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/smooth-scroll/16.1.3/smooth-scroll.polyfills.min.js" integrity="sha512-LZ6YBzwuQvIG41twjliX3HUVeAd+ErnJ0UsqRnkI4firX2l71jxbKJoax/hu7XY2tiyLl0YA2kcnz/XEW+9O3g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"
+    integrity="sha512-7Pi/otdlbbCR+LnW+F7PwFcSDJOuUJB3OxtEHbg4vSMvzvJjde4Po1v4BR9Gdc9aXNUNFVUY+SK51wWT8WF0Gg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <!-- Owl Carousel-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
+    integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="assets/js/vendor/owl.carousel2.thumbs.min.js"></script>
+  <!-- Smooth scrolling-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/smooth-scroll/16.1.3/smooth-scroll.polyfills.min.js"
+    integrity="sha512-LZ6YBzwuQvIG41twjliX3HUVeAd+ErnJ0UsqRnkI4firX2l71jxbKJoax/hu7XY2tiyLl0YA2kcnz/XEW+9O3g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <!-- Lightbox gallery-->
   <script src="assets/js/vendor/glightbox.min.js"></script>
   <!-- Object Fit Images - Fallback for browsers that don't support object-fit-->

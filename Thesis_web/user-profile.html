@@ -198,7 +198,7 @@
                 <!-- Buttons -->
                 <div class="buttons">
                     <a href="user-cart.html" class="btn btn-dark btn-hover-primary">view cart</a>
-                    <a href="user-checkout.html" class="btn btn-outline-dark">checkout</a>
+                    <a href="#" id="checkoutButton" class="btn btn-outline-dark">checkout</a>
                 </div>
                 <p class="minicart-message" style="text-align: center; margin-top: 20px;">Free Shipping on All Orders
                     Over $100!</p>
@@ -231,9 +231,14 @@
     <!-- Hero Section-->
     <section class="hero">
         <div class="container">
+            <!-- Breadcrumbs -->
+            <ol class="breadcrumb justify-content-center mt-4">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item active">Customer Profile</li>
+            </ol>
             <!-- Hero Content-->
             <div class="hero-content pb-5 text-center">
-                <h2 class="hero-heading mb-0">Customer Profile</h2>
+                <h2 class="hero-heading mb-0">Customer Center</h2>
             </div>
         </div>
     </section>
@@ -278,35 +283,35 @@
                                         <ul class="nav nav-pills-primary-soft flex-column">
                                             <li class="nav-item">
                                                 <a class="nav-link active" href="user-profile.html">
-                                                    <i class="fa-regular fa-user"></i> <span style="margin-left: 8px;">
-                                                        My Profile </span>
+                                                    <i class="fa-regular fa-user"></i> 
+                                                    <span style="margin-left: 8px;"> My Profile </span>
                                                 </a>
                                             </li>
                                             <li class="nav-item">
                                                 <a class="nav-link" href="user-orders.html">
-                                                    <i class="fa-solid fa-cart-shopping"></i></i><span
-                                                        style="margin-left: 8px;"> My order history </span>
+                                                    <i class="fa-solid fa-cart-shopping"></i>
+                                                    <span style="margin-left: 8px;"> My order history </span>
                                                 </a>
                                             <li class="nav-item">
                                                 <a class="nav-link" href="user-wishlist.html">
-                                                    <i class="fa-regular fa-heart"></i><span style="margin-left: 8px;">
-                                                        Wishlist </span>
+                                                    <i class="fa-regular fa-heart"></i>
+                                                    <span style="margin-left: 8px;"> My Wishlist </span>
                                                 </a>
                                             </li>
                                             <li class="nav-item">
                                                 <a class="nav-link" href="user-payment-details.html">
-                                                    <i class="fa-solid fa-credit-card"></i><span
-                                                        style="margin-left: 8px;"> Payment Details </span>
+                                                    <i class="fa-solid fa-credit-card"></i>
+                                                    <span style="margin-left: 8px;"> Payment Details </span>
                                                 </a>
                                             </li>
 
                                             <li class="nav-item">
                                                 <a class="nav-link" href="user-delete.html">
-                                                    <i class="fa-solid fa-trash"></i><span
-                                                        style="margin-left: 16px;">Delete Profile</span></a>
+                                                    <i class="fa-solid fa-trash"></i>
+                                                    <span style="margin-left: 16px;">Delete Profile</span></a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link text-danger bg-danger-soft-hover" href="#">
+                                                <a class="nav-link text-danger bg-danger-soft-hover" href="#" id="signOutButton">
                                                     <i class="fas fa-sign-out-alt fa-fw me-2"></i>Sign Out</a>
                                             </li>
                                         </ul>
@@ -410,24 +415,32 @@
                                     <!-- Current password -->
                                     <div class="mb-3">
                                         <label class="form-label">Current password</label>
-                                        <input class="form-control" type="password"
-                                            placeholder="Enter current password">
+                                        <div class="input-group">
+                                            <input class="form-control" id="password1" name="password1" type="password" placeholder="Enter Current Password">
+                                            <span class="input-group-text p-0 bg-transparent" id="togglePassword1">
+                                                <i class="fas fa-eye-slash cursor-pointer p-2"></i>
+                                            </span>
+                                        </div>
                                     </div>
                                     <!-- New password -->
                                     <div class="mb-3">
                                         <label class="form-label"> Enter new password</label>
                                         <div class="input-group">
-                                            <input class="form-control fakepassword" placeholder="Enter new password"
-                                                type="password" id="psw-input">
-                                            <span class="input-group-text p-0 bg-transparent">
-                                                <i class="fakepasswordicon fas fa-eye-slash cursor-pointer p-2"></i>
+                                            <input class="form-control" id="password2" name="password2" type="password" placeholder="Enter new Password">
+                                            <span class="input-group-text p-0 bg-transparent" id="togglePassword2">
+                                                <i class="fas fa-eye-slash cursor-pointer p-2"></i>
                                             </span>
                                         </div>
                                     </div>
                                     <!-- Confirm -->
                                     <div class="mb-3">
                                         <label class="form-label">Confirm new password</label>
-                                        <input class="form-control" type="password" placeholder="Confirm new password">
+                                        <div class="input-group">
+                                            <input class="form-control" id="passwordConfirm" name="passwordConfirm" type="password" placeholder="Enter Confirmation Password" >
+                                            <span class="input-group-text p-0 bg-transparent" id="togglePasswordConfirm">
+                                                <i class="fas fa-eye-slash cursor-pointer p-2"></i>
+                                            </span>
+                                        </div>
                                     </div>
 
                                     <div class="text-end">
@@ -585,6 +598,32 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/choices.js/10.2.0/choices.min.js" integrity="sha512-OrRY3yVhfDckdPBIjU2/VXGGDjq3GPcnILWTT39iYiuV6O3cEcAxkgCBVR49viQ99vBFeu+a6/AoFAkNHgFteg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
    <script>
+        // sign out button
+        const signOutButton = document.getElementById('signOutButton');
+        signOutButton.addEventListener('click', onLogoutClicked);
+
+        // password visibility toggle
+        const passwordInput1 = document.getElementById("password1");
+        const togglePassword1 = document.getElementById("togglePassword1");
+        const passwordInput2 = document.getElementById("password2");
+        const togglePassword2 = document.getElementById("togglePassword2");
+        const passwordConfirm = document.getElementById("passwordConfirm");
+        const togglePasswordConfirm = document.getElementById("togglePasswordConfirm");
+
+         // password visibility toggle
+        togglePassword1.addEventListener('click', () => {
+            togglePasswordVisibility(passwordInput1, togglePassword1);
+        });
+
+        togglePassword2.addEventListener('click', () => {
+            togglePasswordVisibility(passwordInput2, togglePassword2);
+        });
+
+        togglePasswordConfirm.addEventListener('click', () => {
+            togglePasswordVisibility(passwordConfirm, togglePasswordConfirm);
+        });
+
+        // user profile card information
         document.addEventListener('DOMContentLoaded', function() {
             // 假设用户信息存储在localStorage的userInfo中
             const userInfoString = localStorage.getItem('userInfo');

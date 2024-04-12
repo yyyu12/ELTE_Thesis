@@ -223,7 +223,7 @@
                 <!-- Buttons -->
                 <div class="buttons">
                     <a href="user-cart.html" class="btn btn-dark btn-hover-primary">view cart</a>
-                    <a href="user-checkout.html" class="btn btn-outline-dark">checkout</a>
+                    <a href="#" id="checkoutButton" class="btn btn-outline-dark">checkout</a>
                 </div>
                 <p class="minicart-message" style="text-align: center; margin-top: 20px;">Free Shipping on All Orders
                     Over $100!</p>
@@ -258,6 +258,11 @@
     <!-- Hero Section-->
     <section class="hero">
         <div class="container">
+            <!-- Breadcrumbs -->
+            <ol class="breadcrumb justify-content-center mt-4">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item active">Customer Center</li>
+            </ol>
             <!-- Hero Content-->
             <div class="hero-content pb-5 text-center">
                 <h2 class="hero-heading mb-0">Customer Center</h2>
@@ -306,7 +311,7 @@
                                     <div class="input-group">
                                         <input class="form-control" id="password" name="password" type="password" placeholder="Enter Password" >
                                         <span class="input-group-text p-0 bg-transparent" id="togglePassword">
-                                            <i class="fakepasswordicon fas fa-eye-slash cursor-pointer p-2"></i>
+                                            <i class="fas fa-eye-slash cursor-pointer p-2"></i>
                                         </span>
                                         <div class="error"></div>
                                     </div>
@@ -317,7 +322,7 @@
                                     <div class="input-group">
                                         <input class="form-control" id="passwordConfirm" name="passwordConfirm" type="password" placeholder="Enter Confirmation Password" >
                                         <span class="input-group-text p-0 bg-transparent" id="togglePasswordConfirm">
-                                            <i class="fakepasswordicon fas fa-eye-slash cursor-pointer p-2"></i>
+                                            <i class="fas fa-eye-slash cursor-pointer p-2"></i>
                                         </span>
                                         <div class="error"></div>
                                     </div>
@@ -488,17 +493,6 @@
     <script src="assets/js/vendor/jquery.cookie.js"></script>
 
     <script>
-        // 注册表单提交处理
-        const togglePasswordVisibility = (inputElement, toggleElement) => {
-            if(inputElement.type === 'password') {
-                inputElement.type = 'text';
-                toggleElement.innerHTML = '<i class="fas fa-eye cursor-pointer p-2"></i>';
-            } else {
-                inputElement.type = 'password';
-                toggleElement.innerHTML = '<i class="fas fa-eye-slash cursor-pointer p-2"></i>';
-            }
-        }
-
         const registerForm = document.getElementById('registerForm');
         const username = document.getElementById('username');
         const email = document.getElementById('email');
@@ -507,6 +501,7 @@
         const passwordConfirm = document.getElementById("passwordConfirm");
         const togglePasswordConfirm = document.getElementById("togglePasswordConfirm");
 
+        // password visibility toggle
         togglePassword.addEventListener('click', () => {
             togglePasswordVisibility(passwordInput, togglePassword);
         });
@@ -515,7 +510,7 @@
             togglePasswordVisibility(passwordConfirm, togglePasswordConfirm);
         });
         
-        
+        /* ======== user register start ======== */
         registerForm.addEventListener('submit', function(event) {
             event.preventDefault(); // 阻止表单默认提交
 

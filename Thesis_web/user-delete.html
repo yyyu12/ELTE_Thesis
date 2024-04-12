@@ -205,7 +205,7 @@
                 <!-- Buttons -->
                 <div class="buttons">
                     <a href="user-cart.html" class="btn btn-dark btn-hover-primary">view cart</a>
-                    <a href="user-checkout.html" class="btn btn-outline-dark">checkout</a>
+                    <a href="#" id="checkoutButton" class="btn btn-outline-dark">checkout</a>
                 </div>
                 <p class="minicart-message" style="text-align: center; margin-top: 20px;">Free Shipping on All Orders
                     Over $100!</p>
@@ -239,9 +239,15 @@
     <!-- Hero Section-->
     <section class="hero">
         <div class="container">
+            <!-- Breadcrumbs -->
+            <ol class="breadcrumb justify-content-center mt-4">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item active">Customer Delete Account</li>
+            </ol>
+
             <!-- Hero Content-->
             <div class="hero-content pb-5 text-center">
-                <h2 class="hero-heading mb-0">Customer Profile</h2>
+                <h2 class="hero-heading mb-0">Customer Center</h2>
             </div>
         </div>
     </section>
@@ -286,36 +292,38 @@
                                         <ul class="nav nav-pills-primary-soft flex-column">
                                             <li class="nav-item">
                                                 <a class="nav-link" href="user-profile.html">
-                                                    <i class="fa-regular fa-user"></i> <span style="margin-left: 8px;">
-                                                        My Profile </span>
+                                                    <i class="fa-regular fa-user"></i> 
+                                                    <span style="margin-left: 8px;">My Profile </span>
                                                 </a>
                                             </li>
                                             <li class="nav-item">
                                                 <a class="nav-link" href="user-orders.html">
-                                                    <i class="fa-solid fa-cart-shopping"></i></i><span
-                                                        style="margin-left: 8px;"> My order history </span>
+                                                    <i class="fa-solid fa-cart-shopping"></i>
+                                                    <span style="margin-left: 8px;"> My order history </span>
                                                 </a>
                                             <li class="nav-item">
                                                 <a class="nav-link" href="user-wishlist.html">
-                                                    <i class="fa-regular fa-heart"></i><span style="margin-left: 8px;">
-                                                        Wishlist </span>
+                                                    <i class="fa-regular fa-heart"></i>
+                                                    <span style="margin-left: 8px;"> My Wishlist </span>
                                                 </a>
                                             </li>
                                             <li class="nav-item">
                                                 <a class="nav-link" href="user-payment-details.html">
-                                                    <i class="fa-solid fa-credit-card"></i><span
-                                                        style="margin-left: 8px;"> Payment Details </span>
+                                                    <i class="fa-solid fa-credit-card"></i>
+                                                    <span style="margin-left: 8px;"> Payment Details </span>
                                                 </a>
                                             </li>
 
                                             <li class="nav-item">
                                                 <a class="nav-link active" href="user-delete.html">
-                                                    <i class="fa-solid fa-trash"></i><span
-                                                        style="margin-left: 16px;">Delete Profile</span></a>
+                                                    <i class="fa-solid fa-trash"></i>
+                                                    <span style="margin-left: 16px;">Delete Profile</span>
+                                                </a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link text-danger bg-danger-soft-hover" href="#">
-                                                    <i class="fas fa-sign-out-alt fa-fw me-2"></i>Sign Out</a>
+                                                <a class="nav-link text-danger bg-danger-soft-hover" href="#" id="signOutButton">
+                                                    <i class="fas fa-sign-out-alt fa-fw me-2"></i>Sign Out
+                                                </a>
                                             </li>
                                         </ul>
                                         <!-- Sidebar menu item END -->
@@ -349,7 +357,7 @@
                             <div class="card-body">
                                 <h6>Before you go...</h6>
                                 <ul>
-                                    <li>Take a backup of your data <a href="#">Here</a> </li>
+                                    <li>Are you sure you want to delete your account?</li>
                                     <li>If you delete your account, you will lose your all data.</li>
                                 </ul>
                                 <div class="form-check form-check-md my-4">
@@ -357,7 +365,7 @@
                                     <label class="form-check-label" for="deleteaccountCheck">Yes, I'd like to delete my
                                         account</label>
                                 </div>
-                                <a href="#" class="btn btn-success btn-sm mb-2 mb-sm-0">Keep my account</a>
+                                
                                 <a href="#" class="btn btn-danger btn-sm mb-0">Delete my account</a>
                             </div>
                             <!-- Card body END -->
@@ -516,6 +524,11 @@
     <script src="assets/js/vendor/jquery.cookie.js"></script>
 
     <script>
+        // sign out button
+        const signOutButton = document.getElementById('signOutButton');
+        signOutButton.addEventListener('click', onLogoutClicked);
+
+        // user profile card information
         document.addEventListener('DOMContentLoaded', function() {
             // 假设用户信息存储在localStorage的userInfo中
             const userInfoString = localStorage.getItem('userInfo');

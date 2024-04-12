@@ -710,6 +710,10 @@ body {
   bottom: calc(100% - 5px);
 }
 
+.span-color1{
+  color: #f093fb; 
+}
 
-
-
+.span-color2{
+  color: #2bcbba; 
+}

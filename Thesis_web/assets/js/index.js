@@ -1,3 +1,4 @@
+/* ======== user login profile dropdown start ======== */
 function onUserLoggedIn(userInfo) {
     const navItem = document.querySelector('#userAccount');
     const userLoginLink = document.getElementById('userLoginLink'); // 获取登录链接元素
@@ -23,7 +24,6 @@ function onUserLoggedIn(userInfo) {
     // 将下拉菜单的HTML添加到.nav-item元素
     navItem.innerHTML += dropdownHTML;
 
-    
     
     // 添加登出事件监听器
     const logoutLink = document.getElementById('logoutLink');
@@ -56,11 +56,35 @@ document.addEventListener('DOMContentLoaded', function() {
         onUserLoggedIn(JSON.parse(userInfo));
     }
 });
+/* ======== user login profile dropdown end ======== */
 
+/* ======== checkout button logic start ======== */
+const checkoutButton = document.getElementById('checkoutButton');
+checkoutButton.addEventListener('click', function(event) {
+    event.preventDefault();
+    const userInfo = localStorage.getItem('userInfo');
+    
+    if (userInfo) {
+        window.location.href = 'user-checkout.html';
+    } else {
+        alert('Please log in to continue to checkout.');
+        window.location.href = 'user-login.html';
+    }
+});
 
+/* ======== checkout button logic end ======== */
 
-
-/* ======== user login end ======== */
+/* ======== Password visibility toggle start ======== */
+// 注册表单提交处理
+const togglePasswordVisibility = (inputElement, toggleElement) => {
+    if(inputElement.type === 'password') {
+        inputElement.type = 'text';
+        toggleElement.innerHTML = '<i class="fas fa-eye cursor-pointer p-2"></i>';
+    } else {
+        inputElement.type = 'password';
+        toggleElement.innerHTML = '<i class="fas fa-eye-slash cursor-pointer p-2"></i>';
+    }
+};
 
 /* ======== choice select start ======== */
 // Define the choicesSelect function
