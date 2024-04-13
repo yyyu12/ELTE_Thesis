@@ -541,8 +541,8 @@
                 },
                 body: JSON.stringify({
                     username: username.value,
-                    email: email.value,
                     password: password.value,
+                    email: email.value,
                     birthdate: birthdate || null, // 包含出生日期
                     gender: gender, // 包含性别
                     address: null
@@ -555,10 +555,10 @@
                 // 处理数据'
                 // console.log(data);
                 if(data.code === 200){
-                    alert(data.message);
+                    alert(data.msg);
                     window.location.href = 'user-login.html';
                 } else {
-                    alert("Register failed: " + data.message);
+                    alert("Register failed: " + data.msg);
                 }
             })
 
