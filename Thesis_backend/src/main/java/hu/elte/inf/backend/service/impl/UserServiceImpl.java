@@ -70,4 +70,21 @@ public class UserServiceImpl implements  Service{
         userMapper.updateUserInfo(user);
         return userMapper.getUserByUserName(user.getUsername());
     }
+
+    public boolean updatePassword(Long id, String oldPassword, String newPassword) {
+        // 获取当前用户信息
+        User currentUser = userMapper.getUserById(id);
+
+        // 验证旧密码是否正确
+        if (currentUser == null || !passwordEncoder.matches(oldPassword, currentUser.getPassword())) {
+            throw new PasswordNotMatchException("Old password does not match.");
+        }
+
+        // 加密新密码
+        String encodedNewPassword = passwordEncoder.encode(newPassword);
+
+        // 更新密码到数据库
+        int affectedRows = userMapper.updateUserPassword(id, encodedNewPassword);
+        return affectedRows == 1;
+    }
 }

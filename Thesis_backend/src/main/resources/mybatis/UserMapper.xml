@@ -11,6 +11,11 @@
         VALUES (#{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, false, #{birthdate,jdbcType=DATE}, #{gender,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR})
     </insert>
 
+    <!-- 通过用户id查询用户 -->
+    <select id="getUserById" parameterType="long" resultType="hu.elte.inf.backend.sqlEntity.User">
+        SELECT * FROM user WHERE id = #{id}
+    </select>
+
     <!-- 通过用户名查询用户 -->
     <select id="getUserByUserName" parameterType="String" resultType="hu.elte.inf.backend.sqlEntity.User">
         SELECT * FROM user WHERE username = #{username}
@@ -32,6 +37,11 @@
             <if test="address != null">address = #{address}</if>
         </set>
         WHERE id = #{id}
+    </update>
+
+    <!-- 更新用户密码 -->
+    <update id="updateUserPassword">
+        UPDATE user SET password = #{newPassword} WHERE id = #{id}
     </update>
 
 

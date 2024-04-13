@@ -4,6 +4,7 @@ import hu.elte.inf.backend.common.Result;
 import hu.elte.inf.backend.controller.request.LoginRequest;
 import hu.elte.inf.backend.controller.request.UpdateRequest;
 import hu.elte.inf.backend.controller.request.UserRegistrationRequest;
+import hu.elte.inf.backend.controller.request.PasswordUpdateRequest;
 import hu.elte.inf.backend.common.exceptionEnd.*;
 import hu.elte.inf.backend.controller.response.UserLoginResponse;
 import hu.elte.inf.backend.service.impl.UserServiceImpl;
@@ -78,6 +79,22 @@ public class UserController {
 
             // 返回更新后的用户数据
             return ResponseEntity.ok(Result.ok("User info updated successfully").put("info", userLoginResponse));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.SC_INTERNAL_SERVER_ERROR).body(Result.error("Internal server error"));
+        }
+    }
+
+    @PutMapping("/updatePassword/{id}")
+    public ResponseEntity<Result> updatePassword(@PathVariable Long id, @Validated @RequestBody PasswordUpdateRequest passwordUpdateRequest) {
+        try {
+            boolean updateResult = userService.updatePassword(id, passwordUpdateRequest.getOldPassword(), passwordUpdateRequest.getNewPassword());
+            if (updateResult) {
+                return ResponseEntity.ok(Result.ok("Password updated successfully"));
+            } else {
+                return ResponseEntity.status(HttpStatus.SC_BAD_REQUEST).body(Result.error("Password update failed"));
+            }
+        } catch (PasswordNotMatchException e) {
+            return ResponseEntity.status(HttpStatus.SC_BAD_REQUEST).body(Result.error(e.getMessage()));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.SC_INTERNAL_SERVER_ERROR).body(Result.error("Internal server error"));
         }
