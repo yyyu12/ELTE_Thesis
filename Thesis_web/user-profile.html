@@ -623,7 +623,8 @@
             togglePasswordVisibility(passwordConfirm, togglePasswordConfirm);
         });
 
-        function updateUserInfoDisplay(){
+        // user profile left card information
+        document.addEventListener('DOMContentLoaded', function() {
             // 假设用户信息存储在localStorage的userInfo中
             const userInfoString = localStorage.getItem('userInfo');
             
@@ -649,11 +650,6 @@
                 container.appendChild(userEmailElement);
                 container.appendChild(hrElement); // 添加<hr>到容器
             }
-        }
-
-        // user profile left card information
-        document.addEventListener('DOMContentLoaded', function() {
-            updateUserInfoDisplay();
         });
 
         // user profile right card information filled in
@@ -675,55 +671,47 @@
         });
 
         // user profile update form submission
-        document.addEventListener('DOMContentLoaded', function() {
-            // 监听表单提交事件
-            document.getElementById('userInfoUpdateForm').addEventListener('submit', function(event) {
-                event.preventDefault(); // 阻止表单的默认提交行为
-                // User id
-                const userId = JSON.parse(localStorage.getItem('userInfo')).id;
+        document.getElementById('userInfoUpdateForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // 阻止表单的默认提交行为
+            // User id
+            const userId = JSON.parse(localStorage.getItem('userInfo')).id;
 
-                // Get user input elements
-                const username = document.getElementById('username').value;
-                const email = document.getElementById('email').value;                
-                const birthdate = document.getElementById('birthdate').value || null;
-                const genderElement = document.querySelector('input[name="gender"]:checked');
-                const gender = genderElement ? genderElement.value : null; // 如果没有选中项，则性别为空
-                const address = document.getElementById('address').value || null;
+            // Get user input elements
+            const username = document.getElementById('username').value;
+            const email = document.getElementById('email').value;                
+            const birthdate = document.getElementById('birthdate').value || null;
+            const genderElement = document.querySelector('input[name="gender"]:checked');
+            const gender = genderElement ? genderElement.value : null; // 如果没有选中项，则性别为空
+            const address = document.getElementById('address').value || null;
 
-                // fetch API
-                fetch('http://localhost:8080/users/updateInfo/' + userId, {
-                    method: 'PUT',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        username: username,
-                        email: email,
-                        birthdate: birthdate,
-                        gender: gender,
-                        address: address
-                    })
+            // fetch API
+            fetch('http://localhost:8080/users/updateInfo/' + userId, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    username: username,
+                    email: email,
+                    birthdate: birthdate,
+                    gender: gender,
+                    address: address
                 })
-
-                .then(response => response.json()) 
-
-                .then(data => {
-                    if(data.code === 200){
-                        // 如果更新成功，用新数据更新localStorage
-                        localStorage.setItem('userInfo', JSON.stringify(data.info));
-
-                        updatePageWithNewUserInfo(data.info);
-
-                        alert(data.msg);
-                    } else {
-                        alert("Update failed: " + data.msg);
-                    }
-                })
-
-                .catch(error => {
-                    console.error('Error:', error);
-                    alert("Login failed: " + error.message);
-                });
+            })
+            .then(response => response.json()) 
+            .then(data => {
+                if(data.code === 200){
+                    // 如果更新成功，用新数据更新localStorage
+                    localStorage.setItem('userInfo', JSON.stringify(data.info));
+                    updatePageWithNewUserInfo(data.info);
+                    alert(data.msg);
+                } else {
+                    alert("Update failed: " + data.msg);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert("Login failed: " + error.message);
             });
         });
 
@@ -747,7 +735,6 @@
                 }
             }
         }
-
    </script> 
 </body>
 
