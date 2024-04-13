@@ -2,6 +2,7 @@ package hu.elte.inf.backend.controller;
 
 import hu.elte.inf.backend.common.Result;
 import hu.elte.inf.backend.controller.request.LoginRequest;
+import hu.elte.inf.backend.controller.request.UpdateRequest;
 import hu.elte.inf.backend.controller.request.UserRegistrationRequest;
 import hu.elte.inf.backend.common.exceptionEnd.*;
 import hu.elte.inf.backend.controller.response.UserLoginResponse;
@@ -58,6 +59,26 @@ public class UserController {
         } catch (PasswordNotMatchException ex) {
             return ResponseEntity.status(HttpStatus.SC_UNAUTHORIZED).body(Result.error("Password does not match"));
         } catch (Exception ex) {
+            return ResponseEntity.status(HttpStatus.SC_INTERNAL_SERVER_ERROR).body(Result.error("Internal server error"));
+        }
+    }
+
+    @PutMapping("/updateInfo/{id}")
+    public ResponseEntity<Result> updateUserInfo(@PathVariable Long id, @Validated @RequestBody UpdateRequest updateRequest) {
+        try {
+            User user = new User();
+            BeanUtils.copyProperties(updateRequest, user);
+            user.setId(id);
+            // 这里调用服务层的更新方法，并获取返回的更新后的用户对象
+            User updatedUser = userService.updateUserInfo(user);
+
+            // 将User转换为UserLoginResponse的方法或逻辑，就在这里使用它
+            UserLoginResponse userLoginResponse = new UserLoginResponse();
+            BeanUtils.copyProperties(updatedUser, userLoginResponse);
+
+            // 返回更新后的用户数据
+            return ResponseEntity.ok(Result.ok("User info updated successfully").put("info", userLoginResponse));
+        } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.SC_INTERNAL_SERVER_ERROR).body(Result.error("Internal server error"));
         }
     }

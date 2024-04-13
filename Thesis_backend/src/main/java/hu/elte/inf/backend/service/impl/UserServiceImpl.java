@@ -66,7 +66,8 @@ public class UserServiceImpl implements  Service{
 
     // 更新用户
     @Override
-    public void updateUser(User user){
+    public User updateUserInfo(User user){
         userMapper.updateUserInfo(user);
+        return userMapper.getUserByUserName(user.getUsername());
     }
 }

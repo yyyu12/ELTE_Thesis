@@ -14,5 +14,6 @@ public interface Service {
      * @return User data of successful login
      */
     User login(String username, String password);
-    void updateUser(User user);
+
+    User updateUserInfo(User user);
 }

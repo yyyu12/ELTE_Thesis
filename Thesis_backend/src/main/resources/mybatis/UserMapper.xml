@@ -21,17 +21,17 @@
         SELECT * FROM user WHERE email = #{email}
     </select>
 
-    <!-- 更新用户信息 -->
+    <!-- 更新用户个人信息 -->
     <update id="updateUserInfo" parameterType="hu.elte.inf.backend.sqlEntity.User">
-        UPDATE user SET
-        username = #{username,jdbcType=VARCHAR},
-        password = #{password,jdbcType=VARCHAR},
-        email = #{email,jdbcType=VARCHAR},
-        isAdmin = #{isAdmin,jdbcType=BOOLEAN},
-        birthdate = #{birthdate,jdbcType=DATE},
-        gender = #{gender,jdbcType=VARCHAR},
-        address = #{address,jdbcType=VARCHAR}
-        WHERE id = #{id,jdbcType=BIGINT}
+        UPDATE user
+        <set>
+            <if test="username != null">username = #{username},</if>
+            <if test="email != null">email = #{email},</if>
+            <if test="birthdate != null">birthdate = #{birthdate},</if>
+            <if test="gender != null">gender = #{gender},</if>
+            <if test="address != null">address = #{address}</if>
+        </set>
+        WHERE id = #{id}
     </update>
 
 
