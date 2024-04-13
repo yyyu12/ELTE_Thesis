@@ -25,6 +25,34 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="assets/css/index.css">
     <style>
+        
+
+        .input-group {
+            position: relative;
+        }
+
+        .input-group .error {
+            position: absolute;
+            bottom: -20px; /* Adjust based on your layout */
+            left: 0;
+            width: 100%;
+        }
+
+        .input-group.success input {
+            border-color: #28a745;
+        }
+
+        .input-group.error input {
+            border-color: #dc3545;
+        }
+
+        .input-group .error {
+            color: #dc3545;
+            font-size: 14px;
+        }
+
+
+
         @media (min-width:1200px) {
             .navbar .dropdown-menu.show {
                 display: block;
@@ -420,6 +448,7 @@
                                             <span class="input-group-text p-0 bg-transparent" id="togglePassword1">
                                                 <i class="fas fa-eye-slash cursor-pointer p-2"></i>
                                             </span>
+                                            <div class="error"></div>
                                         </div>
                                     </div>
                                     <!-- New password -->
@@ -430,6 +459,7 @@
                                             <span class="input-group-text p-0 bg-transparent" id="togglePassword2">
                                                 <i class="fas fa-eye-slash cursor-pointer p-2"></i>
                                             </span>
+                                            <div class="error"></div>
                                         </div>
                                     </div>
                                     <!-- Confirm -->
@@ -440,6 +470,7 @@
                                             <span class="input-group-text p-0 bg-transparent" id="togglePasswordConfirm">
                                                 <i class="fas fa-eye-slash cursor-pointer p-2"></i>
                                             </span>
+                                            <div class="error"></div>
                                         </div>
                                     </div>
 
@@ -604,10 +635,10 @@
 
         // password visibility toggle
         const passwordInput1 = document.getElementById("password1");
-        const togglePassword1 = document.getElementById("togglePassword1");
         const passwordInput2 = document.getElementById("password2");
-        const togglePassword2 = document.getElementById("togglePassword2");
         const passwordConfirm = document.getElementById("passwordConfirm");
+        const togglePassword1 = document.getElementById("togglePassword1");
+        const togglePassword2 = document.getElementById("togglePassword2");
         const togglePasswordConfirm = document.getElementById("togglePasswordConfirm");
 
          // password visibility toggle
@@ -621,6 +652,106 @@
 
         togglePasswordConfirm.addEventListener('click', () => {
             togglePasswordVisibility(passwordConfirm, togglePasswordConfirm);
+        });
+
+        // User update password form submission
+        const setError = (element, message) => {
+            const inputGroup = element.parentElement;
+            const errorDisplay = inputGroup.querySelector('.error');
+
+            errorDisplay.innerText = message;
+            inputGroup.classList.add('error');
+            inputGroup.classList.remove('success');
+        }
+
+        const setSuccess = (element) => {
+            const inputGroup = element.parentElement;
+            const errorDisplay = inputGroup.querySelector('.error');
+
+            errorDisplay.innerText = '';
+            inputGroup.classList.remove('error');
+            inputGroup.classList.add('success');
+        }
+
+        const validatePasswordInputs = () => {
+            const password1 = passwordInput1.value.trim();
+            const password2 = passwordInput2.value.trim();
+            const passwordConfirmValue = passwordConfirm.value.trim();
+
+            let isValid = true;
+
+            if(password1 === ''){
+                setError(passwordInput1, 'Password is required');
+                isValid = false;
+            }else if(password1.length < 6){
+                setError(passwordInput1, 'Password must be at least 6 characters');
+                isValid = false;
+            }else{
+                setSuccess(passwordInput1);
+            }
+
+            if(password2 === ''){
+                setError(passwordInput2, 'Password is required');
+                isValid = false;
+
+            }else if(password2.length < 6){
+                setError(passwordInput2, 'Password must be at least 6 characters');
+                isValid = false;
+            }else{
+                setSuccess(passwordInput2);
+            }
+
+            if(passwordConfirmValue === ''){
+                setError(passwordConfirm, 'Password confirmation is required');
+                isValid = false;
+            }else if(passwordConfirmValue.length < 6){
+                setError(passwordConfirm, 'Password must be at least 6 characters');
+                isValid = false;
+            } else if(passwordConfirmValue !== password2){
+                setError(passwordConfirm, 'Passwords do not match');
+                isValid = false;
+            }else{
+                setSuccess(passwordConfirm);
+            }
+
+            return isValid;
+        }
+
+        document.getElementById('userUpdatePasswordForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // 阻止表单的默认提交行为
+
+            if (!validatePasswordInputs()) {
+                return;
+            }
+
+            // User id
+            const userId = JSON.parse(localStorage.getItem('userInfo')).id;
+
+            // // fetch API
+            fetch('http://localhost:8080/users/updatePassword/' + userId, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    oldPassword: passwordInput1.value,
+                    newPassword: passwordInput2.value
+                })
+            })
+            .then(response => response.json()) 
+            
+            .then(data => {
+                if(data.code === 200){
+                    alert('Password updated successfully');
+                } else {
+                    alert("Update failed: " + data.msg);
+                }
+            })
+
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Failed to update password: ' + error.message);
+            });
         });
 
         // user profile left card information
