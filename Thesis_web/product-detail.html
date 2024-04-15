@@ -117,6 +117,7 @@
             <li class="nav-item"><a class="nav-link" href="blind-Box.html">Blind Box</a>
             <li class="nav-item"><a class="nav-link" href="direct-Buy.html">Shop</a></li>
             <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+            <li class="nav-item" id="adminPageLink"><a class="nav-link" href="AdminHomepage.html">Admin Home</a></li>
           </ul>
 
           <div class="d-flex align-items-center justify-content-between justify-content-lg-end mt-1 mb-2 my-lg-0">
@@ -243,13 +244,14 @@
         <div class="col-lg-6 col-xl-7 pt-4 order-2 order-lg-1">
           <a class="glightbox d-block mb-4" href="img/product/kyle-loftus-596319-unsplash-cropped-2.jpg"
             data-title="Modern Jacket 1 - Caption text" data-gallery="product-gallery">
-            <div data-bs-toggle="zoom" data-image="assets/images/avatar01.jpeg">
-              <img class="img-fluid" src="assets/images/avatar01.jpeg" alt="Modern Jacket 1">
+            <div data-bs-toggle="zoom" data-image="assets/images/doppia-essenza.webp">
+              <img class="img-fluid" src="assets/images/doppia-essenza.webp" alt="Modern Jacket 1">
             </div>
           </a>
         </div>
         <div class="col-lg-6 col-xl-5 ps-lg-5 pt-4 order-1 order-lg-2">
           <ul class="breadcrumb undefined">
+            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
             <li class="breadcrumb-item"><a href="direct-Buy.html">Shop</a></li>
             <li class="breadcrumb-item active">Modern Jacket</li>
           </ul>
@@ -260,29 +262,69 @@
                 <li class="list-inline-item h4 fw-light mb-0">$65.00</li>
               </ul>
               <div class="d-flex align-items-center">
-                <ul class="list-inline me-2 mb-0">
-                  <li class="list-inline-item me-0"><i class="fa fa-star text-primary"></i></li>
-                  <li class="list-inline-item me-0"><i class="fa fa-star text-primary"></i></li>
-                  <li class="list-inline-item me-0"><i class="fa fa-star text-primary"></i></li>
-                  <li class="list-inline-item me-0"><i class="fa fa-star text-primary"></i></li>
-                  <li class="list-inline-item me-0"><i class="fa fa-star text-gray-300"></i></li>
-                </ul><span class="text-muted text-uppercase text-sm">25 reviews</span>
+                <button id="likeButton" class="btn btn-soft-gradient">
+                  <i class="fa fa-thumbs-up"></i> <span id="likeCount">0</span> Likes
+                </button>
               </div>
+
             </div>
-            <p class="mb-4 text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+            <p class="mb-6 text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
               incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
             </p>
 
             <form action="#">
-              <ul class="list-inline">
-                <li class="list-inline-item">
-                  <button class="btn btn-dark btn-lg mb-1" type="submit"> <i class="fa fa-shopping-cart me-2"></i>Add to
-                    Cart</button>
+              <ul>
+                <li class=" d-grid gap-2 ">
+                  <button class="btn btn-dark btn-lg mb-1" type="submit">
+                    <i class="fa fa-shopping-cart me-2"></i>Add to Cart</button>
                 </li>
-                <li class="list-inline-item"><a class="btn btn-outline-secondary mb-1" href="#"> <i
-                      class="far fa-heart me-2"></i>Add to wishlist</a></li>
+                <li class=" d-grid gap-2 mt-2">
+                  <a class="btn btn-purple-gradient mb-1" href="#">
+                    <i class="far fa-heart me-2"></i>Add to wishlist</a>
+                </li>
               </ul>
             </form>
+
+            <!-- Container for all info blocks -->
+            <div class="info-container mt-8">
+              <!-- Free Shipping -->
+              <div class="info-block free-shipping">
+                <i class="fa fa-truck"></i>
+                <div class="text">
+                  <span>Free Shipping</span>
+                  <p>Free standard shipping on orders over 300.00€</p>
+                </div>
+              </div>
+
+              <!-- Return Policy -->
+              <div class="info-block return-policy">
+                <i class="fa fa-undo"></i>
+                <div class="text">
+                  <span>Return Policy</span>
+                  <p>Learn more about our return policy</p>
+                </div>
+              </div>
+
+              <!-- Shopping Security -->
+              <div class="info-block shopping-security">
+                <i class="fa fa-shield-alt"></i>
+                <div class="text">
+                  <span>Shopping Security</span>
+                  <p>Safe payments and secure logistics</p>
+                </div>
+              </div>
+
+              <!-- Sold by SHEIN -->
+              <div class="info-block sold-by">
+                <i class="fa fa-tag"></i>
+                <div class="text">
+                  <span>Sold by BLEND ART</span>
+                  <p>Ships from BLEND ART</p>
+                </div>
+              </div>
+            </div>
+
+
           </div>
         </div>
       </div>
@@ -738,6 +780,16 @@
   <script src="assets/js/vendor/jquery.cookie.js"></script>
   <script src="assets/js/index.js"></script>
   <script src="https://kit.fontawesome.com/e85815ae07.js" crossorigin="anonymous"></script>
+
+  <script>
+    // 需要添加保存这个艺术品有几个like的逻辑！！！
+    document.getElementById('likeButton').addEventListener('click', function () {
+      var likeCountElement = document.getElementById('likeCount');
+      var currentCount = parseInt(likeCountElement.innerText);
+      likeCountElement.innerText = currentCount + 1;
+    });
+
+  </script>
 
 </body>
 

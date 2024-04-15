@@ -17,6 +17,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Lightbox -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/glightbox/3.3.0/css/glightbox.min.css" integrity="sha512-T+KoG3fbDoSnlgEXFQqwcTC9AdkFIxhBlmoaFqYaIjq2ShhNwNao9AKaLUPMfwiBPL0ScxAtc+UYbHAgvd+sjQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Choice -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css">
     <!-- theme stylesheet-->
     <link rel="stylesheet" href="https://demo.bootstrapious.com/sell/2-0-1/css/style.default.7acfaf01.css" id="theme-stylesheet">
     <link rel="stylesheet" href="assets/css/vendor/theme.min.css">
@@ -108,6 +110,7 @@
                         <li class="nav-item"><a class="nav-link" href="blind-Box.html">Blind Box</a>
                         <li class="nav-item"><a class="nav-link active" href="direct-Buy.html">Shop</a></li>
                         <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                        <li class="nav-item" id="adminPageLink"><a class="nav-link" href="AdminHomepage.html">Admin Home</a></li>
                     </ul>
 
                     <div class="d-flex align-items-center justify-content-between justify-content-lg-end mt-1 mb-2 my-lg-0">
@@ -256,6 +259,8 @@
     </section>
     <!-- Hero Section End -->
 
+    
+
     <!-- All Products Section -->
     <div class="container">
         <!-- Shop Toolbar Start -->
@@ -267,9 +272,9 @@
                     <div class="col-md col-12 align-self-center products-mb">
                         <div class="isotope-filter shop-product-filter" data-target="#shop-products">
                             <button class="active" data-filter="*">all</button>
-                            <button data-filter=".featured">Hot Products</button>
-                            <button data-filter=".new">New Products</button>
-                            <button data-filter=".sales">Sales Products</button>
+                            <button data-filter=".painting">Paintings</button>
+                            <button data-filter=".digital">Digital</button>
+                            <button data-filter=".abstract">Abstrat Art</button>
                         </div>
                     </div>
                     <!-- Isotop Filter End -->
@@ -327,9 +332,7 @@
                                 <div class="item grid-item">
                                     <div class="product">
                                         <div class="product-image">
-                                            <div class="ribbon ribbon-info">Fresh</div><img class="img-fluid"
-                                                src="https://d19m59y37dris4.cloudfront.net/sell/2-0-1/img/product/serrah-galos-494312-unsplash-cropped.jpg"
-                                                alt="product" />
+                                            <div class="ribbon ribbon-info">Fresh</div><img class="img-fluid" src="assets/images/artworks/paintings/doppia-essenza.jpeg" alt="product" >
                                             <div class="product-hover-overlay"><a class="product-hover-overlay-link"
                                                     href="detail.html"></a>
                                                 <div class="product-hover-overlay-buttons">
@@ -357,9 +360,7 @@
                                 <!-- product-->
                                 <div class="item grid-item ">
                                     <div class="product">
-                                        <div class="product-image"><img class="img-fluid"
-                                                src="https://d19m59y37dris4.cloudfront.net/sell/2-0-1/img/product/kyle-loftus-590881-unsplash.jpg"
-                                                alt="product" />
+                                        <div class="product-image"><img class="img-fluid" src="assets/images/artworks/paintings/Flower.jpeg" alt="product">
                                             <div class="product-hover-overlay"><a class="product-hover-overlay-link"
                                                     href="detail.html"></a>
                                                 <div class="product-hover-overlay-buttons"><a
@@ -388,7 +389,7 @@
                                     <div class="product">
                                         <div class="product-image">
                                             <div class="ribbon ribbon-primary">Sale</div><img class="img-fluid"
-                                                src="https://d19m59y37dris4.cloudfront.net/sell/2-0-1/img/product/kyle-loftus-596319-unsplash.jpg"
+                                                src="assets/images/Lonely-in-silence.jpeg"
                                                 alt="product" />
                                             <div class="product-hover-overlay"><a class="product-hover-overlay-link"
                                                     href="detail.html"></a>
@@ -747,26 +748,25 @@
                             aria-expanded="false" aria-controls="categoriesMenu">Product Categories</a>
                         <div class="expand-lg collapse" id="categoriesMenu">
                             <div class="nav nav-pills flex-column mt-4 mt-lg-0" role="menu">
-                                <div class="sidebar-menu-item mb-2 active" data-bs-toggle="collapse"
-                                    data-bs-target="#subcategories_0" aria-expanded="true"
-                                    aria-controls="subcategories_0" role="menuitem">
+                                <div class="sidebar-menu-item mb-2 active" data-bs-toggle="collapse" data-bs-target="#subcategories_0" aria-expanded="true" aria-controls="subcategories_0" role="menuitem">
                                     <a class="nav-link active" href="#!">
                                         <span>Jackets</span>
                                         <span class="sidebar-badge ms-2">123</span>
                                     </a>
                                 </div>
                                 <div class="collapse show" id="subcategories_0">
-                                    <div class="nav nav-pills flex-column ms-3"><a class="nav-link mb-2" href="#!">Lorem
-                                            ipsum</a><a class="nav-link mb-2" href="#!">Dolor</a><a
-                                            class="nav-link mb-2" href="#!">Sit amet</a><a class="nav-link mb-2"
-                                            href="#!">Donec vitae</a>
+                                    <div class="nav nav-pills flex-column ms-3">
+                                        <a class="nav-link mb-2" href="#!">Lorem ipsum</a>
+                                        <a class="nav-link mb-2" href="#!">Dolor</a>
+                                        <a class="nav-link mb-2" href="#!">Sit amet</a>
+                                        <a class="nav-link mb-2" href="#!">Donec vitae</a>
                                     </div>
                                 </div>
-                                <div class="sidebar-menu-item mb-2" data-bs-toggle="collapse"
-                                    data-bs-target="#subcategories_1" aria-expanded="false"
-                                    aria-controls="subcategories_1" role="menuitem"><a class="nav-link "
-                                        href="#!"><span>Jeans &amp; chinos</span><span
-                                            class="sidebar-badge ms-2">55</span></a></div>
+
+                                <div class="sidebar-menu-item mb-2" data-bs-toggle="collapse" data-bs-target="#subcategories_1" aria-expanded="false" aria-controls="subcategories_1" role="menuitem">
+                                    <a class="nav-link " href="#!"><span>Jeans &amp; chinos</span>
+                                        <span class="sidebar-badge ms-2">55</span></a>
+                                </div>
                                 <div class="collapse" id="subcategories_1">
                                     <div class="nav nav-pills flex-column ms-3"><a class="nav-link mb-2" href="#!">Lorem
                                             ipsum</a><a class="nav-link mb-2" href="#!">Dolor</a><a
@@ -774,6 +774,8 @@
                                             href="#!">Donec vitae</a>
                                     </div>
                                 </div>
+
+                                
                                 <div class="sidebar-menu-item mb-2" data-bs-toggle="collapse"
                                     data-bs-target="#subcategories_2" aria-expanded="false"
                                     aria-controls="subcategories_2" role="menuitem"><a class="nav-link "
@@ -1161,6 +1163,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/smooth-scroll/16.1.3/smooth-scroll.polyfills.min.js" integrity="sha512-LZ6YBzwuQvIG41twjliX3HUVeAd+ErnJ0UsqRnkI4firX2l71jxbKJoax/hu7XY2tiyLl0YA2kcnz/XEW+9O3g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- Lightbox gallery-->
     <script src="assets/js/vendor/glightbox.min.js"></script>
+    <!-- Choice -->
+    <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
     <!-- Object Fit Images - Fallback for browsers that don't support object-fit-->
     <script src="assets/js/vendor/ofi.min.js"></script>
     <script> var basePath = ''; </script>

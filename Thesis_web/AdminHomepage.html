@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Home</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex">
+    <!-- Google fonts - Playfair Display-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700">
+    <!-- owl carousel-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Lightbox -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/glightbox/3.3.0/css/glightbox.min.css" integrity="sha512-T+KoG3fbDoSnlgEXFQqwcTC9AdkFIxhBlmoaFqYaIjq2ShhNwNao9AKaLUPMfwiBPL0ScxAtc+UYbHAgvd+sjQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="https://demo.bootstrapious.com/sell/2-0-1/css/style.default.7acfaf01.css" id="theme-stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/10.2.0/swiper-bundle.min.css" integrity="sha512-s6khMl5GDS1HbQ5/SwL1wzMayPwHXPjKoBN5kHUTDqKEPkkGyEZWKyH2lQ3YO2q3dxueG3rE0NHjRawMHd2b6g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="assets/css/vendor/theme.min.css">
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="assets/images/favicon.png">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="assets/css/vendor/fontawesome.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/index.css">
+    <style>
+        .nav-pills-bg-soft {
+            background-color: rgba(var(--bs-primary-rgb), 0.1);
+            padding: 0.625rem 0;
+            border-radius: 0.625rem;
+        }
+
+        .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+            color: #fff;
+            background-color: #2ab7ee;
+        }
+
+        .nav-pills .nav-link:hover {
+            color: #fff;
+            background-color: #2ab7ee;
+        }
+        
+        @media (min-width:1200px) {
+            .navbar .dropdown-menu.show {
+                display: block;
+                opacity: 1;
+                visibility: visible;
+                transform: translate(-50%);
+                transition: all .3s ease-in-out;
+            }
+
+            .navbar .dropdown-menu {
+                margin-top: 0;
+                border-radius: 0;
+                border: none;
+                background-color: #fff;
+                width: 100%;
+                left: 50%;
+                right: auto;
+                text-align: center;
+                transform: translateX(-50%);
+                transition: all .3s ease-in-out;
+            }
+
+             /* 深色模式下激活状态的导航链接颜色 */
+            [data-bs-theme="dark"] .navbar-nav .nav-link.active,
+            [data-bs-theme="dark"] .dropdown-menu
+            {
+                background-color: #1E293B !important; /* 深色模式下激活状态的背景颜色 */
+            }
+
+            /* 深色模式下鼠标悬停状态的导航链接颜色 */
+            [data-bs-theme="dark"] .navbar-nav .nav-link:hover {
+                background-color: #1E293B !important;
+                
+            }
+
+            /* 深色模式下 .dropdown-item 的文字颜色 */
+            [data-bs-theme="dark"] .dropdown-menu .dropdown-item {
+            color: #475569 !important; /* 修改为所需的颜色 */
+            }
+
+            /* 深色模式下 .dropdown-item 悬停状态的文字颜色 */
+            [data-bs-theme="dark"] .dropdown-menu .dropdown-item:hover {
+            color: #8B3DFF !important; /* 修改为所需的颜色 */
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+    <header class="header">
+        <!-- Top Bar-->
+        <div class="top-bar">
+            <div class="container-fluid">
+                <div class="row d-flex align-items-center">
+                    <div class="col-sm-7 d-none d-sm-block">
+                        <ul class="list-inline topbar-text mb-0 d-flex justify-content-end">
+                            <li class="list-inline-item px-3">Free shipping on orders over $300</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Top Bar End-->
+        <!-- Navbar-->
+        <nav class="navbar navbar-expand-lg navbar-sticky navbar-airy navbar-light bg-white">
+            <div class="container-fluid">
+                <!-- Navbar Header  -->
+                <a href="index.html"><img src="assets/images/logo.png" alt="Logo" width="200"></a>
+
+                <!-- Navbar Collapse -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+                    aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <ul class="navbar-nav mx-auto">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="AdminHomepage.html">Admin Home</a></li>
+                    </ul>
+
+                    <div class="d-flex align-items-center justify-content-between justify-content-lg-end mt-1 mb-2 my-lg-0">
+                        <!-- Color Modes Theme-->
+                        <div class="nav-item">
+                            <div class="color-modes position-relative ps-3">
+                                <a class="bd-theme btn btn-link nav-link dropdown-toggle d-inline-flex align-items-center justify-content-center text-primary p-0 position-relative rounded-circle"
+                                    href="#" aria-expanded="true" data-bs-toggle="dropdown" data-bs-display="static"
+                                    aria-label="Toggle theme (light)">
+                                    <i class="fa-regular fa-sun"></i>
+                                </a>
+
+                                <ul class="dropdown-menu dropdown-menu-end fs-14px" data-bs-popper="static">
+                                    <li>
+                                        <button type="button" class="dropdown-item d-flex align-items-center active"
+                                            data-bs-theme-value="light" aria-pressed="true">
+                                            <i class="fa-regular fa-sun me-4 opacity-50 theme-icon"></i>
+                                            Light
+                                            <i class="fa-solid fa-check ms-auto d-none"></i>
+                                        </button>
+
+                                    </li>
+                                    <li>
+                                        <button type="button" class="dropdown-item d-flex align-items-center"
+                                            data-bs-theme-value="dark" aria-pressed="false">
+                                            <i class="fa-solid fa-moon me-4 opacity-50 theme-icon"></i>
+                                            Dark
+                                            <i class="fa-solid fa-check ms-auto d-none"></i>
+                                        </button>
+
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="nav-item" id="userAccount" style="margin-left: 20px;">
+                            <!-- 登录链接 -->
+                            <a class="navbar-icon-link" href="user-login.html" id="userLoginLink">
+                                <i class="far fa-user"></i>
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <!-- /Navbar -->
+
+    </header>
+
+
+
+    <!-- =======================
+    Popular course START -->
+    <section>
+        <div class="container">
+            <!-- Title -->
+            <div class="row mb-4">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h2 class="fs-1">Monitor Data</h2>
+                    <!-- admin's page induction -->
+                    <p class="mb-0">Here Admin can manage user data, artist data, artwork data, and check blind box data.</p>
+                </div>
+            </div>
+
+            <!-- Tabs START -->
+            <ul class="nav nav-pills nav-pills-bg-soft justify-content-sm-center mb-4 px-3" id="course-pills-tab" role="tablist">
+                <!-- Tab item -->
+                <li class="nav-item me-2 me-sm-5">
+                    <button class="nav-link mb-2 mb-md-0 active" id="course-pills-tab-1" data-bs-toggle="pill" data-bs-target="#course-pills-tabs-1" type="button" role="tab" aria-controls="course-pills-tabs-1" aria-selected="false">User Data</button>
+                </li>
+                <!-- Tab item -->
+                <li class="nav-item me-2 me-sm-5">
+                    <button class="nav-link mb-2 mb-md-0" id="course-pills-tab-2" data-bs-toggle="pill" data-bs-target="#course-pills-tabs-2" type="button" role="tab" aria-controls="course-pills-tabs-2"	aria-selected="false">Artist Data</button>
+                </li>
+                <!-- Tab item -->
+                <li class="nav-item me-2 me-sm-5">
+                    <button class="nav-link mb-2 mb-md-0" id="course-pills-tab-3" data-bs-toggle="pill" data-bs-target="#course-pills-tabs-3" type="button" role="tab" aria-controls="course-pills-tabs-3" aria-selected="false">Artwork Data</button>
+                </li>
+                <!-- Tab item -->
+                <li class="nav-item me-2 me-sm-5">
+                    <button class="nav-link mb-2 mb-md-0" id="course-pills-tab-4" data-bs-toggle="pill" data-bs-target="#course-pills-tabs-4" type="button" role="tab" aria-controls="course-pills-tabs-3" aria-selected="false">Blind Box Data</button>
+                </li>
+
+            </ul>
+            <!-- Tabs END -->
+
+            <!-- Tabs content START -->
+            <div class="tab-content" id="course-pills-tabContent">
+                <!-- Content START -->
+                <div class="tab-pane fade show active mb-8" id="course-pills-tabs-1" role="tabpanel" aria-labelledby="course-pills-tab-1">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title">User Information</h5>
+                        </div>
+                        <div class="card-body">
+                            <table class="table table-striped table-hover table-responsive">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Username</th>
+                                        <th>Email</th>
+                                        <th>Admin</th>
+                                        <th>Birthdate</th>
+                                        <th>Gender</th>
+                                        <th>Address</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="usersTable">
+                                    <!-- 用户数据将被动态插入这里 -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- Content END -->
+
+                <!-- Content START -->
+                <div class="tab-pane fade" id="course-pills-tabs-2" role="tabpanel" aria-labelledby="course-pills-tab-2">
+                    <div class="container my-4">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>Artists</h4>
+                                <!-- 按钮用于显示添加艺术家的表单 -->
+                                <button id="showAddArtistForm" class="btn btn-primary float-right">Add New Artist</button>
+                            </div>
+                            <div class="card-body">
+                                <table class="table table-striped table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Artist Name</th>
+                                            <th>Bio</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="artistsTable">
+                                        <!-- 艺术家数据将被动态插入这里 -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 添加艺术家的表单，初始隐藏 -->
+                    <div id="addArtistForm" class="container mb-8" style="display: none;">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>Add New Artist</h5>
+                            </div>
+                            <div class="card-body">
+                                <form id="artistForm">
+                                    <div class="mb-3">
+                                        <label for="artistName" class="form-label">Artist Name</label>
+                                        <input type="text" class="form-control" id="artistName" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="artistBio" class="form-label">Bio</label>
+                                        <textarea class="form-control" id="artistBio" rows="3"></textarea>
+                                    </div>
+                                    <button type="submit" class="btn btn-green-gradient">Submit</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    
+
+                </div>
+                <!-- Content END -->
+
+                <!-- Content START -->
+                <div class="tab-pane fade" id="course-pills-tabs-3" role="tabpanel" aria-labelledby="course-pills-tab-3">
+                    <div class="row g-4">
+                        <!-- Card item START -->
+                        <div class="col-sm-6 col-lg-4 col-xl-3">
+                            <div class="card shadow h-100">
+                                <!-- Image -->
+                                <img src="assets/images/courses/4by3/08.jpg" class="card-img-top" alt="course image">
+                                <div class="card-body pb-0">
+                                    <!-- Badge and favorite -->
+                                    <div class="d-flex justify-content-between mb-2">
+                                        <a href="#" class="badge bg-purple bg-opacity-10 text-purple">All level</a>
+                                        <a href="#" class="h6 fw-light mb-0"><i class="far fa-heart"></i></a>
+                                    </div>
+                                    <!-- Title -->
+                                    <h5 class="card-title fw-normal"><a href="#">Sketch from A to Z: for app designer</a></h5>
+                                    <p class="text-truncate-2 mb-2">Proposal indulged no do sociable he throwing settling</p>
+                                    <!-- Rating star -->
+                                    <ul class="list-inline mb-0">
+                                        <li class="list-inline-item me-0 small"><i class="fas fa-star text-warning"></i></li>
+                                        <li class="list-inline-item me-0 small"><i class="fas fa-star text-warning"></i></li>
+                                        <li class="list-inline-item me-0 small"><i class="fas fa-star text-warning"></i></li>
+                                        <li class="list-inline-item me-0 small"><i class="fas fa-star text-warning"></i></li>
+                                        <li class="list-inline-item me-0 small"><i class="far fa-star text-warning"></i></li>
+                                        <li class="list-inline-item ms-2 h6 fw-light mb-0">4.0/5.0</li>
+                                    </ul>
+                                </div>
+                                <!-- Card footer -->
+                                <div class="card-footer pt-0 pb-3">
+                                    <hr>
+                                    <div class="d-flex justify-content-between">
+                                        <span class="h6 fw-light mb-0"><i class="far fa-clock text-danger me-2"></i>12h 56m</span>
+                                        <span class="h6 fw-light mb-0"><i class="fas fa-table text-orange me-2"></i>15 lectures</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Card item END -->
+
+                        <!-- Card item START -->
+                        <div class="col-sm-6 col-lg-4 col-xl-3">
+                            <div class="card shadow h-100">
+                                <!-- Image -->
+                                <img src="assets/images/courses/4by3/04.jpg" class="card-img-top" alt="course image">
+                                <div class="card-body pb-0">
+                                    <!-- Badge and favorite -->
+                                    <div class="d-flex justify-content-between mb-2">
+                                        <a href="#" class="badge bg-purple bg-opacity-10 text-purple">All level</a>
+                                        <a href="#" class="text-danger"><i class="fas fa-heart"></i></a>
+                                    </div>
+                                    <!-- Title -->
+                                    <h5 class="card-title fw-normal"><a href="#">Learn Invision</a></h5>
+                                    <p class="mb-2">Arrived off she elderly beloved him Course regard to up he hardly.</p>
+                                    <!-- Rating star -->
+                                    <ul class="list-inline mb-0">
+                                        <li class="list-inline-item me-0 small"><i class="fas fa-star text-warning"></i></li>
+                                        <li class="list-inline-item me-0 small"><i class="fas fa-star text-warning"></i></li>
+                                        <li class="list-inline-item me-0 small"><i class="fas fa-star text-warning"></i></li>
+                                        <li class="list-inline-item me-0 small"><i class="fas fa-star-half-alt text-warning"></i></li>
+                                        <li class="list-inline-item me-0 small"><i class="far fa-star text-warning"></i></li>
+                                        <li class="list-inline-item ms-2 h6 fw-light mb-0">3.5/5.0</li>
+                                    </ul>
+                                </div>
+                                <!-- Card footer -->
+                                <div class="card-footer pt-0 pb-3">
+                                    <hr>
+                                    <div class="d-flex justify-content-between mt-2">
+                                        <span class="h6 fw-light mb-0"><i class="far fa-clock text-danger me-2"></i>6h 56m</span>
+                                        <span class="h6 fw-light mb-0"><i class="fas fa-table text-orange me-2"></i>82 lectures</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Card item END -->
+
+                        <!-- Card item START -->
+                        <div class="col-sm-6 col-lg-4 col-xl-3">
+                            <div class="card shadow h-100">
+                                <!-- Image -->
+                                <img src="assets/images/courses/4by3/02.jpg" class="card-img-top" alt="course image">
+                                <div class="card-body pb-0">
+                                    <!-- Badge and favorite -->
+                                    <div class="d-flex justify-content-between mb-2">
+                                        <a href="#" class="badge bg-success bg-opacity-10 text-success">Beginner</a>
+                                        <a href="#" class="text-danger"><i class="fas fa-heart"></i></a>
+                                    </div>
+                                    <!-- Title -->
+                                    <h5 class="card-title fw-normal"><a href="#">Graphic Design Masterclass</a></h5>
+                                    <p class="text-truncate-2 mb-2">Rooms oh fully taken by worse do. Points afraid but may end.</p>
+                                    <!-- Rating star -->
+                                    <ul class="list-inline mb-0">
+                                        <li class="list-inline-item me-0 small"><i class="fas fa-star text-warning"></i></li>
+                                        <li class="list-inline-item me-0 small"><i class="fas fa-star text-warning"></i></li>
+                                        <li class="list-inline-item me-0 small"><i class="fas fa-star text-warning"></i></li>
+                                        <li class="list-inline-item me-0 small"><i class="fas fa-star text-warning"></i></li>
+                                        <li class="list-inline-item me-0 small"><i class="fas fa-star-half-alt text-warning"></i></li>
+                                        <li class="list-inline-item ms-2 h6 fw-light mb-0">4.5/5.0</li>
+                                    </ul>
+                                </div>
+                                <!-- Card footer -->
+                                <div class="card-footer pt-0 pb-3">
+                                    <hr>
+                                    <div class="d-flex justify-content-between">
+                                        <span class="h6 fw-light mb-0"><i class="far fa-clock text-danger me-2"></i>9h 56m</span>
+                                        <span class="h6 fw-light mb-0"><i class="fas fa-table text-orange me-2"></i>65 lectures</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Card item END -->
+
+                        <!-- Card item START -->
+                        <div class="col-sm-6 col-lg-4 col-xl-3">
+                            <div class="card shadow h-100">
+                                <!-- Image -->
+                                <img src="assets/images/courses/4by3/03.jpg" class="card-img-top" alt="course image">
+                                <div class="card-body pb-0">
+                                    <!-- Badge and favorite -->
+                                    <div class="d-flex justify-content-between mb-2">
+                                        <a href="#" class="badge bg-success bg-opacity-10 text-success">Beginner</a>
+                                        <a href="#" class="h6 fw-light mb-0"><i class="far fa-heart"></i></a>
+                                    </div>
+                                    <!-- Title -->
+                                    <h5 class="card-title fw-normal"><a href="#">Create a Design System in Figma</a></h5>
+                                    <p class="text-truncate-2 mb-2">Rooms oh fully taken by worse do. Points afraid but may end.</p>
+                                    <!-- Rating star -->
+                                    <ul class="list-inline mb-0">
+                                        <li class="list-inline-item me-0 small"><i class="fas fa-star text-warning"></i></li>
+                                        <li class="list-inline-item me-0 small"><i class="fas fa-star text-warning"></i></li>
+                                        <li class="list-inline-item me-0 small"><i class="fas fa-star text-warning"></i></li>
+                                        <li class="list-inline-item me-0 small"><i class="fas fa-star text-warning"></i></li>
+                                        <li class="list-inline-item me-0 small"><i class="fas fa-star-half-alt text-warning"></i></li>
+                                        <li class="list-inline-item ms-2 h6 fw-light mb-0">4.5/5.0</li>
+                                    </ul>
+                                </div>
+                                <!-- Card footer -->
+                                <div class="card-footer pt-0 pb-3">
+                                    <hr>
+                                    <div class="d-flex justify-content-between">
+                                        <span class="h6 fw-light mb-0"><i class="far fa-clock text-danger me-2"></i>5h 56m</span>
+                                        <span class="h6 fw-light mb-0"><i class="fas fa-table text-orange me-2"></i>32 lectures</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Card item END -->
+                    </div>
+                </div>
+                <!-- Content END -->
+
+                <!-- Content START -->
+                <div class="tab-pane fade" id="course-pills-tabs-4" role="tabpanel" aria-labelledby="course-pills-tab-4">
+                    <div class="row g-4">
+                        <!-- Card item START -->
+                        <div class="col-sm-6 col-lg-4 col-xl-3">
+                            <div class="card shadow h-100">
+                                <!-- Image -->
+                                <img src="assets/images/courses/4by3/01.jpg" class="card-img-top" alt="course image">
+                                <div class="card-body pb-0">
+                                    <!-- Badge and favorite -->
+                                    <div class="d-flex justify-content-between mb-2">
+                                        <a href="#" class="badge bg-success bg-opacity-10 text-success">Beginner</a>
+                                        <a href="#" class="text-danger"><i class="fas fa-heart"></i></a>
+                                    </div>
+                                    <!-- Title -->
+                                    <h5 class="card-title fw-normal"><a href="#">Digital Marketing Masterclass</a></h5>
+                                    <p class="text-truncate-2 mb-2">Delivered dejection necessary objection do Mr prevailed.</p>
+                                    <!-- Rating star -->
+                                    <ul class="list-inline mb-0">
+                                        <li class="list-inline-item me-0 small"><i class="fas fa-star text-warning"></i></li>
+                                        <li class="list-inline-item me-0 small"><i class="fas fa-star text-warning"></i></li>
+                                        <li class="list-inline-item me-0 small"><i class="fas fa-star text-warning"></i></li>
+                                        <li class="list-inline-item me-0 small"><i class="fas fa-star text-warning"></i></li>
+                                        <li class="list-inline-item me-0 small"><i class="fas fa-star-half-alt text-warning"></i></li>
+                                        <li class="list-inline-item ms-2 h6 fw-light mb-0">4.5/5.0</li>
+                                    </ul>
+                                </div>
+                                <!-- Card footer -->
+                                <div class="card-footer pt-0 pb-3">
+                                    <hr>
+                                    <div class="d-flex justify-content-between">
+                                        <span class="h6 fw-light mb-0"><i class="far fa-clock text-danger me-2"></i>6h 56m</span>
+                                        <span class="h6 fw-light mb-0"><i class="fas fa-table text-orange me-2"></i>82 lectures</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Card item END -->
+
+                        <!-- Card item START -->
+                        <div class="col-sm-6 col-lg-4 col-xl-3">
+                            <div class="card shadow h-100">
+                                <!-- Image -->
+                                <img src="assets/images/courses/4by3/08.jpg" class="card-img-top" alt="course image">
+                                <div class="card-body pb-0">
+                                    <!-- Badge and favorite -->
+                                    <div class="d-flex justify-content-between mb-2">
+                                        <a href="#" class="badge bg-purple bg-opacity-10 text-purple">All level</a>
+                                        <a href="#" class="h6 fw-light mb-0"><i class="far fa-heart"></i></a>
+                                    </div>
+                                    <!-- Title -->
+                                    <h5 class="card-title fw-normal"><a href="#">Sketch from A to Z: for app designer</a></h5>
+                                    <p class="text-truncate-2 mb-2">Proposal indulged no do sociable he throwing settling.</p>
+                                    <!-- Rating star -->
+                                    <ul class="list-inline mb-0">
+                                        <li class="list-inline-item me-0 small"><i class="fas fa-star text-warning"></i></li>
+                                        <li class="list-inline-item me-0 small"><i class="fas fa-star text-warning"></i></li>
+                                        <li class="list-inline-item me-0 small"><i class="fas fa-star text-warning"></i></li>
+                                        <li class="list-inline-item me-0 small"><i class="fas fa-star text-warning"></i></li>
+                                        <li class="list-inline-item me-0 small"><i class="far fa-star text-warning"></i></li>
+                                        <li class="list-inline-item ms-2 h6 fw-light mb-0">4.0/5.0</li>
+                                    </ul>
+                                </div>	
+                                <!-- Card footer -->
+                                <div class="card-footer pt-0 pb-3">
+                                    <hr>
+                                    <div class="d-flex justify-content-between">
+                                        <span class="h6 fw-light mb-0"><i class="far fa-clock text-danger me-2"></i>12h 56m</span>
+                                        <span class="h6 fw-light mb-0"><i class="fas fa-table text-orange me-2"></i>15 lectures</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Card item END -->
+                    </div>
+                </div>
+                <!-- Content END -->
+
+                <!-- Content START -->
+                <div class="tab-pane fade" id="course-pills-tabs-5" role="tabpanel" aria-labelledby="course-pills-tab-5">
+                    <div class="row g-4">
+                        <!-- Card item START -->
+                        <div class="col-sm-6 col-lg-4 col-xl-3">
+                            <div class="card shadow h-100">
+                                <!-- Image -->
+                                <img src="assets/images/courses/4by3/04.jpg" class="card-img-top" alt="course image">
+                                <div class="card-body pb-0">
+                                    <!-- Badge and favorite -->
+                                    <div class="d-flex justify-content-between mb-2">
+                                        <a href="#" class="badge bg-purple bg-opacity-10 text-purple">All level</a>
+                                        <a href="#" class="text-danger"><i class="fas fa-heart"></i></a>
+                                    </div>
+                                    <!-- Title -->
+                                    <h5 class="card-title fw-normal"><a href="#">Learn Invision</a></h5>
+                                    <p class="text-truncate-2 mb-2">Arrived off she elderly beloved him Course regard to up he hardly.</p>
+                                    <!-- Rating star -->
+                                    <ul class="list-inline mb-0">
+                                        <li class="list-inline-item me-0 small"><i class="fas fa-star text-warning"></i></li>
+                                        <li class="list-inline-item me-0 small"><i class="fas fa-star text-warning"></i></li>
+                                        <li class="list-inline-item me-0 small"><i class="fas fa-star text-warning"></i></li>
+                                        <li class="list-inline-item me-0 small"><i class="fas fa-star-half-alt text-warning"></i></li>
+                                        <li class="list-inline-item me-0 small"><i class="far fa-star text-warning"></i></li>
+                                        <li class="list-inline-item ms-2 h6 fw-light mb-0">3.5/5.0</li>
+                                    </ul>
+                                </div>
+                                <!-- Card footer -->
+                                <div class="card-footer pt-0 pb-3">
+                                    <hr>
+                                    <div class="d-flex justify-content-between">
+                                        <span class="h6 fw-light mb-0"><i class="far fa-clock text-danger me-2"></i>6h 56m</span>
+                                        <span class="h6 fw-light mb-0"><i class="fas fa-table text-orange me-2"></i>82 lectures</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Card item END -->
+
+                        <!-- Card item START -->
+                        <div class="col-sm-6 col-lg-4 col-xl-3">
+                            <div class="card shadow h-100">
+                                <!-- Image -->
+                                <img src="assets/images/courses/4by3/09.jpg" class="card-img-top" alt="course image">
+                                <div class="card-body pb-0">
+                                    <!-- Badge and favorite -->
+                                    <div class="d-flex justify-content-between mb-2">
+                                        <a href="#" class="badge bg-purple bg-opacity-10 text-purple">All level</a>
+                                        <a href="#" class="h6 fw-light mb-0"><i class="far fa-heart"></i></a>
+                                    </div>
+                                    <!-- Title -->
+                                    <h5 class="card-title fw-normal"><a href="#">JavaScript: Full Understanding</a></h5>
+                                    <p class="text-truncate-2 mb-2">Far advanced settling say finished raillery. Offered chiefly farther.</p>
+                                    <!-- Rating star -->
+                                    <ul class="list-inline mb-0">
+                                        <li class="list-inline-item me-0 small"><i class="fas fa-star text-warning"></i></li>
+                                        <li class="list-inline-item me-0 small"><i class="fas fa-star text-warning"></i></li>
+                                        <li class="list-inline-item me-0 small"><i class="fas fa-star text-warning"></i></li>
+                                        <li class="list-inline-item me-0 small"><i class="fas fa-star text-warning"></i></li>
+                                        <li class="list-inline-item me-0 small"><i class="fas fa-star text-warning"></i></li>
+                                        <li class="list-inline-item ms-2 h6 fw-light mb-0">5.0/5.0</li>
+                                    </ul>
+                                </div>
+                                <!-- Card footer -->
+                                <div class="card-footer pt-0 pb-3">
+                                    <hr>
+                                    <div class="d-flex justify-content-between">
+                                        <span class="h6 fw-light mb-0"><i class="far fa-clock text-danger me-2"></i>35h 20m</span>
+                                        <span class="h6 fw-light mb-0"><i class="fas fa-table text-orange me-2"></i>89 lectures</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Card item END -->
+                    </div>
+                </div>
+                <!-- Content END -->
+            </div>
+            <!-- Tabs content END -->
+        </div>
+    </section>
+    <!-- =======================
+    
+
+    <!-- Footer-->
+    <footer class="main-footer">
+        <!-- Services block-->
+        <div class="service-block bg-gray-100 text-dark-700 py-6">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 service-column">
+                        <i class="fas fa-shipping-fast fa-3x service-icon"></i>
+                        <div class="service-text">
+                            <h6 class="text-uppercase">Free shipping &amp; return</h6>
+                            <p class="text-muted fw-light text-sm mb-0">Free Shipping over $300</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 service-column">
+                        <i class="fas fa-money-bill-wave fa-3x service-icon"></i>
+                        <div class="service-text">
+                            <h6 class="text-uppercase">Money back guarantee</h6>
+                            <p class="text-muted fw-light text-sm mb-0">30 Days Money Back Guarantee</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 service-column">
+                        <i class="fas fa-headset fa-3x service-icon"></i>
+                        <div class="service-text">
+                            <h6 class="text-uppercase">000-800-056-000</h6>
+                            <p class="text-muted fw-light text-sm mb-0">Available Support </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Main block - menus, subscribe form-->
+        <div class="footer-main py-6 bg-gray-300 text-muted">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 mb-5 mb-lg-0">
+                        <div class="fw-bold text-uppercase text-lg text-dark mb-3">
+                            Blend
+                            <span class="text-primary">.</span>
+                            Art
+                        </div>
+                        <p>Purchase directly what you fancy Or Try the Blind Box to get a surprise.</p>
+                        <ul class="list-inline">
+                            <li class="list-inline-item"><a class="text-muted text-primary-hover" href="#"
+                                    target="_blank" title="twitter"><i class="fab fa-twitter"></i></a>
+                            </li>
+                            <li class="list-inline-item"><a class="text-muted text-primary-hover" href="#"
+                                    target="_blank" title="facebook"><i class="fab fa-facebook"></i></a>
+                            </li>
+                            <li class="list-inline-item"><a class="text-muted text-primary-hover" href="#"
+                                    target="_blank" title="instagram"><i class="fab fa-instagram"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-2 col-md-6 mb-5 mb-lg-0">
+                        <h6 class="text-uppercase text-dark mb-3">Shop</h6>
+                        <ul class="list-unstyled">
+                            <li> <a class="text-muted" href="direct-Buy.html">Directly Purchase</a></li>
+                            <li> <a class="text-muted" href="blind-Box.html">For Blind Box</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-2 col-md-6 mb-5 mb-lg-0">
+                        <h6 class="text-uppercase text-dark mb-3">Easy-going</h6>
+                        <ul class="list-unstyled">
+                            <li> <a class="text-muted" href="user-wishlist.html">Wishlist </a></li>
+                            <li> <a class="text-muted" href="user-checkout-overview.html">Checkouts </a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-4">
+                        <h6 class="text-uppercase text-dark mb-3">Daily Offers & Discounts</h6>
+                        <p class="mb-3"> Want to get newsletter in time? Subscribe our website!</p>
+                        <form action="#" id="newsletter-form">
+                            <div class="input-group mb-3">
+                                <input class="form-control bg-transparent border-secondary " type="email"
+                                    placeholder="Your Email Address" aria-label="Your Email Address"
+                                    style="margin-right: 10px;">
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary border-start-0" type="submit">
+                                        <i class="fa fa-paper-plane text-lg text-dark"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Copyright section of the footer-->
+        <div class="py-4 fw-light footer-botton text-gray-300">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-6 text-center text-md-start">
+                        <p class="mb-md-0">&copy; 2024 ELTE Thesis. All rights reserved.</p>
+                    </div>
+                    <div class="col-md-6">
+                        <ul class="list-inline mb-0 mt-2 mt-md-0 text-center text-md-end">
+                            <li class="list-inline-item"><img class="w-2rem" src="assets/images/visa.svg" alt="visa">
+                            </li>
+                            <li class="list-inline-item"><img class="w-2rem" src="assets/images/mastercard.svg"
+                                    alt="mastercard"></li>
+                            <li class="list-inline-item"><img class="w-2rem" src="assets/images/paypal.svg"
+                                    alt="paypal"> </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- /Footer end-->
+
+    <div id="scrollTop"><i class="fa fa-long-arrow-alt-up"></i></div>
+
+    <!-- JavaScript files-->
+    <!-- jQuery-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"
+        integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- Bootstrap JavaScript Bundle (Popper.js included)-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"
+        integrity="sha512-7Pi/otdlbbCR+LnW+F7PwFcSDJOuUJB3OxtEHbg4vSMvzvJjde4Po1v4BR9Gdc9aXNUNFVUY+SK51wWT8WF0Gg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- Swiper Carousel-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/10.2.0/swiper-bundle.min.js" integrity="sha512-QwpsxtdZRih55GaU/Ce2Baqoy2tEv9GltjAG8yuTy2k9lHqK7VHHp3wWWe+yITYKZlsT3AaCj49ZxMYPp46iJQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="assets/js/vendor/swiper.js"></script>
+    <!-- Owl Carousel-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
+        integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="assets/js/vendor/owl.carousel2.thumbs.min.js"></script>
+    <!-- Smooth scrolling-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/smooth-scroll/16.1.3/smooth-scroll.polyfills.min.js" integrity="sha512-LZ6YBzwuQvIG41twjliX3HUVeAd+ErnJ0UsqRnkI4firX2l71jxbKJoax/hu7XY2tiyLl0YA2kcnz/XEW+9O3g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- Lightbox gallery-->
+    <script src="assets/js/vendor/glightbox.min.js"></script>
+    <!-- Object Fit Images - Fallback for browsers that don't support object-fit-->
+    <script src="assets/js/vendor/ofi.min.js"></script>
+    <script> var basePath = ''; </script>
+    <script src="assets/js/theme.js"></script>
+    <script src="assets/js/vendor/jquery.cookie.js"></script>
+    <script src="https://kit.fontawesome.com/e85815ae07.js" crossorigin="anonymous"></script>
+
+    <script>
+        // Users table
+        fetch('http://localhost:8080/users/getAllUsers')
+        .then(response => response.json())
+        .then(users => {
+            const table = document.getElementById('usersTable');
+            users.forEach(user => {
+                let row = `<tr>
+                            <td>${user.id}</td>
+                            <td>${user.username}</td>
+                            <td>${user.email}</td>
+                            <td>${user.isAdmin ? 'Yes' : 'No'}</td>
+                            <td>${user.birthdate || 'N/A'}</td>
+                            <td>${user.gender || 'N/A'}</td>
+                            <td>${user.address || 'N/A'}</td>
+                        </tr>`;
+                table.innerHTML += row;
+            });
+        })
+        .catch(error => console.error('Error fetching users:', error));
+
+        // Artists table
+        // 删除艺术家的函数
+        function deleteArtist() {
+            const artistId = this.getAttribute('data-artist-id');
+            fetch(`http://localhost:8080/artist/deleteArtist/${artistId}`, {
+                method: 'DELETE'
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.code === 200) {
+                    alert('Artist deleted successfully');
+                    const row = document.getElementById(`artist-${artistId}`);
+                    row.remove();
+                } else {
+                    alert('Failed to delete artist: ' + data.msg);
+                }
+            })
+            .catch(error => {
+                console.error('ailed to delete artist:', error);
+                alert('ailed to delete artist:');
+            });
+        }
+
+        // 绑定删除事件监听器
+        function attachDeleteEventListeners() {
+            document.querySelectorAll('.delete-artist').forEach(button => {
+                button.addEventListener('click', deleteArtist);
+            });
+        }
+
+        // DOM内容加载完成后
+        document.addEventListener('DOMContentLoaded', function () {
+            // 获取艺术家列表
+            fetch('http://localhost:8080/artist/getAllArtists')
+                .then(response => response.json())
+                .then(artists => {
+                    const table = document.getElementById('artistsTable');
+                    // 清空现有表格行
+                    table.innerHTML = '';
+                    // 为每个艺术家创建表格行
+                    artists.forEach(artist => {
+                        let row = `<tr id="artist-${artist.id}">
+                                        <td>${artist.id}</td>
+                                        <td>${artist.name}</td>
+                                        <td>${artist.bio || 'N/A'}</td>
+                                        <td>
+                                            <button class="btn btn-danger delete-artist" data-artist-id="${artist.id}">Delete</button>
+                                        </td>
+                                    </tr>`;
+                        table.innerHTML += row;
+                    });
+                    // 绑定删除事件监听器
+                    attachDeleteEventListeners();
+                })
+                .catch(error => console.error('Error fetching artists:', error));
+        });
+
+        // 绑定删除事件监听器到所有删除按钮
+        function attachDeleteEventListeners() {
+            document.querySelectorAll('.delete-artist').forEach(button => {
+                button.addEventListener('click', deleteArtist);
+            });
+        }
+
+        // 添加艺术家表单的显示与隐藏
+        document.getElementById('showAddArtistForm').addEventListener('click', function() {
+            const artistForm = document.getElementById('addArtistForm');
+            artistForm.style.display = artistForm.style.display === 'block' ? 'none' : 'block';
+            this.textContent = artistForm.style.display === 'block' ? 'Hide Form' : 'Add New Artist';
+        });
+
+        // 添加艺术家的表单提交
+        document.getElementById('artistForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const artistName = document.getElementById('artistName').value.trim();
+            const artistBio = document.getElementById('artistBio').value.trim();
+
+            fetch('http://localhost:8080/artist/registerArtist', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    name: artistName,
+                    bio: artistBio
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if(data.code === 200){
+                    alert('Artist added successfully')
+                    const table = document.getElementById('artistsTable');
+                    const newRow = table.insertRow();
+                    newRow.setAttribute('id', `artist-${data.info.id}`);
+                    newRow.innerHTML = `
+                        <td>${data.info.id}</td>
+                        <td>${artistName}</td>
+                        <td>${artistBio || 'N/A'}</td>
+                        <td><button class="btn btn-danger delete-artist" data-artist-id="${data.info.id}">Delete</button></td>
+                    `;
+                    attachDeleteEventListeners(); // 重新绑定事件监听器
+
+                    document.getElementById('artistName').value = '';
+                    document.getElementById('artistBio').value = '';
+                } else {
+                    alert('Artist add failed: ' + data.msg);
+                }
+            })
+            .catch((error) => {
+                console.error('Artist add failed:', error);
+                alert('Artist add failed');
+            });
+        });
+
+
+    </script>
+
+
+</body>
+
+</html>

@@ -284,6 +284,25 @@ body {
   outline: none;
 }
 
+.btn-purple-gradient {
+  border: none;
+  color: white;
+  padding: 10px 24px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  background: linear-gradient(135deg, #9b51e0 0%, #bb6bd9 100%);
+}
+
+.btn-purple-gradient:hover {
+  transform: translateY(-2px);
+}
+
+.btn-purple-gradient:focus {
+  outline: none;
+}
+
+
+
 
 .btn-blue-green {
   background-color: #2bcbba; /* 清新的蓝绿色 */
@@ -717,3 +736,93 @@ body {
 .span-color2{
   color: #2bcbba; 
 }
+
+/* 省略现有的CSS样式 */
+/* Container for all info blocks */
+.info-container {
+  background-color: #f8f9fa; /* 灰色背景 */
+  padding: 20px; /* 内边距 */
+  border-radius: 8px; /* 圆角边框 */
+  margin-top: 20px; /* 在此容器与其他元素之间添加间距 */
+}
+
+/* Style for each info block */
+.info-block {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px; /* 在信息块之间添加间距 */
+  last-child {
+    margin-bottom: 0; /* 最后一个信息块不需要底部间距 */
+  }
+}
+
+.info-block i {
+  font-size: 1.5rem;
+  margin-right: 10px;
+}
+
+.info-block .text span {
+  font-weight: bold;
+  font-size: 1rem;
+  display: block;
+  color: #333;
+}
+
+.info-block .text p {
+  margin: 0;
+  font-size: 0.875rem;
+  color: #666;
+}
+
+.free-shipping i {
+  color: #6f42c1; /* 调整图标颜色 */
+}
+
+.return-policy i {
+  color: #f0ad4e; /* 调整图标颜色 */
+}
+
+.shopping-security i {
+  color: #5cb85c; /* 调整图标颜色 */
+}
+
+.sold-by i {
+  color: #d9534f; /* 调整图标颜色 */
+}
+
+.btn-green-gradient {
+  border: none;
+  color: white;
+  padding: 10px 24px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  background: linear-gradient(135deg, #6fcf97 0%, #66d2ea 100%);
+}
+
+.btn-green-gradient:hover {
+  transform: translateY(-2px);
+}
+
+.btn-green-gradient:focus {
+  outline: none;
+}
+
+.btn-blue-gradient {
+  border: none;
+  color: white;
+  padding: 10px 24px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  background: linear-gradient(135deg, #56ccf2 0%, #2f80ed 100%);
+}
+
+.btn-blue-gradient:hover {
+  transform: translateY(-2px);
+}
+
+.btn-blue-gradient:focus {
+  outline: none;
+}
+
+
+

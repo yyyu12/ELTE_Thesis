@@ -1,3 +1,21 @@
+document.addEventListener('DOMContentLoaded', function() {
+    const userInfoString = localStorage.getItem('userInfo');
+    if (userInfoString) {
+        const userInfo = JSON.parse(userInfoString);
+
+        // 获取管理员链接的DOM元素
+        const adminLink = document.getElementById('adminPageLink');
+
+        // 检查用户是否为管理员，并相应地显示或隐藏管理员链接
+        if (userInfo.isAdmin) {
+            adminLink.style.display = 'block'; // 或者使用'flex'，取决于你的CSS
+        } else {
+            adminLink.style.display = 'none';
+        }
+    }
+});
+
+
 /* ======== user login profile dropdown start ======== */
 function onUserLoggedIn(userInfo) {
     const navItem = document.querySelector('#userAccount');
@@ -118,33 +136,5 @@ document.addEventListener('DOMContentLoaded', function () {
     choicesSelect();
 });
 
-/* ======== choice select end ======== */
 
-/* 
-document.addEventListener('DOMContentLoaded', function() {
-    // 假设这个函数返回true如果用户登录，否则返回false
-    function isUserLoggedIn() {
-        // 这里的逻辑应该根据实际应用的需求来实现
-        // 例如，可以检查localStorage或cookies
-        return false; // 假设用户未登录
-    }
-
-    var userIconLink = document.querySelector('.nav-item .navbar-icon-link');
-
-    userIconLink.addEventListener('click', function(event) {
-        event.preventDefault(); // 阻止链接默认行为
-
-        if (isUserLoggedIn()) {
-            // 用户已登录，显示下拉菜单
-            // 这里需要您根据实际的下拉菜单实现来编写代码
-            // 例如，可以使用Bootstrap的dropdown组件
-            console.log('显示下拉菜单');
-        } else {
-            // 用户未登录，跳转到登录页面
-            window.location.href = 'user-login.html';
-        }
-    });
-});
-
-/* ======== theme switcher end ======== */
 
