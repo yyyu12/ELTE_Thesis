@@ -15,6 +15,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
 import org.apache.http.HttpStatus;
+import java.util.List;
 
 import java.util.Objects;
 
@@ -26,6 +27,13 @@ import java.util.Objects;
 public class UserController {
     @Autowired
     private UserServiceImpl userService;
+
+    // 得到所有的用户信息
+    @GetMapping("/getAllUsers")
+    public ResponseEntity<List<User>> getAllUsers() {
+        List<User> users = userService.getAllUsers();
+        return ResponseEntity.ok(users);
+    }
 
     // 用户注册
     @PostMapping("/register")
@@ -98,5 +106,7 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.SC_INTERNAL_SERVER_ERROR).body(Result.error("Internal server error"));
         }
     }
+
+
 
 }

@@ -4,10 +4,16 @@ import hu.elte.inf.backend.sqlEntity.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.mybatis.spring.annotation.MapperScan;
 import org.apache.ibatis.annotations.Param;
+import java.util.List;
 
 // 数据访问层负责与数据库进行直接交互
 @Mapper
 public interface UserMapper {
+    /**
+     * Get All the users
+     * @return the list of users
+     */
+    List<User> findAllUsers();
     /**
      * Insert one line data
      * @param user

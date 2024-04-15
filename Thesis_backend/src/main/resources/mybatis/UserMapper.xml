@@ -6,6 +6,11 @@
 <mapper namespace="hu.elte.inf.backend.dao.UserMapper">
 
     <!-- ========================================== User ========================================== -->
+    <!-- 获得所有的用户 -->
+    <select id="findAllUsers" resultType="hu.elte.inf.backend.sqlEntity.User">
+        SELECT * FROM user
+    </select>
+
     <!-- 通过用户id查询用户 -->
     <select id="getUserById" parameterType="long" resultType="hu.elte.inf.backend.sqlEntity.User">
         SELECT * FROM user WHERE id = #{id}
@@ -44,71 +49,6 @@
     <update id="updateUserPassword">
         UPDATE user SET password = #{newPassword} WHERE id = #{id}
     </update>
-
-    <!-- ========================================== Artist ========================================== -->
-    <!-- 根据ID获取艺术家信息 -->
-    <select id="getArtistById" parameterType="long" resultType="hu.elte.inf.backend.sqlEntity.Artist">
-        SELECT * FROM artists WHERE id = #{id}
-    </select>
-
-    <!-- 通过用户名查询用户 -->
-    <select id="getArtistByName" parameterType="String" resultType="hu.elte.inf.backend.sqlEntity.Artist">
-        SELECT * FROM artists WHERE name = #{name}
-    </select>
-
-    <!-- 插入艺术家数据 -->
-    <insert id="insertArtist" parameterType="hu.elte.inf.backend.sqlEntity.Artist" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO artists (name, bio)
-        VALUES (#{name,jdbcType=VARCHAR}, #{bio,jdbcType=VARCHAR})
-    </insert>
-
-    <!-- 删除艺术家数据 -->
-    <delete id="deleteArtist" parameterType="long">
-        DELETE FROM artists WHERE id = #{id}
-    </delete>
-
-    <!-- 更新艺术家信息 -->
-    <update id="updateArtist" parameterType="hu.elte.inf.backend.sqlEntity.Artist">
-        UPDATE artists
-        <set>
-            <if test="name != null">name = #{name},</if>
-            <if test="bio != null">bio = #{bio}</if>
-        </set>
-        WHERE id = #{id}
-    </update>
-
-    <!-- ========================================== Artwork ========================================== -->
-    <!-- 根据ID获取艺术品 -->
-    <select id="getArtworkById" parameterType="long" resultType="hu.elte.inf.backend.sqlEntity.Artwork"  >
-        SELECT * FROM artworks WHERE id = #{id}
-    </select>
-
-    <!-- 插入艺术品数据 -->
-    <insert id="insertArtwork" parameterType="hu.elte.inf.backend.sqlEntity.Artwork" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO artworks (artist_id, title, description, price, image_url, type)
-        VALUES (#{artistId,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL}, #{imageUrl,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR})
-    </insert>
-
-    <!-- 删除艺术品数据 -->
-    <delete id="deleteArtwork">
-        DELETE FROM artworks WHERE id = #{id}
-    </delete>
-
-    <!-- 更新艺术品信息 -->
-    <update id="updateArtwork" parameterType="hu.elte.inf.backend.sqlEntity.Artwork">
-        UPDATE artworks
-        <set>
-            <if test="title != null">title = #{title},</if>
-            <if test="description != null">description = #{description},</if>
-            <if test="price != null">price = #{price},</if>
-            <if test="image_url != null">image_url = #{imageUrl},</if>
-            <if test="type != null">type = #{type}</if>
-        </set>
-        WHERE id = #{id}
-    </update>
-
-
-
 
 
 </mapper>

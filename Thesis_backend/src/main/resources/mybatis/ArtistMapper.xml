@@ -7,6 +7,11 @@
 
 
     <!-- ========================================== Artist ========================================== -->
+    <!-- 获得所有的用户 -->
+    <select id="findAllArtists" resultType="hu.elte.inf.backend.sqlEntity.Artist">
+        SELECT * FROM artists
+    </select>
+
     <!-- 根据ID获取艺术家信息 -->
     <select id="getArtistById" parameterType="long" resultType="hu.elte.inf.backend.sqlEntity.Artist">
         SELECT * FROM artists WHERE id = #{id}
