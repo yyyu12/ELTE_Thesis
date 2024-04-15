@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="hu.elte.inf.backend.dao.ArtistMapper">
+
+
+    <!-- ========================================== Artist ========================================== -->
+    <!-- 根据ID获取艺术家信息 -->
+    <select id="getArtistById" parameterType="long" resultType="hu.elte.inf.backend.sqlEntity.Artist">
+        SELECT * FROM artists WHERE id = #{id}
+    </select>
+
+    <!-- 通过用户名查询艺术家 -->
+    <select id="getArtistByName" parameterType="String" resultType="hu.elte.inf.backend.sqlEntity.Artist">
+        SELECT * FROM artists WHERE name = #{name}
+    </select>
+
+    <!-- 插入艺术家数据 -->
+    <insert id="insertArtist" parameterType="hu.elte.inf.backend.sqlEntity.Artist" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO artists (name, bio)
+        VALUES (#{name,jdbcType=VARCHAR}, #{bio, jdbcType=VARCHAR})
+    </insert>
+
+    <!-- 删除艺术家数据 -->
+    <delete id="deleteArtist" parameterType="long">
+        DELETE FROM artists WHERE id = #{id}
+    </delete>
+
+    <!-- 更新艺术家信息 -->
+    <update id="updateArtist" parameterType="hu.elte.inf.backend.sqlEntity.Artist">
+        UPDATE artists
+        <set>
+            <if test="name != null">name = #{name},</if>
+            <if test="bio != null">bio = #{bio}</if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+</mapper>

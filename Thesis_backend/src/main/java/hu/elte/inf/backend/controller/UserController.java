@@ -36,7 +36,6 @@ public class UserController {
             userService.registerUser(user);
             return ResponseEntity.ok(Result.ok("User registered successfully."));
         }catch (UsernameDuplicatedException e) {
-            System.out.println(ResponseEntity.status(HttpStatus.SC_CONFLICT).body(Result.error("Username already used.")));
             return ResponseEntity.status(HttpStatus.SC_CONFLICT).body(Result.error("Username already used."));
         } catch (EmailDuplicateException e) {
             return ResponseEntity.status(HttpStatus.SC_CONFLICT).body(Result.error("Email already used."));
@@ -56,7 +55,7 @@ public class UserController {
             BeanUtils.copyProperties(user, userLoginResponse);
             return ResponseEntity.ok(Result.ok("User login success").put("info", userLoginResponse));
         } catch (UserNotFoundException ex) {
-            return ResponseEntity.status(HttpStatus.SC_NOT_FOUND).body(Result.error("User not found"));
+            return ResponseEntity.status(HttpStatus.SC_NOT_FOUND).body(Result.error("User Not Found"));
         } catch (PasswordNotMatchException ex) {
             return ResponseEntity.status(HttpStatus.SC_UNAUTHORIZED).body(Result.error("Password does not match"));
         } catch (Exception ex) {
@@ -99,6 +98,5 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.SC_INTERNAL_SERVER_ERROR).body(Result.error("Internal server error"));
         }
     }
-
 
 }

@@ -1,11 +1,11 @@
 package hu.elte.inf.backend.controller.request;
 
-import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.Email;
+import java.time.LocalDate;
+
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
-
-import java.time.LocalDate;
 
 @Data
 @Schema(description = "User Information Request")

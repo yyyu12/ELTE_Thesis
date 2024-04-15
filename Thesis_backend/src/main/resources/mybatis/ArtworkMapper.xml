@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="hu.elte.inf.backend.dao.ArtworkMapper">
+
+    <!-- ========================================== Artwork ========================================== -->
+    <!-- 根据ID获取艺术品 -->
+    <select id="getArtworkById" parameterType="long" resultType="hu.elte.inf.backend.sqlEntity.Artwork"  >
+        SELECT * FROM artworks WHERE id = #{id}
+    </select>
+
+    <!-- 插入艺术品数据 -->
+    <insert id="insertArtwork" parameterType="hu.elte.inf.backend.sqlEntity.Artwork" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO artworks (artist_id, title, description, price, image_url, type)
+        VALUES (#{artistId,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL}, #{imageUrl,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR})
+    </insert>
+
+    <!-- 删除艺术品数据 -->
+    <delete id="deleteArtwork">
+        DELETE FROM artworks WHERE id = #{id}
+    </delete>
+
+    <!-- 更新艺术品信息 -->
+    <update id="updateArtwork" parameterType="hu.elte.inf.backend.sqlEntity.Artwork">
+        UPDATE artworks
+        <set>
+            <if test="title != null">title = #{title},</if>
+            <if test="description != null">description = #{description},</if>
+            <if test="price != null">price = #{price},</if>
+            <if test="image_url != null">image_url = #{imageUrl},</if>
+            <if test="type != null">type = #{type}</if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+
+
+
+
+</mapper>
