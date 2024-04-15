@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
 import org.apache.http.HttpStatus;
 
+import java.util.List;
+
 
 @RestController
 @RequestMapping(value = "/artist")
@@ -22,13 +24,24 @@ public class ArtistController {
     @Autowired
     private ArtistServiceImpl artistService;
 
+    @GetMapping("/getAllArtists")
+    public ResponseEntity<List<Artist>> getAllUsers() {
+        List<Artist> artists = artistService.getAllArtists();
+        return ResponseEntity.ok(artists);
+    }
+
     @PostMapping("/registerArtist")
     public ResponseEntity<Result> registerArtist(@Validated @RequestBody ArtistInsertRequest artistInsertRequest) {
         try {
             Artist artist = new Artist();
             BeanUtils.copyProperties(artistInsertRequest, artist);
             artistService.insertArtist(artist);
-            return ResponseEntity.ok(Result.ok("Artist added successfully."));
+
+            // 将 Artist 实体转换为响应对象，如果你有一个响应类的话。
+            ArtistResponse artistResponse = new ArtistResponse();
+            BeanUtils.copyProperties(artist, artistResponse);
+
+            return ResponseEntity.ok(Result.ok("Artist added successfully.").put("info", artistResponse));
         } catch (ArtistExistException e){
             return ResponseEntity.status(HttpStatus.SC_CONFLICT).body(Result.error("Artist already exists"));
         }catch (Exception e) {

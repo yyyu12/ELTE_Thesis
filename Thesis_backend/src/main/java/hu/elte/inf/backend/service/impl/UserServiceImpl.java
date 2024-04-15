@@ -21,6 +21,7 @@ public class UserServiceImpl implements  Service{
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @Override
     public List<User> getAllUsers() {
         return userMapper.findAllUsers();
     }

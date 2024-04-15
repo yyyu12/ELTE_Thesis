@@ -14,6 +14,7 @@ public interface UserMapper {
      * @return the list of users
      */
     List<User> findAllUsers();
+
     /**
      * Insert one line data
      * @param user

@@ -6,10 +6,17 @@ import hu.elte.inf.backend.service.ArtistService;
 import hu.elte.inf.backend.common.exceptionEnd.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.List;
+
 @org.springframework.stereotype.Service
 public class ArtistServiceImpl implements ArtistService {
     @Autowired
     private ArtistMapper artistMapper;
+
+    @Override
+    public List<Artist> getAllArtists() {
+        return artistMapper.findAllArtists();
+    }
 
     // 插入艺术家
     @Override

@@ -2,7 +2,15 @@ package hu.elte.inf.backend.service;
 
 import hu.elte.inf.backend.sqlEntity.User;
 
+import java.util.List;
+
 public interface Service {
+    /**
+     * Get All Users
+     * @return all users
+     */
+    List<User> getAllUsers();
+
     /**
      * User Register
      * @param user
