@@ -31,9 +31,12 @@ public class ArtistServiceImpl implements ArtistService {
             throw new ArtistExistException("The Artist already exists.");
         }
 
-        // 如果不存在，继续插入艺术家
-        artistMapper.insertArtist(artist);
+        int rowsInserted = artistMapper.insertArtist(artist);
+        if (rowsInserted == 0) {
+            throw new IllegalStateException("Failed to insert artist.");
+        }
     }
+
 
     // 删除艺术家
     @Override
@@ -43,14 +46,20 @@ public class ArtistServiceImpl implements ArtistService {
             throw new ArtistNotFoundException("Artist with id " + id + " does not exist.");
         }
 
-        artistMapper.deleteArtist(id);
+        int rowsDeleted = artistMapper.deleteArtist(id);
+        if (rowsDeleted == 0) {
+            throw new IllegalStateException("No artist was deleted.");
+        }
     }
+
 
     // 更新艺术家信息
     @Override
-    public Artist updateArtist(Artist artist)
-    {
-        artistMapper.updateArtist(artist);
-        return artistMapper.getArtistByName(artist.getName());
+    public Artist updateArtist(Artist artist) {
+        int rowsUpdated = artistMapper.updateArtist(artist);
+        if (rowsUpdated == 0) {
+            throw new ArtistNotFoundException("No artist found with ID " + artist.getId() + ", or no new data provided for update.");
+        }
+        return artistMapper.getArtistById(artist.getId());
     }
 }

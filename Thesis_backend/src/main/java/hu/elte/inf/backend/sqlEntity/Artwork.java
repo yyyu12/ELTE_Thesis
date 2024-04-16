@@ -6,12 +6,12 @@ import java.math.BigDecimal;
 @Data
 public class Artwork {
     private Long id;
-    private Long artistId;
     private String title;
     private String description;
-    private BigDecimal price;
+    private Double price;
     private String imageUrl;
     private String type;
+    private Artist artist;  // 关联的艺术家对象
 
     // Getter and Setter
 }

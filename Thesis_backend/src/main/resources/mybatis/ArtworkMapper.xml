@@ -5,11 +5,50 @@
 
 <mapper namespace="hu.elte.inf.backend.dao.ArtworkMapper">
 
+    <resultMap id="ArtworkDetailMap" type="hu.elte.inf.backend.sqlEntity.Artwork">
+        <id column="id" property="id"/>
+        <result column="artist_id" property="artistId"/>
+        <result column="title" property="title"/>
+        <result column="description" property="description"/>
+        <result column="price" property="price"/>
+        <result column="image_url" property="imageUrl"/>
+        <result column="type" property="type"/>
+        <association property="artist" javaType="hu.elte.inf.backend.sqlEntity.Artist">
+            <id column="artist_id" property="id"/>
+            <result column="artist_name" property="name"/>
+            <result column="artist_bio" property="bio"/>
+        </association>
+    </resultMap>
+
     <!-- ========================================== Artwork ========================================== -->
+    <!-- 获得所有的用户 -->
+    <select id="findAllArtworks" resultType="hu.elte.inf.backend.sqlEntity.Artwork">
+        SELECT * FROM artworks
+    </select>
+
     <!-- 根据ID获取艺术品 -->
     <select id="getArtworkById" parameterType="long" resultType="hu.elte.inf.backend.sqlEntity.Artwork"  >
         SELECT * FROM artworks WHERE id = #{id}
     </select>
+
+    <!-- 通过用户名查询艺术品 -->
+    <select id="getArtworkByArtist" parameterType="long" resultMap="ArtworkDetailMap">
+        SELECT
+        a.id,
+        a.artist_id,
+        a.title,
+        a.description,
+        a.price,
+        a.image_url,
+        a.type,
+        ar.id as artist_id,
+        ar.name as artist_name,
+        ar.bio as artist_bio
+        FROM artworks a
+        INNER JOIN artists ar ON a.artist_id = ar.id
+        WHERE ar.id = #{artistId}
+    </select>
+
 
     <!-- 插入艺术品数据 -->
     <insert id="insertArtwork" parameterType="hu.elte.inf.backend.sqlEntity.Artwork" useGeneratedKeys="true" keyProperty="id">
@@ -17,9 +56,10 @@
         VALUES (#{artistId,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL}, #{imageUrl,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR})
     </insert>
 
-    <!-- 删除艺术品数据 -->
-    <delete id="deleteArtwork">
-        DELETE FROM artworks WHERE id = #{id}
+    <!-- 删除特定艺术品 -->
+    <delete id="deleteArtworkById" parameterType="long">
+        DELETE FROM artworks
+        WHERE id = #{id}
     </delete>
 
     <!-- 更新艺术品信息 -->

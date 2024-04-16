@@ -42,17 +42,19 @@ public class ArtistController {
             BeanUtils.copyProperties(artistInsertRequest, artist);
             artistService.insertArtist(artist);
 
-            // 将 Artist 实体转换为响应对象，如果你有一个响应类的话。
             ArtistResponse artistResponse = new ArtistResponse();
             BeanUtils.copyProperties(artist, artistResponse);
 
             return ResponseEntity.ok(Result.ok("Artist added successfully.").put("info", artistResponse));
         } catch (ArtistExistException e){
             return ResponseEntity.status(HttpStatus.SC_CONFLICT).body(Result.error("Artist already exists"));
-        }catch (Exception e) {
+        } catch (IllegalStateException e) {
+            return ResponseEntity.status(HttpStatus.SC_BAD_REQUEST).body(Result.error(e.getMessage()));
+        } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.SC_INTERNAL_SERVER_ERROR).body(Result.error("Internal server error"));
         }
     }
+
 
     @DeleteMapping("deleteArtist/{id}")
     public ResponseEntity<Result> deleteArtist(@PathVariable Long id) {
@@ -61,10 +63,13 @@ public class ArtistController {
             return ResponseEntity.ok(Result.ok("Artist deleted successfully"));
         } catch (ArtistNotFoundException e) {
             return ResponseEntity.status(HttpStatus.SC_NOT_FOUND).body(Result.error("Artist Not Found"));
+        } catch (IllegalStateException e) {
+            return ResponseEntity.status(HttpStatus.SC_BAD_REQUEST).body(Result.error(e.getMessage()));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.SC_INTERNAL_SERVER_ERROR).body(Result.error("Internal server error"));
         }
     }
+
 
     @PutMapping("/updateArtistInfo/{id}")
     public ResponseEntity<Result> updateUserInfo(@PathVariable Long id, @Validated @RequestBody ArtistUpdateRequest artistUpdateRequest) {
@@ -72,17 +77,18 @@ public class ArtistController {
             Artist artist = new Artist();
             BeanUtils.copyProperties(artistUpdateRequest, artist);
             artist.setId(id);
-            // 这里调用服务层的更新方法，并获取返回的更新后的用户对象
+
             Artist updatedArtist = artistService.updateArtist(artist);
 
-            // 将User转换为UserLoginResponse的方法或逻辑，就在这里使用它
             ArtistResponse artistResponse = new ArtistResponse();
             BeanUtils.copyProperties(updatedArtist, artistResponse);
 
-            // 返回更新后的用户数据
             return ResponseEntity.ok(Result.ok("Artist info updated successfully").put("info", artistResponse));
+        } catch (ArtistNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.SC_NOT_FOUND).body(Result.error(e.getMessage()));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.SC_INTERNAL_SERVER_ERROR).body(Result.error("Internal server error"));
         }
     }
+
 }

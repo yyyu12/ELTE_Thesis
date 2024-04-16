@@ -11,16 +11,43 @@ import java.util.List;
 @Mapper
 public interface ArtistMapper {
     /**
-     * Get All the Artists
-     * @return the list of Artists
+     * Retrieves all artists from the database.
+     * @return a list of artists
      */
     List<Artist> findAllArtists();
 
+    /**
+     * Retrieves an artist by their ID.
+     * @param id the artist's ID
+     * @return the artist, or null if not found
+     */
     Artist getArtistById(Long id);
+
+    /**
+     * Retrieves an artist by their name.
+     * @param name the artist's name
+     * @return the artist, or null if not found
+     */
     Artist getArtistByName(String name);
-    void insertArtist(Artist artist);
 
-    void updateArtist(Artist artist);
+    /**
+     * Inserts a new artist into the database.
+     * @param artist the artist to insert
+     * @return the number of rows affected
+     */
+    int insertArtist(Artist artist);
 
-    void deleteArtist(Long id);
+    /**
+     * Updates an existing artist's information.
+     * @param artist the artist with updated information
+     * @return the number of rows affected
+     */
+    int updateArtist(Artist artist);
+
+    /**
+     * Deletes an artist by their ID.
+     * @param id the artist's ID
+     * @return the number of rows affected
+     */
+    int deleteArtist(Long id);
 }
