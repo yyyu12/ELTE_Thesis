@@ -24,6 +24,11 @@ public class ArtistController {
     @Autowired
     private ArtistServiceImpl artistService;
 
+    @GetMapping("/getArtistById/{id}")
+    public Artist getArtistById(@PathVariable Long id) {
+        return artistService.getArtistById(id);
+    }
+
     @GetMapping("/getAllArtists")
     public ResponseEntity<List<Artist>> getAllUsers() {
         List<Artist> artists = artistService.getAllArtists();

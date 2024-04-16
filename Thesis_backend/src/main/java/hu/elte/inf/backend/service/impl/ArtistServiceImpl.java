@@ -14,6 +14,11 @@ public class ArtistServiceImpl implements ArtistService {
     private ArtistMapper artistMapper;
 
     @Override
+    public Artist getArtistById(Long id){
+        return artistMapper.getArtistById(id);
+    }
+
+    @Override
     public List<Artist> getAllArtists() {
         return artistMapper.findAllArtists();
     }
