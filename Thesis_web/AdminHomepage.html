@@ -246,7 +246,7 @@
                             <div class="card-header">
                                 <h4>Artists</h4>
                                 <!-- 按钮用于显示添加艺术家的表单 -->
-                                <button id="showAddArtistForm" class="btn btn-primary float-right">Add New Artist</button>
+                                <button id="showAddArtistForm" class="btn btn-blue-gradient float-right">Add New Artist</button>
                             </div>
                             <div class="card-body">
                                 <table class="table table-striped table-hover">
@@ -283,6 +283,35 @@
                                     </div>
                                     <button type="submit" class="btn btn-green-gradient">Submit</button>
                                 </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Modal for Editing Artist -->
+                    <div class="modal" id="artistEditModal" tabindex="-1" role="dialog">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Edit Artist</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form id="artistEditForm">
+                                        <input type="hidden" id="editArtistId">
+                                        <div class="mb-3">
+                                            <label for="artistNameEdit" class="form-label">Artist Name</label>
+                                            <input type="text" class="form-control" id="artistNameEdit" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="artistBioEdit" class="form-label">Bio</label>
+                                            <textarea class="form-control" id="artistBioEdit" rows="3"></textarea>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-success" id="saveArtistChanges">Save Changes</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -743,7 +772,7 @@
     <script src="https://kit.fontawesome.com/e85815ae07.js" crossorigin="anonymous"></script>
 
     <script>
-        // Users table
+        /* ================================================ User Table Page ================================================ */
         fetch('http://localhost:8080/users/getAllUsers')
         .then(response => response.json())
         .then(users => {
@@ -763,69 +792,34 @@
         })
         .catch(error => console.error('Error fetching users:', error));
 
-        // Artists table
-        // 删除艺术家的函数
-        function deleteArtist() {
-            const artistId = this.getAttribute('data-artist-id');
-            fetch(`http://localhost:8080/artist/deleteArtist/${artistId}`, {
-                method: 'DELETE'
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.code === 200) {
-                    alert('Artist deleted successfully');
-                    const row = document.getElementById(`artist-${artistId}`);
-                    row.remove();
-                } else {
-                    alert('Failed to delete artist: ' + data.msg);
-                }
-            })
-            .catch(error => {
-                console.error('ailed to delete artist:', error);
-                alert('ailed to delete artist:');
-            });
-        }
 
-        // 绑定删除事件监听器
-        function attachDeleteEventListeners() {
-            document.querySelectorAll('.delete-artist').forEach(button => {
-                button.addEventListener('click', deleteArtist);
+        /* ================================================ Artist Table Page ================================================ */
+        // 获取艺术家列表
+        fetch('http://localhost:8080/artist/getAllArtists')
+        .then(response => response.json())
+        .then(artists => {
+            const table = document.getElementById('artistsTable');
+            // 清空现有表格行
+            table.innerHTML = '';
+            // 为每个艺术家创建表格行
+            artists.forEach(artist => {
+                let row = `<tr id="artist-${artist.id}">
+                                <td>${artist.id}</td>
+                                <td>${artist.name}</td>
+                                <td>${artist.bio || 'N/A'}</td>
+                                <td>
+                                    <button class="btn btn-primary edit-artist" data-artist-id="${artist.id}">Edit</button>
+                                </td>
+                                <td>
+                                    <button class="btn btn-danger delete-artist" data-artist-id="${artist.id}">Delete</button>
+                                </td>
+                            </tr>`;
+                table.innerHTML += row;
             });
-        }
-
-        // DOM内容加载完成后
-        document.addEventListener('DOMContentLoaded', function () {
-            // 获取艺术家列表
-            fetch('http://localhost:8080/artist/getAllArtists')
-                .then(response => response.json())
-                .then(artists => {
-                    const table = document.getElementById('artistsTable');
-                    // 清空现有表格行
-                    table.innerHTML = '';
-                    // 为每个艺术家创建表格行
-                    artists.forEach(artist => {
-                        let row = `<tr id="artist-${artist.id}">
-                                        <td>${artist.id}</td>
-                                        <td>${artist.name}</td>
-                                        <td>${artist.bio || 'N/A'}</td>
-                                        <td>
-                                            <button class="btn btn-danger delete-artist" data-artist-id="${artist.id}">Delete</button>
-                                        </td>
-                                    </tr>`;
-                        table.innerHTML += row;
-                    });
-                    // 绑定删除事件监听器
-                    attachDeleteEventListeners();
-                })
-                .catch(error => console.error('Error fetching artists:', error));
-        });
-
-        // 绑定删除事件监听器到所有删除按钮
-        function attachDeleteEventListeners() {
-            document.querySelectorAll('.delete-artist').forEach(button => {
-                button.addEventListener('click', deleteArtist);
-            });
-        }
+            // 绑定删除事件监听器
+            attachDeleteEventListeners();
+        })
+        .catch(error => console.error('Error fetching artists:', error));
 
         // 添加艺术家表单的显示与隐藏
         document.getElementById('showAddArtistForm').addEventListener('click', function() {
@@ -833,6 +827,7 @@
             artistForm.style.display = artistForm.style.display === 'block' ? 'none' : 'block';
             this.textContent = artistForm.style.display === 'block' ? 'Hide Form' : 'Add New Artist';
         });
+
 
         // 添加艺术家的表单提交
         document.getElementById('artistForm').addEventListener('submit', function(event) {
@@ -862,9 +857,10 @@
                         <td>${data.info.id}</td>
                         <td>${artistName}</td>
                         <td>${artistBio || 'N/A'}</td>
+                        <td><button class="btn btn-primary edit-artist" data-artist-id="${data.info.id}">Edit</button></td>
                         <td><button class="btn btn-danger delete-artist" data-artist-id="${data.info.id}">Delete</button></td>
                     `;
-                    attachDeleteEventListeners(); // 重新绑定事件监听器
+                    attachDeleteEventListeners(); // 重新绑定删除事件监听器
 
                     document.getElementById('artistName').value = '';
                     document.getElementById('artistBio').value = '';
@@ -877,6 +873,110 @@
                 alert('Artist add failed');
             });
         });
+
+        // Artists table
+        // 删除艺术家的函数
+        function deleteArtist() {
+            const artistId = this.getAttribute('data-artist-id');
+            fetch(`http://localhost:8080/artist/deleteArtist/${artistId}`, {
+                method: 'DELETE'
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.code === 200) {
+                    alert('Artist deleted successfully');
+                    const row = document.getElementById(`artist-${artistId}`);
+                    row.remove();
+                } else {
+                    alert('Failed to delete artist: ' + data.msg);
+                }
+            })
+            .catch(error => {
+                console.error('ailed to delete artist:', error);
+                alert('ailed to delete artist:');
+            });
+        }
+
+
+        // 绑定删除事件监听器到所有删除按钮
+        function attachDeleteEventListeners() {
+            document.querySelectorAll('.delete-artist').forEach(button => {
+                button.addEventListener('click', deleteArtist);
+            });
+        }
+
+        // 编辑艺术家的函数
+        // 绑定 Edit 按钮事件
+        document.addEventListener('click', function(event) {
+            if (event.target.classList.contains('edit-artist')) {
+                const artistId = event.target.getAttribute('data-artist-id');
+                // 此处调用函数来处理 modal 显示和信息填充
+                showEditModal(artistId);
+            }
+        });
+
+        // 显示编辑模态框
+        function showEditModal(artistId) {
+            // 发起请求以获取艺术家的详细信息
+            fetch(`http://localhost:8080/artist/getArtistById/${artistId}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Artist not found');
+                    }
+                    return response.json();
+                })
+                .then(artistData => {
+                    // 成功获取数据后，填充表单
+                    document.getElementById('editArtistId').value = artistData.id;
+                    document.getElementById('artistNameEdit').value = artistData.name;
+                    document.getElementById('artistBioEdit').value = artistData.bio;
+                    // 显示 Modal
+                    $('#artistEditModal').modal('show');
+                })
+                .catch(error => {
+                    console.error('Error fetching artist details:', error);
+                    alert('Error fetching artist details');
+                });
+        }
+
+        // 保存编辑后的艺术家信息
+        function editArtist(){
+            const artistId = document.getElementById('editArtistId').value;
+            const artistName = document.getElementById('artistNameEdit').value.trim();
+            const artistBio = document.getElementById('artistBioEdit').value.trim();
+
+            fetch(`http://localhost:8080/artist/updateArtistInfo/${artistId}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    name: artistName,
+                    bio: artistBio || null
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if(data.code === 200){
+                    alert('Artist updated successfully');
+                    const row = document.getElementById(`artist-${artistId}`);
+                    row.cells[1].textContent = artistName;
+                    row.cells[2].textContent = artistBio || 'N/A';
+                    $('#artistEditModal').modal('hide');
+                } else {
+                    alert('Artist update failed: ' + data.msg + ' - ' + Object.values(data.errors).join(', '));
+                }
+            })
+            .catch((error) => {
+                console.error('Artist update failed:', error);
+                alert('Artist update failed');
+            });
+        }
+
+        // 绑定保存按钮事件
+        document.getElementById('saveArtistChanges').addEventListener('click', editArtist);
+
+        /* ================================================ Artwork Page ================================================ */
 
 
     </script>
