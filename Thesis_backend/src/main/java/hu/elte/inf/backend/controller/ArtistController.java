@@ -45,7 +45,7 @@ public class ArtistController {
             ArtistResponse artistResponse = new ArtistResponse();
             BeanUtils.copyProperties(artist, artistResponse);
 
-            return ResponseEntity.ok(Result.ok("Artist added successfully.").put("info", artistResponse));
+            return ResponseEntity.ok(Result.ok("Artist added successfully.").put("ArtistInfo", artistResponse));
         } catch (ArtistExistException e){
             return ResponseEntity.status(HttpStatus.SC_CONFLICT).body(Result.error("Artist already exists"));
         } catch (IllegalStateException e) {
@@ -83,7 +83,7 @@ public class ArtistController {
             ArtistResponse artistResponse = new ArtistResponse();
             BeanUtils.copyProperties(updatedArtist, artistResponse);
 
-            return ResponseEntity.ok(Result.ok("Artist info updated successfully").put("info", artistResponse));
+            return ResponseEntity.ok(Result.ok("Artist info updated successfully").put("ArtistInfo", artistResponse));
         } catch (ArtistNotFoundException e) {
             return ResponseEntity.status(HttpStatus.SC_NOT_FOUND).body(Result.error(e.getMessage()));
         } catch (Exception e) {

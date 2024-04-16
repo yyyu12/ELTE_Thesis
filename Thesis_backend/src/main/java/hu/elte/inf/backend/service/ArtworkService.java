@@ -5,7 +5,6 @@ import hu.elte.inf.backend.sqlEntity.Artwork;
 import java.util.List;
 
 public interface ArtworkService {
-    List<Artwork> getArtworksByArtist(Long artistId);
     List<Artwork> getAllArtworks();
     void insertArtwork(Artwork artwork);
     void deleteArtwork(Long id);

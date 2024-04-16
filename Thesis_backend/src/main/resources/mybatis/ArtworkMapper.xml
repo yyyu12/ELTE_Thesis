@@ -31,6 +31,13 @@
         SELECT * FROM artworks WHERE id = #{id}
     </select>
 
+    <!-- 查询特定标题和艺术家ID的艺术品 -->
+    <select id="findArtworkByTitleAndArtistId" parameterType="map" resultType="hu.elte.inf.backend.sqlEntity.Artwork">
+        SELECT *
+        FROM artworks
+        WHERE title = #{title} AND artist_id = #{artistId}
+    </select>
+
     <!-- 通过用户名查询艺术品 -->
     <select id="getArtworkByArtist" parameterType="long" resultMap="ArtworkDetailMap">
         SELECT
@@ -57,9 +64,8 @@
     </insert>
 
     <!-- 删除特定艺术品 -->
-    <delete id="deleteArtworkById" parameterType="long">
-        DELETE FROM artworks
-        WHERE id = #{id}
+    <delete id="deleteArtwork" parameterType="long">
+        DELETE FROM artworks  WHERE id = #{id}
     </delete>
 
     <!-- 更新艺术品信息 -->

@@ -17,10 +17,6 @@ public class ArtworkServiceImpl implements ArtworkService {
     @Autowired
     private ArtworkMapper artworkMapper;
 
-    @Override
-    public List<Artwork> getArtworksByArtist(Long artistId) {
-        return artworkMapper.getArtworkByArtist(artistId);
-    }
 
     @Override
     public List<Artwork> getAllArtworks(){
@@ -29,13 +25,31 @@ public class ArtworkServiceImpl implements ArtworkService {
 
     @Override
     public void insertArtwork(Artwork artwork) {
-        artworkMapper.insertArtwork(artwork);
+//        // 检查是否存在相同标题和艺术家ID的艺术品
+//        Artwork existingArtwork = artworkMapper.findArtworkByTitleAndArtistId(artwork.getTitle(), artwork.getArtist().getId());
+//        if (existingArtwork != null) {
+//            throw new ArtworkAlreadyExistsException("An artwork with the title '" + artwork.getTitle() +
+//                    "' and artist ID '" + artwork.getArtist().getId() + "' already exists.");
+//        }
+
+        // 尝试插入艺术品，如果没有插入成功，抛出异常
+        int rowsInserted = artworkMapper.insertArtwork(artwork);
+        if (rowsInserted == 0) {
+            throw new IllegalStateException("Failed to insert the artwork.");
+        }
     }
 
     @Override
     public void deleteArtwork(Long id) {
+        Artwork artwork = artworkMapper.getArtworkById(id);
+        if (artwork == null) {
+            throw new ArtworkNotFoundException("No artwork found with ID " + id);
+        }
 
-        artworkMapper.deleteArtwork(id);
+        int rowsDeleted = artworkMapper.deleteArtwork(id);
+        if (rowsDeleted == 0) {
+            throw new IllegalStateException("No artwork was deleted, unexpected error.");
+        }
     }
 
     @Override

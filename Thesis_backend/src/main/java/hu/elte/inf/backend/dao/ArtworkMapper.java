@@ -13,7 +13,7 @@ public interface ArtworkMapper {
     List<Artwork> getArtworkByArtist(Long artistId);
     List<Artwork> findAllArtwork();
     Artwork getArtworkById(Long id);
-    void insertArtwork(Artwork artwork);
-    void updateArtwork(Artwork artwork);
+    int insertArtwork(Artwork artwork);
+    int updateArtwork(Artwork artwork);
     int deleteArtwork(Long id);
 }
