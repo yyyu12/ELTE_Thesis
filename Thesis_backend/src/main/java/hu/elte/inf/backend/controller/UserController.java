@@ -61,7 +61,7 @@ public class UserController {
             User user = userService.login(username, password);
             UserLoginResponse userLoginResponse = new UserLoginResponse();
             BeanUtils.copyProperties(user, userLoginResponse);
-            return ResponseEntity.ok(Result.ok("User login success").put("userInfo", userLoginResponse));
+            return ResponseEntity.ok(Result.ok("User login success").put("info", userLoginResponse));
         } catch (UserNotFoundException ex) {
             return ResponseEntity.status(HttpStatus.SC_NOT_FOUND).body(Result.error("User Not Found"));
         } catch (PasswordNotMatchException ex) {
@@ -85,7 +85,7 @@ public class UserController {
             BeanUtils.copyProperties(updatedUser, userLoginResponse);
 
             // 返回更新后的用户数据
-            return ResponseEntity.ok(Result.ok("User info updated successfully").put("userInfo", userLoginResponse));
+            return ResponseEntity.ok(Result.ok("User info updated successfully").put("info", userLoginResponse));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.SC_INTERNAL_SERVER_ERROR).body(Result.error("Internal server error"));
         }

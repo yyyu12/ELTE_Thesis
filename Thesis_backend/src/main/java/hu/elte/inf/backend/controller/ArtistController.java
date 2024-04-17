@@ -25,8 +25,13 @@ public class ArtistController {
     private ArtistServiceImpl artistService;
 
     @GetMapping("/getArtistById/{id}")
-    public Artist getArtistById(@PathVariable Long id) {
-        return artistService.getArtistById(id);
+    public ResponseEntity<Artist> getArtistById(@PathVariable Long id) {
+        Artist artist = artistService.getArtistById(id);
+        if (artist != null) {
+            return ResponseEntity.ok(artist);  // 返回200 OK和艺术家数据
+        } else {
+            return ResponseEntity.notFound().build();  // 返回404 Not Found
+        }
     }
 
     @GetMapping("/getAllArtists")
@@ -45,7 +50,7 @@ public class ArtistController {
             ArtistResponse artistResponse = new ArtistResponse();
             BeanUtils.copyProperties(artist, artistResponse);
 
-            return ResponseEntity.ok(Result.ok("Artist added successfully.").put("ArtistInfo", artistResponse));
+            return ResponseEntity.ok(Result.ok("Artist added successfully.").put("info", artistResponse));
         } catch (ArtistExistException e){
             return ResponseEntity.status(HttpStatus.SC_CONFLICT).body(Result.error("Artist already exists"));
         } catch (IllegalStateException e) {
@@ -83,7 +88,7 @@ public class ArtistController {
             ArtistResponse artistResponse = new ArtistResponse();
             BeanUtils.copyProperties(updatedArtist, artistResponse);
 
-            return ResponseEntity.ok(Result.ok("Artist info updated successfully").put("ArtistInfo", artistResponse));
+            return ResponseEntity.ok(Result.ok("Artist info updated successfully").put("info", artistResponse));
         } catch (ArtistNotFoundException e) {
             return ResponseEntity.status(HttpStatus.SC_NOT_FOUND).body(Result.error(e.getMessage()));
         } catch (Exception e) {

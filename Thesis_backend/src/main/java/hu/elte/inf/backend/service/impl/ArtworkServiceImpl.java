@@ -20,13 +20,19 @@ public class ArtworkServiceImpl implements ArtworkService {
     private ArtworkMapper artworkMapper;
 
     @Override
+    public Artwork getArtworkById(Long id){
+        return artworkMapper.getArtworkById(id);
+    }
+
+    @Override
     public List<Artwork> getAllArtworks(){
+
         return artworkMapper.findAllArtworks();
     }
 
     @Override
-    public List<Artwork> getArtworksByArtistId(Long artistId) {
-        return artworkMapper.findArtworksByArtistId(artistId);
+    public List<Artwork> getArtworksByArtistId(Long artist_id) {
+        return artworkMapper.findArtworksByArtistId(artist_id);
     }
 
     // 服务层实现
@@ -34,7 +40,7 @@ public class ArtworkServiceImpl implements ArtworkService {
     public boolean addArtwork(Artwork artwork) {
         Map<String, Object> params = new HashMap<>();
         params.put("title", artwork.getTitle());
-        params.put("artistId", artwork.getArtistId());
+        params.put("artistId", artwork.getArtist_id());
 
         List<Artwork> existingArtworks = artworkMapper.findArtworkByTitleAndArtistId(params);
 

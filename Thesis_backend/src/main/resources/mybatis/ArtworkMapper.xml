@@ -19,21 +19,21 @@
     <!-- 查询特定标题和艺术家ID的艺术品 -->
     <select id="findArtworkByTitleAndArtistId" parameterType="map" resultType="hu.elte.inf.backend.sqlEntity.Artwork">
         SELECT * FROM artworks
-        WHERE title = #{title} AND artist_id = #{artistId}
+        WHERE title = #{title} AND artist_id = #{artist_id}
     </select>
 
     <!-- 查询特定艺术家的所有艺术品 -->
     <select id="findArtworksByArtistId" parameterType="long" resultType="hu.elte.inf.backend.sqlEntity.Artwork">
         SELECT id, artist_id, title, description, price, image_url, type
         FROM artworks
-        WHERE artist_id = #{artistId}
+        WHERE artist_id = #{artist_id}
     </select>
 
 
     <!-- 插入艺术品数据 -->
     <insert id="insertArtwork" parameterType="hu.elte.inf.backend.sqlEntity.Artwork" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO artworks (artist_id, title, description, price, image_url, type)
-        VALUES (#{artistId,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL}, #{imageUrl,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR})
+        VALUES (#{artist_id,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL}, #{image_url,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR})
     </insert>
 
 
@@ -47,11 +47,11 @@
     <update id="updateArtwork" parameterType="hu.elte.inf.backend.sqlEntity.Artwork">
         UPDATE artworks
         <set>
-            <if test="artistId != null">artist_id = #{artistId},</if>
+            <if test="artist_id != null">artist_id = #{artist_id},</if>
             <if test="title != null and title != ''">title = #{title},</if>
             <if test="description != null and description != ''">description = #{description},</if>
             <if test="price != null">price = #{price},</if>
-            <if test="imageUrl != null and imageUrl != ''">image_url = #{imageUrl},</if>
+            <if test="image_url != null and image_url != ''">image_url = #{image_url},</if>
             <if test="type != null and type != ''">type = #{type}</if>
         </set>
         WHERE id = #{id}
