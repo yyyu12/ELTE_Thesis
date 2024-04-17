@@ -26,6 +26,16 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="assets/css/index.css">
     <style>
+
+        .artworkTitle {
+            color: #8B3DFF;
+        }
+
+        .card:hover {
+            transform: translateY(-5px); /* 鼠标悬浮时上移 */
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2); /* 鼠标悬浮时增加阴影 */
+        }
+
         .nav-pills-bg-soft {
             background-color: rgba(var(--bs-primary-rgb), 0.1);
             padding: 0.625rem 0;
@@ -157,7 +167,7 @@
                             </div>
                         </div>
                         
-                        <div class="nav-item" id="userAccount" style="margin-left: 20px;">
+                        <div class="nav-item" id="userAccount" style="margin-left: 10px;">
                             <!-- 登录链接 -->
                             <a class="navbar-icon-link" href="user-login.html" id="userLoginLink">
                                 <i class="far fa-user"></i>
@@ -322,151 +332,147 @@
 
                 <!-- Content START -->
                 <div class="tab-pane fade" id="course-pills-tabs-3" role="tabpanel" aria-labelledby="course-pills-tab-3">
-                    <div class="row g-4">
-                        <!-- Card item START -->
-                        <div class="col-sm-6 col-lg-4 col-xl-3">
-                            <div class="card shadow h-100">
-                                <!-- Image -->
-                                <img src="assets/images/courses/4by3/08.jpg" class="card-img-top" alt="course image">
-                                <div class="card-body pb-0">
-                                    <!-- Badge and favorite -->
-                                    <div class="d-flex justify-content-between mb-2">
-                                        <a href="#" class="badge bg-purple bg-opacity-10 text-purple">All level</a>
-                                        <a href="#" class="h6 fw-light mb-0"><i class="far fa-heart"></i></a>
-                                    </div>
-                                    <!-- Title -->
-                                    <h5 class="card-title fw-normal"><a href="#">Sketch from A to Z: for app designer</a></h5>
-                                    <p class="text-truncate-2 mb-2">Proposal indulged no do sociable he throwing settling</p>
-                                    <!-- Rating star -->
-                                    <ul class="list-inline mb-0">
-                                        <li class="list-inline-item me-0 small"><i class="fas fa-star text-warning"></i></li>
-                                        <li class="list-inline-item me-0 small"><i class="fas fa-star text-warning"></i></li>
-                                        <li class="list-inline-item me-0 small"><i class="fas fa-star text-warning"></i></li>
-                                        <li class="list-inline-item me-0 small"><i class="fas fa-star text-warning"></i></li>
-                                        <li class="list-inline-item me-0 small"><i class="far fa-star text-warning"></i></li>
-                                        <li class="list-inline-item ms-2 h6 fw-light mb-0">4.0/5.0</li>
-                                    </ul>
-                                </div>
-                                <!-- Card footer -->
-                                <div class="card-footer pt-0 pb-3">
-                                    <hr>
-                                    <div class="d-flex justify-content-between">
-                                        <span class="h6 fw-light mb-0"><i class="far fa-clock text-danger me-2"></i>12h 56m</span>
-                                        <span class="h6 fw-light mb-0"><i class="fas fa-table text-orange me-2"></i>15 lectures</span>
-                                    </div>
-                                </div>
-                            </div>
+                    <div class="container my-4">
+                        <div class="d-flex justify-content-center">
+                            <button id="showAddArtworkForm" class="btn btn-purple-gradient float-right">Add New Artwork</button>
                         </div>
-                        <!-- Card item END -->
-
-                        <!-- Card item START -->
-                        <div class="col-sm-6 col-lg-4 col-xl-3">
-                            <div class="card shadow h-100">
-                                <!-- Image -->
-                                <img src="assets/images/courses/4by3/04.jpg" class="card-img-top" alt="course image">
-                                <div class="card-body pb-0">
-                                    <!-- Badge and favorite -->
-                                    <div class="d-flex justify-content-between mb-2">
-                                        <a href="#" class="badge bg-purple bg-opacity-10 text-purple">All level</a>
-                                        <a href="#" class="text-danger"><i class="fas fa-heart"></i></a>
-                                    </div>
-                                    <!-- Title -->
-                                    <h5 class="card-title fw-normal"><a href="#">Learn Invision</a></h5>
-                                    <p class="mb-2">Arrived off she elderly beloved him Course regard to up he hardly.</p>
-                                    <!-- Rating star -->
-                                    <ul class="list-inline mb-0">
-                                        <li class="list-inline-item me-0 small"><i class="fas fa-star text-warning"></i></li>
-                                        <li class="list-inline-item me-0 small"><i class="fas fa-star text-warning"></i></li>
-                                        <li class="list-inline-item me-0 small"><i class="fas fa-star text-warning"></i></li>
-                                        <li class="list-inline-item me-0 small"><i class="fas fa-star-half-alt text-warning"></i></li>
-                                        <li class="list-inline-item me-0 small"><i class="far fa-star text-warning"></i></li>
-                                        <li class="list-inline-item ms-2 h6 fw-light mb-0">3.5/5.0</li>
-                                    </ul>
-                                </div>
-                                <!-- Card footer -->
-                                <div class="card-footer pt-0 pb-3">
-                                    <hr>
-                                    <div class="d-flex justify-content-between mt-2">
-                                        <span class="h6 fw-light mb-0"><i class="far fa-clock text-danger me-2"></i>6h 56m</span>
-                                        <span class="h6 fw-light mb-0"><i class="fas fa-table text-orange me-2"></i>82 lectures</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Card item END -->
-
-                        <!-- Card item START -->
-                        <div class="col-sm-6 col-lg-4 col-xl-3">
-                            <div class="card shadow h-100">
-                                <!-- Image -->
-                                <img src="assets/images/courses/4by3/02.jpg" class="card-img-top" alt="course image">
-                                <div class="card-body pb-0">
-                                    <!-- Badge and favorite -->
-                                    <div class="d-flex justify-content-between mb-2">
-                                        <a href="#" class="badge bg-success bg-opacity-10 text-success">Beginner</a>
-                                        <a href="#" class="text-danger"><i class="fas fa-heart"></i></a>
-                                    </div>
-                                    <!-- Title -->
-                                    <h5 class="card-title fw-normal"><a href="#">Graphic Design Masterclass</a></h5>
-                                    <p class="text-truncate-2 mb-2">Rooms oh fully taken by worse do. Points afraid but may end.</p>
-                                    <!-- Rating star -->
-                                    <ul class="list-inline mb-0">
-                                        <li class="list-inline-item me-0 small"><i class="fas fa-star text-warning"></i></li>
-                                        <li class="list-inline-item me-0 small"><i class="fas fa-star text-warning"></i></li>
-                                        <li class="list-inline-item me-0 small"><i class="fas fa-star text-warning"></i></li>
-                                        <li class="list-inline-item me-0 small"><i class="fas fa-star text-warning"></i></li>
-                                        <li class="list-inline-item me-0 small"><i class="fas fa-star-half-alt text-warning"></i></li>
-                                        <li class="list-inline-item ms-2 h6 fw-light mb-0">4.5/5.0</li>
-                                    </ul>
-                                </div>
-                                <!-- Card footer -->
-                                <div class="card-footer pt-0 pb-3">
-                                    <hr>
-                                    <div class="d-flex justify-content-between">
-                                        <span class="h6 fw-light mb-0"><i class="far fa-clock text-danger me-2"></i>9h 56m</span>
-                                        <span class="h6 fw-light mb-0"><i class="fas fa-table text-orange me-2"></i>65 lectures</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Card item END -->
-
-                        <!-- Card item START -->
-                        <div class="col-sm-6 col-lg-4 col-xl-3">
-                            <div class="card shadow h-100">
-                                <!-- Image -->
-                                <img src="assets/images/courses/4by3/03.jpg" class="card-img-top" alt="course image">
-                                <div class="card-body pb-0">
-                                    <!-- Badge and favorite -->
-                                    <div class="d-flex justify-content-between mb-2">
-                                        <a href="#" class="badge bg-success bg-opacity-10 text-success">Beginner</a>
-                                        <a href="#" class="h6 fw-light mb-0"><i class="far fa-heart"></i></a>
-                                    </div>
-                                    <!-- Title -->
-                                    <h5 class="card-title fw-normal"><a href="#">Create a Design System in Figma</a></h5>
-                                    <p class="text-truncate-2 mb-2">Rooms oh fully taken by worse do. Points afraid but may end.</p>
-                                    <!-- Rating star -->
-                                    <ul class="list-inline mb-0">
-                                        <li class="list-inline-item me-0 small"><i class="fas fa-star text-warning"></i></li>
-                                        <li class="list-inline-item me-0 small"><i class="fas fa-star text-warning"></i></li>
-                                        <li class="list-inline-item me-0 small"><i class="fas fa-star text-warning"></i></li>
-                                        <li class="list-inline-item me-0 small"><i class="fas fa-star text-warning"></i></li>
-                                        <li class="list-inline-item me-0 small"><i class="fas fa-star-half-alt text-warning"></i></li>
-                                        <li class="list-inline-item ms-2 h6 fw-light mb-0">4.5/5.0</li>
-                                    </ul>
-                                </div>
-                                <!-- Card footer -->
-                                <div class="card-footer pt-0 pb-3">
-                                    <hr>
-                                    <div class="d-flex justify-content-between">
-                                        <span class="h6 fw-light mb-0"><i class="far fa-clock text-danger me-2"></i>5h 56m</span>
-                                        <span class="h6 fw-light mb-0"><i class="fas fa-table text-orange me-2"></i>32 lectures</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Card item END -->
                     </div>
+
+                    <div>
+                        <!-- Card Grid -->
+                        <div class="row g-4" id="table_container">
+                        </div>
+
+                        <!-- Pagination -->
+                        <div class="mt-4" >
+                            <nav aria-label="Page navigation example">
+                                <!-- hidden component -->
+                                <input type="hidden" id="page" value="1">
+                                <ul class="pagination justify-content-center" id="pagination">
+
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+
+                    <div id="addArtworkForm" class="row mb-8" style="display: none;">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>Add New Artwork</h5>
+                            </div>
+                            <div class="card-body">
+                                <form id="artworkForm">
+                                    <input type="hidden" id="editArtworkId">
+                                    <!-- Artwork Title -->
+                                    <div class="mb-3">
+                                        <label for="artworkTitle" class="form-label">Artwork Title</label>
+                                        <input type="text" class="form-control" id="artworkTitle" required>
+                                    </div>
+                    
+                                    <!-- Artist ID -->
+                                    <div class="mb-3">
+                                        <label for="artist_id" class="form-label">Artist ID</label>
+                                        <input type="number" class="form-control" id="artist_id" min="1" required>
+                                    </div>
+                    
+                                    <!-- Description -->
+                                    <div class="mb-3">
+                                        <label for="description" class="form-label">Description</label>
+                                        <textarea class="form-control" id="description" rows="3" required></textarea>
+                                    </div>
+                    
+                                    <!-- Price -->
+                                    <div class="mb-3">
+                                        <label for="price" class="form-label">Price</label>
+                                        <input type="number" class="form-control" id="price" min="0.01" step="0.01" required>
+                                    </div>
+                    
+                                    <!-- Image URL -->
+                                    <div class="mb-3">
+                                        <label for="image_url" class="form-label">Image URL</label>
+                                        <input type="text" class="form-control" id="image_url" required>
+                                    </div>
+                    
+                                    <!-- Type -->
+                                    <div class="mb-3">
+                                        <label for="type" class="form-label">Type</label>
+                                        <select class="form-select" id="type" required>
+                                            <option value="abstract">Abstract</option>
+                                            <option value="digital">Digital</option>
+                                            <option value="nft">NFT</option>
+                                            <option value="painting">Painting</option>
+                                            <option value="physical">Physical</option>
+                                        </select>
+                                    </div>
+                    
+                                    <!-- Submit Button -->
+                                    <button type="submit" class="btn btn-green-gradient">Submit</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal" id="artworkEditModal" tabindex="-1" role="dialog">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Edit Artwork</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form id="artworkEditForm">
+                                        <!-- Artwork Title -->
+                                        <div class="mb-3">
+                                            <label for="editArtworkTitle" class="form-label">Artwork Title</label>
+                                            <input type="text" class="form-control" id="editArtworkTitle" required>
+                                        </div>
+                                        
+                                        <!-- Artist ID -->
+                                        <div class="mb-3">
+                                            <label for="editArtistIdInArtwork" class="form-label">Artist ID</label>
+                                            <input type="number" class="form-control" id="editArtistIdInArtwork" min="1" required>
+                                        </div>
+                                        
+                                        <!-- Description -->
+                                        <div class="mb-3">
+                                            <label for="editDescription" class="form-label">Description</label>
+                                            <textarea class="form-control" id="editDescription" rows="3" required></textarea>
+                                        </div>
+                                        
+                                        <!-- Price -->
+                                        <div class="mb-3">
+                                            <label for="editPrice" class="form-label">Price</label>
+                                            <input type="number" class="form-control" id="editPrice" required>
+                                        </div>
+                                        
+                                        <!-- Image URL -->
+                                        <div class="mb-3">
+                                            <label for="editImageUrl" class="form-label">Image URL</label>
+                                            <input type="text" class="form-control" id="editImageUrl" required>
+                                        </div>
+                                        
+                                        <!-- Type -->
+                                        <div class="mb-3">
+                                            <label for="editType" class="form-label">Type</label>
+                                            <select class="form-select" id="editType" required>
+                                                <option value="abstract">Abstract</option>
+                                                <option value="digital">Digital</option>
+                                                <option value="nft">NFT</option>
+                                                <option value="painting">Painting</option>
+                                                <option value="physical">Physical</option>
+                                            </select>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-success" id="saveArtworkChanges">Save Changes</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
                 </div>
                 <!-- Content END -->
 
@@ -476,8 +482,9 @@
                         <!-- Card item START -->
                         <div class="col-sm-6 col-lg-4 col-xl-3">
                             <div class="card shadow h-100">
-                                <!-- Image -->
+                                <!-- Image 
                                 <img src="assets/images/courses/4by3/01.jpg" class="card-img-top" alt="course image">
+                                -->
                                 <div class="card-body pb-0">
                                     <!-- Badge and favorite -->
                                     <div class="d-flex justify-content-between mb-2">
@@ -512,8 +519,9 @@
                         <!-- Card item START -->
                         <div class="col-sm-6 col-lg-4 col-xl-3">
                             <div class="card shadow h-100">
-                                <!-- Image -->
+                                <!-- Image 
                                 <img src="assets/images/courses/4by3/08.jpg" class="card-img-top" alt="course image">
+                                -->
                                 <div class="card-body pb-0">
                                     <!-- Badge and favorite -->
                                     <div class="d-flex justify-content-between mb-2">
@@ -548,85 +556,7 @@
                 </div>
                 <!-- Content END -->
 
-                <!-- Content START -->
-                <div class="tab-pane fade" id="course-pills-tabs-5" role="tabpanel" aria-labelledby="course-pills-tab-5">
-                    <div class="row g-4">
-                        <!-- Card item START -->
-                        <div class="col-sm-6 col-lg-4 col-xl-3">
-                            <div class="card shadow h-100">
-                                <!-- Image -->
-                                <img src="assets/images/courses/4by3/04.jpg" class="card-img-top" alt="course image">
-                                <div class="card-body pb-0">
-                                    <!-- Badge and favorite -->
-                                    <div class="d-flex justify-content-between mb-2">
-                                        <a href="#" class="badge bg-purple bg-opacity-10 text-purple">All level</a>
-                                        <a href="#" class="text-danger"><i class="fas fa-heart"></i></a>
-                                    </div>
-                                    <!-- Title -->
-                                    <h5 class="card-title fw-normal"><a href="#">Learn Invision</a></h5>
-                                    <p class="text-truncate-2 mb-2">Arrived off she elderly beloved him Course regard to up he hardly.</p>
-                                    <!-- Rating star -->
-                                    <ul class="list-inline mb-0">
-                                        <li class="list-inline-item me-0 small"><i class="fas fa-star text-warning"></i></li>
-                                        <li class="list-inline-item me-0 small"><i class="fas fa-star text-warning"></i></li>
-                                        <li class="list-inline-item me-0 small"><i class="fas fa-star text-warning"></i></li>
-                                        <li class="list-inline-item me-0 small"><i class="fas fa-star-half-alt text-warning"></i></li>
-                                        <li class="list-inline-item me-0 small"><i class="far fa-star text-warning"></i></li>
-                                        <li class="list-inline-item ms-2 h6 fw-light mb-0">3.5/5.0</li>
-                                    </ul>
-                                </div>
-                                <!-- Card footer -->
-                                <div class="card-footer pt-0 pb-3">
-                                    <hr>
-                                    <div class="d-flex justify-content-between">
-                                        <span class="h6 fw-light mb-0"><i class="far fa-clock text-danger me-2"></i>6h 56m</span>
-                                        <span class="h6 fw-light mb-0"><i class="fas fa-table text-orange me-2"></i>82 lectures</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Card item END -->
-
-                        <!-- Card item START -->
-                        <div class="col-sm-6 col-lg-4 col-xl-3">
-                            <div class="card shadow h-100">
-                                <!-- Image -->
-                                <img src="assets/images/courses/4by3/09.jpg" class="card-img-top" alt="course image">
-                                <div class="card-body pb-0">
-                                    <!-- Badge and favorite -->
-                                    <div class="d-flex justify-content-between mb-2">
-                                        <a href="#" class="badge bg-purple bg-opacity-10 text-purple">All level</a>
-                                        <a href="#" class="h6 fw-light mb-0"><i class="far fa-heart"></i></a>
-                                    </div>
-                                    <!-- Title -->
-                                    <h5 class="card-title fw-normal"><a href="#">JavaScript: Full Understanding</a></h5>
-                                    <p class="text-truncate-2 mb-2">Far advanced settling say finished raillery. Offered chiefly farther.</p>
-                                    <!-- Rating star -->
-                                    <ul class="list-inline mb-0">
-                                        <li class="list-inline-item me-0 small"><i class="fas fa-star text-warning"></i></li>
-                                        <li class="list-inline-item me-0 small"><i class="fas fa-star text-warning"></i></li>
-                                        <li class="list-inline-item me-0 small"><i class="fas fa-star text-warning"></i></li>
-                                        <li class="list-inline-item me-0 small"><i class="fas fa-star text-warning"></i></li>
-                                        <li class="list-inline-item me-0 small"><i class="fas fa-star text-warning"></i></li>
-                                        <li class="list-inline-item ms-2 h6 fw-light mb-0">5.0/5.0</li>
-                                    </ul>
-                                </div>
-                                <!-- Card footer -->
-                                <div class="card-footer pt-0 pb-3">
-                                    <hr>
-                                    <div class="d-flex justify-content-between">
-                                        <span class="h6 fw-light mb-0"><i class="far fa-clock text-danger me-2"></i>35h 20m</span>
-                                        <span class="h6 fw-light mb-0"><i class="fas fa-table text-orange me-2"></i>89 lectures</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Card item END -->
-                    </div>
-                </div>
-                <!-- Content END -->
-            </div>
-            <!-- Tabs content END -->
+                
         </div>
     </section>
     <!-- =======================
@@ -771,7 +701,63 @@
     <script src="assets/js/vendor/jquery.cookie.js"></script>
     <script src="https://kit.fontawesome.com/e85815ae07.js" crossorigin="anonymous"></script>
 
+
     <script>
+        /* ======== user login profile dropdown start ======== */
+        function onUserLoggedIn(userInfo) {
+            const navItem = document.querySelector('#userAccount');
+            const userLoginLink = document.getElementById('userLoginLink'); // 获取登录链接元素
+            userLoginLink.style.display = 'none'; // 隐藏登录链接
+            
+            const username = userInfo.username; // 从用户信息中获取用户名
+            // 创建下拉菜单的HTML字符串
+            const dropdownHTML = `
+                <div class="dropdown-center" id="userDropdown">
+                    <button class="btn btn-blue-green dropdown-toggle btn-font" type="button" id="userDropdownMenu" data-bs-toggle="dropdown" aria-expanded="false">
+                        Hi ${username} <!-- 插入用户名 -->
+                    </button>
+                    <ul class="dropdown-menu " aria-labelledby="userDropdownMenu">
+                        <li><a class="dropdown-item" href="#" id="logoutLink">Logout</a></li>
+                    </ul>
+                </div>
+            `;
+            
+            // 将下拉菜单的HTML添加到.nav-item元素
+            navItem.innerHTML += dropdownHTML;
+
+            
+            // 添加登出事件监听器
+            const logoutLink = document.getElementById('logoutLink');
+            logoutLink.addEventListener('click', onLogoutClicked);
+        }
+
+        // 登出事件处理函数
+        function onLogoutClicked(event) {
+            event.preventDefault();
+            localStorage.removeItem('userInfo');
+            
+            // 删除下拉菜单
+            const userDropdown = document.getElementById('userDropdown');
+            if (userDropdown) {
+                userDropdown.remove();
+            }
+            
+            // 显示登录链接
+            const userLoginLink = document.getElementById('userLoginLink');
+            userLoginLink.style.display = 'block';
+            
+            // 重定向到登录页面或首页
+            window.location.href = 'user-login.html';
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const userInfo = localStorage.getItem('userInfo');
+            
+            if (userInfo) {
+                onUserLoggedIn(JSON.parse(userInfo));
+            }
+        });
+        /* ======== user login profile dropdown end ======== */
         /* ================================================ User Table Page ================================================ */
         fetch('http://localhost:8080/users/getAllUsers')
         .then(response => response.json())
@@ -877,24 +863,26 @@
         // Artists table
         // 删除艺术家的函数
         function deleteArtist() {
-            const artistId = this.getAttribute('data-artist-id');
-            fetch(`http://localhost:8080/artist/deleteArtist/${artistId}`, {
-                method: 'DELETE'
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.code === 200) {
-                    alert('Artist deleted successfully');
-                    const row = document.getElementById(`artist-${artistId}`);
-                    row.remove();
-                } else {
-                    alert('Failed to delete artist: ' + data.msg);
-                }
-            })
-            .catch(error => {
-                console.error('ailed to delete artist:', error);
-                alert('ailed to delete artist:');
-            });
+            if(confirm('Are you sure you want to delete this artist?')) {
+                const artistId = this.getAttribute('data-artist-id');
+                fetch(`http://localhost:8080/artist/deleteArtist/${artistId}`, {
+                    method: 'DELETE'
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.code === 200) {
+                        alert('Artist deleted successfully');
+                        const row = document.getElementById(`artist-${artistId}`);
+                        row.remove();
+                    } else {
+                        alert('Failed to delete artist: ' + data.msg);
+                    }
+                })
+                .catch(error => {
+                    console.error('ailed to delete artist:', error);
+                    alert('ailed to delete artist:');
+                });
+            }
         }
 
 
@@ -980,6 +968,7 @@
 
 
     </script>
+    <script src="assets/js/ajax.js"></script>
 
 
 </body>
