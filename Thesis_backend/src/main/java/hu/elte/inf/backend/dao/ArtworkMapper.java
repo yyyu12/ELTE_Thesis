@@ -18,4 +18,5 @@ public interface ArtworkMapper {
     int insertArtwork(Artwork artwork);
     int updateArtwork(Artwork artwork);
     int deleteArtwork(Long id);
+    Artwork findRandomArtwork();
 }

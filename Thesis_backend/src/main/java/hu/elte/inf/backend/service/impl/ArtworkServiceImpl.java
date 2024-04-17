@@ -64,4 +64,9 @@ public class ArtworkServiceImpl implements ArtworkService {
         int rowsUpdated = artworkMapper.updateArtwork(artwork);
         return rowsUpdated > 0;
     }
+
+    @Override
+    public Artwork findRandomArtwork() {
+        return artworkMapper.findRandomArtwork();
+    }
 }

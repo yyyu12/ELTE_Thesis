@@ -57,9 +57,10 @@
         WHERE id = #{id}
     </update>
 
-
-
-
+    <!-- 随机获取一件艺术品的映射器 -->
+    <select id="findRandomArtwork" resultType="hu.elte.inf.backend.sqlEntity.Artwork">
+        SELECT * FROM artworks ORDER BY RAND() LIMIT 1
+    </select>
 
 
 </mapper>

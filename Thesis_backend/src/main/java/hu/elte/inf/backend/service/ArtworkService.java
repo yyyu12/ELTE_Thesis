@@ -11,4 +11,5 @@ public interface ArtworkService {
     boolean addArtwork(Artwork artwork);
     boolean deleteArtworkById(Long id);
     boolean updateArtwork(Artwork artwork);
+    Artwork findRandomArtwork();
 }

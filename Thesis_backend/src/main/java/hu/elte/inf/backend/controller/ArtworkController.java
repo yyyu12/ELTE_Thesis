@@ -46,6 +46,16 @@ public class ArtworkController {
 
     }
 
+    @GetMapping("/getRandomArtwork")
+    public ResponseEntity<Artwork> getRandomArtwork() {
+        Artwork artwork = artworkService.findRandomArtwork();
+        if (artwork != null) {
+            return ResponseEntity.ok(artwork);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
     @PostMapping("/registerArtwork")
     public ResponseEntity<Result> addArtwork(@Validated @RequestBody  ArtworkInsertRequest artworkInsertRequest) {
         Artwork artwork = new Artwork();
