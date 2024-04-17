@@ -5,23 +5,8 @@
 
 <mapper namespace="hu.elte.inf.backend.dao.ArtworkMapper">
 
-    <resultMap id="ArtworkDetailMap" type="hu.elte.inf.backend.sqlEntity.Artwork">
-        <id column="id" property="id"/>
-        <result column="artist_id" property="artistId"/>
-        <result column="title" property="title"/>
-        <result column="description" property="description"/>
-        <result column="price" property="price"/>
-        <result column="image_url" property="imageUrl"/>
-        <result column="type" property="type"/>
-        <association property="artist" javaType="hu.elte.inf.backend.sqlEntity.Artist">
-            <id column="artist_id" property="id"/>
-            <result column="artist_name" property="name"/>
-            <result column="artist_bio" property="bio"/>
-        </association>
-    </resultMap>
-
     <!-- ========================================== Artwork ========================================== -->
-    <!-- 获得所有的用户 -->
+    <!-- 获得所有的艺术品 -->
     <select id="findAllArtworks" resultType="hu.elte.inf.backend.sqlEntity.Artwork">
         SELECT * FROM artworks
     </select>
@@ -33,27 +18,15 @@
 
     <!-- 查询特定标题和艺术家ID的艺术品 -->
     <select id="findArtworkByTitleAndArtistId" parameterType="map" resultType="hu.elte.inf.backend.sqlEntity.Artwork">
-        SELECT *
-        FROM artworks
+        SELECT * FROM artworks
         WHERE title = #{title} AND artist_id = #{artistId}
     </select>
 
-    <!-- 通过用户名查询艺术品 -->
-    <select id="getArtworkByArtist" parameterType="long" resultMap="ArtworkDetailMap">
-        SELECT
-        a.id,
-        a.artist_id,
-        a.title,
-        a.description,
-        a.price,
-        a.image_url,
-        a.type,
-        ar.id as artist_id,
-        ar.name as artist_name,
-        ar.bio as artist_bio
-        FROM artworks a
-        INNER JOIN artists ar ON a.artist_id = ar.id
-        WHERE ar.id = #{artistId}
+    <!-- 查询特定艺术家的所有艺术品 -->
+    <select id="findArtworksByArtistId" parameterType="long" resultType="hu.elte.inf.backend.sqlEntity.Artwork">
+        SELECT id, artist_id, title, description, price, image_url, type
+        FROM artworks
+        WHERE artist_id = #{artistId}
     </select>
 
 
@@ -63,23 +36,27 @@
         VALUES (#{artistId,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL}, #{imageUrl,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR})
     </insert>
 
+
     <!-- 删除特定艺术品 -->
     <delete id="deleteArtwork" parameterType="long">
         DELETE FROM artworks  WHERE id = #{id}
     </delete>
 
     <!-- 更新艺术品信息 -->
+    <!-- 动态更新艺术品信息 -->
     <update id="updateArtwork" parameterType="hu.elte.inf.backend.sqlEntity.Artwork">
         UPDATE artworks
         <set>
-            <if test="title != null">title = #{title},</if>
-            <if test="description != null">description = #{description},</if>
+            <if test="artistId != null">artist_id = #{artistId},</if>
+            <if test="title != null and title != ''">title = #{title},</if>
+            <if test="description != null and description != ''">description = #{description},</if>
             <if test="price != null">price = #{price},</if>
-            <if test="image_url != null">image_url = #{imageUrl},</if>
-            <if test="type != null">type = #{type}</if>
+            <if test="imageUrl != null and imageUrl != ''">image_url = #{imageUrl},</if>
+            <if test="type != null and type != ''">type = #{type}</if>
         </set>
         WHERE id = #{id}
     </update>
+
 
 
 

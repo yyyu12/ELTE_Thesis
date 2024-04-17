@@ -6,7 +6,8 @@ import java.util.List;
 
 public interface ArtworkService {
     List<Artwork> getAllArtworks();
-    void insertArtwork(Artwork artwork);
-    void deleteArtwork(Long id);
-    Artwork updateArtwork(Artwork artwork);
+    List<Artwork> getArtworksByArtistId(Long artistId);
+    boolean addArtwork(Artwork artwork);
+    boolean deleteArtworkById(Long id);
+    boolean updateArtwork(Artwork artwork);
 }

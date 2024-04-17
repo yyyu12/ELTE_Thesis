@@ -6,7 +6,9 @@ import hu.elte.inf.backend.service.ArtworkService;
 import hu.elte.inf.backend.common.exceptionEnd.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 // 控制类和数据库的桥梁
 // 接收控制器层的调用，处理业务逻辑
@@ -17,44 +19,43 @@ public class ArtworkServiceImpl implements ArtworkService {
     @Autowired
     private ArtworkMapper artworkMapper;
 
-
     @Override
     public List<Artwork> getAllArtworks(){
-        return artworkMapper.findAllArtwork();
+        return artworkMapper.findAllArtworks();
     }
 
     @Override
-    public void insertArtwork(Artwork artwork) {
-//        // 检查是否存在相同标题和艺术家ID的艺术品
-//        Artwork existingArtwork = artworkMapper.findArtworkByTitleAndArtistId(artwork.getTitle(), artwork.getArtist().getId());
-//        if (existingArtwork != null) {
-//            throw new ArtworkAlreadyExistsException("An artwork with the title '" + artwork.getTitle() +
-//                    "' and artist ID '" + artwork.getArtist().getId() + "' already exists.");
-//        }
-
-        // 尝试插入艺术品，如果没有插入成功，抛出异常
-        int rowsInserted = artworkMapper.insertArtwork(artwork);
-        if (rowsInserted == 0) {
-            throw new IllegalStateException("Failed to insert the artwork.");
-        }
+    public List<Artwork> getArtworksByArtistId(Long artistId) {
+        return artworkMapper.findArtworksByArtistId(artistId);
     }
 
+    // 服务层实现
     @Override
-    public void deleteArtwork(Long id) {
-        Artwork artwork = artworkMapper.getArtworkById(id);
-        if (artwork == null) {
-            throw new ArtworkNotFoundException("No artwork found with ID " + id);
+    public boolean addArtwork(Artwork artwork) {
+        Map<String, Object> params = new HashMap<>();
+        params.put("title", artwork.getTitle());
+        params.put("artistId", artwork.getArtistId());
+
+        List<Artwork> existingArtworks = artworkMapper.findArtworkByTitleAndArtistId(params);
+
+        if (existingArtworks.isEmpty()) {
+            int rowsAffected = artworkMapper.insertArtwork(artwork);
+            return rowsAffected > 0;  // 插入成功则返回true
         }
 
+        return false;  // 已存在，未执行插入
+    }
+
+
+    @Override
+    public boolean deleteArtworkById(Long id) {
         int rowsDeleted = artworkMapper.deleteArtwork(id);
-        if (rowsDeleted == 0) {
-            throw new IllegalStateException("No artwork was deleted, unexpected error.");
-        }
+        return rowsDeleted > 0;  // 如果删除了至少一行，返回true
     }
 
     @Override
-    public Artwork updateArtwork(Artwork artwork) {
-        artworkMapper.updateArtwork(artwork);
-        return artworkMapper.getArtworkById(artwork.getId());
+    public boolean updateArtwork(Artwork artwork) {
+        int rowsUpdated = artworkMapper.updateArtwork(artwork);
+        return rowsUpdated > 0;
     }
 }

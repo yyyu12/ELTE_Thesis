@@ -30,7 +30,7 @@ public class ArtistController {
     }
 
     @GetMapping("/getAllArtists")
-    public ResponseEntity<List<Artist>> getAllUsers() {
+    public ResponseEntity<List<Artist>> getAllArtists() {
         List<Artist> artists = artistService.getAllArtists();
         return ResponseEntity.ok(artists);
     }
