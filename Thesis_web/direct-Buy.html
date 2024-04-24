@@ -14,7 +14,6 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700">
     <!-- owl carousel-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Lightbox -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/glightbox/3.3.0/css/glightbox.min.css" integrity="sha512-T+KoG3fbDoSnlgEXFQqwcTC9AdkFIxhBlmoaFqYaIjq2ShhNwNao9AKaLUPMfwiBPL0ScxAtc+UYbHAgvd+sjQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Choice -->
@@ -26,9 +25,97 @@
     <link rel="shortcut icon" href="assets/images/favicon.png">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="assets/css/vendor/fontawesome.min.css">
+    <!-- Select 2 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" integrity="sha512-nMNlpuaDPrqlEls3IX/Q56H36qvBASwb3ipuo3MxeWbsQB1881ox0cRv7UPTgBlriqoynt35KjEwgGUeUXIPnw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Custom CSS -->
     <link rel="stylesheet" href="assets/css/index.css">
     <style>
+
+        /* 按钮共用样式 */
+        .product-hover-overlay-buttons a {
+            display: inline-block; /* 使 a 标签表现得像按钮 */
+            margin: 0 5px; /* 按钮之间的间隙 */
+            transition: all 0.3s ease; /* 平滑过渡效果 */
+        }
+
+        .btn-product-left.add-to-wishlist {
+            color: #d63384;
+        }
+
+        .btn-product-left.add-to-wishlist:hover {
+            background-color: #d63384;
+            color: #fff;
+        }
+
+        .btn-product-left {
+            color: #007bff; 
+        }
+
+        .btn-product-left:hover {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        /* 搜索图标（查看详情按钮）样式 */
+        .btn-product-right {
+            color: #28a745; 
+        }
+
+        .btn-product-right:hover {
+            background-color: #28a745;
+            color: #fff;
+        }
+
+        /* 侧边栏基本样式 */
+        .sidebar {
+            background-color: #f8f9fa; /* 浅灰色背景 */
+            padding: 20px;
+            border-radius: 8px; /* 圆角 */
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* 阴影效果 */
+            margin-bottom: 20px;
+        }
+
+        .sidebar-block {
+            margin-bottom: 20px;
+        }
+
+        /* 搜索框样式 */
+        .search-box input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px; /* 圆角 */
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.1); /* 内阴影 */
+        }
+
+        .search-box input[type="text"]:focus {
+            border-color: #66afe9;
+            outline: none;
+        }
+
+        /* 排序按钮样式 */
+        .sorting-buttons button {
+            width: 100%;
+            padding: 10px;
+            color: #495057; /* 深灰色文本 */
+            background-color: #e9ecef; /* 按钮背景色 */
+            border: 1px solid #ced4da; /* 边框颜色 */
+            border-radius: 4px; /* 圆角 */
+            transition: all 0.3s ease-in-out;
+        }
+
+        .sorting-buttons button:hover {
+            background-color: #dae0e5; /* 鼠标悬浮时的背景色 */
+            border-color: #adb5bd; /* 鼠标悬浮时的边框颜色 */
+        }
+
+        /* 边距调整 */
+        .mb-2, .mb-4 {
+            margin-bottom: 1.5rem; /* 统一底部外边距 */
+        }
+
+
+        
         @media (min-width:1200px) {
             .navbar .dropdown-menu.show {
                 display: block;
@@ -85,7 +172,7 @@
                 <div class="row d-flex align-items-center">
                     <div class="col-sm-7 d-none d-sm-block">
                         <ul class="list-inline topbar-text mb-0 d-flex justify-content-end">
-                            <li class="list-inline-item px-3">Free shipping on orders over $300</li>
+                            <li class="list-inline-item px-3">Free shipping on orders over $150</li>
                         </ul>
                     </div>
                 </div>
@@ -146,27 +233,21 @@
                             </div>
                         </div>
 
-                        <!-- Search Button-->
-                        <div class="nav-item navbar-icon-link" data-bs-toggle="offcanvas"
-                            data-bs-target="#searchOffcanvas" aria-controls="searchOffcanvas">
-                            <i class="fas fa-search"></i>
-                        </div>
-                        <div class="nav-item" id="userAccount">
+
+                        <div class="nav-item login-margin" id="userAccount">
                             <!-- 登录链接 -->
                             <a class="navbar-icon-link" href="user-login.html" id="userLoginLink">
                                 <i class="far fa-user"></i>
                             </a>
                         </div>
+
                         <!-- Offcanvas Cart Trigger -->
                         <div class="nav-item">
-                            <a class="navbar-icon-link" href="#" data-bs-toggle="offcanvas"
-                                data-bs-target="#offcanvasCart" aria-controls="offcanvasCart">
+                            <a class="navbar-icon-link" href="#" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart" aria-controls="offcanvasCart">
                                 <i class="fas fa-shopping-cart"></i>
-                                <div class="navbar-icon-link-badge">3</div>
+                                <div class="navbar-icon-link-badge" id="cart-badge">0</div>
                             </a>
                         </div>
-
-                        
                     </div>
                 </div>
             </div>
@@ -177,61 +258,27 @@
         <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasCart" aria-labelledby="offcanvasCartLabel">
             <div class="offcanvas-header">
                 <h5 id="offcanvasCartLabel">Cart</h5>
-                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
-                    aria-label="Close"></button>
+                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body">
-                <!-- 添加 Cart items -->
-                <!-- Cart items here -->
-                <!-- Repeat your cart item structure here as needed -->
                 <ul class="minicart-product-list">
-                    <!-- 得修改成添加商品进购物车的逻辑！！！-->
-                    <li>
-                        <a href="product-details.html" class="image"><img src="#" alt="Cart product Image"></a>
-                        <div class="content">
-                            <!-- 得从数据库/其他地方提取信息 -->
-                            <a href="product-details.html" class="title">Walnut Cutting Board</a>
-                            <span class="quantity-price">1 x <span class="amount">$100.00</span></span>
-                            <a href="#" class="remove">×</a> <!-- 修改逻辑 -->
-                        </div>
-                    </li>
+                    <!-- Add items to the cart -->
                 </ul>
 
                 <!-- Total Price -->
-                <div class="navbar-cart-total"><span class="text-uppercase text-muted">Total</span><strong
-                        class="text-uppercase">$225.00</strong></div>
+                <div class="navbar-cart-total">
+                    <span class="text-uppercase text-muted">Total</span>
+                    <strong class="text-uppercase" id="navBar-total">$00.00</strong>
+                </div>
                 <!-- Buttons -->
                 <div class="buttons">
                     <a href="user-cart.html" class="btn btn-dark btn-hover-primary">view cart</a>
                     <a href="#" id="checkoutButton" class="btn btn-outline-dark">checkout</a>
                 </div>
-                <p class="minicart-message" style="text-align: center; margin-top: 20px;">Free Shipping on All Orders
-                    Over $100!</p>
+                <p class="minicart-message" style="text-align: center; margin-top: 20px;">Free Shipping on All Orders Over $100!</p>
             </div>
         </div>
 
-
-
-        <!-- Search Offcanvas -->
-        <div class="offcanvas offcanvas-top" tabindex="-1" id="searchOffcanvas" aria-labelledby="searchOffcanvasLabel">
-            <div class="offcanvas-header">
-                <h5 id="searchOffcanvasLabel">Search</h5>
-                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
-                    aria-label="Close"></button>
-            </div>
-            <div class="offcanvas-body">
-                <form class="search-area-form" action="#">
-                    <div class="mb-4 position-relative">
-                        <input class="search-area-input form-control" type="search" name="search" id="search"
-                            placeholder="What are you looking for?">
-
-                        <div class="d-grid gap-2 col-6 mx-auto">
-                            <button class="btn btn-primary" type="submit" style="margin-top: 25px;">Search</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
 
     </header>
     <!-- Navbar end -->
@@ -262,689 +309,66 @@
     
 
     <!-- All Products Section -->
-    <div class="container">
+    <div class="container mb-8">
         <!-- Shop Toolbar Start -->
         <div class="shop-toolbar border-bottom">
-            <div class="container">
-                <div class="row products-mb">
-
-                    <!-- Isotop Filter Start -->
-                    <div class="col-md col-12 align-self-center products-mb">
-                        <div class="isotope-filter shop-product-filter" data-target="#shop-products">
-                            <button class="active" data-filter="*">all</button>
-                            <button data-filter=".painting">Paintings</button>
-                            <button data-filter=".digital">Digital</button>
-                            <button data-filter=".abstract">Abstrat Art</button>
-                        </div>
+            <div class="row">
+                <!-- Isotop Filter Start -->
+                <div class="col-md col-12 align-self-center">
+                    <div class="shop-product-filter" data-target="#shop-products">
+                        <button class="active" data-filter="*">All Artworks</button>
+                        <button data-filter=".abstract">Abstrat Art</button>
+                        <button data-filter=".digital">Digital</button>
+                        <button data-filter=".painting">Paintings</button>
+                        <button data-filter=".nft">NFT</button>
+                        <button data-filter=".physical">Physical</button>
                     </div>
-                    <!-- Isotop Filter End -->
-
-                    <div class="col-md-auto col-12 products-mb">
-                        <ul class="shop-toolbar-controls">
-
-                            <li>
-                                <div class="product-sorting">
-                                    <select class="nice-select">
-                                        <option value="menu_order" selected="selected">Default sorting</option>
-                                        <option value="popularity">Sort by popularity</option>
-                                        <option value="rating">Sort by average rating</option>
-                                        <option value="date">Sort by latest</option>
-                                        <option value="price">Sort by price: low to high</option>
-                                        <option value="price-desc">Sort by price: high to low</option>
-                                    </select>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="product-column-toggle d-none d-xl-flex">
-                                    <button class="toggle hintT-top" data-hint="5 Column" data-column="5" title="5 Column">
-                                        <i class="ti-layout-grid4-alt"></i>
-                                    </button>
-                                    <button class="toggle active hintT-top" data-hint="4 Column" data-column="4" title="4 Column">
-                                        <i class="ti-layout-grid3-alt"></i>
-                                    </button>
-                                    <button class="toggle hintT-top" data-hint="3 Column" data-column="3" title="3 Column">
-                                        <i class="ti-layout-grid2-alt"></i>
-                                    </button>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-
                 </div>
             </div>
         </div>
         <!-- Shop Toolbar End -->
 
         <div class="section products-mt-70">
-            <div class="row products-mb-n50">
+            <div class="container">
 
-                <!-- Grid -->
-                <div class="products-grid col-xl-9 col-lg- products-mb-50 order-lg-2">
+                <div class="row">
 
-                    <!-- Products Grid -->
-                    <div class="mx-n3">
-                        <div class="row">
+                    <!-- Grid -->
+                    <div class="products-grid col-xl-9 col-lg-8 order-lg-2">
 
-                            <div id="shop-products"
-                                class="products isotope-grid row row-cols-xl-4 row-cols-md-3 row-cols-sm-2 row-cols-1">
+                        <!-- Products Grid -->
+                        <div id="shop-products" class="products row row-cols-xl-4 row-cols-md-3 row-cols-sm-2 row-cols-1">
+                            <!-- Artworks will be dynamically inserted here by JavaScript -->
 
-                                <!-- product-->
-                                <div class="item grid-item">
-                                    <div class="product">
-                                        <div class="product-image">
-                                            <div class="ribbon ribbon-info">Fresh</div><img class="img-fluid" src="assets/images/artworks/paintings/doppia-essenza.jpeg" alt="product" >
-                                            <div class="product-hover-overlay"><a class="product-hover-overlay-link"
-                                                    href="detail.html"></a>
-                                                <div class="product-hover-overlay-buttons">
-                                                    <a class="btn btn-outline-dark btn-product-left d-none d-sm-inline-block" href="#">
-                                                        <i class="fa fa-shopping-cart"></i>
-                                                    </a>
-                                                    <a class="btn btn-dark btn-buy" href="detail.html">
-                                                        <i class="fa-search fa"></i><span class="btn-buy-label ms-2">View</span>
-                                                    </a>
-                                                    <a class="btn btn-outline-dark btn-product-right d-none d-sm-inline-block" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                                        <i class="fa fa-expand-arrows-alt"></i>
-                                                    </a>
-                                                </div>
-                                            </div> 
-                                        </div>
-                                        <div class="py-2">
-                                            <p class="text-muted text-sm mb-1">Jackets</p>
-                                            <h3 class="h6 text-uppercase mb-1"><a class="text-dark"
-                                                    href="detail.html">White
-                                                    Tee</a></h3><span class="text-muted">$40.00</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- /product-->
-                                <!-- product-->
-                                <div class="item grid-item ">
-                                    <div class="product">
-                                        <div class="product-image"><img class="img-fluid" src="assets/images/artworks/paintings/Flower.jpeg" alt="product">
-                                            <div class="product-hover-overlay"><a class="product-hover-overlay-link"
-                                                    href="detail.html"></a>
-                                                <div class="product-hover-overlay-buttons"><a
-                                                        class="btn btn-outline-dark btn-product-left d-none d-sm-inline-block"
-                                                        href="#"><i class="fa fa-shopping-cart"></i></a><a
-                                                        class="btn btn-dark btn-buy" href="detail.html"><i
-                                                            class="fa-search fa"></i><span
-                                                            class="btn-buy-label ms-2">View</span></a>
-                                                            <a class="btn btn-outline-dark btn-product-right d-none d-sm-inline-block" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                                                <i class="fa fa-expand-arrows-alt"></i>
-                                                            </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="py-2">
-                                            <p class="text-muted text-sm mb-1">Denim</p>
-                                            <h3 class="h6 text-uppercase mb-1"><a class="text-dark"
-                                                    href="detail.html">Black
-                                                    blouse</a></h3><span class="text-muted">$40.00</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- /product-->
-                                <!-- product-->
-                                <div class="item grid-item">
-                                    <div class="product">
-                                        <div class="product-image">
-                                            <div class="ribbon ribbon-primary">Sale</div><img class="img-fluid"
-                                                src="assets/images/Lonely-in-silence.jpeg"
-                                                alt="product" />
-                                            <div class="product-hover-overlay"><a class="product-hover-overlay-link"
-                                                    href="detail.html"></a>
-                                                <div class="product-hover-overlay-buttons"><a
-                                                        class="btn btn-outline-dark btn-product-left d-none d-sm-inline-block"
-                                                        href="#"><i class="fa fa-shopping-cart"></i></a><a
-                                                        class="btn btn-dark btn-buy" href="detail.html"><i
-                                                            class="fa-search fa"></i><span
-                                                            class="btn-buy-label ms-2">View</span></a><a
-                                                        class="btn btn-outline-dark btn-product-right d-none d-sm-inline-block"
-                                                        href="#" data-bs-toggle="modal"
-                                                        data-bs-target="#exampleModal"><i
-                                                            class="fa fa-expand-arrows-alt"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="py-2">
-                                            <p class="text-muted text-sm mb-1">Accessories</p>
-                                            <h3 class="h6 text-uppercase mb-1"><a class="text-dark"
-                                                    href="detail.html">College
-                                                    jacket</a></h3><span class="text-muted">$40.00</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- /product-->
-                                <!-- product-->
-                                <div class="item grid-item">
-                                    <div class="product">
-                                        <div class="product-image"><img class="img-fluid"
-                                                src="https://d19m59y37dris4.cloudfront.net/sell/2-0-1/img/product/ethan-haddox-484912-unsplash-cropped.jpg"
-                                                alt="product" />
-                                            <div class="product-hover-overlay"><a class="product-hover-overlay-link"
-                                                    href="detail.html"></a>
-                                                <div class="product-hover-overlay-buttons"><a
-                                                        class="btn btn-outline-dark btn-product-left d-none d-sm-inline-block"
-                                                        href="#"><i class="fa fa-shopping-cart"></i></a><a
-                                                        class="btn btn-dark btn-buy" href="detail.html"><i
-                                                            class="fa-search fa"></i><span
-                                                            class="btn-buy-label ms-2">View</span></a><a
-                                                        class="btn btn-outline-dark btn-product-right d-none d-sm-inline-block"
-                                                        href="#" data-bs-toggle="modal"
-                                                        data-bs-target="#exampleModal"><i
-                                                            class="fa fa-expand-arrows-alt"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="py-2">
-                                            <p class="text-muted text-sm mb-1">Denim</p>
-                                            <h3 class="h6 text-uppercase mb-1"><a class="text-dark"
-                                                    href="detail.html">Carrot-fit jeans</a></h3><span
-                                                class="text-muted">$40.00</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- /product-->
-                                <!-- product-->
-                                <div class="item grid-item">
-                                    <div class="product">
-                                        <div class="product-image"><img class="img-fluid"
-                                                src="https://d19m59y37dris4.cloudfront.net/sell/2-0-1/img/product/serrah-galos-494231-unsplash-cropped.jpg"
-                                                alt="product" />
-                                            <div class="product-hover-overlay"><a class="product-hover-overlay-link"
-                                                    href="detail.html"></a>
-                                                <div class="product-hover-overlay-buttons"><a
-                                                        class="btn btn-outline-dark btn-product-left d-none d-sm-inline-block"
-                                                        href="#"><i class="fa fa-shopping-cart"></i></a><a
-                                                        class="btn btn-dark btn-buy" href="detail.html"><i
-                                                            class="fa-search fa"></i><span
-                                                            class="btn-buy-label ms-2">View</span></a><a
-                                                        class="btn btn-outline-dark btn-product-right d-none d-sm-inline-block"
-                                                        href="#" data-bs-toggle="modal"
-                                                        data-bs-target="#exampleModal"><i
-                                                            class="fa fa-expand-arrows-alt"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="py-2">
-                                            <p class="text-muted text-sm mb-1">Jackets</p>
-                                            <h3 class="h6 text-uppercase mb-1"><a class="text-dark"
-                                                    href="detail.html">Striped
-                                                    T-Shirt</a></h3><span class="text-muted">$40.00</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- /product-->
-                                <!-- product-->
-                                <div class="item grid-item">
-                                    <div class="product">
-                                        <div class="product-image"><img class="img-fluid"
-                                                src="https://d19m59y37dris4.cloudfront.net/sell/2-0-1/img/product/averie-woodard-319832-unsplash-cropped.jpg"
-                                                alt="product" />
-                                            <div class="product-hover-overlay"><a class="product-hover-overlay-link"
-                                                    href="detail.html"></a>
-                                                <div class="product-hover-overlay-buttons"><a
-                                                        class="btn btn-outline-dark btn-product-left d-none d-sm-inline-block"
-                                                        href="#"><i class="fa fa-shopping-cart"></i></a><a
-                                                        class="btn btn-dark btn-buy" href="detail.html"><i
-                                                            class="fa-search fa"></i><span
-                                                            class="btn-buy-label ms-2">View</span></a><a
-                                                        class="btn btn-outline-dark btn-product-right d-none d-sm-inline-block"
-                                                        href="#" data-bs-toggle="modal"
-                                                        data-bs-target="#exampleModal"><i
-                                                            class="fa fa-expand-arrows-alt"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="py-2">
-                                            <p class="text-muted text-sm mb-1">Shirts</p>
-                                            <h3 class="h6 text-uppercase mb-1"><a class="text-dark"
-                                                    href="detail.html">Short
-                                                    top</a></h3><span class="text-muted">$40.00</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- /product-->
-                                <!-- product-->
-                                <div class="item grid-item">
-                                    <div class="product">
-                                        <div class="product-image">
-                                            <div class="ribbon ribbon-danger">Sold out</div><img class="img-fluid"
-                                                src="https://d19m59y37dris4.cloudfront.net/sell/2-0-1/img/product/serrah-galos-494279-unsplash.jpg"
-                                                alt="product" />
-                                            <div class="product-hover-overlay"><a class="product-hover-overlay-link"
-                                                    href="detail.html"></a>
-                                                <div class="product-hover-overlay-buttons"><a
-                                                        class="btn btn-outline-dark btn-product-left d-none d-sm-inline-block"
-                                                        href="#"><i class="fa fa-shopping-cart"></i></a><a
-                                                        class="btn btn-dark btn-buy" href="detail.html"><i
-                                                            class="fa-search fa"></i><span
-                                                            class="btn-buy-label ms-2">View</span></a><a
-                                                        class="btn btn-outline-dark btn-product-right d-none d-sm-inline-block"
-                                                        href="#" data-bs-toggle="modal"
-                                                        data-bs-target="#exampleModal"><i
-                                                            class="fa fa-expand-arrows-alt"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="py-2">
-                                            <p class="text-muted text-sm mb-1">Sweaters</p>
-                                            <h3 class="h6 text-uppercase mb-1"><a class="text-dark"
-                                                    href="detail.html">Ethnic
-                                                    Sweater</a></h3><span class="text-muted">$40.00</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- /product-->
-                                <!-- product-->
-                                <div class="ite grid-item">
-                                    <div class="product">
-                                        <div class="product-image"><img class="img-fluid"
-                                                src="https://d19m59y37dris4.cloudfront.net/sell/2-0-1/img/product/dmitriy-ilkevich-437760-unsplash.jpg"
-                                                alt="product" />
-                                            <div class="product-hover-overlay"><a class="product-hover-overlay-link"
-                                                    href="detail.html"></a>
-                                                <div class="product-hover-overlay-buttons"><a
-                                                        class="btn btn-outline-dark btn-product-left d-none d-sm-inline-block"
-                                                        href="#"><i class="fa fa-shopping-cart"></i></a><a
-                                                        class="btn btn-dark btn-buy" href="detail.html"><i
-                                                            class="fa-search fa"></i><span
-                                                            class="btn-buy-label ms-2">View</span></a><a
-                                                        class="btn btn-outline-dark btn-product-right d-none d-sm-inline-block"
-                                                        href="#" data-bs-toggle="modal"
-                                                        data-bs-target="#exampleModal"><i
-                                                            class="fa fa-expand-arrows-alt"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="py-2">
-                                            <p class="text-muted text-sm mb-1">Coats</p>
-                                            <h3 class="h6 text-uppercase mb-1"><a class="text-dark"
-                                                    href="detail.html">Beige</a>
-                                            </h3><span class="text-muted">$40.00</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- /product-->
-                                <!-- product-->
-                                <div class="ite grid-item">
-                                    <div class="product">
-                                        <div class="product-image"><img class="img-fluid"
-                                                src="https://d19m59y37dris4.cloudfront.net/sell/2-0-1/img/product/dmitriy-ilkevich-437760-unsplash.jpg"
-                                                alt="product" />
-                                            <div class="product-hover-overlay"><a class="product-hover-overlay-link"
-                                                    href="detail.html"></a>
-                                                <div class="product-hover-overlay-buttons"><a
-                                                        class="btn btn-outline-dark btn-product-left d-none d-sm-inline-block"
-                                                        href="#"><i class="fa fa-shopping-cart"></i></a><a
-                                                        class="btn btn-dark btn-buy" href="detail.html"><i
-                                                            class="fa-search fa"></i><span
-                                                            class="btn-buy-label ms-2">View</span></a><a
-                                                        class="btn btn-outline-dark btn-product-right d-none d-sm-inline-block"
-                                                        href="#" data-bs-toggle="modal"
-                                                        data-bs-target="#exampleModal"><i
-                                                            class="fa fa-expand-arrows-alt"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="py-2">
-                                            <p class="text-muted text-sm mb-1">Coats</p>
-                                            <h3 class="h6 text-uppercase mb-1"><a class="text-dark"
-                                                    href="detail.html">Beige</a>
-                                            </h3><span class="text-muted">$40.00</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- /product-->
-                                <!-- product-->
-                                <div class="item grid-item ">
-                                    <div class="product">
-                                        <div class="product-image"><img class="img-fluid"
-                                                src="https://d19m59y37dris4.cloudfront.net/sell/2-0-1/img/product/ian-dooley-347968-unsplash.jpg"
-                                                alt="product" />
-                                            <div class="product-hover-overlay"><a class="product-hover-overlay-link"
-                                                    href="detail.html"></a>
-                                                <div class="product-hover-overlay-buttons"><a
-                                                        class="btn btn-outline-dark btn-product-left d-none d-sm-inline-block"
-                                                        href="#"><i class="fa fa-shopping-cart"></i></a><a
-                                                        class="btn btn-dark btn-buy" href="detail.html"><i
-                                                            class="fa-search fa"></i><span
-                                                            class="btn-buy-label ms-2">View</span></a><a
-                                                        class="btn btn-outline-dark btn-product-right d-none d-sm-inline-block"
-                                                        href="#" data-bs-toggle="modal"
-                                                        data-bs-target="#exampleModal"><i
-                                                            class="fa fa-expand-arrows-alt"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="py-2">
-                                            <p class="text-muted text-sm mb-1">T-Shirts</p>
-                                            <h3 class="h6 text-uppercase mb-1"><a class="text-dark"
-                                                    href="detail.html">Skull
-                                                    Tee</a></h3><span class="text-muted">$40.00</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- /product-->
-                                <!-- product-->
-                                <div class="item grid-item ">
-                                    <div class="product">
-                                        <div class="product-image"><img class="img-fluid"
-                                                src="https://d19m59y37dris4.cloudfront.net/sell/2-0-1/img/product/alex-holyoake-571682-unsplash-cropped.jpg"
-                                                alt="product" />
-                                            <div class="product-hover-overlay"><a class="product-hover-overlay-link"
-                                                    href="detail.html"></a>
-                                                <div class="product-hover-overlay-buttons"><a
-                                                        class="btn btn-outline-dark btn-product-left d-none d-sm-inline-block"
-                                                        href="#"><i class="fa fa-shopping-cart"></i></a><a
-                                                        class="btn btn-dark btn-buy" href="detail.html"><i
-                                                            class="fa-search fa"></i><span
-                                                            class="btn-buy-label ms-2">View</span></a><a
-                                                        class="btn btn-outline-dark btn-product-right d-none d-sm-inline-block"
-                                                        href="#" data-bs-toggle="modal"
-                                                        data-bs-target="#exampleModal"><i
-                                                            class="fa fa-expand-arrows-alt"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="py-2">
-                                            <p class="text-muted text-sm mb-1">Denim</p>
-                                            <h3 class="h6 text-uppercase mb-1"><a class="text-dark"
-                                                    href="detail.html">Trucker
-                                                    jacket</a></h3><span class="text-muted">$40.00</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- /product-->
-                                <!-- product-->
-                                <div class="item grid-item ">
-                                    <div class="product">
-                                        <div class="product-image"><img class="img-fluid"
-                                                src="https://d19m59y37dris4.cloudfront.net/sell/2-0-1/img/product/ao-456813-unsplash.jpg"
-                                                alt="product" />
-                                            <div class="product-hover-overlay"><a class="product-hover-overlay-link"
-                                                    href="detail.html"></a>
-                                                <div class="product-hover-overlay-buttons"><a
-                                                        class="btn btn-outline-dark btn-product-left d-none d-sm-inline-block"
-                                                        href="#"><i class="fa fa-shopping-cart"></i></a><a
-                                                        class="btn btn-dark btn-buy" href="detail.html"><i
-                                                            class="fa-search fa"></i><span
-                                                            class="btn-buy-label ms-2">View</span></a><a
-                                                        class="btn btn-outline-dark btn-product-right d-none d-sm-inline-block"
-                                                        href="#" data-bs-toggle="modal"
-                                                        data-bs-target="#exampleModal"><i
-                                                            class="fa fa-expand-arrows-alt"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="py-2">
-                                            <p class="text-muted text-sm mb-1">Denim</p>
-                                            <h3 class="h6 text-uppercase mb-1"><a class="text-dark"
-                                                    href="detail.html">Blouse</a></h3><span
-                                                class="text-muted">$40.00</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- /product-->
-                                <!-- product-->
-                                <div class="item grid-item">
-                                    <div class="product">
-                                        <div class="product-image"><img class="img-fluid"
-                                                src="https://d19m59y37dris4.cloudfront.net/sell/2-0-1/img/product/kyle-loftus-592041-unsplash.jpg"
-                                                alt="product" />
-                                            <div class="product-hover-overlay"><a class="product-hover-overlay-link"
-                                                    href="detail.html"></a>
-                                                <div class="product-hover-overlay-buttons"><a
-                                                        class="btn btn-outline-dark btn-product-left d-none d-sm-inline-block"
-                                                        href="#"><i class="fa fa-shopping-cart"></i></a><a
-                                                        class="btn btn-dark btn-buy" href="detail.html"><i
-                                                            class="fa-search fa"></i><span
-                                                            class="btn-buy-label ms-2">View</span></a>
-                                                            <a class="btn btn-outline-dark btn-product-right d-none d-sm-inline-block" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                                                <i class="fa fa-expand-arrows-alt"></i>
-                                                            </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="py-2">
-                                            <p class="text-muted text-sm mb-1">Denim</p>
-                                            <h3 class="h6 text-uppercase mb-1"><a class="text-dark"
-                                                    href="detail.html">Shirt</a>
-                                            </h3><span class="text-muted">$40.00</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- /product-->
-                                <!-- Product End -->
+
+                        </div>
+
+                        <!-- Pagination-->
+                        <nav class="d-flex justify-content-center mb-5 mt-3" aria-label="page navigation">
+                            <ul class="pagination">
+                                <!-- Pagination buttons will be dynamically inserted here by JavaScript -->
+                            </ul>
+                        </nav>
+                            
+                    </div>
+
+
+                    <!-- Sidebar-->
+                    <div class="sidebar col-xl-3 col-lg-4 order-lg-1">
+                        <div class="sidebar-block px-3 px-lg-0 me-lg-4">
+                             <!-- Search Box -->
+                             <div class="search-box mb-4">
+                                <input type="text" id="search-input" placeholder="Search for artwork..." class="form-control">
+                            </div>
+                            <!-- Sorting Buttons -->
+                            <div class="sorting-buttons mb-4">
+                                <button id="sort-low-to-high" class="btn btn-outline-primary mb-2">Price: Low to High</button>
+                                <button id="sort-high-to-low" class="btn btn-outline-primary mb-2">Price: High to Low</button>
                             </div>
                         </div>
+                        
                     </div>
-                    <!-- Pagination-->
-                    <nav class="d-flex justify-content-center mb-5 mt-3" aria-label="page navigation">
-                        <ul class="pagination">
-                            <li class="page-item">
-                                <a class="page-link" href="#" aria-label="Previous">
-                                    <span aria-hidden="true">Prev</span><span class="sr-only">Previous</span>
-                                </a>
-                            </li>
-                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2 </a></li>
-                            <li class="page-item"><a class="page-link" href="#">3 </a></li>
-                            <li class="page-item"><a class="page-link" href="#">4 </a></li>
-                            <li class="page-item"><a class="page-link" href="#">5 </a></li>
-                            <li class="page-item">
-                                <a class="page-link" href="#" aria-label="Next"><span
-                                        aria-hidden="true">Next</span><span class="sr-only">Next </span></a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-
-
-                <!-- Sidebar-->
-                <div class="sidebar col-xl-3 col-lg-4 order-lg-1">
-                    <div class="sidebar-block px-3 px-lg-0 me-lg-4">
-                        <a class="d-lg-none block-toggler" data-bs-toggle="collapse" href="#categoriesMenu"
-                            aria-expanded="false" aria-controls="categoriesMenu">Product Categories</a>
-                        <div class="expand-lg collapse" id="categoriesMenu">
-                            <div class="nav nav-pills flex-column mt-4 mt-lg-0" role="menu">
-                                <div class="sidebar-menu-item mb-2 active" data-bs-toggle="collapse" data-bs-target="#subcategories_0" aria-expanded="true" aria-controls="subcategories_0" role="menuitem">
-                                    <a class="nav-link active" href="#!">
-                                        <span>Jackets</span>
-                                        <span class="sidebar-badge ms-2">123</span>
-                                    </a>
-                                </div>
-                                <div class="collapse show" id="subcategories_0">
-                                    <div class="nav nav-pills flex-column ms-3">
-                                        <a class="nav-link mb-2" href="#!">Lorem ipsum</a>
-                                        <a class="nav-link mb-2" href="#!">Dolor</a>
-                                        <a class="nav-link mb-2" href="#!">Sit amet</a>
-                                        <a class="nav-link mb-2" href="#!">Donec vitae</a>
-                                    </div>
-                                </div>
-
-                                <div class="sidebar-menu-item mb-2" data-bs-toggle="collapse" data-bs-target="#subcategories_1" aria-expanded="false" aria-controls="subcategories_1" role="menuitem">
-                                    <a class="nav-link " href="#!"><span>Jeans &amp; chinos</span>
-                                        <span class="sidebar-badge ms-2">55</span></a>
-                                </div>
-                                <div class="collapse" id="subcategories_1">
-                                    <div class="nav nav-pills flex-column ms-3"><a class="nav-link mb-2" href="#!">Lorem
-                                            ipsum</a><a class="nav-link mb-2" href="#!">Dolor</a><a
-                                            class="nav-link mb-2" href="#!">Sit amet</a><a class="nav-link mb-2"
-                                            href="#!">Donec vitae</a>
-                                    </div>
-                                </div>
-
-                                
-                                <div class="sidebar-menu-item mb-2" data-bs-toggle="collapse"
-                                    data-bs-target="#subcategories_2" aria-expanded="false"
-                                    aria-controls="subcategories_2" role="menuitem"><a class="nav-link "
-                                        href="#!"><span>Accessories</span><span class="sidebar-badge ms-2">80</span></a>
-                                </div>
-                                <div class="collapse" id="subcategories_2">
-                                    <div class="nav nav-pills flex-column ms-3"><a class="nav-link mb-2" href="#!">Sit
-                                            amet</a><a class="nav-link mb-2" href="#!">Donec vitae</a><a
-                                            class="nav-link mb-2" href="#!">Lorem ipsum</a><a class="nav-link mb-2"
-                                            href="#!">Dolor</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                </div>
-                <!-- /Sidebar end-->
-            </div>
-        </div>
-        <!-- Quickview Modal    -->
-        <div class="modal fade quickview" id="exampleModal" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content">
-                    <button class="close modal-close" type="button" data-bs-dismiss="modal" aria-label="Close">
-                        <svg class="svg-icon w-100 h-100 svg-icon-light align-middle">
-                            <use xlink:href="#close-1"> </use>
-                        </svg>
-                    </button>
-                    <div class="modal-body">
-                        <div class="ribbon ribbon-primary">Sale</div>
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <div class="owl-carousel owl-theme owl-dots-modern detail-full" data-slider-id="1">
-                                    <div class="detail-full-item-modal"
-                                        style="background: center center url('https://d19m59y37dris4.cloudfront.net/sell/2-0-1/img/photo/kyle-loftus-596319-detail-1.jpg') no-repeat; background-size: cover;">
-                                    </div>
-                                    <div class="detail-full-item-modal"
-                                        style="background: center center url('https://d19m59y37dris4.cloudfront.net/sell/2-0-1/img/photo/kyle-loftus-596319-detail-2.jpg') no-repeat; background-size: cover;">
-                                    </div>
-                                    <div class="detail-full-item-modal"
-                                        style="background: center center url('https://d19m59y37dris4.cloudfront.net/sell/2-0-1/img/photo/kyle-loftus-596319-detail-3.jpg') no-repeat; background-size: cover;">
-                                    </div>
-                                    <div class="detail-full-item-modal"
-                                        style="background: center center url('https://d19m59y37dris4.cloudfront.net/sell/2-0-1/img/photo/kyle-loftus-594535-unsplash-detail-3.jpg') no-repeat; background-size: cover;">
-                                    </div>
-                                    <div class="detail-full-item-modal"
-                                        style="background: center center url('https://d19m59y37dris4.cloudfront.net/sell/2-0-1/img/photo/kyle-loftus-594535-unsplash-detail-4.jpg') no-repeat; background-size: cover;">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 d-flex align-items-center">
-                                <div>
-                                    <h2 class="mb-4 mt-4 mt-lg-1">Modern Jacket</h2>
-                                    <div
-                                        class="d-flex flex-column flex-sm-row align-items-sm-center justify-content-sm-between mb-4">
-                                        <ul class="list-inline mb-2 mb-sm-0">
-                                            <li class="list-inline-item h4 fw-light mb-0">$65.00</li>
-                                            <li class="list-inline-item text-muted fw-light">
-                                                <del>$90.00</del>
-                                            </li>
-                                        </ul>
-                                        <div class="d-flex align-items-center">
-                                            <ul class="list-inline me-2 mb-0">
-                                                <li class="list-inline-item me-0"><i
-                                                        class="fa fa-star text-primary"></i>
-                                                </li>
-                                                <li class="list-inline-item me-0"><i
-                                                        class="fa fa-star text-primary"></i>
-                                                </li>
-                                                <li class="list-inline-item me-0"><i
-                                                        class="fa fa-star text-primary"></i>
-                                                </li>
-                                                <li class="list-inline-item me-0"><i
-                                                        class="fa fa-star text-primary"></i>
-                                                </li>
-                                                <li class="list-inline-item me-0"><i
-                                                        class="fa fa-star text-gray-300"></i>
-                                                </li>
-                                            </ul><span class="text-muted text-uppercase text-sm">25 reviews</span>
-                                        </div>
-                                    </div>
-                                    <p class="mb-4 text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                                        sed
-                                        do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-                                        veniam, quis nostrud exercitation ullamco</p>
-                                    <form action="#">
-                                        <div class="row">
-                                            <div class="col-sm-6 col-lg-12 detail-option mb-3">
-                                                <h6 class="detail-option-heading">Size <span>(required)</span></h6>
-                                                <label class="btn btn-sm btn-outline-secondary detail-option-btn-label"
-                                                    for="size_0"> Small
-                                                    <input class="input-invisible" type="radio" name="size"
-                                                        value="value_0" id="size_0" required>
-                                                </label>
-                                                <label class="btn btn-sm btn-outline-secondary detail-option-btn-label"
-                                                    for="size_1"> Medium
-                                                    <input class="input-invisible" type="radio" name="size"
-                                                        value="value_1" id="size_1" required>
-                                                </label>
-                                                <label class="btn btn-sm btn-outline-secondary detail-option-btn-label"
-                                                    for="size_2"> Large
-                                                    <input class="input-invisible" type="radio" name="size"
-                                                        value="value_2" id="size_2" required>
-                                                </label>
-                                            </div>
-                                            <div class="col-sm-6 col-lg-12 detail-option mb-3">
-                                                <h6 class="detail-option-heading">Type <span>(required)</span></h6>
-                                                <label class="btn btn-sm btn-outline-secondary detail-option-btn-label"
-                                                    for="material_0"> Hoodie
-                                                    <input class="input-invisible" type="radio" name="material"
-                                                        value="value_0" id="material_0" required>
-                                                </label>
-                                                <label class="btn btn-sm btn-outline-secondary detail-option-btn-label"
-                                                    for="material_1"> College
-                                                    <input class="input-invisible" type="radio" name="material"
-                                                        value="value_1" id="material_1" required>
-                                                </label>
-                                            </div>
-                                            <div class="col-12 detail-option mb-3">
-                                                <h6 class="detail-option-heading">Colour <span>(required)</span></h6>
-                                                <ul class="list-inline mb-0 colours-wrapper">
-                                                    <li class="list-inline-item">
-                                                        <label class="btn-colour" for="colour_Blue"
-                                                            style="background-color: #668cb9"> </label>
-                                                        <input class="input-invisible" type="radio" name="colour"
-                                                            value="value_Blue" id="colour_Blue" required>
-                                                    </li>
-                                                    <li class="list-inline-item">
-                                                        <label class="btn-colour" for="colour_White"
-                                                            style="background-color: #fff"> </label>
-                                                        <input class="input-invisible" type="radio" name="colour"
-                                                            value="value_White" id="colour_White" required>
-                                                    </li>
-                                                    <li class="list-inline-item">
-                                                        <label class="btn-colour" for="colour_Violet"
-                                                            style="background-color: #8b6ea4"> </label>
-                                                        <input class="input-invisible" type="radio" name="colour"
-                                                            value="value_Violet" id="colour_Violet" required>
-                                                    </li>
-                                                    <li class="list-inline-item">
-                                                        <label class="btn-colour" for="colour_Red"
-                                                            style="background-color: #dd6265"> </label>
-                                                        <input class="input-invisible" type="radio" name="colour"
-                                                            value="value_Red" id="colour_Red" required>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <div class="col-12 col-lg-6 detail-option mb-5">
-                                                <label class="detail-option-heading fw-bold">Items
-                                                    <span>(required)</span></label>
-                                                <input class="form-control detail-quantity" name="items" type="number"
-                                                    value="1">
-                                            </div>
-                                        </div>
-                                        <ul class="list-inline">
-                                            <li class="list-inline-item">
-                                                <button class="btn btn-dark btn-lg mb-1" type="submit"> <i
-                                                        class="fa fa-shopping-cart me-2"></i>Add to Cart</button>
-                                            </li>
-                                            <li class="list-inline-item"><a class="btn btn-outline-secondary mb-1"
-                                                    href="#">
-                                                    <i class="far fa-heart me-2"></i>Add to wishlist</a></li>
-                                        </ul>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <!-- /Sidebar end-->
                 </div>
             </div>
         </div>
@@ -961,7 +385,7 @@
                         <i class="fas fa-shipping-fast fa-3x service-icon"></i>
                         <div class="service-text">
                             <h6 class="text-uppercase">Free shipping &amp; return</h6>
-                            <p class="text-muted fw-light text-sm mb-0">Free Shipping over $300</p>
+                            <p class="text-muted fw-light text-sm mb-0">Free Shipping over $150</p>
                         </div>
                     </div>
                     <div class="col-lg-4 service-column">
@@ -1021,11 +445,12 @@
                     <div class="col-lg-4">
                         <h6 class="text-uppercase text-dark mb-3">Daily Offers & Discounts</h6>
                         <p class="mb-3"> Want to get newsletter in time? Subscribe our website!</p>
-                        <form action="#" id="newsletter-form">
+                        <form id="newsletter-form" action="https://api.web3forms.com/submit" method="POST">
+                            <input type="hidden" name="access_key" value="24108a2c-9516-495b-b4dd-b7bc69a8d0e4">
+
                             <div class="input-group mb-3">
-                                <input class="form-control bg-transparent border-secondary " type="email"
-                                    placeholder="Your Email Address" aria-label="Your Email Address"
-                                    style="margin-right: 10px;">
+                                <input class="form-control bg-transparent border-secondary " type="email" name="email" placeholder="Your Email Address" aria-label="Your Email Address" style="margin-right: 10px;">
+
                                 <div class="input-group-append">
                                     <button class="btn btn-outline-secondary border-start-0" type="submit">
                                         <i class="fa fa-paper-plane text-lg text-dark"></i>
@@ -1069,13 +494,18 @@
     <!-- jQuery-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.0/js/jquery.nice-select.min.js" integrity="sha512-Q27qmhQTPA7DBhZVnJnSovHMSbhSBaUMsY3nzQeCHaxbAE7AM4HD7+tdWeA6JtgZBXlHd6jYVa3QKlPDf33MsA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- Select 2 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" integrity="sha512-nMNlpuaDPrqlEls3IX/Q56H36qvBASwb3ipuo3MxeWbsQB1881ox0cRv7UPTgBlriqoynt35KjEwgGUeUXIPnw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Imagesloaded-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/5.0.0/imagesloaded.pkgd.min.js" integrity="sha512-kfs3Dt9u9YcOiIt4rNcPUzdyNNO9sVGQPiZsub7ywg6lRW5KuK1m145ImrFHe3LMWXHndoKo2YRXWy8rnOcSKg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- isotope -->
-    <script src="assets/js/vendor/isotope.pkgd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha512-Zq2BOxyhvnRFXu0+WE6ojpZLOU2jdnqbrM1hmVdGzyeCa1DgM3X5Q4A/Is9xA1IkbUeDd7755dNNI/PzSf2Pew==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- MatchHeight-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.matchHeight/0.7.2/jquery.matchHeight-min.js" integrity="sha512-/bOVV1DV1AQXcypckRwsR9ThoCj7FqTV2/0Bm79bL3YSyLkVideFLE3MIZkq1u5t28ke1c0n31WYCOrO01dsUg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- Bootstrap JavaScript Bundle (Popper.js included)-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js" integrity="sha512-7Pi/otdlbbCR+LnW+F7PwFcSDJOuUJB3OxtEHbg4vSMvzvJjde4Po1v4BR9Gdc9aXNUNFVUY+SK51wWT8WF0Gg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- Owl Carousel-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="assets/js/vendor/owl.carousel2.thumbs.min.js"></script>
     <!-- Smooth scrolling-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/smooth-scroll/16.1.3/smooth-scroll.polyfills.min.js" integrity="sha512-LZ6YBzwuQvIG41twjliX3HUVeAd+ErnJ0UsqRnkI4firX2l71jxbKJoax/hu7XY2tiyLl0YA2kcnz/XEW+9O3g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- Lightbox gallery-->
@@ -1088,7 +518,250 @@
     <script src="assets/js/theme.js"></script>
     <script src="assets/js/vendor/jquery.cookie.js"></script>
     <script src="assets/js/index.js"></script>
-    <script src="https://kit.fontawesome.com/e85815ae07.js" crossorigin="anonymous"></script>
+    <script src="assets/js/vendor/fontAwesome.js"></script>
+    <script src="assets/js/cart.js"></script>
+    
+    <script>
+
+        document.addEventListener('DOMContentLoaded', function() {
+            let currentPage = 1;
+            const itemsPerPage = 8;
+            let allArtworks = [];
+            let currentFilter = '*';
+            let currentSort = 'default'; // 'default', 'low-to-high', 'high-to-low'
+
+            fetchArtworks();
+
+            const searchInput = document.getElementById('search-input');
+            searchInput.addEventListener('input', function() {
+                currentPage = 1;
+                updateDisplay();
+            });
+
+            document.getElementById('sort-low-to-high').addEventListener('click', function() {
+                currentSort = 'low-to-high';
+                updateDisplay();
+            });
+
+            document.getElementById('sort-high-to-low').addEventListener('click', function() {
+                currentSort = 'high-to-low';
+                updateDisplay();
+            });
+
+            const filterButtons = document.querySelectorAll('.shop-product-filter button');
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    currentFilter = this.getAttribute('data-filter');
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    currentPage = 1;
+                    updateDisplay();
+                });
+            });
+
+            function fetchArtworks() {
+                fetch('http://localhost:8080/artwork/getAllArtworks')
+                .then(response => response.json())
+                .then(data => {
+                    allArtworks = data;
+                    updateDisplay();
+                })
+                .catch(error => console.error('Error fetching artworks:', error));
+            }
+
+            function updateDisplay() {
+                const filteredArtworks = applyFiltersAndSearch();
+                displayPagination(filteredArtworks.length);
+                displayArtworks(getPageArtworks(filteredArtworks, currentPage));
+            }
+
+            function applyFiltersAndSearch() {
+                let filteredArtworks = allArtworks;
+                if (currentFilter !== '*') {
+                    filteredArtworks = filteredArtworks.filter(artwork => artwork.type.includes(currentFilter.substring(1)));
+                }
+                const searchTerm = searchInput.value.toLowerCase();
+                if (searchTerm) {
+                    filteredArtworks = filteredArtworks.filter(artwork => artwork.title.toLowerCase().includes(searchTerm));
+                }
+                if (currentSort === 'low-to-high') {
+                    filteredArtworks.sort((a, b) => a.price - b.price);
+                } else if (currentSort === 'high-to-low') {
+                    filteredArtworks.sort((a, b) => b.price - a.price);
+                }
+                return filteredArtworks;
+            }
+
+            function getPageArtworks(artworks, page) {
+                const startIndex = (page - 1) * itemsPerPage;
+                return artworks.slice(startIndex, startIndex + itemsPerPage);
+            }
+
+
+
+            function displayArtworks(artworks) {
+                const container = document.getElementById('shop-products');
+                container.innerHTML = ''; // 清空现有内容
+                artworks.forEach(artwork => {
+                    const isSold = artwork.user_id !== null;
+                    const artworkHtml = `
+                        <div class="grid-item col ${artwork.type}" data-type="${artwork.type}">
+                            <div class="product">
+                                <div class="product-image">
+                                    ${isSold ? '<div class="ribbon ribbon-info">Sold</div>' : ''}
+                                    <img src="${artwork.image_url}" alt="${artwork.title}" class="img-fluid">
+                                    <div class="product-hover-overlay">
+                                        <a href="product-detail.html?id=${artwork.id}" class="product-hover-overlay-link"></a>
+                                        <div class="product-hover-overlay-buttons">
+                                            <a href="javascript:void(0);" class="btn btn-outline-dark btn-product-left d-none d-sm-inline-block add-to-wishlist hintT-top" data-hint="Add to wishlist" data-artwork-id="${artwork.id}"><i class="far fa-heart"></i></a>
+                                            <a class="btn btn-outline-dark btn-product-right d-none d-sm-inline-block hintT-top" href="product-detail.html?id=${artwork.id}" data-hint="View">
+                                                <i class="fa-search fa"></i>
+                                            </a>
+                                            ${isSold ? '' : `<button class="btn btn-outline-dark btn-product-left d-none d-sm-inline-block add-to-cart hintT-top" data-artwork-id="${artwork.id}" data-hint="Add to Cart">
+                                                <i class="fa fa-shopping-cart"></i>
+                                            </button>`}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="text-center py-2">
+                                    <p class="text-muted text-sm mb-1">${artwork.type}</p>
+                                    <h3 class="h6 text-uppercase mb-1"><a href="product-detail.html?id=${artwork.id}" class="text-dark">${artwork.title}</a></h3>
+                                    <span class="text-muted">$${artwork.price.toFixed(2)}</span>
+                                </div>
+                            </div>
+                        </div>`;
+                    container.insertAdjacentHTML('beforeend', artworkHtml);
+                });
+
+                // Add event listeners after updating the DOM
+                addCartAndWishlistEventListeners();
+            }
+
+            function addCartAndWishlistEventListeners() {
+                document.querySelectorAll('.add-to-cart').forEach(button => {
+                    button.addEventListener('click', function(event) {
+                        event.preventDefault();
+                        const artworkId = this.getAttribute('data-artwork-id');
+                        handleAddToCart(artworkId);
+                    });
+                });
+
+                document.querySelectorAll('.add-to-wishlist').forEach(button => {
+                    button.addEventListener('click', function(event) {
+                        event.preventDefault();
+                        const artworkId = this.getAttribute('data-artwork-id');
+                        handleAddToWishlist(artworkId);
+                    });
+                });
+            }
+
+            function handleAddToCart(artworkId) {
+                const userInfoString = localStorage.getItem('userInfo');
+                if (userInfoString) {
+                    const userInfo = JSON.parse(userInfoString);
+                    addToCart(userInfo.id, artworkId);
+                } else {
+                    alert('Please log in to add items to the cart.');
+                    window.location.href = 'user-login.html';
+                }
+            }
+
+            function handleAddToWishlist(artworkId) {
+                const userInfoString = localStorage.getItem('userInfo');
+                if (userInfoString) {
+                    const userInfo = JSON.parse(userInfoString);
+                    addToWishlist(userInfo.id, artworkId);
+                } else {
+                    alert('Please log in to add items to the wishlist.');
+                    window.location.href = 'user-login.html';
+                }
+            }
+
+
+            function addToCart(userId, artworkId) {
+                fetch('http://localhost:8080/cart/addToCart', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        user_id: userId,
+                        artwork_id: artworkId
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.code === 200) {
+                        alert('Item added to cart successfully.');
+                        // reload the page 
+                        location.reload();
+                    } else if(data.code === 409){
+                        alert('Item already in cart.');
+                        location.reload();
+                    }else{
+                        alert('Failed to add item to cart.');
+                    }
+                    
+                })
+                .catch(error => console.error('Error adding item to cart:', error));
+            }
+
+            function addToWishlist(userId, artworkId) {
+                fetch('http://localhost:8080/wishlist/addToWishlist', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        user_id: userId,
+                        artwork_id: artworkId
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.code === 200) {
+                        alert('Item added to wishlist successfully.');
+                    } else if(data.code === 409){
+                        alert('Item already in wishlist.');
+                        location.reload();
+                    }else{
+                        alert('Failed to add item to wishlist.');
+                    }
+                })
+                .catch(error => console.error('Error adding item to wishlist:', error));
+            }
+
+
+
+
+            function displayPagination(totalItems) {
+                const pageCount = Math.ceil(totalItems / itemsPerPage);
+                const paginationContainer = document.querySelector('.pagination');
+                paginationContainer.innerHTML = '';
+                paginationContainer.innerHTML += `<li class="page-item ${currentPage === 1 ? 'disabled' : ''}">
+                                                    <a class="page-link" href="#" onclick="changePage(${currentPage - 1})">Previous</a>
+                                                </li>`;
+                for (let i = 1; i <= pageCount; i++) {
+                    paginationContainer.innerHTML += `<li class="page-item ${i === currentPage ? 'active' : ''}">
+                                                        <a class="page-link" href="#" onclick="changePage(${i})">${i}</a>
+                                                    </li>`;
+                }
+                paginationContainer.innerHTML += `<li class="page-item ${currentPage === pageCount ? 'disabled' : ''}">
+                                                    <a class="page-link" href="#" onclick="changePage(${currentPage + 1})">Next</a>
+                                                </li>`;
+            }
+
+            window.changePage = function(page) {
+                if (page < 1 || page > Math.ceil(allArtworks.length / itemsPerPage)) return;
+                currentPage = page;
+                updateDisplay();
+            };
+        });
+
+
+    </script>
+
+    
 
 </body>
 

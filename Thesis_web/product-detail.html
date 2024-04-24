@@ -14,10 +14,6 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
     integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"
-    integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
   <!-- Lightbox -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/glightbox/3.3.0/css/glightbox.min.css"
     integrity="sha512-T+KoG3fbDoSnlgEXFQqwcTC9AdkFIxhBlmoaFqYaIjq2ShhNwNao9AKaLUPMfwiBPL0ScxAtc+UYbHAgvd+sjQ=="
@@ -33,6 +29,29 @@
   <!-- Custom CSS -->
   <link rel="stylesheet" href="assets/css/index.css">
   <style>
+    #artistNameLink {
+      font-size: 1.2rem;
+      color: #28a745;
+      text-transform: uppercase;
+      font-weight: bold;
+      transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+      text-decoration: none;
+      padding: 8px 16px;
+      border: 2px solid transparent;
+      border-radius: 8px;
+      display: inline-block;
+    }
+
+    #artistNameLink:hover {
+      color: #1e7e34;
+      background-color: #e9ecef;
+      border-color: #28a745;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+
+
     @media (min-width:1200px) {
       .navbar .dropdown-menu.show {
         display: block;
@@ -92,7 +111,7 @@
         <div class="row d-flex align-items-center">
           <div class="col-sm-7 d-none d-sm-block">
             <ul class="list-inline topbar-text mb-0 d-flex justify-content-end">
-              <li class="list-inline-item px-3">Free shipping on orders over $300</li>
+              <li class="list-inline-item px-3">Free shipping on orders over $150</li>
             </ul>
           </div>
         </div>
@@ -153,12 +172,7 @@
               </div>
             </div>
 
-            <!-- Search Button-->
-            <div class="nav-item navbar-icon-link" data-bs-toggle="offcanvas" data-bs-target="#searchOffcanvas"
-              aria-controls="searchOffcanvas">
-              <i class="fas fa-search"></i>
-            </div>
-            <div class="nav-item" id="userAccount">
+            <div class="nav-item login-margin" id="userAccount">
               <!-- 登录链接 -->
               <a class="navbar-icon-link" href="user-login.html" id="userLoginLink">
                 <i class="far fa-user"></i>
@@ -169,7 +183,7 @@
               <a class="navbar-icon-link" href="#" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart"
                 aria-controls="offcanvasCart">
                 <i class="fas fa-shopping-cart"></i>
-                <div class="navbar-icon-link-badge">3</div>
+                <div class="navbar-icon-link-badge" id="cart-badge">0</div>
               </a>
             </div>
           </div>
@@ -185,56 +199,25 @@
         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
       <div class="offcanvas-body">
-        <!-- 添加 Cart items -->
-        <!-- Cart items here -->
-        <!-- Repeat your cart item structure here as needed -->
         <ul class="minicart-product-list">
-          <!-- 得修改成添加商品进购物车的逻辑！！！-->
-          <li>
-            <a href="product-details.html" class="image"><img src="#" alt="Cart product Image"></a>
-            <div class="content">
-              <!-- 得从数据库/其他地方提取信息 -->
-              <a href="product-details.html" class="title">Walnut Cutting Board</a>
-              <span class="quantity-price">1 x <span class="amount">$100.00</span></span>
-              <a href="#" class="remove">×</a> <!-- 修改逻辑 -->
-            </div>
-          </li>
+          <!-- Add items to the cart -->
         </ul>
 
         <!-- Total Price -->
-        <div class="navbar-cart-total"><span class="text-uppercase text-muted">Total</span><strong
-            class="text-uppercase">$225.00</strong></div>
+        <div class="navbar-cart-total">
+          <span class="text-uppercase text-muted">Total</span>
+          <strong class="text-uppercase" id="navBar-total">$00.00</strong>
+        </div>
         <!-- Buttons -->
         <div class="buttons">
           <a href="user-cart.html" class="btn btn-dark btn-hover-primary">view cart</a>
           <a href="#" id="checkoutButton" class="btn btn-outline-dark">checkout</a>
         </div>
-        <p class="minicart-message" style="text-align: center; margin-top: 20px;">Free Shipping on All Orders
-          Over $100!</p>
+        <p class="minicart-message" style="text-align: center; margin-top: 20px;">Free Shipping on All Orders Over $100!
+        </p>
       </div>
     </div>
 
-
-
-    <!-- Search Offcanvas -->
-    <div class="offcanvas offcanvas-top" tabindex="-1" id="searchOffcanvas" aria-labelledby="searchOffcanvasLabel">
-      <div class="offcanvas-header">
-        <h5 id="searchOffcanvasLabel">Search</h5>
-        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-      </div>
-      <div class="offcanvas-body">
-        <form class="search-area-form" action="#">
-          <div class="mb-4 position-relative">
-            <input class="search-area-input form-control" type="search" name="search" id="search"
-              placeholder="What are you looking for?">
-
-            <div class="d-grid gap-2 col-6 mx-auto">
-              <button class="btn btn-primary" type="submit" style="margin-top: 25px;">Search</button>
-            </div>
-          </div>
-        </form>
-      </div>
-    </div>
   </header>
   <!-- Navbar end -->
 
@@ -242,48 +225,44 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-6 col-xl-7 pt-4 order-2 order-lg-1">
-          <a class="glightbox d-block mb-4" href="img/product/kyle-loftus-596319-unsplash-cropped-2.jpg"
-            data-title="Modern Jacket 1 - Caption text" data-gallery="product-gallery">
-            <div data-bs-toggle="zoom" data-image="assets/images/doppia-essenza.webp">
-              <img class="img-fluid" src="assets/images/doppia-essenza.webp" alt="Modern Jacket 1">
+          <a class="glightbox d-block mb-4" href="#" data-title="" data-gallery="product-gallery"
+            id="artworkLargeImageLink">
+            <div data-bs-toggle="zoom" data-image="" id="artworkZoomContainer">
+              <img class="img-fluid" src="" alt="" id="artworkImage">
             </div>
           </a>
         </div>
+
         <div class="col-lg-6 col-xl-5 ps-lg-5 pt-4 order-1 order-lg-2">
-          <ul class="breadcrumb undefined">
+          <ul class="breadcrumb">
             <li class="breadcrumb-item"><a href="index.html">Home</a></li>
             <li class="breadcrumb-item"><a href="direct-Buy.html">Shop</a></li>
-            <li class="breadcrumb-item active">Modern Jacket</li>
+            <li class="breadcrumb-item active" id="breadcrumbArtworkTitle">Loading...</li>
           </ul>
           <div class="sticky-top" style="top: 100px;">
-            <h1 class="h2 mb-4">Modern Jacket </h1>
+            <h1 class="h2 mb-4" id="artworkTitle" title="Artwork Title">Loading Artwork Title...</h1>
+
+            <div class="mb-4" title="click to view artist details">
+              <a id="artistNameLink" href="#" class="h5 text-decoration-none">Loading Artist Name...</a>
+            </div>
+
             <div class="d-flex flex-column flex-sm-row align-items-sm-center justify-content-sm-between mb-4">
               <ul class="list-inline mb-2 mb-sm-0">
-                <li class="list-inline-item h4 fw-light mb-0">$65.00</li>
+                <li class="list-inline-item h4 fw-light mb-0" id="artworkPrice" titile="Artwork Price">Loading Price...
+                </li>
               </ul>
               <div class="d-flex align-items-center">
                 <button id="likeButton" class="btn btn-soft-gradient">
                   <i class="fa fa-thumbs-up"></i> <span id="likeCount">0</span> Likes
                 </button>
               </div>
-
             </div>
-            <p class="mb-6 text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-              incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-            </p>
 
-            <form action="#">
-              <ul>
-                <li class=" d-grid gap-2 ">
-                  <button class="btn btn-dark btn-lg mb-1" type="submit">
-                    <i class="fa fa-shopping-cart me-2"></i>Add to Cart</button>
-                </li>
-                <li class=" d-grid gap-2 mt-2">
-                  <a class="btn btn-purple-gradient mb-1" href="#">
-                    <i class="far fa-heart me-2"></i>Add to wishlist</a>
-                </li>
-              </ul>
-            </form>
+            <div class="mt-8">
+              <div class="d-grid gap-2" id="buttonsContainer">
+                <!-- Dynamic button -->
+              </div>
+            </div>
 
             <!-- Container for all info blocks -->
             <div class="info-container mt-8">
@@ -292,7 +271,7 @@
                 <i class="fa fa-truck"></i>
                 <div class="text">
                   <span>Free Shipping</span>
-                  <p>Free standard shipping on orders over 300.00€</p>
+                  <p>Free standard shipping on orders over 150.00€</p>
                 </div>
               </div>
 
@@ -330,310 +309,31 @@
       </div>
     </div>
   </section>
+
+
   <section class="mt-5">
     <div class="container">
       <ul class="nav nav-tabs flex-column flex-sm-row" role="tablist">
         <li class="nav-item"><a class="nav-link detail-nav-link active" data-bs-toggle="tab" href="#description"
             role="tab">Description</a></li>
-        <li class="nav-item"><a class="nav-link detail-nav-link" data-bs-toggle="tab" href="#additional-information"
-            role="tab">Additional Information</a></li>
-        <li class="nav-item"><a class="nav-link detail-nav-link" data-bs-toggle="tab" href="#reviews"
-            role="tab">Reviews</a></li>
       </ul>
       <div class="tab-content py-4">
         <div class="tab-pane active px-3" id="description" role="tabpanel">
-          <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua. LOLUt enim ad minim veniam, quis nostrud exercitation ullamco
-            laboris nisi ut aliquip ex ea commodo consequat. LOLDuis aute irure dolor in reprehenderit in voluptate
-            velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.</p>
-          <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua. LOLUt enim ad minim veniam, quis nostrud exercitation ullamco
-            laboris nisi ut aliquip ex ea commodo consequat. LOLDuis aute irure dolor in reprehenderit in voluptate
-            velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.</p>
+          <p class="text-muted" id="artworkDescription">Loading</p>
         </div>
-        <div class="tab-pane" id="additional-information" role="tabpanel">
-          <div class="row">
-            <div class="col-lg-6">
-              <table class="table text-sm">
-                <tbody>
-                  <tr>
-                    <th class="text-uppercase fw-normal border-0">Product #</th>
-                    <td class="text-muted border-0">Lorem ipsum dolor sit amet</td>
-                  </tr>
-                  <tr>
-                    <th class="text-uppercase fw-normal ">Available packaging</th>
-                    <td class="text-muted ">LOLDuis aute irure dolor in reprehenderit</td>
-                  </tr>
-                  <tr>
-                    <th class="text-uppercase fw-normal ">Weight</th>
-                    <td class="text-muted ">dolor sit amet</td>
-                  </tr>
-                  <tr>
-                    <th class="text-uppercase fw-normal ">Sunt in culpa qui</th>
-                    <td class="text-muted ">Lorem ipsum dolor sit amet</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <div class="col-lg-6">
-              <table class="table text-sm">
-                <tbody>
-                  <tr>
-                    <th class="text-uppercase fw-normal border-0">Weight</th>
-                    <td class="text-muted border-0">dolor sit amet </td>
-                  </tr>
-                  <tr>
-                    <th class="text-uppercase fw-normal ">Sunt in culpa qui</th>
-                    <td class="text-muted ">Lorem ipsum dolor sit amet </td>
-                  </tr>
-                  <tr>
-                    <th class="text-uppercase fw-normal ">Product #</th>
-                    <td class="text-muted ">Lorem ipsum dolor sit amet </td>
-                  </tr>
-                  <tr>
-                    <th class="text-uppercase fw-normal ">Available packaging</th>
-                    <td class="text-muted ">LOLDuis aute irure dolor in reprehenderit </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-        <div class="tab-pane" id="reviews" role="tabpanel">
-          <div class="row mb-5">
-            <div class="col-lg-10 col-xl-9">
-              <div class="review d-flex">
-                <div class="flex-shrink-0 text-center me-4 me-xl-5"><img class="review-image"
-                    src="https://d19m59y37dris4.cloudfront.net/sell/2-0-1/img/person-1.jpg" alt="Han Solo"><span
-                    class="text-uppercase text-muted">Dec 2018</span></div>
-                <div>
-                  <h5 class="mt-2 mb-1">Han Solo</h5>
-                  <div class="mb-2"><i class="fa fa-xs fa-star text-warning"></i><i
-                      class="fa fa-xs fa-star text-warning"></i><i class="fa fa-xs fa-star text-warning"></i><i
-                      class="fa fa-xs fa-star text-warning"></i><i class="fa fa-xs fa-star text-warning"></i>
-                  </div>
-                  <p class="text-muted">One morning, when Gregor Samsa woke from troubled dreams, he found himself
-                    transformed in his bed into a horrible vermin. He lay on his armour-like back, and if he lifted his
-                    head a little he could see his brown belly, slightly domed and divided by arches into stiff sections
-                  </p>
-                </div>
-              </div>
-              <div class="review d-flex">
-                <div class="flex-shrink-0 text-center me-4 me-xl-5"><img class="review-image"
-                    src="https://d19m59y37dris4.cloudfront.net/sell/2-0-1/img/person-2.jpg" alt="Luke Skywalker"><span
-                    class="text-uppercase text-muted">Dec 2018</span></div>
-                <div>
-                  <h5 class="mt-2 mb-1">Luke Skywalker</h5>
-                  <div class="mb-2"><i class="fa fa-xs fa-star text-warning"></i><i
-                      class="fa fa-xs fa-star text-warning"></i><i class="fa fa-xs fa-star text-warning"></i><i
-                      class="fa fa-xs fa-star text-warning"></i><i class="fa fa-xs fa-star text-gray-200"></i>
-                  </div>
-                  <p class="text-muted">The bedding was hardly able to cover it and seemed ready to slide off any
-                    moment. His many legs, pitifully thin compared with the size of the rest of him, waved about
-                    helplessly as he looked. &quot;What's happened to me?&quot; he thought. It wasn't a dream. </p>
-                </div>
-              </div>
-              <div class="review d-flex">
-                <div class="flex-shrink-0 text-center me-4 me-xl-5"><img class="review-image"
-                    src="https://d19m59y37dris4.cloudfront.net/sell/2-0-1/img/person-3.jpg" alt="Princess Leia"><span
-                    class="text-uppercase text-muted">Dec 2018</span></div>
-                <div>
-                  <h5 class="mt-2 mb-1">Princess Leia</h5>
-                  <div class="mb-2"><i class="fa fa-xs fa-star text-warning"></i><i
-                      class="fa fa-xs fa-star text-warning"></i><i class="fa fa-xs fa-star text-warning"></i><i
-                      class="fa fa-xs fa-star text-gray-200"></i><i class="fa fa-xs fa-star text-gray-200"></i>
-                  </div>
-                  <p class="text-muted">His room, a proper human room although a little too small, lay peacefully
-                    between its four familiar walls. A collection of textile samples lay spread out on the table. </p>
-                </div>
-              </div>
-              <div class="review d-flex">
-                <div class="flex-shrink-0 text-center me-4 me-xl-5"><img class="review-image"
-                    src="https://d19m59y37dris4.cloudfront.net/sell/2-0-1/img/person-4.jpg" alt="Jabba Hut"><span
-                    class="text-uppercase text-muted">Dec 2018</span></div>
-                <div>
-                  <h5 class="mt-2 mb-1">Jabba Hut</h5>
-                  <div class="mb-2"><i class="fa fa-xs fa-star text-warning"></i><i
-                      class="fa fa-xs fa-star text-warning"></i><i class="fa fa-xs fa-star text-warning"></i><i
-                      class="fa fa-xs fa-star text-warning"></i><i class="fa fa-xs fa-star text-warning"></i>
-                  </div>
-                  <p class="text-muted">Samsa was a travelling salesman - and above it there hung a picture that he had
-                    recently cut out of an illustrated magazine and housed in a nice, gilded frame. </p>
-                </div>
-              </div>
-              <div class="py-5 px-3">
-                <h5 class="text-uppercase mb-4">Leave a review</h5>
-                <form class="form" id="contact-form" method="post" action="contact.php">
-                  <div class="row">
-                    <div class="col-sm-6">
-                      <div class="mb-4">
-                        <label class="form-label" for="name">Your name *</label>
-                        <input class="form-control" type="text" name="name" id="name" placeholder="Enter your name"
-                          required="required">
-                      </div>
-                    </div>
-                    <div class="col-sm-6">
-                      <div class="mb-4">
-                        <label class="form-label" for="rating">Your rating *</label>
-                        <select class="custom-select focus-shadow-0" name="rating" id="rating">
-                          <option value="5">&#9733;&#9733;&#9733;&#9733;&#9733; (5/5)</option>
-                          <option value="4">&#9733;&#9733;&#9733;&#9733;&#9734; (4/5)</option>
-                          <option value="3">&#9733;&#9733;&#9733;&#9734;&#9734; (3/5)</option>
-                          <option value="2">&#9733;&#9733;&#9734;&#9734;&#9734; (2/5)</option>
-                          <option value="1">&#9733;&#9734;&#9734;&#9734;&#9734; (1/5)</option>
-                        </select>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="mb-4">
-                    <label class="form-label" for="email">Your email *</label>
-                    <input class="form-control" type="email" name="email" id="email" placeholder="Enter your  email"
-                      required="required">
-                  </div>
-                  <div class="mb-4">
-                    <label class="form-label" for="review">Review text *</label>
-                    <textarea class="form-control" rows="4" name="review" id="review" placeholder="Enter your review"
-                      required="required"></textarea>
-                  </div>
-                  <button class="btn btn-outline-dark" type="submit">Post review</button>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
+
       </div>
     </div>
   </section>
-  <section class="my-5">
+
+
+  <section class="my-5" id="artistArtworks">
     <div class="container">
       <header class="text-center">
-        <h6 class="text-uppercase mb-5">You might also like</h6>
+        <h6 class="text-uppercase mb-5">You might also like from this artist</h6>
       </header>
-      <div class="row">
-        <!-- product-->
-        <div class="col-lg-2 col-md-4 col-6">
-          <div class="product">
-            <div class="product-image">
-              <div class="ribbon ribbon-info">Fresh</div><img class="img-fluid"
-                src="https://d19m59y37dris4.cloudfront.net/sell/2-0-1/img/product/serrah-galos-494312-unsplash.jpg"
-                alt="product" />
-              <div class="product-hover-overlay"><a class="product-hover-overlay-link" href="detail.html"></a>
-                <div class="product-hover-overlay-buttons"><a class="btn btn-dark btn-buy" href="detail.html"><i
-                      class="fa-search fa"></i><span class="btn-buy-label ms-2">View</span></a>
-                </div>
-              </div>
-            </div>
-            <div class="py-2">
-              <p class="text-muted text-sm mb-1">Jackets</p>
-              <h3 class="h6 text-uppercase mb-1"><a class="text-dark" href="detail.html">White Tee</a></h3><span
-                class="text-muted">$40.00</span>
-            </div>
-          </div>
-        </div>
-        <!-- /product-->
-        <!-- product-->
-        <div class="col-lg-2 col-md-4 col-6">
-          <div class="product">
-            <div class="product-image"><img class="img-fluid"
-                src="https://d19m59y37dris4.cloudfront.net/sell/2-0-1/img/product/kyle-loftus-590881-unsplash.jpg"
-                alt="product" />
-              <div class="product-hover-overlay"><a class="product-hover-overlay-link" href="detail.html"></a>
-                <div class="product-hover-overlay-buttons"><a class="btn btn-dark btn-buy" href="detail.html"><i
-                      class="fa-search fa"></i><span class="btn-buy-label ms-2">View</span></a>
-                </div>
-              </div>
-            </div>
-            <div class="py-2">
-              <p class="text-muted text-sm mb-1">Denim</p>
-              <h3 class="h6 text-uppercase mb-1"><a class="text-dark" href="detail.html">Black blouse</a></h3><span
-                class="text-muted">$40.00</span>
-            </div>
-          </div>
-        </div>
-        <!-- /product-->
-        <!-- product-->
-        <div class="col-lg-2 col-md-4 col-6">
-          <div class="product">
-            <div class="product-image">
-              <div class="ribbon ribbon-primary">Sale</div><img class="img-fluid"
-                src="https://d19m59y37dris4.cloudfront.net/sell/2-0-1/img/product/kyle-loftus-596319-unsplash.jpg"
-                alt="product" />
-              <div class="product-hover-overlay"><a class="product-hover-overlay-link" href="detail.html"></a>
-                <div class="product-hover-overlay-buttons"><a class="btn btn-dark btn-buy" href="detail.html"><i
-                      class="fa-search fa"></i><span class="btn-buy-label ms-2">View</span></a>
-                </div>
-              </div>
-            </div>
-            <div class="py-2">
-              <p class="text-muted text-sm mb-1">Accessories</p>
-              <h3 class="h6 text-uppercase mb-1"><a class="text-dark" href="detail.html">College jacket</a></h3><span
-                class="text-muted">$40.00</span>
-            </div>
-          </div>
-        </div>
-        <!-- /product-->
-        <!-- product-->
-        <div class="col-lg-2 col-md-4 col-6">
-          <div class="product">
-            <div class="product-image"><img class="img-fluid"
-                src="https://d19m59y37dris4.cloudfront.net/sell/2-0-1/img/product/ethan-haddox-484912-unsplash.jpg"
-                alt="product" />
-              <div class="product-hover-overlay"><a class="product-hover-overlay-link" href="detail.html"></a>
-                <div class="product-hover-overlay-buttons"><a class="btn btn-dark btn-buy" href="detail.html"><i
-                      class="fa-search fa"></i><span class="btn-buy-label ms-2">View</span></a>
-                </div>
-              </div>
-            </div>
-            <div class="py-2">
-              <p class="text-muted text-sm mb-1">Denim</p>
-              <h3 class="h6 text-uppercase mb-1"><a class="text-dark" href="detail.html">Carrot-fit jeans</a></h3><span
-                class="text-muted">$40.00</span>
-            </div>
-          </div>
-        </div>
-        <!-- /product-->
-        <!-- product-->
-        <div class="col-lg-2 col-md-4 col-6">
-          <div class="product">
-            <div class="product-image"><img class="img-fluid"
-                src="https://d19m59y37dris4.cloudfront.net/sell/2-0-1/img/product/serrah-galos-494231-unsplash.jpg"
-                alt="product" />
-              <div class="product-hover-overlay"><a class="product-hover-overlay-link" href="detail.html"></a>
-                <div class="product-hover-overlay-buttons"><a class="btn btn-dark btn-buy" href="detail.html"><i
-                      class="fa-search fa"></i><span class="btn-buy-label ms-2">View</span></a>
-                </div>
-              </div>
-            </div>
-            <div class="py-2">
-              <p class="text-muted text-sm mb-1">Jackets</p>
-              <h3 class="h6 text-uppercase mb-1"><a class="text-dark" href="detail.html">Striped T-Shirt</a></h3><span
-                class="text-muted">$40.00</span>
-            </div>
-          </div>
-        </div>
-        <!-- /product-->
-        <!-- product-->
-        <div class="col-lg-2 col-md-4 col-6">
-          <div class="product">
-            <div class="product-image"><img class="img-fluid"
-                src="https://d19m59y37dris4.cloudfront.net/sell/2-0-1/img/product/averie-woodard-319832-unsplash.jpg"
-                alt="product" />
-              <div class="product-hover-overlay"><a class="product-hover-overlay-link" href="detail.html"></a>
-                <div class="product-hover-overlay-buttons"><a class="btn btn-dark btn-buy" href="detail.html"><i
-                      class="fa-search fa"></i><span class="btn-buy-label ms-2">View</span></a>
-                </div>
-              </div>
-            </div>
-            <div class="py-2">
-              <p class="text-muted text-sm mb-1">Shirts</p>
-              <h3 class="h6 text-uppercase mb-1"><a class="text-dark" href="detail.html">Short top</a></h3><span
-                class="text-muted">$40.00</span>
-            </div>
-          </div>
-        </div>
-        <!-- /product-->
+      <div class="row" id="artworkRow">
+        <!-- The artwork cards will be added here -->
       </div>
     </div>
   </section>
@@ -649,7 +349,7 @@
             <i class="fas fa-shipping-fast fa-3x service-icon"></i>
             <div class="service-text">
               <h6 class="text-uppercase">Free shipping &amp; return</h6>
-              <p class="text-muted fw-light text-sm mb-0">Free Shipping over $300</p>
+              <p class="text-muted fw-light text-sm mb-0">Free Shipping over $150</p>
             </div>
           </div>
           <div class="col-lg-4 service-column">
@@ -709,10 +409,13 @@
           <div class="col-lg-4">
             <h6 class="text-uppercase text-dark mb-3">Daily Offers & Discounts</h6>
             <p class="mb-3"> Want to get newsletter in time? Subscribe our website!</p>
-            <form action="#" id="newsletter-form">
+            <form id="newsletter-form" action="https://api.web3forms.com/submit" method="POST">
+              <input type="hidden" name="access_key" value="24108a2c-9516-495b-b4dd-b7bc69a8d0e4">
+
               <div class="input-group mb-3">
-                <input class="form-control bg-transparent border-secondary " type="email"
+                <input class="form-control bg-transparent border-secondary " type="email" name="email"
                   placeholder="Your Email Address" aria-label="Your Email Address" style="margin-right: 10px;">
+
                 <div class="input-group-append">
                   <button class="btn btn-outline-secondary border-start-0" type="submit">
                     <i class="fa fa-paper-plane text-lg text-dark"></i>
@@ -763,7 +466,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
     integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="assets/js/vendor/owl.carousel2.thumbs.min.js"></script>
   <!-- Smooth scrolling-->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/smooth-scroll/16.1.3/smooth-scroll.polyfills.min.js"
     integrity="sha512-LZ6YBzwuQvIG41twjliX3HUVeAd+ErnJ0UsqRnkI4firX2l71jxbKJoax/hu7XY2tiyLl0YA2kcnz/XEW+9O3g=="
@@ -779,7 +481,8 @@
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="assets/js/vendor/jquery.cookie.js"></script>
   <script src="assets/js/index.js"></script>
-  <script src="https://kit.fontawesome.com/e85815ae07.js" crossorigin="anonymous"></script>
+  <script src="assets/js/vendor/fontAwesome.js"></script>
+  <script src="assets/js/cart.js"></script>
 
   <script>
     // 需要添加保存这个艺术品有几个like的逻辑！！！
@@ -788,6 +491,203 @@
       var currentCount = parseInt(likeCountElement.innerText);
       likeCountElement.innerText = currentCount + 1;
     });
+
+    document.addEventListener('DOMContentLoaded', function () {
+      const artworkId = new URLSearchParams(window.location.search).get('id');
+
+      if (artworkId) {
+        fetch(`http://localhost:8080/artwork/getArtworkById/${artworkId}`)
+          .then(response => response.json())
+          .then(artwork => {
+
+          })
+          .catch(error => {
+            console.error('Error loading artwork:', error);
+          });
+      } else {
+        console.error('No artwork ID provided in the URL.');
+      }
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+      const params = new URLSearchParams(window.location.search);
+      const artworkId = params.get('id');
+
+      if (artworkId) {
+        fetch(`http://localhost:8080/artwork/getArtworkById/${artworkId}`)
+          .then(response => response.json())
+          .then(artwork => {
+            displayArtworkDetails(artwork.artist_id, artwork);
+            loadArtworksByArtist(artwork.artist_id, artworkId);
+          })
+          .catch(error => console.error('Error loading artwork:', error));
+      } else {
+        console.error('No artwork ID provided in the URL.');
+      }
+    });
+
+    function displayArtworkDetails(artistId, artwork) {
+      // 更新页面元素
+      document.getElementById('breadcrumbArtworkTitle').textContent = artwork.title;
+      document.getElementById('artworkTitle').textContent = artwork.title;
+      document.getElementById('artworkPrice').textContent = `$${artwork.price.toFixed(2)}`;
+      document.getElementById('artworkDescription').textContent = artwork.description;
+
+      const artworkImage = document.getElementById('artworkImage');
+      const artworkZoomContainer = document.getElementById('artworkZoomContainer');
+      const artworkLargeImageLink = document.getElementById('artworkLargeImageLink');
+
+      artworkImage.src = artwork.image_url;
+      artworkImage.alt = artwork.title;
+      artworkZoomContainer.setAttribute('data-image', artwork.image_url);
+      artworkLargeImageLink.href = artwork.image_url; // Assume this is the same as the image URL or another high-resolution image
+
+      // 获取艺术家信息
+      fetch(`http://localhost:8080/artist/getArtistById/${artistId}`)
+        .then(response => response.json())
+        .then(artist => {
+          const artistNameLink = document.getElementById('artistNameLink');
+          artistNameLink.textContent = artist.name;
+          artistNameLink.href = `artist-details.html?id=${artist.id}`;
+        })
+        .catch(error => console.error('Error loading artist:', error));
+
+      // 更新button的状态，如果已经在购物车中，就不显示添加到购物车按钮，增添一个显示已经出售的信息按钮
+      const buttonsContainer = document.getElementById('buttonsContainer');
+      if (artwork.user_id !== null) {
+        buttonsContainer.innerHTML = `
+            <button class="btn btn-dark btn-buy" disabled>
+              <i class="fa fa-check"></i> Sold
+            </button>
+          `;
+      } else {
+        buttonsContainer.innerHTML = `
+            <button class="btn btn-dark btn-lg mb-1" id="addToCartButton" onclick="addToCart(${artwork.id}); return false;" data-artwork-id="${artwork.id}"">
+                <i class="fa fa-shopping-cart me-2"></i>Add to Cart
+            </button>
+            <button class="btn btn-purple-gradient mb-1" id="addToWishlistButton" onclick="addToWishlist(${artwork.id}); return false;" data-artwork-id="${artwork.id}">
+                <i class="far fa-heart me-2"></i>Add to Wishlist
+            </button>
+
+          `;
+      }
+    }
+
+    // get user id from local storage
+    const userInfoString = localStorage.getItem('userInfo');
+    const userInfo = JSON.parse(userInfoString);
+    const userId = userInfo ? userInfo.id : null;
+
+    function addToCart(artworkId) {
+        if (!userId) {
+            alert('Please log in to add items to the cart.');
+            window.location.href = 'user-login.html';
+            return;
+        }
+        console.log('Adding item to cart:', userId, artworkId);
+        fetch('http://localhost:8080/cart/addToCart', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                user_id: userId,
+                artwork_id: artworkId
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.code === 200) {
+                alert('Item added to cart successfully.');
+                location.reload();
+            } else if (data.code === 409) {
+                alert('Item already in cart.');
+                location.reload();
+            } else {
+                alert('Failed to add item to cart.');
+            }
+        })
+        .catch(error => console.error('Error adding item to cart:', error));
+    }
+
+    function addToWishlist(artworkId) {
+        if (!userId) {
+            alert('Please log in to add items to the wishlist.');
+            window.location.href = 'user-login.html';
+            return;
+        }
+        console.log('Adding item to wishlist:', userId, artworkId);
+        fetch('http://localhost:8080/wishlist/addToWishlist', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                user_id: userId,
+                artwork_id: artworkId
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.code === 200) {
+                alert('Item added to wishlist successfully.');
+                location.reload();
+            } else if (data.code === 409) {
+                alert('Item already in wishlist.');
+                location.reload();
+            } else {
+                alert('Failed to add item to wishlist.');
+            }
+        })
+        .catch(error => console.error('Error adding item to wishlist:', error));
+    }
+
+
+    function loadArtworksByArtist(artistId, artworkId) {
+      fetch(`http://localhost:8080/artwork/getArtworksByArtistId/${artistId}`)
+        .then(response => response.json())
+        .then(artworks => {
+          const artworkRow = document.getElementById('artworkRow');
+          artworkRow.innerHTML = ''; // Clear existing content
+
+          artworks.forEach(artwork => {
+            // Skip the current displayed artwork
+            if (artwork.id === parseInt(artworkId, 10)) return;
+
+            // Create HTML structure
+            const artworkHTML = `
+              <div class="col-lg-2 col-md-4 col-6">
+                <div class="product">
+                  <div class="product-image">
+                    <img class="img-fluid" src="${artwork.image_url}" alt="${artwork.title}" />
+                    <div class="product-hover-overlay">
+                      <a class="product-hover-overlay-link" href="product-detail.html?id=${artwork.id}"></a>
+                      <div class="product-hover-overlay-buttons">
+                        <a class="btn btn-dark btn-buy" href="product-detail.html?id=${artwork.id}">
+                          <i class="fa-search fa"></i><span class="btn-buy-label ms-2">View</span>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="py-2">
+                    <p class="text-muted text-sm mb-1">${artwork.type}</p>
+                    <h3 class="h6 text-uppercase mb-1">
+                      <a class="text-dark" href="product-detail.html?id=${artwork.id}">${artwork.title}</a>
+                    </h3>
+                    <span class="text-muted">$${artwork.price}</span>
+                  </div>
+                </div>
+              </div>
+            `;
+            artworkRow.insertAdjacentHTML('beforeend', artworkHTML);
+          });
+        })
+        .catch(error => console.error('Error fetching artworks:', error));
+    }
+
+
+
+
 
   </script>
 

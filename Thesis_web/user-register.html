@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700">
     <!-- owl carousel-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Lightbox -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/glightbox/3.3.0/css/glightbox.min.css" integrity="sha512-T+KoG3fbDoSnlgEXFQqwcTC9AdkFIxhBlmoaFqYaIjq2ShhNwNao9AKaLUPMfwiBPL0ScxAtc+UYbHAgvd+sjQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- theme stylesheet-->
@@ -107,7 +106,7 @@
                 <div class="row d-flex align-items-center">
                     <div class="col-sm-7 d-none d-sm-block">
                         <ul class="list-inline topbar-text mb-0 d-flex justify-content-end">
-                            <li class="list-inline-item px-3">Free shipping on orders over $300</li>
+                            <li class="list-inline-item px-3">Free shipping on orders over $150</li>
                         </ul>
                     </div>
                 </div>
@@ -167,27 +166,21 @@
                                 </ul>
                             </div>
                         </div>
-                        <!-- Search Button-->
-                        <div class="nav-item navbar-icon-link" data-bs-toggle="offcanvas"
-                            data-bs-target="#searchOffcanvas" aria-controls="searchOffcanvas">
-                            <i class="fas fa-search"></i>
-                        </div>
-                        <div class="nav-item">
+                        
+                        <div class="nav-item login-margin" id="userAccount">
                             <!-- 登录链接 -->
                             <a class="navbar-icon-link" href="user-login.html" id="userLoginLink">
-                                <i class="far fa-user"></i>
-                            </a>
-                        </div>
-                        <!-- Offcanvas Cart Trigger -->
-                        <div class="nav-item">
-                            <a class="navbar-icon-link" href="#" data-bs-toggle="offcanvas"
-                                data-bs-target="#offcanvasCart" aria-controls="offcanvasCart">
-                                <i class="fas fa-shopping-cart"></i>
-                                <div class="navbar-icon-link-badge">3</div>
+                              <i class="far fa-user"></i>
                             </a>
                         </div>
 
-                        
+                        <!-- Offcanvas Cart Trigger -->
+                        <div class="nav-item">
+                            <a class="navbar-icon-link" href="#" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart" aria-controls="offcanvasCart">
+                                <i class="fas fa-shopping-cart"></i>
+                                <div class="navbar-icon-link-badge" id="cart-badge">0</div>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -198,59 +191,24 @@
         <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasCart" aria-labelledby="offcanvasCartLabel">
             <div class="offcanvas-header">
                 <h5 id="offcanvasCartLabel">Cart</h5>
-                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
-                    aria-label="Close"></button>
+                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body">
-                <!-- 添加 Cart items -->
-                <!-- Cart items here -->
-                <!-- Repeat your cart item structure here as needed -->
                 <ul class="minicart-product-list">
-                    <!-- 得修改成添加商品进购物车的逻辑！！！-->
-                    <li>
-                        <a href="product-details.html" class="image"><img src="#" alt="Cart product Image"></a>
-                        <div class="content">
-                            <!-- 得从数据库/其他地方提取信息 -->
-                            <a href="product-details.html" class="title">Walnut Cutting Board</a>
-                            <span class="quantity-price">1 x <span class="amount">$100.00</span></span>
-                            <a href="#" class="remove">×</a> <!-- 修改逻辑 -->
-                        </div>
-                    </li>
+                    <!-- Add items to the cart -->
                 </ul>
 
                 <!-- Total Price -->
-                <div class="navbar-cart-total"><span class="text-uppercase text-muted">Total</span><strong
-                        class="text-uppercase">$225.00</strong></div>
+                <div class="navbar-cart-total">
+                    <span class="text-uppercase text-muted">Total</span>
+                    <strong class="text-uppercase" id="navBar-total">$00.00</strong>
+                </div>
                 <!-- Buttons -->
                 <div class="buttons">
                     <a href="user-cart.html" class="btn btn-dark btn-hover-primary">view cart</a>
                     <a href="#" id="checkoutButton" class="btn btn-outline-dark">checkout</a>
                 </div>
-                <p class="minicart-message" style="text-align: center; margin-top: 20px;">Free Shipping on All Orders
-                    Over $100!</p>
-            </div>
-        </div>
-
-
-
-        <!-- Search Offcanvas -->
-        <div class="offcanvas offcanvas-top" tabindex="-1" id="searchOffcanvas" aria-labelledby="searchOffcanvasLabel">
-            <div class="offcanvas-header">
-                <h5 id="searchOffcanvasLabel">Search</h5>
-                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
-                    aria-label="Close"></button>
-            </div>
-            <div class="offcanvas-body">
-                <form class="search-area-form" action="#">
-                    <div class="mb-4 position-relative">
-                        <input class="search-area-input form-control" type="search" name="search" id="search"
-                            placeholder="What are you looking for?">
-
-                        <div class="d-grid gap-2 col-6 mx-auto">
-                            <button class="btn btn-primary" type="submit" style="margin-top: 25px;">Search</button>
-                        </div>
-                    </div>
-                </form>
+                <p class="minicart-message" style="text-align: center; margin-top: 20px;">Free Shipping on All Orders Over $100!</p>
             </div>
         </div>
 
@@ -371,7 +329,7 @@
                         <i class="fas fa-shipping-fast fa-3x service-icon"></i>
                         <div class="service-text">
                             <h6 class="text-uppercase">Free shipping &amp; return</h6>
-                            <p class="text-muted fw-light text-sm mb-0">Free Shipping over $300</p>
+                            <p class="text-muted fw-light text-sm mb-0">Free Shipping over $150</p>
                         </div>
                     </div>
                     <div class="col-lg-4 service-column">
@@ -431,11 +389,12 @@
                     <div class="col-lg-4">
                         <h6 class="text-uppercase text-dark mb-3">Daily Offers & Discounts</h6>
                         <p class="mb-3"> Want to get newsletter in time? Subscribe our website!</p>
-                        <form action="#" id="newsletter-form">
+                        <form id="newsletter-form" action="https://api.web3forms.com/submit" method="POST">
+                            <input type="hidden" name="access_key" value="24108a2c-9516-495b-b4dd-b7bc69a8d0e4">
+
                             <div class="input-group mb-3">
-                                <input class="form-control bg-transparent border-secondary " type="email"
-                                    placeholder="Your Email Address" aria-label="Your Email Address"
-                                    style="margin-right: 10px;">
+                                <input class="form-control bg-transparent border-secondary " type="email" name="email" placeholder="Your Email Address" aria-label="Your Email Address" style="margin-right: 10px;">
+
                                 <div class="input-group-append">
                                     <button class="btn btn-outline-secondary border-start-0" type="submit">
                                         <i class="fa fa-paper-plane text-lg text-dark"></i>
@@ -480,18 +439,18 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js" integrity="sha512-7Pi/otdlbbCR+LnW+F7PwFcSDJOuUJB3OxtEHbg4vSMvzvJjde4Po1v4BR9Gdc9aXNUNFVUY+SK51wWT8WF0Gg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- Owl Carousel-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="assets/js/vendor/owl.carousel2.thumbs.min.js"></script>
     <!-- Smooth scrolling-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/smooth-scroll/16.1.3/smooth-scroll.polyfills.min.js" integrity="sha512-LZ6YBzwuQvIG41twjliX3HUVeAd+ErnJ0UsqRnkI4firX2l71jxbKJoax/hu7XY2tiyLl0YA2kcnz/XEW+9O3g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- Lightbox gallery-->
     <script src="assets/js/vendor/glightbox.min.js"></script>
     <!-- Object Fit Images - Fallback for browsers that don't support object-fit-->
     <script src="assets/js/index.js"></script>
-    <script src="https://kit.fontawesome.com/e85815ae07.js" crossorigin="anonymous"></script>
+    <script src="assets/js/vendor/fontAwesome.js"></script>
     <script src="assets/js/vendor/ofi.min.js"></script>
     <script> var basePath = ''; </script>
     <script src="assets/js/theme.js"></script>
     <script src="assets/js/vendor/jquery.cookie.js"></script>
+    <script src="assets/js/cart.js"></script>
 
     <script>
         const registerForm = document.getElementById('registerForm');

@@ -148,39 +148,11 @@ $(function () {
         button.toggleClass("active");
     });
 
-    // ------------------------------------------------------- //
-    //   Product Slider
-    // ------------------------------------------------------ //
-    $(".product-slider").owlCarousel({
-        loop: true, // 循环播放
-        margin: 0,
-        nav: true,
-        dots: true,
-        navText: [
-            "<i class='fa-solid fa-arrow-left'></i>",
-            "<i class='fa-solid fa-arrow-right'></i>"
-        ],
-        smartSpeed: 400,
-        autoplay: true, // 开启自动播放
-        autoplayTimeout: 1500, // 设置自动播放之间的间隔时间（单位：毫秒）
-        autoplayHoverPause: true, // 当鼠标悬停时暂停自动播放
-        responsiveClass: true,
-        responsive: {
-            0: {
-                items: 1,
-            },
-            600: {
-                items: 2,
-            },
-            1000: {
-                items: 5,
-            },
-        },
-    });
+    
 
 
     // ------------------------------------------------------- //
-    // Detail Carousel with thumbs
+    // Detail Carousel with 
     // ------------------------------------------------------ //
     $(".detail-slider").owlCarousel({
         loop: true,
@@ -253,43 +225,78 @@ $(function () {
     });
 
     /*--
-        Match Height
+        Isotpe
     -----------------------------------*/
+   // 当文档加载完成后
+//    $('.isotope-grid').imagesLoaded(function() {
+//         // 然后初始化 Isotope
+//         $('.isotope-grid').isotope({
+//             // options...
+//             itemSelector: '.grid-item',
+//             percentPosition: true,
+//             masonry: {
+//                 // 使用 grid-sizer 作为列宽的单位
+//                 columnWidth: '.grid-sizer'
+//             }
+//         });
+//     });
 
-    // Column Toggle
-    $('.product-column-toggle').on('click', '.toggle', function (e) {
-        e.preventDefault();
-        var $this = $(this),
-            $column = $this.data('column'),
-            $prevColumn = $this.siblings('.active').data('column');
-        $this.toggleClass('active').siblings().removeClass('active');
-        $('.products').removeClass('row-cols-xl-' + $prevColumn).addClass('row-cols-xl-' + $column);
-        $.fn.matchHeight._update();
-        $('.isotope-grid').isotope('layout');
-    });
 
-    /*--
-    Isotpe
+//     // Column Toggle
+//     $('.product-column-toggle').on('click', '.toggle', function (e) {
+//         e.preventDefault();
+//         var $this = $(this),
+//             $column = $this.data('column'),
+//             $prevColumn = $this.siblings('.active').data('column');
+//         $this.toggleClass('active').siblings().removeClass('active');
+//         $('.products').removeClass('row-cols-xl-' + $prevColumn).addClass('row-cols-xl-' + $column);
+//         $.fn.matchHeight._update();
+//         $('.isotope-grid').isotope('layout');
+//     });
+
+//     $('.isotope-grid .product').matchHeight();
+
+ /*--
+        Isotpe
+    -----------------------------------*/
+    // var $isotopeGrid = $('.isotope-grid');
+    // $isotopeGrid.imagesLoaded(function () {
+    //     $isotopeGrid.isotope({
+    //         itemSelector: '.grid-item',
+    //         masonry: {
+    //             columnWidth: '.grid-sizer'
+    //         }
+    //     });
+    // });
+
+    // var $isotopeFilter = $('.isotope-filter');
+    // $isotopeFilter.on('click', 'button', function () {
+    //     var $this = $(this),
+    //         $filterValue = $this.attr('data-filter'),
+    //         $targetIsotop = $this.parent().data('target');
+    //     $this.addClass('active').siblings().removeClass('active');
+    //     $($targetIsotop).isotope({
+    //         filter: $filterValue
+    //     });
+    // });
+
+    // // Column Toggle
+    // $('.product-column-toggle').on('click', '.toggle', function (e) {
+    //     e.preventDefault();
+    //     var $this = $(this),
+    //         $column = $this.data('column'),
+    //         $prevColumn = $this.siblings('.active').data('column');
+    //     $this.toggleClass('active').siblings().removeClass('active');
+    //     $('.products').removeClass('row-cols-xl-' + $prevColumn).addClass('row-cols-xl-' + $column);
+    //     $.fn.matchHeight._update();
+    //     $('.isotope-grid').isotope('layout');
+    // });
+
+    // /*--
+    //     Match Height
+    // -----------------------------------*/
+    // $('.isotope-grid .product').matchHeight();
     
-    var $isotopeGrid = $('.isotope-grid');
-    var $isotopeFilter = $('.isotope-filter');
-    $isotopeGrid.imagesLoaded(function () {
-        $isotopeGrid.isotope({
-            itemSelector: '.grid-item',
-            masonry: {
-                columnWidth: '.grid-sizer'
-            }
-        });
-    });
-    $isotopeFilter.on('click', 'button', function () {
-        var $this = $(this),
-            $filterValue = $this.attr('data-filter'),
-            $targetIsotop = $this.parent().data('target');
-        $this.addClass('active').siblings().removeClass('active');
-        $($targetIsotop).isotope({
-            filter: $filterValue
-        });
-    }); -----------------------------------*/
 
     // ------------------------------------------------------- //
     //   Bootstrap tooltips

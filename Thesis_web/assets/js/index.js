@@ -41,7 +41,6 @@ function onUserLoggedIn(userInfo) {
     
     // 将下拉菜单的HTML添加到.nav-item元素
     navItem.innerHTML += dropdownHTML;
-
     
     // 添加登出事件监听器
     const logoutLink = document.getElementById('logoutLink');

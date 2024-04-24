@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700">
     <!-- owl carousel-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Lightbox -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/glightbox/3.3.0/css/glightbox.min.css" integrity="sha512-T+KoG3fbDoSnlgEXFQqwcTC9AdkFIxhBlmoaFqYaIjq2ShhNwNao9AKaLUPMfwiBPL0ScxAtc+UYbHAgvd+sjQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- theme stylesheet-->
@@ -109,7 +108,7 @@
                 <div class="row d-flex align-items-center">
                     <div class="col-sm-7 d-none d-sm-block">
                         <ul class="list-inline topbar-text mb-0 d-flex justify-content-end">
-                            <li class="list-inline-item px-3">Free shipping on orders over $300</li>
+                            <li class="list-inline-item px-3">Free shipping on orders over $150</li>
                         </ul>
                     </div>
                 </div>
@@ -632,11 +631,12 @@
                     <div class="col-lg-4">
                         <h6 class="text-uppercase text-dark mb-3">Daily Offers & Discounts</h6>
                         <p class="mb-3"> Want to get newsletter in time? Subscribe our website!</p>
-                        <form action="#" id="newsletter-form">
+                        <form id="newsletter-form" action="https://api.web3forms.com/submit" method="POST">
+                            <input type="hidden" name="access_key" value="24108a2c-9516-495b-b4dd-b7bc69a8d0e4">
+
                             <div class="input-group mb-3">
-                                <input class="form-control bg-transparent border-secondary " type="email"
-                                    placeholder="Your Email Address" aria-label="Your Email Address"
-                                    style="margin-right: 10px;">
+                                <input class="form-control bg-transparent border-secondary " type="email" name="email" placeholder="Your Email Address" aria-label="Your Email Address" style="margin-right: 10px;">
+
                                 <div class="input-group-append">
                                     <button class="btn btn-outline-secondary border-start-0" type="submit">
                                         <i class="fa fa-paper-plane text-lg text-dark"></i>
@@ -686,10 +686,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/10.2.0/swiper-bundle.min.js" integrity="sha512-QwpsxtdZRih55GaU/Ce2Baqoy2tEv9GltjAG8yuTy2k9lHqK7VHHp3wWWe+yITYKZlsT3AaCj49ZxMYPp46iJQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="assets/js/vendor/swiper.js"></script>
     <!-- Owl Carousel-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
-        integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="assets/js/vendor/owl.carousel2.thumbs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- Smooth scrolling-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/smooth-scroll/16.1.3/smooth-scroll.polyfills.min.js" integrity="sha512-LZ6YBzwuQvIG41twjliX3HUVeAd+ErnJ0UsqRnkI4firX2l71jxbKJoax/hu7XY2tiyLl0YA2kcnz/XEW+9O3g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- Lightbox gallery-->
@@ -699,7 +696,7 @@
     <script> var basePath = ''; </script>
     <script src="assets/js/theme.js"></script>
     <script src="assets/js/vendor/jquery.cookie.js"></script>
-    <script src="https://kit.fontawesome.com/e85815ae07.js" crossorigin="anonymous"></script>
+    <script src="assets/js/vendor/fontAwesome.js"></script>
 
 
     <script>
