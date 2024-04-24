@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="hu.elte.inf.backend.dao.WishlistMapper">
+        <!-- 插入心愿单 -->
+        <insert id="insertWishlist" parameterType="hu.elte.inf.backend.sqlEntity.Wishlist" useGeneratedKeys="true" keyProperty="id">
+                INSERT INTO wishlist (user_id, artwork_id, added_at)
+                VALUES (#{user_id}, #{artwork_id}, NOW())
+        </insert>
+
+        <!-- 根据用户ID和艺术品ID查询心愿单 -->
+        <select id="selectWishlistByUserIdAndArtworkId" resultType="hu.elte.inf.backend.sqlEntity.Wishlist">
+                SELECT * FROM wishlist WHERE user_id = #{user_id} AND artwork_id = #{artwork_id}
+        </select>
+
+        <!-- 根句wishlist_id获得心愿单 -->
+        <select id="selectWishlistByWishlistId" resultType="hu.elte.inf.backend.sqlEntity.Wishlist">
+                SELECT * FROM wishlist WHERE id = #{wishlist_id}
+        </select>
+
+        <!-- 根据用户ID查询心愿单 -->
+        <select id="selectWishlistsByUserId" resultType="hu.elte.inf.backend.sqlEntity.Wishlist">
+                SELECT * FROM wishlist WHERE user_id = #{user_id}
+        </select>
+
+        <!-- 根据wishlist_id删除心愿单中的艺术品 -->
+        <delete id="deleteWishlistByWishlistId">
+                DELETE FROM wishlist WHERE id = #{wishlist_id}
+        </delete>
+
+        <!-- 获取用户的心愿列表项以及艺术品和艺术家的详细信息 -->
+        <select id="getAllWishlistDetailsByUserId" resultMap="WishlistDetailResultMap">
+                SELECT
+                w.id AS wishlist_id,
+                w.added_at AS added_at,
+                a.id AS artwork_id,
+                a.title,
+                a.description,
+                a.price,
+                a.image_url,
+                a.type,
+                ar.id AS artist_id,
+                ar.name AS artist_name,
+                ar.bio AS artist_bio
+                FROM wishlist w
+                INNER JOIN artworks a ON w.artwork_id = a.id
+                INNER JOIN artists ar ON a.artist_id = ar.id
+                WHERE w.user_id = #{user_id}
+        </select>
+
+        <resultMap id="WishlistDetailResultMap" type="hu.elte.inf.backend.sqlEntity.WishlistDetail">
+                <result column="wishlist_id" property="wishlist_id" />
+                <result column="added_at" property="added_at" />
+                <result column="artwork_id" property="artwork_id" />
+                <result column="title" property="title" />
+                <result column="description" property="description" />
+                <result column="price" property="price" />
+                <result column="image_url" property="image_url" />
+                <result column="type" property="type" />
+                <result column="artist_id" property="artist_id" />
+                <result column="artist_name" property="artist_name" />
+                <result column="artist_bio" property="artist_bio" />
+        </resultMap>
+
+
+</mapper>

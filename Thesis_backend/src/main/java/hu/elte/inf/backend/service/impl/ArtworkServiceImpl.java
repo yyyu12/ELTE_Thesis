@@ -35,7 +35,11 @@ public class ArtworkServiceImpl implements ArtworkService {
         return artworkMapper.findArtworksByArtistId(artist_id);
     }
 
-    // 服务层实现
+    @Override
+    public List<Artwork> getArtworksByUserId(Long userId) {
+        return artworkMapper.findArtworksByUserId(userId);
+    }
+
     @Override
     public boolean addArtwork(Artwork artwork) {
         Map<String, Object> params = new HashMap<>();
@@ -66,7 +70,17 @@ public class ArtworkServiceImpl implements ArtworkService {
     }
 
     @Override
-    public Artwork findRandomArtwork() {
-        return artworkMapper.findRandomArtwork();
+    public boolean purchaseArtwork(Long user_id, Long artwork_id) {
+        Artwork artwork = artworkMapper.getArtworkById(artwork_id);
+        if (artwork != null && artwork.getUser_id() == null) {
+            artworkMapper.purchaseArtwork(user_id, artwork_id);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public Artwork getRandomArtworkByPriceRange(double minPrice, double maxPrice) {
+        return artworkMapper.findRandomArtworkByPriceRange(minPrice, maxPrice);
     }
 }

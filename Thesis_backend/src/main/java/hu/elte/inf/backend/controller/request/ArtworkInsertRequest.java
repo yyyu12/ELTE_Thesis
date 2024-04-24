@@ -16,7 +16,7 @@ import java.math.BigDecimal;
 public class ArtworkInsertRequest {
 
     @NotNull(message = "Artist ID cannot be null")
-    private Long artist_id; // 对应艺术家的ID，与artists表中的id关联
+    private Long artist_id;
 
     @NotBlank(message = "Artwork title cannot be empty")
     private String title;

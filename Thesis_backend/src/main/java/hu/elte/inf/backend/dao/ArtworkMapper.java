@@ -12,11 +12,12 @@ import java.util.Map;
 public interface ArtworkMapper {
     List<Artwork> findAllArtworks();
     List<Artwork> findArtworksByArtistId(Long artist_id);
-
+    List<Artwork> findArtworksByUserId(Long user_id);
     List<Artwork> findArtworkByTitleAndArtistId(Map<String, Object> params);
     Artwork getArtworkById(Long id);
     int insertArtwork(Artwork artwork);
     int updateArtwork(Artwork artwork);
     int deleteArtwork(Long id);
-    Artwork findRandomArtwork();
+    int purchaseArtwork(@Param("user_id") Long user_id, @Param("artwork_id") Long artwork_id);
+    Artwork findRandomArtworkByPriceRange(@Param("minPrice") double minPrice, @Param("maxPrice") double maxPrice);
 }

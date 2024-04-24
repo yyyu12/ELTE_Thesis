@@ -17,9 +17,6 @@ import org.springframework.http.ResponseEntity;
 import org.apache.http.HttpStatus;
 import java.util.List;
 
-import java.util.Objects;
-
-// 与前端交互的地方
 
 @RestController
 @RequestMapping(value = "/users")
@@ -28,14 +25,21 @@ public class UserController {
     @Autowired
     private UserServiceImpl userService;
 
-    // 得到所有的用户信息
+    /**
+     * Get all users information
+     * @return List<User>
+     */
     @GetMapping("/getAllUsers")
     public ResponseEntity<List<User>> getAllUsers() {
         List<User> users = userService.getAllUsers();
         return ResponseEntity.ok(users);
     }
 
-    // 用户注册
+    /**
+     * Get user by id
+     * @param userRegistrationRequest
+     * @return
+     */
     @PostMapping("/register")
     public ResponseEntity<Result> registerUser(@Validated @RequestBody UserRegistrationRequest userRegistrationRequest) {
         try{
@@ -52,6 +56,11 @@ public class UserController {
         }
     }
 
+    /**
+     * User login
+     * @param loginRequest
+     * @return ResponseEntity<Result> -- user login data
+     */
     @PostMapping("/login")
     public ResponseEntity<Result> login(@Validated @RequestBody LoginRequest loginRequest) {
         String username = loginRequest.getUsername();
@@ -69,8 +78,13 @@ public class UserController {
         } catch (Exception ex) {
             return ResponseEntity.status(HttpStatus.SC_INTERNAL_SERVER_ERROR).body(Result.error("Internal server error"));
         }
-    }
+    } 
 
+    /**
+     * Get user by id
+     * @param id
+     * @return
+     */
     @PutMapping("/updateInfo/{id}")
     public ResponseEntity<Result> updateUserInfo(@PathVariable Long id, @Validated @RequestBody UpdateRequest updateRequest) {
         try {
@@ -91,6 +105,12 @@ public class UserController {
         }
     }
 
+    /**
+     * Update user password
+     * @param id
+     * @param passwordUpdateRequest
+     * @return
+     */
     @PutMapping("/updatePassword/{id}")
     public ResponseEntity<Result> updatePassword(@PathVariable Long id, @Validated @RequestBody PasswordUpdateRequest passwordUpdateRequest) {
         try {
@@ -106,7 +126,5 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.SC_INTERNAL_SERVER_ERROR).body(Result.error("Internal server error"));
         }
     }
-
-
 
 }

@@ -4,7 +4,7 @@ import lombok.Data;
 import java.sql.Timestamp;
 
 @Data
-public class Cart {
+public class Wishlist {
     private Long id;
     private Long user_id;
     private Long artwork_id;
@@ -12,4 +12,3 @@ public class Cart {
 
     // Getter and Setter
 }
-

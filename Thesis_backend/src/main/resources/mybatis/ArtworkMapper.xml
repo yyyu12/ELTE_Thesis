@@ -24,16 +24,21 @@
 
     <!-- 查询特定艺术家的所有艺术品 -->
     <select id="findArtworksByArtistId" parameterType="long" resultType="hu.elte.inf.backend.sqlEntity.Artwork">
-        SELECT id, artist_id, title, description, price, image_url, type
+        SELECT id, artist_id, title, description, price, image_url, type, user_id
         FROM artworks
         WHERE artist_id = #{artist_id}
+    </select>
+
+    <!-- 查询某个用户购买的所有艺术品 -->
+    <select id="findArtworksByUserId" parameterType="long" resultType="hu.elte.inf.backend.sqlEntity.Artwork">
+        SELECT * FROM artworks WHERE user_id = #{user_id}
     </select>
 
 
     <!-- 插入艺术品数据 -->
     <insert id="insertArtwork" parameterType="hu.elte.inf.backend.sqlEntity.Artwork" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO artworks (artist_id, title, description, price, image_url, type)
-        VALUES (#{artist_id,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL}, #{image_url,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR})
+        INSERT INTO artworks (artist_id, title, description, price, image_url, type, user_id)
+        VALUES (#{artist_id,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL}, #{image_url,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{user_id,jdbcType=BIGINT})
     </insert>
 
 
@@ -53,13 +58,23 @@
             <if test="price != null">price = #{price},</if>
             <if test="image_url != null and image_url != ''">image_url = #{image_url},</if>
             <if test="type != null and type != ''">type = #{type}</if>
+            <if test="user_id != null">user_id = #{user_id}</if>
         </set>
         WHERE id = #{id}
     </update>
 
-    <!-- 随机获取一件艺术品的映射器 -->
-    <select id="findRandomArtwork" resultType="hu.elte.inf.backend.sqlEntity.Artwork">
-        SELECT * FROM artworks ORDER BY RAND() LIMIT 1
+    <!-- 更新艺术品所有者 -->
+    <update id="purchaseArtwork" parameterType="map">
+        UPDATE artworks
+        SET user_id = #{user_id}
+        WHERE id = #{artwork_id} AND user_id IS NULL
+    </update>
+
+    <!-- 查询指定价格区间内随机一件未售出的艺术品 -->
+    <select id="findRandomArtworkByPriceRange" resultType="hu.elte.inf.backend.sqlEntity.Artwork">
+        SELECT * FROM artworks
+        WHERE price BETWEEN #{minPrice} AND #{maxPrice} AND user_id IS NULL
+        ORDER BY RAND() LIMIT 1
     </select>
 
 
