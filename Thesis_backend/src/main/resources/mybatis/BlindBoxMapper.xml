@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="hu.elte.inf.backend.dao.BlindBoxMapper">
+
+    <!-- 插入盲盒 -->
+    <insert id="insertBlindBox" parameterType="hu.elte.inf.backend.sqlEntity.BlindBox" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO blind_boxes (user_id, artwork_id, purchase_time, price)
+        VALUES (#{user_id}, #{artwork_id}, NOW(), #{price})
+    </insert>
+
+    <!-- 根据用户ID查询盲盒 -->
+    <select id="selectBlindBoxesByUserId" resultType="hu.elte.inf.backend.sqlEntity.BlindBox">
+        SELECT * FROM blind_boxes WHERE user_id = #{user_id}
+    </select>
+
+    <!-- 根据用户ID和艺术品ID查询盲盒项 -->
+    <select id="selectBlindBoxByUserIdAndArtworkId" resultType="hu.elte.inf.backend.sqlEntity.BlindBox">
+        SELECT * FROM blind_boxes WHERE user_id = #{user_id} AND artwork_id = #{artwork_id}
+    </select>    
+    
+    <!-- Get blind box by blind_box_id -->
+    <select id="selectBlindBoxByBlindBoxId" resultType="hu.elte.inf.backend.sqlEntity.BlindBox">
+        SELECT * FROM blind_boxes WHERE id = #{blind_box_id}
+    </select>    
+
+   <!-- Get all blind box details by user_id -->
+    <select id="getAllBlindBoxDetailsByUserId" resultMap="BlindBoxDetailResultMap">
+        SELECT
+        bb.id AS blind_box_id,
+        bb.purchase_time AS purchase_time,
+        bb.price AS blind_box_price,
+        a.id AS artwork_id,
+        a.title,
+        a.description,
+        a.price,
+        a.image_url,
+        a.type,
+        ar.id AS artist_id,
+        ar.name AS artist_name,
+        ar.bio AS artist_bio
+        FROM blind_boxes bb
+        INNER JOIN artworks a ON bb.artwork_id = a.id
+        INNER JOIN artists ar ON a.artist_id = ar.id
+        WHERE bb.user_id = #{user_id}
+    </select>   
+
+    <resultMap id="BlindBoxDetailResultMap" type="hu.elte.inf.backend.sqlEntity.BlindBoxDetail">
+        <result column="blind_box_id" property="blind_box_id" />
+        <result column="purchase_time" property="purchase_time" />
+        <result column="blind_box_price" property="blind_box_price" />
+        <result column="artwork_id" property="artwork_id" />
+        <result column="title" property="title" />
+        <result column="description" property="description" />
+        <result column="price" property="price" />
+        <result column="image_url" property="image_url" />
+        <result column="type" property="type" />
+        <result column="artist_id" property="artist_id" />
+        <result column="artist_name" property="artist_name" />
+        <result column="artist_bio" property="artist_bio" />
+    </resultMap>
+
+</mapper>

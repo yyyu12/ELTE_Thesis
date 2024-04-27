@@ -1,13 +1,14 @@
-package hu.elte.inf.backend.controller.response;
-
-import lombok.Data;
+package hu.elte.inf.backend.sqlEntity;
 
 import java.sql.Timestamp;
+import lombok.Data;
 
 @Data
-public class CartResponse {
-    private Long cart_id;
-    private Timestamp added_at;
+public class BlindBoxDetail {
+
+    private Long blind_box_id;
+    private Timestamp purchase_time;
+    private Double blind_box_price;
     private Long artwork_id;
     private String title;
     private String description;
@@ -17,4 +18,6 @@ public class CartResponse {
     private Long artist_id;
     private String artist_name;
     private String artist_bio;
+
+    // Getter and Setter
 }

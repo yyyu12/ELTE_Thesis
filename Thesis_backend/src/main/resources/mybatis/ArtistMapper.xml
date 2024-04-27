@@ -5,7 +5,6 @@
 
 <mapper namespace="hu.elte.inf.backend.dao.ArtistMapper">
 
-
     <!-- ========================================== Artist ========================================== -->
     <!-- 获得所有的用户 -->
     <select id="findAllArtists" resultType="hu.elte.inf.backend.sqlEntity.Artist">

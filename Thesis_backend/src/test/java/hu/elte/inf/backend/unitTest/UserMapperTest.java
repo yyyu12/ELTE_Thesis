@@ -21,6 +21,7 @@ public class UserMapperTest {
 
     @Autowired
     UserMapper userMapper;
+
     @Test
     public void findAllUsers(){
         List<User> userList = userMapper.findAllUsers();
