@@ -15,6 +15,7 @@ public class BlindBoxDetail {
     private Double price;
     private String image_url;
     private String type;
+    private Long user_id;
     private Long artist_id;
     private String artist_name;
     private String artist_bio;

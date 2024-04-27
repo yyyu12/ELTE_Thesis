@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 public class GlobalExceptionHandler {
 
     // Data not found exception
-    @ExceptionHandler(value = {ArtistNotFoundException.class, ArtworkNotFoundException.class, CartItemNotFound.class, WishlistItemNotFound.class})
+    @ExceptionHandler(value = {ArtistNotFoundException.class, ArtworkNotFoundException.class, CartItemNotFound.class, WishlistItemNotFound.class, UserNotFoundException.class})
     public ResponseEntity<Result> handleNotFoundException(RuntimeException ex, WebRequest request) {
         return ResponseEntity.status(HttpStatus.SC_NOT_FOUND)
                 .body(Result.error(HttpStatus.SC_NOT_FOUND, ex.getMessage()));

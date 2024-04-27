@@ -2,7 +2,6 @@ package hu.elte.inf.backend.dao;
 
 import hu.elte.inf.backend.sqlEntity.User;
 import org.apache.ibatis.annotations.Mapper;
-import org.mybatis.spring.annotation.MapperScan;
 import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
@@ -56,4 +55,10 @@ public interface UserMapper {
      * @return the number of rows affected.
      */
     int updateUserPassword(@Param("id") Long id, @Param("newPassword") String newPassword);
+
+    /**
+     * Delete user by id
+     * @param id
+     */
+    int deleteUser(Long id);
 }

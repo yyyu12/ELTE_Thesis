@@ -25,6 +25,17 @@ public class BlindBoxController {
     private BlindBoxServiceImpl blindBoxService;
 
     /**
+     * Get all blind box details
+     * @return
+     */
+    @GetMapping("/details")
+    public ResponseEntity<List<BlindBoxDetail>> getBlindBoxDetails() {
+        List<BlindBoxDetail> blindBoxDetails = blindBoxService.getAllBlindBoxDetails();
+
+        return ResponseEntity.ok(blindBoxDetails);
+    }
+
+    /**
      * Get all blind box details by user id
      * @param user_id
      * @return
@@ -34,6 +45,19 @@ public class BlindBoxController {
         List<BlindBoxDetail> blindBoxDetails = blindBoxService.getAllBlindBoxDetailsByUserId(user_id);
 
         return ResponseEntity.ok(blindBoxDetails);
+    }
+
+    @GetMapping("/getBlindBoxDetailsByBlindBoxId/{blind_box_id}")
+    public ResponseEntity<List<BlindBoxDetail>> getBlindBoxDetailsByBlindBoxId(@PathVariable Long blind_box_id) {
+        List<BlindBoxDetail> blindBoxDetails = blindBoxService.getAllBlindBoxDetailsByBlindBoxId(blind_box_id);
+
+        return ResponseEntity.ok(blindBoxDetails);
+    }
+
+    @GetMapping("/getBlindBoxByBlindBoxId/{blind_box_id}")
+    public ResponseEntity<BlindBox> getBlindBoxByBlindBoxId(@PathVariable Long blind_box_id) {
+        BlindBox blindBox = blindBoxService.getBlindBoxByBlindBoxId(blind_box_id);
+        return ResponseEntity.ok(blindBox);
     }
 
     @PostMapping("/addBlindBox")

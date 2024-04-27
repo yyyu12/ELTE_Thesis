@@ -40,4 +40,11 @@ public interface Service {
      * @return
      */
     boolean updatePassword(Long userId, String oldPassword, String newPassword);
+
+    /**
+     * Delete user
+     * @param userId
+     * @return
+     */
+    boolean deleteUser(Long userId);
 }

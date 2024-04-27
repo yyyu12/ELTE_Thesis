@@ -15,6 +15,18 @@ public interface BlindBoxMapper {
      */
     List<BlindBoxDetail> getAllBlindBoxDetailsByUserId(@Param("user_id") Long user_id);
 
+    /*
+     * Get all blind box details
+     */
+    List<BlindBoxDetail> getAllBlindBoxDetails();
+
+    /**
+     * Get all blind box details by blind box id
+     * @param blind_box_id
+     * @return
+     */
+    List<BlindBoxDetail> getAllBlindBoxDetailsByBlindBoxId(@Param("blind_box_id") Long blind_box_id);
+
     /**
      * Insert blind box
      * @param blindBox

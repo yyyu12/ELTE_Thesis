@@ -26,6 +26,28 @@
         SELECT * FROM blind_boxes WHERE id = #{blind_box_id}
     </select>    
 
+    <!-- Get all blind box details -->
+    <select id="getAllBlindBoxDetails" resultMap="BlindBoxDetailResultMap">
+        SELECT
+        bb.id AS blind_box_id,
+        bb.purchase_time AS purchase_time,
+        bb.price AS blind_box_price,
+        a.id AS artwork_id,
+        a.title,
+        a.description,
+        a.price,
+        a.image_url,
+        a.type,
+        a.user_id AS user_id,
+        ar.id AS artist_id,
+        ar.name AS artist_name,
+        ar.bio AS artist_bio
+        FROM blind_boxes bb
+        INNER JOIN artworks a ON bb.artwork_id = a.id
+        INNER JOIN artists ar ON a.artist_id = ar.id
+    </select>
+
+
    <!-- Get all blind box details by user_id -->
     <select id="getAllBlindBoxDetailsByUserId" resultMap="BlindBoxDetailResultMap">
         SELECT
@@ -38,6 +60,7 @@
         a.price,
         a.image_url,
         a.type,
+        a.user_id AS user_id,
         ar.id AS artist_id,
         ar.name AS artist_name,
         ar.bio AS artist_bio
@@ -46,6 +69,28 @@
         INNER JOIN artists ar ON a.artist_id = ar.id
         WHERE bb.user_id = #{user_id}
     </select>   
+
+    <!-- Get all blind box details by blind_box_id -->
+    <select id="getAllBlindBoxDetailsByBlindBoxId" resultMap="BlindBoxDetailResultMap">
+        SELECT
+        bb.id AS blind_box_id,
+        bb.purchase_time AS purchase_time,
+        bb.price AS blind_box_price,
+        a.id AS artwork_id,
+        a.title,
+        a.description,
+        a.price,
+        a.image_url,
+        a.type,
+        a.user_id AS user_id,
+        ar.id AS artist_id,
+        ar.name AS artist_name,
+        ar.bio AS artist_bio
+        FROM blind_boxes bb
+        INNER JOIN artworks a ON bb.artwork_id = a.id
+        INNER JOIN artists ar ON a.artist_id = ar.id
+        WHERE bb.id = #{blind_box_id}
+    </select>
 
     <resultMap id="BlindBoxDetailResultMap" type="hu.elte.inf.backend.sqlEntity.BlindBoxDetail">
         <result column="blind_box_id" property="blind_box_id" />
@@ -57,6 +102,7 @@
         <result column="price" property="price" />
         <result column="image_url" property="image_url" />
         <result column="type" property="type" />
+        <result column="user_id" property="user_id" />
         <result column="artist_id" property="artist_id" />
         <result column="artist_name" property="artist_name" />
         <result column="artist_bio" property="artist_bio" />

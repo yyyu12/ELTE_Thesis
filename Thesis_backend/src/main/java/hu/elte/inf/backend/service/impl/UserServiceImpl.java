@@ -93,4 +93,15 @@ public class UserServiceImpl implements  Service{
         int affectedRows = userMapper.updateUserPassword(id, encodedNewPassword);
         return affectedRows == 1;
     }
+
+    // 删除用户
+    @Override
+    public boolean deleteUser(Long id){
+        User user = userMapper.getUserById(id);
+        if(user == null){
+            throw new UserNotFoundException("User Not Found");
+        }
+        int affectedRows = userMapper.deleteUser(id);
+        return affectedRows == 1;
+    }
 }
