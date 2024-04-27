@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Checkout Center</title>
+  <title>Open Box Checkout Center</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex">
@@ -205,24 +205,13 @@
   <!-- Hero Section-->
   <section class="hero">
     <div class="container">
-      <!-- Breadcrumbs -->
-      <ol class="breadcrumb justify-content-center mt-4">
-        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-        <li class="breadcrumb-item active">Checkout Center</a></li>
-        <li class="breadcrumb-item"><a href="user-checkout-overview.html">Order Overview</a></li>
-      </ol>
-      <!-- Hero Content-->
-      <div class="hero-content pb-5 text-center">
-        <h2 class="hero-heading mb-0">Checkout Center</h2>
-        <div class="row">
-          <div class="col-xl-8 offset-xl-2">
-            <p class="lead text-muted">Please fill in your infomation so that you can get your fancy product in time.
-            </p>
-          </div>
-        </div>
-      </div>
+        <!-- Breadcrumbs -->
+        <ol class="breadcrumb justify-content-center mt-4">
+            <li class="breadcrumb-item"><a href="blind-Box.html">Blind Box Center</a></li>
+            <li class="breadcrumb-item active">Purchase Box</li>
+        </ol>
     </div>
-  </section>
+</section>
   <!-- customer checkout-->
 
   <section>
@@ -230,10 +219,8 @@
       <div class="row">
         <div class="col-lg-8">
           <ul class="custom-nav nav nav-pills mb-5">
-            <li class="nav-item" style="width: 50%;"><a class="nav-link text-sm active"
+            <li class="nav-item" style="width: 100%;"><a class="nav-link text-sm active"
                 href="user-checkout.html">Information</a></li>
-            <li class="nav-item" style="width: 50%;"><a class="nav-link text-sm disabled"
-                href="user-checkout-overview.html">Order Review</a></li>
           </ul>
           <form id="checkoutForm">
             <div class="block">
@@ -393,12 +380,10 @@
             </div>
 
             <div class="mb-5 d-flex justify-content-between flex-column flex-lg-row" style="margin-top: 15%;">
-              <a class="btn btn-link text-muted" href="user-cart.html">
+              <a class="btn btn-link text-muted" href="blind-Box.html">
                 <i class="fa fa-angle-left me-2"></i>Back
               </a>
-              <button type="submit" class="btn btn-dark">
-                Continue to order review<i class="fa fa-angle-right ms-2"></i>
-              </button>
+              <button id="placeOder" type="submit" class="btn btn-dark"> Place an Oder <i class="fa fa-angle-right ms-2"></i> </button>
             </div>
           </form>
         </div>
@@ -408,14 +393,9 @@
               <h6 class="text-uppercase mb-0">Order Summary</h6>
             </div>
             <div class="block-body bg-light pt-1">
-              <p class="text-sm">Shipping and additional costs are calculated based on values you have entered.</p>
+              <p class="text-sm">Buy Blind Box with free tax and shipping.</p>
               <ul class="order-summary mb-0 list-unstyled">
-                <li class="order-summary-item"><span>Order Subtotal </span><span class="subtotal">$0.00</span></li>
-                <li class="order-summary-item"><span>Shipping and handling</span><span class="shipping">$0.00</span>
-                </li>
-                <li class="order-summary-item"><span>Tax (6%)</span><span class="tax">$0.00</span></li>
-                <li class="order-summary-item border-0"><span>Total</span><strong
-                    class="order-summary-total">$0.00</strong></li>
+                <li class="order-summary-item border-0"><span>Total</span><strong class="order-summary-total">$0.00</strong></li>
               </ul>
             </div>
           </div>
@@ -565,275 +545,20 @@
   <script src="assets/js/theme.js"></script>
   <script src="assets/js/vendor/jquery.cookie.js"></script>
   <script src="assets/js/cart.js"></script>
+  <script src="assets/js/valid.js"></script>
 
   <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const orderSummaryDataString = localStorage.getItem('orderSummary');
-      const cartDataString = localStorage.getItem('cartData');
+    document.addEventListener("DOMContentLoaded", function () {
+        // get price from sessionStorage.setItem('boxPrice', price);
+        let price = sessionStorage.getItem('boxPrice');
 
-      if (orderSummaryDataString) {
-        const orderSummary = JSON.parse(orderSummaryDataString);
-        displayOrderSummary(orderSummary);
-      } else {
-        console.error('No order summary data available.');
-      }
+        // set price to the order summary
+        document.querySelector('.order-summary-total').textContent = '$' + price;
+    
+        
+      
     });
 
-    function displayOrderSummary(orderSummary) {
-      document.querySelector('.subtotal').textContent = `$${orderSummary.subtotal}`;
-      document.querySelector('.shipping').textContent = `$${orderSummary.shipping}`;
-      document.querySelector('.tax').textContent = `$${orderSummary.tax}`;
-      document.querySelector('.order-summary-total').textContent = `$${orderSummary.total}`;
-    }
-
-    // Get user ID from local storage
-    const userInfoString = localStorage.getItem('userInfo');
-    const userInfo = JSON.parse(userInfoString);
-    const userId = userInfo ? userInfo.id : null;
-
-    document.addEventListener('DOMContentLoaded', function () {
-      const form = document.getElementById('checkoutForm');
-      const useDifferentShippingCheckbox = document.getElementById('show-shipping-address');
-      const shippingFields = document.querySelectorAll('#shippingAddress input');
-      const billingFields = {
-        street: document.getElementById('street_invoice'),
-        city: document.getElementById('city_invoice'),
-        zip: document.getElementById('zip_invoice'),
-        country: document.getElementById('country_invoice'),
-        phone: document.getElementById('phonenumber_invoice')
-      };
-      const shippingFieldsMap = {
-        street: document.getElementById('street_shipping'),
-        city: document.getElementById('city_shipping'),
-        zip: document.getElementById('zip_shipping'),
-        country: document.getElementById('country_shipping'),
-        phone: document.getElementById('phonenumber_shipping')
-      };
-
-      // Handle checkbox to show/hide shipping address fields
-      useDifferentShippingCheckbox.addEventListener('change', function () {
-        if (this.checked) {
-          shippingFields.forEach(field => field.removeAttribute('disabled'));
-        } else {
-          shippingFields.forEach(field => field.setAttribute('disabled', 'disabled'));
-          copyBillingToShipping();
-        }
-      });
-
-      function copyBillingToShipping() {
-        shippingFieldsMap.street.value = billingFields.street.value;
-        shippingFieldsMap.city.value = billingFields.city.value;
-        shippingFieldsMap.zip.value = billingFields.zip.value;
-        shippingFieldsMap.country.value = billingFields.country.value;
-        shippingFieldsMap.phone.value = billingFields.phone.value;
-      }
-
-      // Form submission handling
-      form.addEventListener('submit', function (event) {
-        event.preventDefault();
-
-        if (validateForm()) {
-          proceedToNextPage();
-        } else {
-          alert('Please fill in all required fields.');
-        }
-      });
-
-      function validateForm() {
-        const fullname = document.getElementById('fullname_invoice').value.trim();
-        const email = document.getElementById('emailaddress_invoice').value.trim();
-        const street = document.getElementById('street_invoice').value.trim();
-        const city = document.getElementById('city_invoice').value.trim();
-        const zip = document.getElementById('zip_invoice').value.trim();
-        const country = document.getElementById('country_invoice').value.trim();
-        const phoneNumber = document.getElementById('phonenumber_invoice').value.trim();
-        let valid = true;
-
-        document.querySelectorAll('.error').forEach(function (el) {
-          el.remove();
-        });
-
-        if (!fullname) {
-          addError('fullname_invoice', 'Full name is required.');
-          valid = false;
-        } else if (validateCharater(fullname)) {
-          addError('fullname_invoice', 'Fullname cannot contain numbers.');
-          valid = false;
-        }
-
-        if (!email) {
-          addError('emailaddress_invoice', 'Email address is required.');
-          valid = false;
-        } else if (!isValidEmail(email)) {
-          addError('emailaddress_invoice', 'Invalid email address format.');
-          valid = false;
-        }
-
-        if (!street) {
-          addError('street_invoice', 'Street address is required.');
-          valid = false;
-        }
-
-        if (!city) {
-          addError('city_invoice', 'City is required.');
-          valid = false;
-        } else if (validateCharater(city)) {
-          addError('city_invoice', 'City cannot contain numbers.');
-          valid = false;
-        }
-
-        if (!zip) {
-          addError('zip_invoice', 'ZIP code is required.');
-          valid = false;
-        } else if (isNaN(zip)) {
-          addError('zip_invoice', 'ZIP code must be a number.');
-          valid = false;
-        } else if (zip.length >= 6) {
-          addError('zip_invoice', 'ZIP code must be less than 6 digits.');
-          valid = false;
-        }
-
-        if (!country) {
-          addError('country_invoice', 'Country is required.');
-          valid = false;
-        } else if (validateCharater(country)) {
-          addError('country_invoice', 'Country cannot contain numbers.');
-          valid = false;
-        }
-
-        if (!phoneNumber) {
-          addError('phonenumber_invoice', 'Phone number is required.');
-          valid = false;
-        } else if (!isValidPhone(phoneNumber)) {
-          addError('phonenumber_invoice', 'Invalid phone number format.');
-          valid = false;
-        }
-
-        // 如果用户选择了不同的送货地址，则需要验证送货地址
-        if (useDifferentShippingCheckbox.checked) {
-          const shippingStreet = document.getElementById('street_shipping').value.trim();
-          const shippingCity = document.getElementById('city_shipping').value.trim();
-          const shippingZip = document.getElementById('zip_shipping').value.trim();
-          const shippingCountry = document.getElementById('country_shipping').value.trim();
-          const shippingPhoneNumber = document.getElementById('phonenumber_shipping').value.trim();
-
-          if (!shippingStreet) {
-            addError('street_shipping', 'Street address is required.');
-            valid = false;
-          } 
-
-          if (!shippingCity) {
-            addError('city_shipping', 'City is required.');
-            valid = false;
-          } else if (validateCharater(shippingCity)) {
-            addError('city_shipping', 'City cannot contain numbers.');
-            valid = false;
-          }
-
-          if (!shippingZip) {
-            addError('zip_shipping', 'ZIP code is required.');
-            valid = false;
-          } else if (isNaN(shippingZip)) {
-            addError('zip_shipping', 'ZIP code must be a number.');
-            valid = false;
-          } else if (shippingZip.length >= 6) {
-            addError('zip_shipping', 'ZIP code must be less than 6 digits.');
-            valid = false;
-          }
-
-          if (!shippingCountry) {
-            addError('country_shipping', 'Country is required.');
-            valid = false;
-          } else if (validateCharater(shippingCountry)) {
-            addError('country_shipping', 'Country cannot contain numbers.');
-            valid = false;
-          }
-
-          if (!isValidPhone(shippingPhoneNumber)) {
-            addError('phonenumber_shipping', 'Invalid phone number format.');
-            valid = false;
-          }
-        }
-
-        const cardName = document.getElementById('card-name').value.trim();
-        const cardNumber = document.getElementById('card-number').value.trim();
-        const expiryDate = document.getElementById('expiry-date').value.trim();
-        const cvv = document.getElementById('cvv').value.trim();
-
-        if (!cardName) {
-          addError('card-name', 'Name on card is required.');
-          valid = false;
-        } else if (validateCharater(cardName)) {
-          addError('card-name', 'Name on card cannot contain numbers.');
-          valid = false;
-        }
-
-        if (!isValidCardNumber(cardNumber)) {
-          addError('card-number', 'Need a valid 16-digit card number.');
-          valid = false;
-        }
-
-        if (!isValidExpiryDate(expiryDate)) {
-          addError('expiry-date', 'Invalid expiry date format.');
-          valid = false;
-        }
-
-        if (!isValidCVV(cvv)) {
-          addError('cvv', 'Need a valid 3-digit CVC.');
-          valid = false;
-        }
-
-        return valid;
-      }
-
-      function addError(fieldId, message) {
-        const inputElement = document.getElementById(fieldId);
-        const error = document.createElement('div');
-        error.className = 'error';
-        error.textContent = message;
-        error.style.color = 'red';
-        error.style.fontSize = '0.8em';
-        if (inputElement.nextSibling) {
-          inputElement.parentNode.insertBefore(error, inputElement.nextSibling);
-        } else {
-          inputElement.parentNode.appendChild(error);
-        }
-      }
-
-      const isValidEmail = email => {
-        const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        return re.test(String(email).toLowerCase());
-      };
-
-      const isValidPhone = phone => {
-          const re = /^\+?\d{6,14}$/;
-          return re.test(phone);
-      };
-
-      const isValidCardNumber = cardNumber => {
-        const re = /^\d{16}$/;
-        return re.test(cardNumber);
-      };
-
-      const isValidExpiryDate = expiryDate => {
-        const re = /^(0[1-9]|1[0-2])\/\d{2}$/;
-        return re.test(expiryDate);
-      };
-
-      const isValidCVV = cvv => {
-        const re = /^\d{3}$/;
-        return re.test(cvv);
-      };
-
-      function validateCharater(value) {
-        const regex = /^[a-zA-Z\s]+$/;
-        return regex.test(name);
-      }
-
-      function proceedToNextPage() {
-        window.location.href = 'user-checkout-overview.html';
-      }
-    });
   </script>
 
 

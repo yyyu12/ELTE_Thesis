@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>User Registeration</title>
+    <title>User Order History</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noindex">
@@ -23,33 +23,8 @@
     <link rel="stylesheet" href="assets/css/vendor/fontawesome.min.css">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="assets/css/index.css">
+    <link rel="stylesheet" href="assets/css/order.css">
     <style>
-        .hero-heading {
-            padding-bottom: 20px; /* 调整这个值来增减间距 */
-        }
-
-        .input-control {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .input-control input:focus {
-            outline: 0;
-        }
-
-        .input-control.success input {
-            border-color: #28a745;
-        }
-
-        .input-control.error input {
-            border-color: #dc3545;
-        }
-
-        .input-control .error{
-            color: #dc3545;
-            font-size: 1em;
-        }
-
         @media (min-width:1200px) {
             .navbar .dropdown-menu.show {
                 display: block;
@@ -97,6 +72,7 @@
         }
     </style>
 </head>
+
 
 <body>
     <header class="header">
@@ -166,11 +142,11 @@
                                 </ul>
                             </div>
                         </div>
-                        
+
                         <div class="nav-item login-margin" id="userAccount">
                             <!-- 登录链接 -->
-                            <a class="navbar-icon-link" href="user-login.html" id="userLoginLink">
-                              <i class="far fa-user"></i>
+                            <a class="navbar-icon-link" href="user-login.html" id="userLoginLink" >
+                                <i class="far fa-user"></i>
                             </a>
                         </div>
 
@@ -212,6 +188,7 @@
             </div>
         </div>
 
+
     </header>
 
     <!-- Hero Section-->
@@ -220,106 +197,131 @@
             <!-- Breadcrumbs -->
             <ol class="breadcrumb justify-content-center mt-4">
                 <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                <li class="breadcrumb-item active">Customer Center</li>
+                <li class="breadcrumb-item active">Customer Order History</li>
             </ol>
             <!-- Hero Content-->
             <div class="hero-content pb-5 text-center">
                 <h2 class="hero-heading mb-0">Customer Center</h2>
-                <!-- add >If you have any questions, please feel free to <a href="contact.html">contact us</a>.</p>-->
+            </div>
+        </div>
+    </section>
+
+    <main>
+
+        <!-- ============ Content START ===========  -->
+        <section class="pt-3">
+            <div class="container">
                 <div class="row">
-                    <div class="col-lg-8 mx-auto">
-                        <p class="text-muted mb-0">If you have any questions, please feel free to <a href="contact.html">contact us</a>.</p>
+
+                    <!-- Sidebar START -->
+                    <div class="col-lg-4 col-xl-3">
+                        <!-- Responsive offcanvas body START -->
+                        <div class="offcanvas-lg offcanvas-end" tabindex="-1" id="offcanvasSidebar">
+                            <!-- Offcanvas header -->
+                            <div class="offcanvas-header justify-content-end pb-2">
+                                <button type="button" class="btn-close" data-bs-dismiss="offcanvas"
+                                    data-bs-target="#offcanvasSidebar" aria-label="Close"></button>
+                            </div>
+
+                            <!-- Offcanvas body -->
+                            <div class="offcanvas-body p-3 p-lg-0">
+                                <div class="card bg-light w-100">
+
+                                    <!-- Edit profile button -->
+                                    <div class="position-absolute top-0 end-0 p-3">
+                                        <a href="user-profile.html" class="text-primary-hover" data-bs-toggle="tooltip" data-bs-title="Edit profile">
+                                            <i class="fa-solid fa-pen-to-square"></i>
+                                        </a>
+                                    </div>
+
+                                    <!-- Card body START -->
+                                    <div class="card-body p-3">
+                                        <!-- User name and email -->
+                                        <div class="text-center mb-3" id="userNameAndEmail">
+                                            
+                                        </div>
+
+                                        <!-- Sidebar menu item START -->
+                                        <ul class="nav nav-pills-primary-soft flex-column">
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="user-profile.html">
+                                                    <i class="fa-regular fa-user"></i> <span style="margin-left: 8px;"> My Profile </span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link active" href="user-blindBoxHistory.html">
+                                                    <i class="fa-solid fa-cart-shopping"></i></i><span style="margin-left: 8px;"> My Blind Box </span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="user-orders.html">
+                                                    <i class="fa-solid fa-cart-shopping"></i></i><span style="margin-left: 8px;"> My order history </span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="user-wishlist.html">
+                                                    <i class="fa-regular fa-heart"></i><span style="margin-left: 8px;"> My Wishlist </span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="user-payment-details.html">
+                                                    <i class="fa-solid fa-credit-card"></i><span style="margin-left: 8px;"> Payment Details </span>
+                                                </a>
+                                            </li>
+                                            
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="user-delete.html">
+                                                    <i class="fa-solid fa-trash"></i><span style="margin-left: 16px;">Delete Profile</span></a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link text-danger bg-danger-soft-hover" href="#" id="signOutButton">
+                                                    <i class="fas fa-sign-out-alt fa-fw me-2"></i>Sign Out</a>
+                                            </li>
+                                        </ul>
+                                        <!-- Sidebar menu item END -->
+                                    </div>
+                                    <!-- Card body END -->
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Responsive offcanvas body END -->
                     </div>
+                    <!-- Sidebar END -->
+
+                    <!-- Main content START -->
+                    <div class="col-lg-8 col-xl-9 ps-xl-5 mb-8">
+
+
+                        <div class="card border bg-transparent">
+                            <!-- Card header -->
+                            <div class="card-header bg-transparent border-bottom">
+                                <h4 class="card-header-title">My Blind Box Oder History</h4>
+                                <p class="card-subtitle">Here are the artworks you have purchased from the Blind Box.</p>
+                            </div>
+
+                            <!-- Card body START -->
+                            <div class="card-body vstack gap-4">
+
+                                <div id="orderContainer">
+                                    <!-- Dynamic odered items will be inserted here -->
+                                </div>                                
+                            </div>
+                            <!-- Card body END -->
+                        </div>
+
+                    </div>
+                    <!-- Main content END -->
+
                 </div>
             </div>
+        </section>
+        <!-- =======================
+        Content END -->
 
-        </div>
-    </section>
-    <!-- customer register -->
-    <section>
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-5 mb-8">
-                    <div class="block">
-                        <div class="block-header">
-                            <h6 class="text-uppercase mb-0">New account</h6>
-                        </div>
-                        <div class="block-body">
-                            <p class="lead">New customer?</p>
-                            <p class="text-muted">
-                                Creating an account has many benefits: check out faster, keep more than one address,
-                                track orders and more.
-                            </p>
-                            <p class="text-muted">
-                                Already have an account? Please <a href="user-login.html"> Login</a> here.
-                            </p>
-                            <hr>
-                            <form id="registerForm">
-                                <div class="input-control mb-4 ">
-                                    <label class="form-label" for="username">Username <span class="text-danger">*</span></label>
-                                    <input class="form-control" id="username" name="username" type="text" placeholder="Enter Username">
-                                    <div class="error"></div>
-                                </div>
-                                <div class="input-control mb-4 ">
-                                    <label class="form-label" for="email">Email <span class="text-danger">*</span></label>
-                                    <input class="form-control" id="email" name="email" type="email" placeholder="Enter Email">
-                                    <div class="error"></div>
-                                </div>
-                                <div class="input-control mb-4 ">
-                                    <label class="form-label" for="password">Password <span class="text-danger">*</span></label>
-                                    <div class="input-group">
-                                        <input class=" form-control" id="password" name="password" type="password" placeholder="Enter Password" >
-                                        <span class="input-group-text p-0 bg-transparent" id="togglePassword">
-                                            <i class="fas fa-eye-slash cursor-pointer p-2"></i>
-                                        </span>
-                                        <div class="error"></div>
-                                    </div>
-                                </div>
-                                <div class="input-control mb-4 ">
-                                    <label class="form-label" for="passwordConfirm">Confirm Password <span class="text-danger">*</span></label>
-                                    
-                                    <div class="input-group">
-                                        <input class="form-control" id="passwordConfirm" name="passwordConfirm" type="password" placeholder="Enter Confirmation Password" >
-                                        <span class="input-group-text p-0 bg-transparent" id="togglePasswordConfirm">
-                                            <i class="fas fa-eye-slash cursor-pointer p-2"></i>
-                                        </span>
-                                        <div class="error"></div>
-                                    </div>
-                                </div>
-                                <div class="mb-4">
-                                    <label class="form-label" for="birthdate">Birthdate (Optional)</label>
-                                    <input class="form-control" id="birthdate" name="birthdate" type="date">
-                                </div>
-                                <div class="mb-4">
-                                    <label class="form-label">Gender (Optional)</label>
-                                    <div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="gender" id="genderMale" value="Male">
-                                            <label class="form-check-label" for="genderMale">Male</label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="gender" id="genderFemale" value="Female">
-                                            <label class="form-check-label" for="genderFemale">Female</label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="gender" id="genderOther" value="Other">
-                                            <label class="form-check-label" for="genderOther">Other</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="mb-4 text-center">
-                                    <button class="btn btn-outline-dark" type="submit"><i class="far fa-user me-2"></i>Register</button>
-                                </div>
-                            </form>
-                            
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    </main>
 
 
+    <!-- Footer Start-->
     <footer class="main-footer">
         <!-- Services block-->
         <div class="service-block bg-gray-100 text-dark-700 py-6">
@@ -435,6 +437,7 @@
     <!-- JavaScript files-->
     <!-- jQuery-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
     <!-- Bootstrap JavaScript Bundle (Popper.js included)-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js" integrity="sha512-7Pi/otdlbbCR+LnW+F7PwFcSDJOuUJB3OxtEHbg4vSMvzvJjde4Po1v4BR9Gdc9aXNUNFVUY+SK51wWT8WF0Gg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- Owl Carousel-->
@@ -451,153 +454,44 @@
     <script src="assets/js/theme.js"></script>
     <script src="assets/js/vendor/jquery.cookie.js"></script>
     <script src="assets/js/cart.js"></script>
+    <script src="assets/js/profile.js"></script>
 
     <script>
-        const registerForm = document.getElementById('registerForm');
-        const username = document.getElementById('username');
-        const email = document.getElementById('email');
-        const passwordInput = document.getElementById("password");
-        const togglePassword = document.getElementById("togglePassword");
-        const passwordConfirm = document.getElementById("passwordConfirm");
-        const togglePasswordConfirm = document.getElementById("togglePasswordConfirm");
 
-        // password visibility toggle
-        togglePassword.addEventListener('click', () => {
-            togglePasswordVisibility(passwordInput, togglePassword);
-        });
-
-        togglePasswordConfirm.addEventListener('click', () => {
-            togglePasswordVisibility(passwordConfirm, togglePasswordConfirm);
-        });
+        const userInfoString = localStorage.getItem('userInfo');
+        const userInfo = JSON.parse(userInfoString);
         
-        /* ======== user register start ======== */
-        registerForm.addEventListener('submit', function(event) {
-            event.preventDefault(); // 阻止表单默认提交
+        if(userInfo && userInfo.id) {
+            fetchPurchasedArtworks(userInfo.id);
+        }
 
-            const isValidForm = validateInputs(); // 存储验证结果
-
-            if (!isValidForm) {
-                // 如果表单验证失败，停止处理
-                return;
-            }
-
-            const birthdate = document.getElementById('birthdate').value;
-            const genderElement = document.querySelector('input[name="gender"]:checked');
-            const gender = genderElement ? genderElement.value : null; // 如果没有选中项，则性别为空
-
-            // console.log(JSON.stringify({
-            //         username: username.value,
-            //         email: email.value,
-            //         password: password.value,
-            //         birthdate: birthdate || null, // 包含出生日期
-            //         gender: gender, // 包含性别
-            //         address: null
-            //     }));
-            // {"username":"Joden","email":"Joden@example.com","password":"supersecretpassword","isAdmin":false,"birthdate":null,"gender":null,"address":null}
-            fetch('http://localhost:8080/users/register', { 
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    username: username.value,
-                    password: password.value,
-                    email: email.value,
-                    birthdate: birthdate || null, // 包含出生日期
-                    gender: gender, // 包含性别
-                    address: null
-                }),
+        function fetchPurchasedArtworks(userId) {
+            fetch(`http://localhost:8080/blindBox/user/${userId}/details`)
+            .then(response => response.json())
+            .then(artworks => {
+                const container = document.getElementById('orderContainer');
+                container.innerHTML = '';
+                artworks.forEach(artwork => {
+                    const artworkHTML = `
+                        <div class="card shadow-sm mb-3">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <img src="${artwork.image_url}" class="img-fluid rounded-start" alt="${artwork.title}">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title mb-1"><a href="product-detail.html?id=${artwork.artwork_id}" title="View Artwork Detail">${artwork.title}</a></h5>
+                                        <p class="card-text">${artwork.type}</p>
+                                        <p class="card-text">${artwork.description}</p>
+                                        <p class="card-text"><small class="text-muted">Price: $${artwork.price.toFixed(2)}</small></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>`;
+                    container.innerHTML += artworkHTML;
+                });
             })
-            
-            .then(response => response.json()) 
-
-            .then(data => {
-                // 处理数据'
-                // console.log(data);
-                if(data.code === 200){
-                    alert(data.msg);
-                    window.location.href = 'user-login.html';
-                } else {
-                    alert("Register failed: " + data.msg);
-                }
-            })
-
-            .catch(error => {
-                console.error('Error:', error);
-                alert("Login failed: " + error.message);
-            });
-
-        });
-
-        const setError = (element, message) => {
-            const inputControl = element.parentElement;
-            const errorDisplay = inputControl.querySelector('.error');
-
-            errorDisplay.innerText = message;
-            inputControl.classList.add('error');
-            inputControl.classList.remove('success');
-        }
-
-        const setSuccess = (element) => {
-            const inputControl = element.parentElement;
-            const errorDisplay = inputControl.querySelector('.error');
-
-            errorDisplay.innerText = '';
-            inputControl.classList.remove('error');
-            inputControl.classList.add('success');
-        }
-
-        const isValidEmail = email => {
-            const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-            return re.test(String(email).toLowerCase());
-        }
-
-        const validateInputs = () => {
-            const usernameValue = username.value.trim();
-            const emailValue = email.value.trim();
-            const passwordValue = password.value.trim();
-            const passwordConfirmValue = passwordConfirm.value.trim();
-
-            let isValid = true; // 增加变量来跟踪验证状态
-
-            if(usernameValue === '') {
-                setError(username, 'Username is required');
-                isValid = false;
-            } else {
-                setSuccess(username);
-            }
-
-            if(emailValue === '') {
-                setError(email, 'Email is required');
-                isValid = false;
-            } else if (!isValidEmail(emailValue)) {
-                setError(email, 'Provide a valid email address');
-                isValid = false;
-            } else {
-                setSuccess(email);
-            }
-
-            if(passwordValue === '') {
-                setError(password, 'Password is required');
-                isValid = false;
-            } else if (passwordValue.length < 6) {
-                setError(password, 'Password must be at least 6 character.')
-                isValid = false;
-            } else {
-                setSuccess(password);
-            }
-
-            if(passwordConfirmValue === '') {
-                setError(passwordConfirm, 'Confirmation Password is required');
-                isValid = false;
-            } else if (passwordValue !== passwordConfirmValue) {
-                setError(passwordConfirm, 'Passwords do not match');
-                isValid = false;
-            } else {
-                setSuccess(passwordConfirm);
-            }
-
-            return isValid;
+            .catch(error => console.error('Error fetching purchased artworks:', error));
         }
 
     </script>

@@ -136,7 +136,7 @@
             <li class="nav-item"><a class="nav-link" href="blind-Box.html">Blind Box</a>
             <li class="nav-item"><a class="nav-link" href="direct-Buy.html">Shop</a></li>
             <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-            <li class="nav-item" id="adminPageLink"><a class="nav-link" href="AdminHomepage.html">Admin Home</a></li>
+            <li class="nav-item" id="adminPageLink" style="display: none;"><a class="nav-link" href="AdminHomepage.html">Admin Home</a></li>
           </ul>
 
           <div class="d-flex align-items-center justify-content-between justify-content-lg-end mt-1 mb-2 my-lg-0">
@@ -485,7 +485,6 @@
   <script src="assets/js/cart.js"></script>
 
   <script>
-    // 需要添加保存这个艺术品有几个like的逻辑！！！
     document.getElementById('likeButton').addEventListener('click', function () {
       var likeCountElement = document.getElementById('likeCount');
       var currentCount = parseInt(likeCountElement.innerText);

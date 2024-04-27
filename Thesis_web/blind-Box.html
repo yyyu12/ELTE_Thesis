@@ -88,7 +88,7 @@
                         <li class="nav-item"><a class="nav-link active" href="blind-Box.html">Blind Box</a>
                         <li class="nav-item"><a class="nav-link" href="direct-Buy.html">Shop</a></li>
                         <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-                        <li class="nav-item" id="adminPageLink"><a class="nav-link" href="AdminHomepage.html">Admin Home</a></li>
+                        <li class="nav-item" id="adminPageLink" style="display: none;"><a class="nav-link" href="AdminHomepage.html">Admin Home</a></li>
                     </ul>
 
                     <div class="d-flex align-items-center justify-content-between justify-content-lg-end mt-1 mb-2 my-lg-0">
@@ -187,8 +187,6 @@
         </div>
     </section>
 
-    <!-- Main Content -->
-    <!-- 展示所有的产品 -->
 
     <section>
         <div class="button-container text-center py-13">
@@ -229,7 +227,9 @@
                                             <button type="button" class="btn btn-outline-primary" onclick="openBlindBox(1701, 2000); return false;">$1850</button>
 
                                         </div>
-                                        <p class="text-muted mt-2">Once opened, blind boxes cannot be returned.</p>
+                                        <p class="text-muted mt-3">Once opened, blind boxes cannot be returned.</p>
+                                        <p class="text-muted">You will receive a random artwork from the selected price range.</p>
+                                        <p class="text-muted">Notice: You should pay first before opening the blind box.</p>
                                     </article>
                                 </div>
                                 <div class="modal-footer">
@@ -389,7 +389,6 @@
     <script>
         function openBlindBox(minPrice, maxPrice) {
             if (confirm('Are you sure you want to open this blind box? Once opened, it cannot be returned.')) {
-                // 用户确认后，继续请求随机艺术品
                 fetch(`http://localhost:8080/artwork/getRandomArtwork?minPrice=${minPrice}&maxPrice=${maxPrice}`)
                 .then(response => {
                     if (!response.ok) {
@@ -400,7 +399,12 @@
                 .then(artwork => {
                     if (artwork) {
                         sessionStorage.setItem('receivedArtwork', JSON.stringify(artwork));
-                        window.location.href = 'openBox.html';
+
+                        const price = Math.floor((minPrice + maxPrice) / 2);
+                        sessionStorage.setItem('boxPrice', price);
+                        // console.log(price);
+
+                        window.location.href = 'openBox-checkout.html';
                     } else {
                         throw new Error('No artwork received');
                     }
@@ -414,8 +418,6 @@
                 console.log('User cancelled the blind box opening.');
             }
         }
-
-
 
     </script>
 </body>

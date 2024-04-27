@@ -107,7 +107,7 @@
                         <li class="nav-item"><a class="nav-link" href="blind-Box">Blind Box</a>
                         <li class="nav-item"><a class="nav-link" href="direct-Buy.html">Shop</a></li>
                         <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-                        <li class="nav-item" id="adminPageLink"><a class="nav-link" href="AdminHomepage.html">Admin Home</a></li>
+                        <li class="nav-item" id="adminPageLink" style="display: none;"><a class="nav-link" href="AdminHomepage.html">Admin Home</a></li>
                     </ul>
 
                     <div
@@ -252,10 +252,16 @@
                                                 </a>
                                             </li>
                                             <li class="nav-item">
+                                                <a class="nav-link " href="user-blindBoxHistory.html">
+                                                    <i class="fa-solid fa-cart-shopping"></i></i><span style="margin-left: 8px;"> My Blind Box </span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
                                                 <a class="nav-link" href="user-orders.html">
                                                     <i class="fa-solid fa-cart-shopping"></i>
                                                     <span style="margin-left: 8px;"> My order history </span>
                                                 </a>
+                                            </li>
                                             <li class="nav-item">
                                                 <a class="nav-link" href="user-wishlist.html">
                                                     <i class="fa-regular fa-heart"></i>
@@ -315,13 +321,8 @@
                                     <li>Are you sure you want to delete your account?</li>
                                     <li>If you delete your account, you will lose your all data.</li>
                                 </ul>
-                                <div class="form-check form-check-md my-4">
-                                    <input class="form-check-input" type="checkbox" value="" id="deleteaccountCheck">
-                                    <label class="form-check-label" for="deleteaccountCheck">Yes, I'd like to delete my
-                                        account</label>
-                                </div>
                                 
-                                <a href="#" class="btn btn-danger btn-sm mb-0">Delete my account</a>
+                                <a href="#" class="btn btn-danger btn-sm mb-0" id="deleteAccountButton">Yes, I'd like to delete my account</a>
                             </div>
                             <!-- Card body END -->
                         </div>
@@ -471,6 +472,41 @@
     <script src="assets/js/vendor/jquery.cookie.js"></script>
     <script src="assets/js/cart.js"></script>
     <script src="assets/js/profile.js"></script>
+
+    <script>
+
+        document.getElementById('deleteAccountButton').addEventListener('click', function(e) {
+            e.preventDefault(); // 阻止链接默认行为
+
+            const userInfoString = localStorage.getItem('userInfo');
+
+            if (userInfoString) {
+                const userInfo = JSON.parse(userInfoString);
+                const userId = userInfo.id;
+
+                if (confirm('Are you sure you want to delete your account? This cannot be undone.')) {
+                    fetch(`http://localhost:8080/users/deleteUser/${userId}`, {
+                        method: 'DELETE'
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if(data.code === 200) {
+                            alert('Account deleted successfully.');
+                            localStorage.removeItem('userInfo');
+                            window.location.href = 'index.html';
+                        } else {
+                            alert('Failed to delete the account.');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert('Failed to delete the account.');
+                    });
+                }
+            }
+        });
+
+    </script>
     
 </body>
 

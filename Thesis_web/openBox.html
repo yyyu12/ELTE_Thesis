@@ -113,7 +113,7 @@
                         <li class="nav-item"><a class="nav-link" href="blind-Box.html">Blind Box</a>
                         <li class="nav-item"><a class="nav-link" href="direct-Buy.html">Shop</a></li>
                         <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-                        <li class="nav-item" id="adminPageLink"><a class="nav-link" href="AdminHomepage.html">Admin Home</a></li>
+                        <li class="nav-item" id="adminPageLink" style="display: none;"><a class="nav-link" href="AdminHomepage.html">Admin Home</a></li>
                     </ul>
 
                     <div class="d-flex align-items-center justify-content-between justify-content-lg-end mt-1 mb-2 my-lg-0">
@@ -207,24 +207,37 @@
     </section>
     <!-- Hero Section End -->
 
-    <div class="container py-5">
-        <h1 class="text-center mb-4">Congratulations on Your New Artwork!</h1>
-        <div class="row">
-            <div class="col-lg-8 mx-auto"> <!-- 控制图片显示的最大宽度 -->
-                <div class="card mb-3">
-                    <img src="" alt="Artwork Image" id="artworkImage" class="card-img-top artwork-image" >
-                    <div class="card-body">
-                        <h5 class="card-title"><a href="" id="artworkTitleLink" title="View Artwork Detail">Artwork Title</a></h5>
-                        <p class="card-text" id="artworkDescription">Artwork Description</p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <span class="h4" id="artworkPrice">$0.00</span>
-                            <button class="btn btn-primary" onclick="window.print();">Print Certificate</button>
+    <section class="pb-5">
+        <div class="container text-center">
+            <div class="icon-rounded bg-primary-light mb-3 mx-auto text-primary">
+                <i class="fa-solid fa-circle-check" style="font-size: 2rem; vertical-align: middle;"></i>
+            </div>
+    
+            <!-- Dynamic content -->
+            <h4 class="mb-3 ff-base">Thank you, <span id="userName"></span>. Your order is confirmed.</h4>
+            <p class="mb-5">Thanks for choosing Blind Box. Here is the artwork you received.</p>
+            <p><button class="btn btn-info mb-3" id="toggleCardButton">Open Your Fancy Blind Box</button></p>
+        </div>
+    
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <div class="card mb-3" id="artworkCard" style="display: none;">
+                        <img src="" alt="Artwork Image" id="artworkImage" class="card-img-top artwork-image" >
+                        <div class="card-body">
+                            <h5 class="card-title"><a href="" id="artworkTitleLink" title="View Artwork Detail">Artwork Title</a></h5>
+                            <p class="card-text" id="artworkDescription">Artwork Description</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="h4" id="artworkPrice">$0.00</span>
+                                <button class="btn btn-primary" onclick="window.print();">Print Certificate</button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
+    
 
     <!-- Footer-->
     <footer class="main-footer">
@@ -363,20 +376,45 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const artworkData = sessionStorage.getItem('receivedArtwork');
-            const artwork = JSON.parse(artworkData);
 
-            if (artwork) {
-                const artworkTitleLink = document.getElementById('artworkTitleLink');
-                artworkTitleLink.textContent = artwork.title;
-                artworkTitleLink.href = `product-detail.html?id=${artwork.id}`; 
-                document.getElementById('artworkDescription').textContent = artwork.description;
-                document.getElementById('artworkPrice').textContent = `$${artwork.price.toFixed(2)}`;
-                document.getElementById('artworkImage').src = artwork.image_url;
+            const userInfoString = localStorage.getItem('userInfo');
+            const userInfo = JSON.parse(userInfoString);
+
+            if (userInfo.username) {
+                const userNameElement = document.getElementById('userName');
+                userNameElement.textContent = userInfo.username;
+            }
+
+            const blindBoxId = sessionStorage.getItem('blindBoxId');
+            
+            if(blindBoxId){
+                fetch(`http://localhost:8080/blindBox/getBlindBoxDetailsByBlindBoxId/${blindBoxId}`)
+                .then(response => response.json())
+                .then(data => {
+                    const artwork = data[0];
+                    const artworkTitleLink = document.getElementById('artworkTitleLink');
+                    artworkTitleLink.textContent = artwork.title;
+                    artworkTitleLink.href = `product-detail.html?id=${artwork.artwork_id}`;
+                    document.getElementById('artworkDescription').textContent = artwork.description;
+                    document.getElementById('artworkPrice').textContent = `$${artwork.price.toFixed(2)}`;
+                    document.getElementById('artworkImage').src = artwork.image_url;
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+            }
+
+        });
+
+        document.getElementById('toggleCardButton').addEventListener('click', function() {
+            var card = document.getElementById('artworkCard');
+            if (card.style.display === 'none' || card.style.display === '') {
+                card.style.display = 'block';
             } else {
-                console.log('No artwork information found.');
+                card.style.display = 'none';
             }
         });
+    
     </script>
 </body>
 

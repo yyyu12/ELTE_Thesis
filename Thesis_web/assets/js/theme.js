@@ -87,22 +87,6 @@ $(function () {
     });
 
     // ------------------------------------------------------- //
-    //   Increase/Decrease product amount
-    // ------------------------------------------------------ //
-
-    $(".btn-items-decrease").on("click", function () {
-        var input = $(this).siblings(".input-items");
-        if (parseInt(input.val(), 10) >= 1) {
-            input.val(parseInt(input.val(), 10) - 1);
-        }
-    });
-
-    $(".btn-items-increase").on("click", function () {
-        var input = $(this).siblings(".input-items");
-        input.val(parseInt(input.val(), 10) + 1);
-    });
-
-    // ------------------------------------------------------- //
     //   Scroll to top button
     // ------------------------------------------------------ //
 
@@ -123,7 +107,6 @@ $(function () {
         );
     });
 
-    
     // ------------------------------------------------------- //
     //   Image zoom
     // ------------------------------------------------------ //
@@ -134,21 +117,6 @@ $(function () {
             duration: 0,
         });
     });
-
-
-    // ------------------------------------------------------- //
-    //  Button-style form labels used in detail.html
-    // ------------------------------------------------------ //
-
-    $(".detail-option-btn-label").on("click", function () {
-        var button = $(this);
-
-        button.parents(".detail-option").find(".detail-option-btn-label").removeClass("active");
-
-        button.toggleClass("active");
-    });
-
-    
 
 
     // ------------------------------------------------------- //
@@ -182,79 +150,6 @@ $(function () {
         responsiveClass: false,
     });
 
-    // ------------------------------------------------------- //
-    // Brands Slider
-    // ------------------------------------------------------ -//
-
-    var brandsSlider = $(".brands-slider");
-    brandsSlider.owlCarousel({
-        loop: true,
-        margin: 20,
-        dots: true,
-        nav: false,
-        smartSpeed: 400,
-        responsiveClass: true,
-        responsive: {
-            0: {
-                items: 2,
-            },
-            600: {
-                items: 3,
-            },
-            1000: {
-                items: 6,
-                loop: false,
-            },
-        },
-        onRefresh: function () {
-            brandsSlider.find(".item").height("");
-        },
-        onRefreshed: function () {
-            var maxHeight = 0;
-            var items = brandsSlider.find(".item");
-            items.each(function () {
-                var itemHeight = $(this).height();
-                if (itemHeight > maxHeight) {
-                    maxHeight = itemHeight;
-                }
-            });
-            if (maxHeight > 0) {
-                items.height(maxHeight);
-            }
-        },
-    });
-
-    /*--
-        Isotpe
-    -----------------------------------*/
-   // 当文档加载完成后
-//    $('.isotope-grid').imagesLoaded(function() {
-//         // 然后初始化 Isotope
-//         $('.isotope-grid').isotope({
-//             // options...
-//             itemSelector: '.grid-item',
-//             percentPosition: true,
-//             masonry: {
-//                 // 使用 grid-sizer 作为列宽的单位
-//                 columnWidth: '.grid-sizer'
-//             }
-//         });
-//     });
-
-
-//     // Column Toggle
-//     $('.product-column-toggle').on('click', '.toggle', function (e) {
-//         e.preventDefault();
-//         var $this = $(this),
-//             $column = $this.data('column'),
-//             $prevColumn = $this.siblings('.active').data('column');
-//         $this.toggleClass('active').siblings().removeClass('active');
-//         $('.products').removeClass('row-cols-xl-' + $prevColumn).addClass('row-cols-xl-' + $column);
-//         $.fn.matchHeight._update();
-//         $('.isotope-grid').isotope('layout');
-//     });
-
-//     $('.isotope-grid .product').matchHeight();
 
  /*--
         Isotpe

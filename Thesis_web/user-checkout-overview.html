@@ -110,7 +110,7 @@
                         <li class="nav-item"><a class="nav-link" href="blind-Box.html">Blind Box</a>
                         <li class="nav-item"><a class="nav-link" href="direct-Buy.html">Shop</a></li>
                         <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-                        <li class="nav-item" id="adminPageLink"><a class="nav-link" href="AdminHomepage.html">Admin Home</a></li>
+                        <li class="nav-item" id="adminPageLink" style="display: none;"><a class="nav-link" href="AdminHomepage.html">Admin Home</a></li>
                     </ul>
 
                     <div class="d-flex align-items-center justify-content-between justify-content-lg-end mt-1 mb-2 my-lg-0">
@@ -233,54 +233,13 @@
                                 <div class="cart-header text-center">
                                     <div class="row">
                                         <div class="col-12 col-sm-5 col-lg-6">Item</div>
-                                        <div class="col-12 col-sm-2 col-lg-2">Price</div>
                                         <div class="col-12 col-sm-2 col-lg-2">Num.</div>
-                                        <div class="col-12 col-sm-2 col-lg-2">Total</div>
+                                        <div class="col-12 col-sm-2 col-lg-2">Price</div>
                                         <div class="col-12 col-sm-12 col-lg-1"></div>
                                     </div>
                                 </div>
                                 <div class="cart-body">
-                                    <!-- Product-->
-                                    <div class="cart-item">
-                                        <div class="row d-flex align-items-center text-center">
-                                            <div class="col-6">
-                                                <div class="d-flex align-items-center"><a href="detail.html"><img
-                                                            class="cart-item-img" src="图片的地址" alt="..."></a>
-                                                    <div class="cart-title text-start"><a
-                                                            class="text-uppercase text-dark"
-                                                            href="detail.html"><strong>Skull Tee</strong></a><br><span
-                                                            class="text-muted text-sm">Size: Large</span><br><span
-                                                            class="text-muted text-sm">Colour: Green</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-2">$65.00</div>
-                                            <div class="col-2">4
-                                            </div>
-                                            <div class="col-2 text-center">$260.00</div>
-                                        </div>
-                                    </div>
-                                    <!-- Product-->
-                                    <div class="cart-item">
-                                        <div class="row d-flex align-items-center text-center">
-                                            <div class="col-6">
-                                                <div class="d-flex align-items-center"><a href="detail.html"><img
-                                                            class="cart-item-img" src="图片地址" alt="..."></a>
-                                                    <div class="cart-title text-start">
-                                                        <a class="text-uppercase text-dark" href="detail.html">
-                                                            <strong>White Tee</strong>
-                                                        </a>
-                                                        <br>
-                                                        <span class="text-muted text-sm">Size: Medium</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-2">$55.00</div>
-                                            <div class="col-2">3
-                                            </div>
-                                            <div class="col-2 text-center">$165.00</div>
-                                        </div>
-                                    </div>
+                                    <!-- Product will dynamically added here -->
                                 </div>
                             </div>
                         </div>
@@ -288,9 +247,7 @@
                     <div class="mb-5 d-flex justify-content-between flex-column flex-lg-row">
                         <a class="btn btn-link text-muted" href="user-checkout.html">
                             <i class="fa fa-angle-left me-2"></i>Back to the filled information</a>
-                        <a class="btn btn-dark" href="user-order-confirm.html">
-                            Place an order<i class="fa fa-angle-right ms-2"></i>
-                        </a>
+                        <a id="placeOder" class="btn btn-dark" href="#"> Place an order<i class="fa fa-angle-right ms-2"></i></a>
                     </div>
                 </div>
                 <div class="col-lg-4">
@@ -302,12 +259,10 @@
                             <p class="text-sm">Shipping and additional costs are calculated based on values you have
                                 entered.</p>
                             <ul class="order-summary mb-0 list-unstyled">
-                                <li class="order-summary-item"><span>Order Subtotal </span><span>$390.00</span></li>
-                                <li class="order-summary-item"><span>Shipping and handling</span><span>$10.00</span>
-                                </li>
-                                <li class="order-summary-item"><span>Tax</span><span>$0.00</span></li>
-                                <li class="order-summary-item border-0"><span>Total</span><strong
-                                        class="order-summary-total">$400.00</strong></li>
+                                <li class="order-summary-item"><span>Order Subtotal </span><span class="subtotal">$0.00</span></li>
+                                <li class="order-summary-item"><span>Shipping and handling</span><span class="shipping">$0.00</span></li>
+                                <li class="order-summary-item"><span>Tax (6%)</span><span class="tax">$0.00</span></li>
+                                <li class="order-summary-item border-0"><span>Total</span><strong class="order-summary-total">$0.00</strong></li>
                             </ul>
                         </div>
                     </div>
@@ -451,6 +406,110 @@
     <script src="assets/js/theme.js"></script>
     <script src="assets/js/vendor/jquery.cookie.js"></script>
     <script src="assets/js/cart.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const orderSummaryDataString = localStorage.getItem('orderSummary');
+            const cartDataString = localStorage.getItem('cartData');
+
+            if (orderSummaryDataString) {
+                const orderSummary = JSON.parse(orderSummaryDataString);
+                displayOrderSummary(orderSummary);
+            } else {
+                console.error('No order summary data available.');
+            }
+
+            if (cartDataString) {
+                const cartData = JSON.parse(cartDataString);
+                // console.log(cartData);
+                displayCartData(cartData);
+            } else {
+                console.error('No cart data available.');
+            }
+        });
+
+        function displayCartData(cartData) {
+            const cartItemsContainer = document.querySelector('.cart-body');
+            cartData.forEach(item => {
+                // Create the cart item element
+                const cartItem = document.createElement('div');
+                cartItem.classList.add('cart-item');
+
+                cartItem.innerHTML = `
+                    <div class="row d-flex align-items-center text-center">
+                        <div class="col-6">
+                            <div class="d-flex align-items-center">
+                                <a href="detail.html">
+                                    <img class="cart-item-img" src="${item.image_url}" alt="${item.title}">
+                                </a>
+                                <div class="cart-title text-start">
+                                    <a class="text-uppercase text-dark" href="detail.html"><strong>${item.title}</strong></a><br>
+                                    <span class="text-muted text-sm">Type: ${item.type}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-2">1</div>
+                        <div class="col-2 text-center">$${item.price.toFixed(2)}</div>
+                    </div>
+                `;
+
+                cartItemsContainer.appendChild(cartItem);
+            });
+        }
+
+        function displayOrderSummary(orderSummary) {
+            document.querySelector('.subtotal').textContent = `$${orderSummary.subtotal}`;
+            document.querySelector('.shipping').textContent = `$${orderSummary.shipping}`;
+            document.querySelector('.tax').textContent = `$${orderSummary.tax}`;
+            document.querySelector('.order-summary-total').textContent = `$${orderSummary.total}`;
+        }
+
+        document.getElementById('placeOder').addEventListener('click', function () {
+
+            // update the artwork owner
+            const cartDataString = localStorage.getItem('cartData');
+            const cartData = JSON.parse(cartDataString);
+
+            // get the user id
+            const userInfoString = localStorage.getItem('userInfo');
+            const userInfo = JSON.parse(userInfoString);
+
+            // update the artwork owner
+            cartData.forEach(item => {
+                fetch(`http://localhost:8080/artwork/purchase/${item.artwork_id}?userId=${userInfo.id}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    alert(data.msg);
+                    window.location.href = 'user-order-confirm.html';
+
+                    // clear the cart
+                    removeAllItemFromCart();
+
+                    // clear the local storage
+                    localStorage.removeItem('cartData');
+                    localStorage.removeItem('orderSummary');
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
+            });
+        });
+
+        function removeAllItemFromCart() {
+            const cartDataString = localStorage.getItem('cartData');
+            const cartData = JSON.parse(cartDataString);
+
+            cartData.forEach(item => {
+                removeItemFromCart(item.cart_id);
+            });
+        }
+
+    </script>
     
 </body>
 
