@@ -8,33 +8,33 @@
     <!-- ========================================== User ========================================== -->
     <!-- 获得所有的用户 -->
     <select id="findAllUsers" resultType="hu.elte.inf.backend.sqlEntity.User">
-        SELECT * FROM user
+        SELECT * FROM user_account
     </select>
 
     <!-- 通过用户id查询用户 -->
     <select id="getUserById" parameterType="long" resultType="hu.elte.inf.backend.sqlEntity.User">
-        SELECT * FROM user WHERE id = #{id}
+        SELECT * FROM user_account WHERE id = #{id}
     </select>
 
     <!-- 通过用户名查询用户 -->
     <select id="getUserByUserName" parameterType="String" resultType="hu.elte.inf.backend.sqlEntity.User">
-        SELECT * FROM user WHERE username = #{username}
+        SELECT * FROM user_account WHERE username = #{username}
     </select>
 
     <!-- 通过邮件查询用户 -->
     <select id="getUserByEmail" parameterType="String" resultType="hu.elte.inf.backend.sqlEntity.User">
-        SELECT * FROM user WHERE email = #{email}
+        SELECT * FROM user_account WHERE email = #{email}
     </select>
 
     <!-- 插入新用户 -->
     <insert id="insertUser" parameterType="hu.elte.inf.backend.sqlEntity.User" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO user (username, password, email, isAdmin, birthdate, gender, address)
+        INSERT INTO user_account (username, password, email, isAdmin, birthdate, gender, address)
         VALUES (#{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, false, #{birthdate,jdbcType=DATE}, #{gender,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR})
     </insert>
 
     <!-- 更新用户个人信息 -->
     <update id="updateUserInfo" parameterType="hu.elte.inf.backend.sqlEntity.User">
-        UPDATE user
+        UPDATE user_account
         <set>
             <if test="username != null">username = #{username},</if>
             <if test="email != null">email = #{email},</if>
@@ -47,12 +47,12 @@
 
     <!-- 更新用户密码 -->
     <update id="updateUserPassword">
-        UPDATE user SET password = #{newPassword} WHERE id = #{id}
+        UPDATE user_account SET password = #{newPassword} WHERE id = #{id}
     </update>
 
     <!-- 删除用户 -->
     <delete id="deleteUser" parameterType="long">
-        DELETE FROM user WHERE id = #{id}
+        DELETE FROM user_account WHERE id = #{id}
     </delete>
 
 
