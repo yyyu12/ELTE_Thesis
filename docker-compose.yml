@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  db:
+    build:
+      context: ./MySQL  
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root_12345
+      MYSQL_DATABASE: thesisdb
+      MYSQL_USER: thesisuser
+      MYSQL_PASSWORD: thesis_12345
+    networks:
+      - thesis-network
+    ports:
+      - "3306:3306"  
+  backend:
+    build:
+      context: ./Thesis_backend
+    ports:
+      - "8080:8080"
+    networks:
+      - thesis-network
+    depends_on:
+      - db
+    
+  nginx:
+    build:
+      context: ./Thesis_web  
+    ports:
+      - "80:80"
+    networks:
+      - thesis-network
+    depends_on:
+      - backend
+
+networks:
+  thesis-network:
+    driver: bridge

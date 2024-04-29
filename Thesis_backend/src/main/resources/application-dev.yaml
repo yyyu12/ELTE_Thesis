@@ -1,0 +1,11 @@
+spring:
+  datasource:
+    url: jdbc:mysql://db:3306/thesisdb
+    username: thesisuser
+    password: thesis_12345
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+mybatis:
+  mapper-locations: classpath:mybatis/*.xml
+
+
