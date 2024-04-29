@@ -5,28 +5,28 @@
 
 <mapper namespace="hu.elte.inf.backend.dao.CartMapper">
 
-    <!-- 插入购物车 -->
+    <!-- insert cart -->
     <insert id="insertCart" parameterType="hu.elte.inf.backend.sqlEntity.Cart" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO carts (user_id, artwork_id, added_at)
         VALUES (#{user_id}, #{artwork_id}, NOW())
     </insert>
 
-    <!-- 根据用户ID查询购物车 -->
+    <!-- Get all carts by user_id -->
     <select id="selectCartsByUserId" resultType="hu.elte.inf.backend.sqlEntity.Cart">
         SELECT * FROM carts WHERE user_id = #{user_id}
     </select>
 
-    <!-- 根据用户ID和艺术品ID删除购物车中的艺术品 -->
+    <!-- delete cart by user_id and artwork_id --> 
     <delete id="deleteCartByUserIdAndArtworkId">
         DELETE FROM carts WHERE user_id = #{user_id} AND artwork_id = #{artwork_id}
     </delete>
 
-    <!-- 根据cart_id删除购物车中的艺术品 -->
+    <!-- delete cart by cart_id -->
     <delete id="deleteCartByCartId">
         DELETE FROM carts WHERE id = #{cart_id}
     </delete>
 
-    <!-- 根据用户ID和艺术品ID查询购物车项 -->
+    <!-- Get cart by user_id and artwork_id -->
     <select id="selectCartByUserIdAndArtworkId" resultType="hu.elte.inf.backend.sqlEntity.Cart">
         SELECT * FROM carts WHERE user_id = #{user_id} AND artwork_id = #{artwork_id}
     </select>
@@ -36,7 +36,6 @@
         SELECT * FROM carts WHERE id = #{cart_id}
     </select>
 
-     
     <select id="getAllCartDetailsByUserId" resultMap="CartDetailResultMap">
         SELECT
         c.id AS cart_id,

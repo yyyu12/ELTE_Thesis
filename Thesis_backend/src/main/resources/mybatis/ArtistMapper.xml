@@ -6,33 +6,33 @@
 <mapper namespace="hu.elte.inf.backend.dao.ArtistMapper">
 
     <!-- ========================================== Artist ========================================== -->
-    <!-- 获得所有的用户 -->
+    <!-- Get all artists -->
     <select id="findAllArtists" resultType="hu.elte.inf.backend.sqlEntity.Artist">
         SELECT * FROM artists
     </select>
 
-    <!-- 根据ID获取艺术家信息 -->
+    <!-- Get artist by id -->
     <select id="getArtistById" parameterType="long" resultType="hu.elte.inf.backend.sqlEntity.Artist">
         SELECT * FROM artists WHERE id = #{id}
     </select>
 
-    <!-- 通过用户名查询艺术家 -->
+    <!-- Get artist by name -->
     <select id="getArtistByName" parameterType="String" resultType="hu.elte.inf.backend.sqlEntity.Artist">
         SELECT * FROM artists WHERE name = #{name}
     </select>
 
-    <!-- 插入艺术家数据 -->
+    <!-- Insert artist -->
     <insert id="insertArtist" parameterType="hu.elte.inf.backend.sqlEntity.Artist" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO artists (name, bio)
         VALUES (#{name,jdbcType=VARCHAR}, #{bio, jdbcType=VARCHAR})
     </insert>
 
-    <!-- 删除艺术家数据 -->
+    <!-- Delete artist -->
     <delete id="deleteArtist" parameterType="long">
         DELETE FROM artists WHERE id = #{id}
     </delete>
 
-    <!-- 更新艺术家信息 -->
+    <!-- Update artist info -->
     <update id="updateArtist" parameterType="hu.elte.inf.backend.sqlEntity.Artist">
         UPDATE artists
         <set>

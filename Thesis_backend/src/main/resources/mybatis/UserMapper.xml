@@ -6,33 +6,33 @@
 <mapper namespace="hu.elte.inf.backend.dao.UserMapper">
 
     <!-- ========================================== User ========================================== -->
-    <!-- 获得所有的用户 -->
+    <!-- Get all users -->
     <select id="findAllUsers" resultType="hu.elte.inf.backend.sqlEntity.User">
         SELECT * FROM user_account
     </select>
 
-    <!-- 通过用户id查询用户 -->
+    <!-- Get user by id -->
     <select id="getUserById" parameterType="long" resultType="hu.elte.inf.backend.sqlEntity.User">
         SELECT * FROM user_account WHERE id = #{id}
     </select>
 
-    <!-- 通过用户名查询用户 -->
+    <!-- Get user by username -->
     <select id="getUserByUserName" parameterType="String" resultType="hu.elte.inf.backend.sqlEntity.User">
         SELECT * FROM user_account WHERE username = #{username}
     </select>
 
-    <!-- 通过邮件查询用户 -->
+    <!-- Get user by email -->
     <select id="getUserByEmail" parameterType="String" resultType="hu.elte.inf.backend.sqlEntity.User">
         SELECT * FROM user_account WHERE email = #{email}
     </select>
 
-    <!-- 插入新用户 -->
+    <!-- Insert user -->
     <insert id="insertUser" parameterType="hu.elte.inf.backend.sqlEntity.User" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO user_account (username, password, email, isAdmin, birthdate, gender, address)
         VALUES (#{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, false, #{birthdate,jdbcType=DATE}, #{gender,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR})
     </insert>
 
-    <!-- 更新用户个人信息 -->
+    <!-- Update user info -->
     <update id="updateUserInfo" parameterType="hu.elte.inf.backend.sqlEntity.User">
         UPDATE user_account
         <set>
