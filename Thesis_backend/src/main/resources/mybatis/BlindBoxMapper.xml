@@ -5,23 +5,23 @@
 
 <mapper namespace="hu.elte.inf.backend.dao.BlindBoxMapper">
 
-    <!-- 插入盲盒 -->
+    <!-- Insert a new blind box -->
     <insert id="insertBlindBox" parameterType="hu.elte.inf.backend.sqlEntity.BlindBox" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO blind_boxes (user_id, artwork_id, purchase_time, price)
         VALUES (#{user_id}, #{artwork_id}, NOW(), #{price})
     </insert>
 
-    <!-- 根据用户ID查询盲盒 -->
+    <!-- get blind boxes by user_id -->
     <select id="selectBlindBoxesByUserId" resultType="hu.elte.inf.backend.sqlEntity.BlindBox">
         SELECT * FROM blind_boxes WHERE user_id = #{user_id}
     </select>
 
-    <!-- 根据用户ID和艺术品ID查询盲盒项 -->
+    <!-- Get blind box by user_id and artwork_id -->
     <select id="selectBlindBoxByUserIdAndArtworkId" resultType="hu.elte.inf.backend.sqlEntity.BlindBox">
         SELECT * FROM blind_boxes WHERE user_id = #{user_id} AND artwork_id = #{artwork_id}
     </select>    
     
-    <!-- Get blind box by blind_box_id -->
+    <!-- get blind boxes by it own id -->
     <select id="selectBlindBoxByBlindBoxId" resultType="hu.elte.inf.backend.sqlEntity.BlindBox">
         SELECT * FROM blind_boxes WHERE id = #{blind_box_id}
     </select>    

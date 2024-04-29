@@ -4,33 +4,33 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="hu.elte.inf.backend.dao.WishlistMapper">
-        <!-- 插入心愿单 -->
+        
+        <!-- get wishlist by user_id and artwork_id -->
+        <select id="selectWishlistByUserIdAndArtworkId" resultType="hu.elte.inf.backend.sqlEntity.Wishlist">
+                SELECT * FROM wishlist WHERE user_id = #{user_id} AND artwork_id = #{artwork_id}
+        </select>
+
+        <!-- get all wishlists by wishlist_id -->
+        <select id="selectWishlistByWishlistId" resultType="hu.elte.inf.backend.sqlEntity.Wishlist">
+                SELECT * FROM wishlist WHERE id = #{wishlist_id}
+        </select>
+
+        <!-- get all wishlists by user_id -->
+        <select id="selectWishlistsByUserId" resultType="hu.elte.inf.backend.sqlEntity.Wishlist">
+                SELECT * FROM wishlist WHERE user_id = #{user_id}
+        </select>
+        
+        <!-- insert a new wishlist item -->
         <insert id="insertWishlist" parameterType="hu.elte.inf.backend.sqlEntity.Wishlist" useGeneratedKeys="true" keyProperty="id">
                 INSERT INTO wishlist (user_id, artwork_id, added_at)
                 VALUES (#{user_id}, #{artwork_id}, NOW())
         </insert>
 
-        <!-- 根据用户ID和艺术品ID查询心愿单 -->
-        <select id="selectWishlistByUserIdAndArtworkId" resultType="hu.elte.inf.backend.sqlEntity.Wishlist">
-                SELECT * FROM wishlist WHERE user_id = #{user_id} AND artwork_id = #{artwork_id}
-        </select>
-
-        <!-- 根句wishlist_id获得心愿单 -->
-        <select id="selectWishlistByWishlistId" resultType="hu.elte.inf.backend.sqlEntity.Wishlist">
-                SELECT * FROM wishlist WHERE id = #{wishlist_id}
-        </select>
-
-        <!-- 根据用户ID查询心愿单 -->
-        <select id="selectWishlistsByUserId" resultType="hu.elte.inf.backend.sqlEntity.Wishlist">
-                SELECT * FROM wishlist WHERE user_id = #{user_id}
-        </select>
-
-        <!-- 根据wishlist_id删除心愿单中的艺术品 -->
+        <!-- delete a wishlist item by wishlist_id -->
         <delete id="deleteWishlistByWishlistId">
                 DELETE FROM wishlist WHERE id = #{wishlist_id}
         </delete>
 
-        <!-- 获取用户的心愿列表项以及艺术品和艺术家的详细信息 -->
         <select id="getAllWishlistDetailsByUserId" resultMap="WishlistDetailResultMap">
                 SELECT
                 w.id AS wishlist_id,
