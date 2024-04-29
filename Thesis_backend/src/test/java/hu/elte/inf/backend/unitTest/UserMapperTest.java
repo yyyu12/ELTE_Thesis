@@ -27,4 +27,6 @@ public class UserMapperTest {
         List<User> userList = userMapper.findAllUsers();
         assertEquals(userList.size(),1);
     }
+
+
 }
