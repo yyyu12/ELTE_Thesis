@@ -23,7 +23,6 @@ public class ArtistServiceImpl implements ArtistService {
         return artistMapper.findAllArtists();
     }
 
-    // 插入艺术家
     @Override
     public void insertArtist(Artist artist) {
         Artist existingArtist = artistMapper.getArtistByName(artist.getName());
@@ -38,7 +37,6 @@ public class ArtistServiceImpl implements ArtistService {
     }
 
 
-    // 删除艺术家
     @Override
     public void deleteArtist(Long id) {
         Artist artist = artistMapper.getArtistById(id);
@@ -53,7 +51,6 @@ public class ArtistServiceImpl implements ArtistService {
     }
 
 
-    // 更新艺术家信息
     @Override
     public Artist updateArtist(Artist artist) {
         int rowsUpdated = artistMapper.updateArtist(artist);

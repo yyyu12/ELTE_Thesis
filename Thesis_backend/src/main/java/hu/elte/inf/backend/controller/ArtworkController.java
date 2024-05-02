@@ -17,7 +17,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/artwork")
-@CrossOrigin(origins = "*")// 将15行以下的东西
+@CrossOrigin(origins = "*")
 public class ArtworkController {
     @Autowired
     private ArtworkServiceImpl artworkService;

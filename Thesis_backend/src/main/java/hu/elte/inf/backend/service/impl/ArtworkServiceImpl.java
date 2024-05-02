@@ -50,17 +50,17 @@ public class ArtworkServiceImpl implements ArtworkService {
 
         if (existingArtworks.isEmpty()) {
             int rowsAffected = artworkMapper.insertArtwork(artwork);
-            return rowsAffected > 0;  // 插入成功则返回true
+            return rowsAffected > 0;
         }
 
-        return false;  // 已存在，未执行插入
+        return false;
     }
 
 
     @Override
     public boolean deleteArtworkById(Long id) {
         int rowsDeleted = artworkMapper.deleteArtwork(id);
-        return rowsDeleted > 0;  // 如果删除了至少一行，返回true
+        return rowsDeleted > 0;
     }
 
     @Override

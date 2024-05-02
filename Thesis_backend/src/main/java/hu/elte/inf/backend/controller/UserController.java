@@ -20,7 +20,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/users")
-@CrossOrigin(origins = "*")// 将15行以下的东西
+@CrossOrigin(origins = "*")
 public class UserController {
     @Autowired
     private UserServiceImpl userService;
@@ -48,9 +48,9 @@ public class UserController {
             userService.registerUser(user);
             return ResponseEntity.ok(Result.ok("User registered successfully."));
         }catch (UsernameDuplicatedException e) {
-            return ResponseEntity.status(HttpStatus.SC_CONFLICT).body(Result.error("Username already used."));
+            return ResponseEntity.status(HttpStatus.SC_CONFLICT).body(Result.error("Username already exist."));
         } catch (EmailDuplicateException e) {
-            return ResponseEntity.status(HttpStatus.SC_CONFLICT).body(Result.error("Email already used."));
+            return ResponseEntity.status(HttpStatus.SC_CONFLICT).body(Result.error("Email already exist."));
         } catch (InsertException e) {
             return ResponseEntity.status(HttpStatus.SC_INTERNAL_SERVER_ERROR).body(Result.error("Internal server error"));
         }
