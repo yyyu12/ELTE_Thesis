@@ -210,7 +210,7 @@
         </div>
         <!-- Buttons -->
         <div class="buttons">
-          <a href="user-cart.html" class="btn btn-dark btn-hover-primary">view cart</a>
+          <a href="#" id="viewCartButton" class="btn btn-dark btn-hover-primary">view cart</a>
           <a href="#" id="checkoutButton" class="btn btn-outline-dark">checkout</a>
         </div>
         <p class="minicart-message" style="text-align: center; margin-top: 20px;">Free Shipping on All Orders Over $100!
@@ -225,8 +225,7 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-6 col-xl-7 pt-4 order-2 order-lg-1">
-          <a class="glightbox d-block mb-4" href="#" data-title="" data-gallery="product-gallery"
-            id="artworkLargeImageLink">
+          <a class="glightbox d-block mb-4" href="#" data-title="" data-gallery="product-gallery" id="artworkLargeImageLink">
             <div data-bs-toggle="zoom" data-image="" id="artworkZoomContainer">
               <img class="img-fluid" src="" alt="" id="artworkImage">
             </div>
@@ -455,9 +454,11 @@
 
   <!-- JavaScript files-->
   <!-- jQuery-->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"
-    integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <!-- Lightbox gallery-->
+  <script src="assets/js/vendor/glightbox.min.js"></script>
+  <!-- ZOOM Image-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-zoom/1.7.21/jquery.zoom.min.js" integrity="sha512-m5kAjE5cCBN5pwlVFi4ABsZgnLuKPEx0fOnzaH5v64Zi3wKnhesNUYq4yKmHQyTa3gmkR6YeSKW1S+siMvgWtQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <!-- Bootstrap JavaScript Bundle (Popper.js included)-->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"
     integrity="sha512-7Pi/otdlbbCR+LnW+F7PwFcSDJOuUJB3OxtEHbg4vSMvzvJjde4Po1v4BR9Gdc9aXNUNFVUY+SK51wWT8WF0Gg=="
@@ -470,15 +471,10 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/smooth-scroll/16.1.3/smooth-scroll.polyfills.min.js"
     integrity="sha512-LZ6YBzwuQvIG41twjliX3HUVeAd+ErnJ0UsqRnkI4firX2l71jxbKJoax/hu7XY2tiyLl0YA2kcnz/XEW+9O3g=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <!-- Lightbox gallery-->
-  <script src="assets/js/vendor/glightbox.min.js"></script>
   <!-- Object Fit Images - Fallback for browsers that don't support object-fit-->
   <script src="assets/js/vendor/ofi.min.js"></script>
   <script> var basePath = ''; </script>
   <script src="assets/js/theme.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-zoom/1.7.21/jquery.zoom.min.js"
-    integrity="sha512-m5kAjE5cCBN5pwlVFi4ABsZgnLuKPEx0fOnzaH5v64Zi3wKnhesNUYq4yKmHQyTa3gmkR6YeSKW1S+siMvgWtQ=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="assets/js/vendor/jquery.cookie.js"></script>
   <script src="assets/js/index.js"></script>
   <script src="assets/js/vendor/fontAwesome.js"></script>
@@ -526,7 +522,6 @@
     });
 
     function displayArtworkDetails(artistId, artwork) {
-      // 更新页面元素
       document.getElementById('breadcrumbArtworkTitle').textContent = artwork.title;
       document.getElementById('artworkTitle').textContent = artwork.title;
       document.getElementById('artworkPrice').textContent = `$${artwork.price.toFixed(2)}`;
@@ -538,10 +533,11 @@
 
       artworkImage.src = artwork.image_url;
       artworkImage.alt = artwork.title;
-      artworkZoomContainer.setAttribute('data-image', artwork.image_url);
-      artworkLargeImageLink.href = artwork.image_url; // Assume this is the same as the image URL or another high-resolution image
 
-      // 获取艺术家信息
+      artworkZoomContainer.setAttribute('data-image', artwork.image_url);
+      artworkLargeImageLink.href = artwork.image_url;
+      artworkLargeImageLink.dataset.title = artwork.title;
+
       fetch(`http://localhost:8080/artist/getArtistById/${artistId}`)
         .then(response => response.json())
         .then(artist => {
@@ -551,7 +547,6 @@
         })
         .catch(error => console.error('Error loading artist:', error));
 
-      // 更新button的状态，如果已经在购物车中，就不显示添加到购物车按钮，增添一个显示已经出售的信息按钮
       const buttonsContainer = document.getElementById('buttonsContainer');
       if (artwork.user_id !== null) {
         buttonsContainer.innerHTML = `
@@ -683,11 +678,6 @@
         })
         .catch(error => console.error('Error fetching artworks:', error));
     }
-
-
-
-
-
   </script>
 
 </body>

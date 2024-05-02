@@ -34,7 +34,7 @@ async function refresh() {
                 <!-- Image -->
                 <img src="${card.image_url}" class="card-img-top img-fluid" style="height: 300px; object-fit: cover;" alt="${card.title}">
                 <div class="card-body pb-0">
-                <a href="product-detail.html?id=${card.id}" class="stretched-link" title="Click And View"><h5 class="card-title text-center">${card.title}</h5></a>
+                    <h5 class="card-title text-center"><a href="product-detail.html?id=${card.id}" title="Click And View">${card.title}</a></h5>
                     <div class="text-muted">${card.description}</div>
                     <p class="mb-2">Artist: ${artistName}</p>
                     <p class="mb-2">Type: ${card.type}</p> 
@@ -42,8 +42,8 @@ async function refresh() {
                 </div>
                 <div class="card-footer pt-0 pb-3">
                     <div class="d-flex justify-content-between mt-2">
-                        <button class="btn btn-primary edit-artwork" data-artwork-id="${card.id}" data-bs-toggle="modal" data-bs-target="#artworkEditModal" ">Edit</button>
-                        <button class="btn btn-danger delete-artwork" data-artwork-id="${card.id}">Delete</button>
+                        <button class="btn btn-primary edit-artwork" data-artwork-id="${card.id}" data-bs-toggle="modal" data-bs-target="#artworkEditModal" title="Edit Artwork">Edit</button>
+                        <button class="btn btn-danger delete-artwork" data-artwork-id="${card.id}" title="Delete Artwork">Delete</button>
                     </div>
                 </div>
             </div>
@@ -153,12 +153,13 @@ document.getElementById('artworkForm').addEventListener('submit', async function
 
 // Delete artwork
 document.getElementById('table_container').addEventListener('click', function(e) {
-    // 检查是否点击的是删除按钮
+    // console.log(e.target);
     if(e.target.classList.contains('btn-danger')){
-        const artworkId = e.target.getAttribute('data-artwork-id');
-        deleteArtwork(artworkId);
+        const artworkId = e.target.getAttribute('data-artwork-id');     
+        if(confirm('Are you sure you want to delete this artwork?')){
+            deleteArtwork(artworkId);
+        }
     }
-    
 });
 
 async function deleteArtwork(artworkId) {

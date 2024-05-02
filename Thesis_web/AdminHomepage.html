@@ -787,7 +787,6 @@
         });
 
         // Artists table
-        // 删除艺术家的函数
         function deleteArtist() {
             if(confirm('Are you sure you want to delete this artist?')) {
                 const artistId = this.getAttribute('data-artist-id');
@@ -811,16 +810,12 @@
             }
         }
 
-
-        // 绑定删除事件监听器到所有删除按钮
         function attachDeleteEventListeners() {
             document.querySelectorAll('.delete-artist').forEach(button => {
                 button.addEventListener('click', deleteArtist);
             });
         }
 
-        // 编辑艺术家的函数
-        // 绑定 Edit 按钮事件
         document.addEventListener('click', function(event) {
             if (event.target.classList.contains('edit-artist')) {
                 const artistId = event.target.getAttribute('data-artist-id');
@@ -829,9 +824,8 @@
             }
         });
 
-        // 显示编辑模态框
+        // Show Edit Modal
         function showEditModal(artistId) {
-            // 发起请求以获取艺术家的详细信息
             fetch(`http://localhost:8080/artist/getArtistById/${artistId}`)
                 .then(response => {
                     if (!response.ok) {
@@ -853,7 +847,7 @@
                 });
         }
 
-        // 保存编辑后的艺术家信息
+        // edit artist function
         function editArtist(){
             const artistId = document.getElementById('editArtistId').value;
             const artistName = document.getElementById('artistNameEdit').value.trim();

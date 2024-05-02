@@ -205,7 +205,7 @@
                 </div>
                 <!-- Buttons -->
                 <div class="buttons">
-                    <a href="user-cart.html" class="btn btn-dark btn-hover-primary">view cart</a>
+                    <a href="#" id="viewCartButton" class="btn btn-dark btn-hover-primary">view cart</a>
                     <a href="#" id="checkoutButton" class="btn btn-outline-dark">checkout</a>
                 </div>
                 <p class="minicart-message" style="text-align: center; margin-top: 20px;">Free Shipping on All Orders Over $100!</p>
@@ -472,28 +472,18 @@
         
         /* ======== user register start ======== */
         registerForm.addEventListener('submit', function(event) {
-            event.preventDefault(); // 阻止表单默认提交
+            event.preventDefault(); 
 
-            const isValidForm = validateInputs(); // 存储验证结果
+            const isValidForm = validateInputs();
 
             if (!isValidForm) {
-                // 如果表单验证失败，停止处理
                 return;
             }
 
             const birthdate = document.getElementById('birthdate').value;
             const genderElement = document.querySelector('input[name="gender"]:checked');
-            const gender = genderElement ? genderElement.value : null; // 如果没有选中项，则性别为空
+            const gender = genderElement ? genderElement.value : null;
 
-            // console.log(JSON.stringify({
-            //         username: username.value,
-            //         email: email.value,
-            //         password: password.value,
-            //         birthdate: birthdate || null, // 包含出生日期
-            //         gender: gender, // 包含性别
-            //         address: null
-            //     }));
-            // {"username":"Joden","email":"Joden@example.com","password":"supersecretpassword","isAdmin":false,"birthdate":null,"gender":null,"address":null}
             fetch('http://localhost:8080/users/register', { 
                 method: 'POST',
                 headers: {
@@ -503,8 +493,8 @@
                     username: username.value,
                     password: password.value,
                     email: email.value,
-                    birthdate: birthdate || null, // 包含出生日期
-                    gender: gender, // 包含性别
+                    birthdate: birthdate || null,
+                    gender: gender, 
                     address: null
                 }),
             })
@@ -512,7 +502,6 @@
             .then(response => response.json()) 
 
             .then(data => {
-                // 处理数据'
                 // console.log(data);
                 if(data.code === 200){
                     alert(data.msg);
@@ -558,10 +547,14 @@
             const passwordValue = password.value.trim();
             const passwordConfirmValue = passwordConfirm.value.trim();
 
-            let isValid = true; // 增加变量来跟踪验证状态
+            let isValid = true;
 
             if(usernameValue === '') {
                 setError(username, 'Username is required');
+                isValid = false;
+            }
+            else if (usernameValue.length < 3 || usernameValue.length > 20) {
+                setError(username, 'Username must be between 3 and 20 characters');
                 isValid = false;
             } else {
                 setSuccess(username);

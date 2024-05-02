@@ -1,12 +1,3 @@
-/* <div class="nav-item">
-        <a class="navbar-icon-link" href="#" data-bs-toggle="offcanvas"
-        data-bs-target="#offcanvasCart" aria-controls="offcanvasCart">
-            <i class="fas fa-shopping-cart"></i>
-            <div class="navbar-icon-link-badge" id="cart-badge">0</div>
-        </a>
-    </div>
-</div> */
-
 document.addEventListener('DOMContentLoaded', function() {
     const userInfoString = localStorage.getItem('userInfo');
     const userInfo = JSON.parse(userInfoString);

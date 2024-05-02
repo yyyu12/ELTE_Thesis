@@ -70,16 +70,26 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 /* ======== user login profile dropdown end ======== */
 
-/* ======== checkout button logic start ======== */
+/* ======== checkout and view cart button logic start ======== */
 const checkoutButton = document.getElementById('checkoutButton');
-checkoutButton.addEventListener('click', function(event) {
-    event.preventDefault();
+const viewCartButton = document.getElementById('viewCartButton');
+
+checkoutButton.addEventListener('click', function() {
     const userInfo = localStorage.getItem('userInfo');
     
     if (userInfo) {
         window.location.href = 'user-checkout.html';
     } else {
-        alert('Please log in to continue to checkout.');
+        window.location.href = 'user-login.html';
+    }
+});
+
+viewCartButton.addEventListener('click', function() {
+    const userInfo = localStorage.getItem('userInfo');
+    
+    if (userInfo) {
+        window.location.href = 'user-cart.html';
+    } else {
         window.location.href = 'user-login.html';
     }
 });
@@ -96,4 +106,3 @@ const togglePasswordVisibility = (inputElement, toggleElement) => {
         toggleElement.innerHTML = '<i class="fas fa-eye-slash cursor-pointer p-2"></i>';
     }
 };
-

@@ -192,7 +192,7 @@
         </div>
         <!-- Buttons -->
         <div class="buttons">
-          <a href="user-cart.html" class="btn btn-dark btn-hover-primary">view cart</a>
+          <a href="#" id="viewCartButton" class="btn btn-dark btn-hover-primary">view cart</a>
           <a href="#" id="checkoutButton" class="btn btn-outline-dark">checkout</a>
         </div>
         <p class="minicart-message" style="text-align: center; margin-top: 20px;">Free Shipping on All Orders Over $100!
@@ -244,9 +244,9 @@
               <div class="block-body">
                 <div class="row">
                   <div class="form-group col-md-6">
-                    <label class="form-label" for="fullname_invoice">FullName</label>
-                    <input class="form-control" type="text" name="fullname_invoice" placeholder="Fullname"
-                      id="fullname_invoice">
+                    <label class="form-label" for="username_invoice">UserName</label>
+                    <input class="form-control" type="text" name="username_invoice" placeholder="Username"
+                      id="username_invoice">
                   </div>
                   <div class="form-group col-md-6">
                     <label class="form-label" for="emailaddress_invoice">Email Address</label>
@@ -255,7 +255,7 @@
                   </div>
                   <div class="form-group col-md-6">
                     <label class="form-label" for="street_invoice">Street</label>
-                    <input class="form-control" type="text" name="street_invoice" placeholder="123 Main St."
+                    <input class="form-control" type="text" name="street_invoice" placeholder="Main St. 123"
                       id="street_invoice">
                   </div>
                   <div class="form-group col-md-6">
@@ -640,7 +640,7 @@
       });
 
       function validateForm() {
-        const fullname = document.getElementById('fullname_invoice').value.trim();
+        const username = document.getElementById('username_invoice').value.trim();
         const email = document.getElementById('emailaddress_invoice').value.trim();
         const street = document.getElementById('street_invoice').value.trim();
         const city = document.getElementById('city_invoice').value.trim();
@@ -653,11 +653,14 @@
           el.remove();
         });
 
-        if (!fullname) {
-          addError('fullname_invoice', 'Full name is required.');
+        if (!username) {
+          addError('username_invoice', 'Full name is required.');
           valid = false;
-        } else if (validateCharater(fullname)) {
-          addError('fullname_invoice', 'Fullname cannot contain numbers.');
+        } else if (validateCharater(username)) {
+          addError('username_invoice', 'username cannot contain numbers.');
+          valid = false;
+        } else if (username.length >= 20) {
+          addError('username_invoice', 'username must be less than 20 characters.');
           valid = false;
         }
 
@@ -672,6 +675,9 @@
         if (!street) {
           addError('street_invoice', 'Street address is required.');
           valid = false;
+        }else if (street.length >= 30) {
+          addError('street_invoice', 'Street address must be less than 30 characters.');
+          valid = false;
         }
 
         if (!city) {
@@ -679,6 +685,9 @@
           valid = false;
         } else if (validateCharater(city)) {
           addError('city_invoice', 'City cannot contain numbers.');
+          valid = false;
+        }else if (city.length >= 20) {
+          addError('city_invoice', 'City must be less than 20 characters.');
           valid = false;
         }
 
@@ -698,6 +707,9 @@
           valid = false;
         } else if (validateCharater(country)) {
           addError('country_invoice', 'Country cannot contain numbers.');
+          valid = false;
+        }else if (country.length >= 5) {
+          addError('country_invoice', 'Country must be less than 5 characters.');
           valid = false;
         }
 
@@ -728,6 +740,9 @@
           } else if (validateCharater(shippingCity)) {
             addError('city_shipping', 'City cannot contain numbers.');
             valid = false;
+          }else if (shippingCity.length >= 20) {
+            addError('city_shipping', 'City must be less than 20 characters.');
+            valid = false;
           }
 
           if (!shippingZip) {
@@ -746,6 +761,9 @@
             valid = false;
           } else if (validateCharater(shippingCountry)) {
             addError('country_shipping', 'Country cannot contain numbers.');
+            valid = false;
+          }else if (shippingCountry.length >= 5) {
+            addError('country_shipping', 'Country must be less than 5 characters.');
             valid = false;
           }
 

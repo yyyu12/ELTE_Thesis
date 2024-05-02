@@ -42,7 +42,6 @@ document.addEventListener('DOMContentLoaded', function () {
         if (validateForm()) {
             updateArtwork();
             addToBlindBox();
-            proceedToNextPage();
 
             // clear the session storage
             sessionStorage.removeItem('receivedArtwork');
@@ -53,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     function validateForm() {
-        const fullname = document.getElementById('fullname_invoice').value.trim();
+        const username = document.getElementById('username_invoice').value.trim();
         const email = document.getElementById('emailaddress_invoice').value.trim();
         const street = document.getElementById('street_invoice').value.trim();
         const city = document.getElementById('city_invoice').value.trim();
@@ -66,11 +65,14 @@ document.addEventListener('DOMContentLoaded', function () {
             el.remove();
         });
 
-        if (!fullname) {
-            addError('fullname_invoice', 'Full name is required.');
+        if (!username) {
+            addError('username_invoice', 'Username is required.');
             valid = false;
-        } else if (validateCharater(fullname)) {
-            addError('fullname_invoice', 'Fullname cannot contain numbers.');
+        } else if (validateCharater(username)) {
+            addError('username_invoice', 'username cannot contain numbers.');
+            valid = false;
+        }else if(username.length >= 20 || username.length <= 3){
+            addError('username_invoice', 'Username must be between 3 and 20 characters.');
             valid = false;
         }
 
@@ -85,6 +87,9 @@ document.addEventListener('DOMContentLoaded', function () {
         if (!street) {
             addError('street_invoice', 'Street address is required.');
             valid = false;
+        }else if(street.length >= 30){
+            addError('street_invoice', 'Street address must be less than 30 characters.');
+            valid = false;
         }
 
         if (!city) {
@@ -92,6 +97,9 @@ document.addEventListener('DOMContentLoaded', function () {
             valid = false;
         } else if (validateCharater(city)) {
             addError('city_invoice', 'City cannot contain numbers.');
+            valid = false;
+        }else if(city.length >= 20){
+            addError('city_invoice', 'City must be less than 30 characters.');
             valid = false;
         }
 
@@ -112,6 +120,9 @@ document.addEventListener('DOMContentLoaded', function () {
         } else if (validateCharater(country)) {
             addError('country_invoice', 'Country cannot contain numbers.');
             valid = false;
+        } else if(country.length >= 5){
+            addError('country_invoice', 'Country must be less than 30 characters.');
+            valid = false;
         }
 
         if (!phoneNumber) {
@@ -122,7 +133,7 @@ document.addEventListener('DOMContentLoaded', function () {
             valid = false;
         }
 
-        // 如果用户选择了不同的送货地址，则需要验证送货地址
+        // if user wants to use different shipping address
         if (useDifferentShippingCheckbox.checked) {
             const shippingStreet = document.getElementById('street_shipping').value.trim();
             const shippingCity = document.getElementById('city_shipping').value.trim();
@@ -133,6 +144,9 @@ document.addEventListener('DOMContentLoaded', function () {
             if (!shippingStreet) {
                 addError('street_shipping', 'Street address is required.');
                 valid = false;
+            }else if(street.length >= 30){
+                addError('street_shipping', 'Street address must be less than 30 characters.');
+                valid = false;
             }
 
             if (!shippingCity) {
@@ -140,6 +154,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 valid = false;
             } else if (validateCharater(shippingCity)) {
                 addError('city_shipping', 'City cannot contain numbers.');
+                valid = false;
+            }else if(city.length >= 20){
+                addError('city_shipping', 'City must be less than 30 characters.');
                 valid = false;
             }
 
@@ -159,6 +176,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 valid = false;
             } else if (validateCharater(shippingCountry)) {
                 addError('country_shipping', 'Country cannot contain numbers.');
+                valid = false;
+            }else if(country.length >= 5){
+                addError('country_shipping', 'Country must be less than 30 characters.');
                 valid = false;
             }
 
@@ -287,9 +307,20 @@ document.addEventListener('DOMContentLoaded', function () {
         })
         .then(response => response.json())
         .then(data => {
-            const blindBoxId = data.info.id;
-            sessionStorage.setItem('blindBoxId', blindBoxId);
-            console.log('Blind box added successfully.');
+            const boxId = localStorage.getItem('blindBoxId');
+            if(boxId){
+                localStorage.removeItem('blindBoxId');
+                
+                const blindBoxId = data.info.id;
+                localStorage.setItem('blindBoxId', blindBoxId);
+                console.log('Blind box added successfully.');
+                proceedToNextPage();
+            }else{
+                const blindBoxId = data.info.id;
+                localStorage.setItem('blindBoxId', blindBoxId);
+                console.log('Blind box added successfully.');
+                proceedToNextPage();
+            }
         })
         .catch((error) => {
             console.error('Error:', error);
