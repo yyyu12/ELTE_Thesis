@@ -18,13 +18,13 @@
 }
 
 .nav-tabs .nav-item {
-    margin-bottom: -1px; /* 确保在激活时，下划线和选项卡之间没有间隙 */
+    margin-bottom: -1px;
 }
 
 .nav-tabs .nav-link {
-    display: inline-block; /* 确保链接是inline-block，使得它们可以有padding */
-    padding: 8px 16px; /* 设置您想要的选项卡内边距 */
-    border: none; /* 去除默认边框 */
+    display: inline-block;
+    padding: 8px 16px;
+    border: none;
     color: #000; /* 设置您想要的非激活选项卡颜色 */
 }
 

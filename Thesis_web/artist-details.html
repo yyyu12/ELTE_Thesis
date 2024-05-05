@@ -59,29 +59,22 @@
         transition: all .3s ease-in-out;
       }
 
-      /* 深色模式下激活状态的导航链接颜色 */
       [data-bs-theme="dark"] .navbar-nav .nav-link.active,
       [data-bs-theme="dark"] .dropdown-menu {
         background-color: #1E293B !important;
-        /* 深色模式下激活状态的背景颜色 */
       }
 
-      /* 深色模式下鼠标悬停状态的导航链接颜色 */
       [data-bs-theme="dark"] .navbar-nav .nav-link:hover {
         background-color: #1E293B !important;
 
       }
 
-      /* 深色模式下 .dropdown-item 的文字颜色 */
       [data-bs-theme="dark"] .dropdown-menu .dropdown-item {
         color: #475569 !important;
-        /* 修改为所需的颜色 */
       }
 
-      /* 深色模式下 .dropdown-item 悬停状态的文字颜色 */
       [data-bs-theme="dark"] .dropdown-menu .dropdown-item:hover {
         color: #8B3DFF !important;
-        /* 修改为所需的颜色 */
       }
     }
   </style>
@@ -437,10 +430,10 @@
           fetch(`http://localhost:8080/artwork/getArtworksByArtistId/${artistId}`)
             .then(response => response.json())
             .then(artworks => {
-              const artworksRow = document.querySelector('.artworks-row'); // 确保你有这个容器在HTML中
+              const artworksRow = document.querySelector('.artworks-row');
               artworks.forEach(artwork => {
                 const artworkElement = document.createElement('div');
-                artworkElement.className = 'col-md-4 mb-4'; // 每个卡片占用4个栅格单元
+                artworkElement.className = 'col-md-4 mb-4';
                 artworkElement.innerHTML = `
                             <div class="card h-100"> <!-- h-100 使卡片高度一致 -->
                                 <img src="${artwork.image_url}" class="card-img-top" alt="${artwork.title}">

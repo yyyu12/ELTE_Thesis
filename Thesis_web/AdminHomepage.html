@@ -31,8 +31,8 @@
         }
 
         .card:hover {
-            transform: translateY(-5px); /* 鼠标悬浮时上移 */
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2); /* 鼠标悬浮时增加阴影 */
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
         }
 
         .nav-pills-bg-soft {
@@ -73,27 +73,23 @@
                 transition: all .3s ease-in-out;
             }
 
-             /* 深色模式下激活状态的导航链接颜色 */
             [data-bs-theme="dark"] .navbar-nav .nav-link.active,
             [data-bs-theme="dark"] .dropdown-menu
             {
-                background-color: #1E293B !important; /* 深色模式下激活状态的背景颜色 */
+                background-color: #1E293B !important;
             }
 
-            /* 深色模式下鼠标悬停状态的导航链接颜色 */
             [data-bs-theme="dark"] .navbar-nav .nav-link:hover {
                 background-color: #1E293B !important;
                 
             }
 
-            /* 深色模式下 .dropdown-item 的文字颜色 */
             [data-bs-theme="dark"] .dropdown-menu .dropdown-item {
-            color: #475569 !important; /* 修改为所需的颜色 */
+            color: #475569 !important;
             }
 
-            /* 深色模式下 .dropdown-item 悬停状态的文字颜色 */
             [data-bs-theme="dark"] .dropdown-menu .dropdown-item:hover {
-            color: #8B3DFF !important; /* 修改为所需的颜色 */
+            color: #8B3DFF !important;
             }
         }
     </style>
@@ -711,9 +707,8 @@
         .then(response => response.json())
         .then(artists => {
             const table = document.getElementById('artistsTable');
-            // 清空现有表格行
             table.innerHTML = '';
-            // 为每个艺术家创建表格行
+            
             artists.forEach(artist => {
                 let row = `<tr id="artist-${artist.id}">
                                 <td>${artist.id}</td>
@@ -728,12 +723,12 @@
                             </tr>`;
                 table.innerHTML += row;
             });
-            // 绑定删除事件监听器
+            
             attachDeleteEventListeners();
         })
         .catch(error => console.error('Error fetching artists:', error));
 
-        // 添加艺术家表单的显示与隐藏
+        
         document.getElementById('showAddArtistForm').addEventListener('click', function() {
             const artistForm = document.getElementById('addArtistForm');
             artistForm.style.display = artistForm.style.display === 'block' ? 'none' : 'block';
@@ -741,7 +736,6 @@
         });
 
 
-        // 添加艺术家的表单提交
         document.getElementById('artistForm').addEventListener('submit', function(event) {
             event.preventDefault();
 
@@ -772,7 +766,7 @@
                         <td><button class="btn btn-primary edit-artist" data-artist-id="${data.info.id}">Edit</button></td>
                         <td><button class="btn btn-danger delete-artist" data-artist-id="${data.info.id}">Delete</button></td>
                     `;
-                    attachDeleteEventListeners(); // 重新绑定删除事件监听器
+                    attachDeleteEventListeners();
 
                     document.getElementById('artistName').value = '';
                     document.getElementById('artistBio').value = '';
@@ -819,7 +813,6 @@
         document.addEventListener('click', function(event) {
             if (event.target.classList.contains('edit-artist')) {
                 const artistId = event.target.getAttribute('data-artist-id');
-                // 此处调用函数来处理 modal 显示和信息填充
                 showEditModal(artistId);
             }
         });
@@ -834,11 +827,9 @@
                     return response.json();
                 })
                 .then(artistData => {
-                    // 成功获取数据后，填充表单
                     document.getElementById('editArtistId').value = artistData.id;
                     document.getElementById('artistNameEdit').value = artistData.name;
-                    document.getElementById('artistBioEdit').value = artistData.bio;
-                    // 显示 Modal
+                    document.getElementById('artistBioEdit').value = artistData.bio; 
                     $('#artistEditModal').modal('show');
                 })
                 .catch(error => {
@@ -881,32 +872,12 @@
             });
         }
 
-        // 绑定保存按钮事件
         document.getElementById('saveArtistChanges').addEventListener('click', editArtist);
 
         /* ================================================ Artwork Page ================================================ */
         // in ajax.js
 
         /* ================================================ Blind Box Page ================================================ */
-        /*
-        [
-    {
-        "blind_box_id": 1,
-        "purchase_time": "2024-04-27T02:35:11.000+00:00",
-        "blind_box_price": 650.0,
-        "artwork_id": 19,
-        "title": "Moon Temple",
-        "description": "A crescent moon floating above a blue and white temple  with  towers that reach up towards the sky. There are also birds flying around the moon.",
-        "price": 700.0,
-        "image_url": "assets/images/artworks/NFT/Moon_Temple_II.jpeg",
-        "type": "nft",
-        "user_id": 9,
-        "artist_id": 23,
-        "artist_name": "Elena Popa",
-        "artist_bio": ""
-    }
-]
-        */
         fetch('http://localhost:8080/blindBox/details')
         .then(response => response.json())
         .then(data => {

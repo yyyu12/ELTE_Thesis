@@ -53,27 +53,23 @@
                 transition: all .3s ease-in-out;
             }
 
-             /* 深色模式下激活状态的导航链接颜色 */
             [data-bs-theme="dark"] .navbar-nav .nav-link.active,
             [data-bs-theme="dark"] .dropdown-menu
             {
-                background-color: #1E293B !important; /* 深色模式下激活状态的背景颜色 */
+                background-color: #1E293B !important;
             }
 
-            /* 深色模式下鼠标悬停状态的导航链接颜色 */
             [data-bs-theme="dark"] .navbar-nav .nav-link:hover {
                 background-color: #1E293B !important;
                 
             }
 
-            /* 深色模式下 .dropdown-item 的文字颜色 */
             [data-bs-theme="dark"] .dropdown-menu .dropdown-item {
-            color: #475569 !important; /* 修改为所需的颜色 */
+            color: #475569 !important;
             }
 
-            /* 深色模式下 .dropdown-item 悬停状态的文字颜色 */
             [data-bs-theme="dark"] .dropdown-menu .dropdown-item:hover {
-            color: #8B3DFF !important; /* 修改为所需的颜色 */
+            color: #8B3DFF !important;
             }
         }
     </style>
@@ -150,7 +146,6 @@
                         </div>
                         
                         <div class="nav-item login-margin" id="userAccount">
-                            <!-- 登录链接 -->
                             <a class="navbar-icon-link" href="user-login.html" id="userLoginLink">
                                 <i class="far fa-user"></i>
                             </a>
@@ -445,7 +440,6 @@
     <script>
         // ========================= Display All Artists =========================
         document.addEventListener('DOMContentLoaded', function() {
-            // 加载艺术家信息并动态创建卡片
             function loadArtists() {
                 fetch('http://localhost:8080/artist/getAllArtists')
                     .then(response => {
@@ -486,7 +480,6 @@
                     });
             }
         
-            // 调用函数
             loadArtists();
         });
 
@@ -497,14 +490,12 @@
             .then(artworks => {
                 const slider = $('#artworkSlider');
                 let imagesLoaded = 0;
-                const totalImages = artworks.length; // 获取艺术品总数
+                const totalImages = artworks.length;
 
                 artworks.forEach(artwork => {
-                     // 创建图片标签
                     const image = new Image();
                     image.onload = function() {
-                        imagesLoaded++; // 加载完成的图片计数
-                        // 当所有图片加载完成后初始化轮播
+                        imagesLoaded++;
                         if(imagesLoaded === totalImages) {
                             initializeOwlCarousel();
                         }
@@ -538,7 +529,7 @@
                             </div>
                         </div>
                     `;
-                    // 将创建的元素加入到轮播中
+
                     slider.append(artworkItem);
                 });
             })
@@ -552,7 +543,7 @@
             //   Product Slider
             // ------------------------------------------------------ //
             $(".product-slider").owlCarousel({
-                loop: true, // 循环播放
+                loop: true,
                 margin: 0,
                 nav: true,
                 dots: true,
@@ -561,9 +552,9 @@
                     "<i class='fa-solid fa-arrow-right'></i>"
                 ],
                 smartSpeed: 400,
-                autoplay: true, // 开启自动播放
-                autoplayTimeout: 1500, // 设置自动播放之间的间隔时间（单位：毫秒）
-                autoplayHoverPause: true, // 当鼠标悬停时暂停自动播放
+                autoplay: true,
+                autoplayTimeout: 1500,
+                autoplayHoverPause: true,
                 responsiveClass: true,
                 responsive: {
                     0: {

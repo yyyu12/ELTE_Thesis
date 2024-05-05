@@ -14,27 +14,20 @@ $(function () {
     });
 
     function setTheme(theme) {
-        // 设置主题颜色
         $('body').attr('data-bs-theme', theme);
-        // 保存主题到localStorage
         localStorage.setItem('theme', theme);
-
-        // 更新导航栏图标
         updateNavIcon(theme);
 
-        // 更新激活状态和勾选图标
         updateActiveStateAndCheckmarks(theme);
     }
 
     function updateNavIcon(theme) {
         var themeIcon = $('.color-modes .dropdown-toggle i');
-        // 根据当前主题设置图标
         themeIcon.removeClass('fa-sun fa-moon');
         themeIcon.addClass(theme === 'light' ? 'fa-sun' : 'fa-moon');
     }
 
     function updateActiveStateAndCheckmarks(theme) {
-        // 遍历所有的dropdown-item
         $('.dropdown-item').each(function () {
             var itemTheme = $(this).data('bs-theme-value');
             var isActive = itemTheme === theme;
