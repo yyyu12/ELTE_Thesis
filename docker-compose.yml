@@ -13,7 +13,7 @@ services:
     networks:
       - thesis-network
     ports:
-      - "3306:3306"  
+      - "3306:3307"
   backend:
     build:
       context: ./Thesis_backend
