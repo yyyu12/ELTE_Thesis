@@ -29,7 +29,7 @@ public class UserMapperTest {
     public void findAllUsersTest(){
         List<User> userList = userMapper.findAllUsers();
         assertNotNull(userList);
-        assertEquals(userList.size(),2);
+        assertEquals(userList.size(),6);
     }
 
     @DirtiesContext
@@ -99,10 +99,19 @@ public class UserMapperTest {
     @DirtiesContext
     @Test
     public void deleteUserTest(){
-        int result = userMapper.deleteUser(2L);
+        User user = new User();
+        user.setUsername("Test");
+        user.setPassword("Test.123");
+        user.setEmail("Test123@test.com");
+        userMapper.insertUser(user);
+
+        User newUser = userMapper.getUserByUserName("Test");
+        assertNotNull(newUser);
+
+        int result = userMapper.deleteUser(newUser.getId());
         assertEquals(result, 1);
 
-        User user = userMapper.getUserById(2L);
-        assertEquals(user, null);
+        User deletedUser = userMapper.getUserByUserName("Test");
+        assertEquals(deletedUser, null);
     }
 }

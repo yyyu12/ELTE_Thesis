@@ -36,10 +36,10 @@ public class CartMapperTest {
     @DirtiesContext
     @Test
     public void testselectCartByUserIdAndArtworkId(){
-        Cart cart = cartMapper.selectCartByUserIdAndArtworkId(2L, 1L);
+        Cart cart = cartMapper.selectCartByUserIdAndArtworkId(2L, 2L);
         assertNotNull(cart);
         assertEquals(cart.getUser_id(), 2L);
-        assertEquals(cart.getArtwork_id(), 1L);
+        assertEquals(cart.getArtwork_id(), 2L);
     }
 
     @DirtiesContext
@@ -54,15 +54,15 @@ public class CartMapperTest {
     @Test
     public void testInsertCart(){
         Cart cart = new Cart();
-        cart.setUser_id(2L);
-        cart.setArtwork_id(2L);
+        cart.setUser_id(3L);
+        cart.setArtwork_id(1L);
 
         cartMapper.insertCart(cart);
 
-        Cart cart1 = cartMapper.selectCartByUserIdAndArtworkId(2L, 2L);
+        Cart cart1 = cartMapper.selectCartByUserIdAndArtworkId(3L, 1L);
         assertNotNull(cart1);
-        assertEquals(cart1.getUser_id(), 2L);
-        assertEquals(cart1.getArtwork_id(), 2L);
+        assertEquals(cart1.getUser_id(), 3L);
+        assertEquals(cart1.getArtwork_id(), 1L);
     }
 
     @DirtiesContext
@@ -76,8 +76,8 @@ public class CartMapperTest {
     @DirtiesContext
     @Test
     public void testDeleteCartByUserIdAndArtworkId(){
-        cartMapper.deleteCartByUserIdAndArtworkId(2L, 1L);
-        Cart cart = cartMapper.selectCartByUserIdAndArtworkId(2L, 1L);
+        cartMapper.deleteCartByUserIdAndArtworkId(3L, 3L);
+        Cart cart = cartMapper.selectCartByUserIdAndArtworkId(3L, 3L);
         assertTrue(cart == null);
     }
 

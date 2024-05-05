@@ -27,11 +27,11 @@ public class UserServiceImpl implements  Service{
     public void registerUser(User user) {
 
         if (userMapper.getUserByUserName(user.getUsername()) != null) {
-            throw new UsernameDuplicatedException("The username is already taken.");
+            throw new UsernameDuplicatedException("The username is already taken");
         }
 
         if (userMapper.getUserByEmail(user.getEmail()) != null) {
-            throw new EmailDuplicateException("The email is already registered.");
+            throw new EmailDuplicateException("The email is already registered");
         }
 
         String encodedPassword = passwordEncoder.encode(user.getPassword());
@@ -40,7 +40,7 @@ public class UserServiceImpl implements  Service{
 
         Integer insertResult = userMapper.insertUser(user);
         if (insertResult != 1) {
-            throw new InsertException("Failed to insert the new user.");
+            throw new InsertException("Failed to insert the new user");
         }
 
     }
@@ -61,6 +61,12 @@ public class UserServiceImpl implements  Service{
 
     @Override
     public User updateUserInfo(User user){
+        // Check if user id exists
+        User currentUser = userMapper.getUserById(user.getId());
+        if (currentUser == null) {
+            throw new UserNotFoundException("User Not Found");
+        }
+
         userMapper.updateUserInfo(user);
         return userMapper.getUserByUserName(user.getUsername());
     }
@@ -69,7 +75,7 @@ public class UserServiceImpl implements  Service{
         User currentUser = userMapper.getUserById(id);
 
         if (currentUser == null || !passwordEncoder.matches(oldPassword, currentUser.getPassword())) {
-            throw new PasswordNotMatchException("Old password does not match.");
+            throw new PasswordNotMatchException("Old password does not match");
         }
 
         String encodedNewPassword = passwordEncoder.encode(newPassword);

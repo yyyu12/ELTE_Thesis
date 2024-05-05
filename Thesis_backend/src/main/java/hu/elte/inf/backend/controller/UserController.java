@@ -41,19 +41,11 @@ public class UserController {
      * @return
      */
     @PostMapping("/register")
-    public ResponseEntity<Result> registerUser(@Validated @RequestBody UserRegistrationRequest userRegistrationRequest) {
-        try{
-            User user = new User();
-            BeanUtils.copyProperties(userRegistrationRequest, user);
-            userService.registerUser(user);
-            return ResponseEntity.ok(Result.ok("User registered successfully."));
-        }catch (UsernameDuplicatedException e) {
-            return ResponseEntity.status(HttpStatus.SC_CONFLICT).body(Result.error("Username already exist."));
-        } catch (EmailDuplicateException e) {
-            return ResponseEntity.status(HttpStatus.SC_CONFLICT).body(Result.error("Email already exist."));
-        } catch (InsertException e) {
-            return ResponseEntity.status(HttpStatus.SC_INTERNAL_SERVER_ERROR).body(Result.error("Internal server error"));
-        }
+    public Result registerUser(@Validated @RequestBody UserRegistrationRequest userRegistrationRequest) {
+        User user = new User();
+        BeanUtils.copyProperties(userRegistrationRequest, user);
+        userService.registerUser(user);
+        return Result.ok("User registered successfully");
     }
 
     /**
@@ -62,22 +54,14 @@ public class UserController {
      * @return ResponseEntity<Result> -- user login data
      */
     @PostMapping("/login")
-    public ResponseEntity<Result> login(@Validated @RequestBody LoginRequest loginRequest) {
+    public Result login(@Validated @RequestBody LoginRequest loginRequest) {
         String username = loginRequest.getUsername();
         String password = loginRequest.getPassword();
 
-        try {
-            User user = userService.login(username, password);
-            UserLoginResponse userLoginResponse = new UserLoginResponse();
-            BeanUtils.copyProperties(user, userLoginResponse);
-            return ResponseEntity.ok(Result.ok("User login success").put("info", userLoginResponse));
-        } catch (UserNotFoundException ex) {
-            return ResponseEntity.status(HttpStatus.SC_NOT_FOUND).body(Result.error("User Not Found"));
-        } catch (PasswordNotMatchException ex) {
-            return ResponseEntity.status(HttpStatus.SC_UNAUTHORIZED).body(Result.error("Password does not match"));
-        } catch (Exception ex) {
-            return ResponseEntity.status(HttpStatus.SC_INTERNAL_SERVER_ERROR).body(Result.error("Internal server error"));
-        }
+        User user = userService.login(username, password);
+        UserLoginResponse userLoginResponse = new UserLoginResponse();
+        BeanUtils.copyProperties(user, userLoginResponse);
+        return Result.ok("User login success").put("info", userLoginResponse);
     } 
 
     /**
@@ -87,22 +71,16 @@ public class UserController {
      */
     @PutMapping("/updateInfo/{id}")
     public ResponseEntity<Result> updateUserInfo(@PathVariable Long id, @Validated @RequestBody UpdateRequest updateRequest) {
-        try {
-            User user = new User();
-            BeanUtils.copyProperties(updateRequest, user);
-            user.setId(id);
-            // 这里调用服务层的更新方法，并获取返回的更新后的用户对象
-            User updatedUser = userService.updateUserInfo(user);
+        User user = new User();
+        BeanUtils.copyProperties(updateRequest, user);
+        user.setId(id);
 
-            // 将User转换为UserLoginResponse的方法或逻辑，就在这里使用它
-            UserLoginResponse userLoginResponse = new UserLoginResponse();
-            BeanUtils.copyProperties(updatedUser, userLoginResponse);
+        User updatedUser = userService.updateUserInfo(user);
 
-            // 返回更新后的用户数据
-            return ResponseEntity.ok(Result.ok("User info updated successfully").put("info", userLoginResponse));
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.SC_INTERNAL_SERVER_ERROR).body(Result.error("Internal server error"));
-        }
+        UserLoginResponse userLoginResponse = new UserLoginResponse();
+        BeanUtils.copyProperties(updatedUser, userLoginResponse);
+
+        return ResponseEntity.ok(Result.ok("User info updated successfully").put("info", userLoginResponse));
     }
 
     /**
@@ -113,17 +91,11 @@ public class UserController {
      */
     @PutMapping("/updatePassword/{id}")
     public ResponseEntity<Result> updatePassword(@PathVariable Long id, @Validated @RequestBody PasswordUpdateRequest passwordUpdateRequest) {
-        try {
-            boolean updateResult = userService.updatePassword(id, passwordUpdateRequest.getOldPassword(), passwordUpdateRequest.getNewPassword());
-            if (updateResult) {
-                return ResponseEntity.ok(Result.ok("Password updated successfully"));
-            } else {
-                return ResponseEntity.status(HttpStatus.SC_BAD_REQUEST).body(Result.error("Password update failed"));
-            }
-        } catch (PasswordNotMatchException e) {
-            return ResponseEntity.status(HttpStatus.SC_BAD_REQUEST).body(Result.error(e.getMessage()));
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.SC_INTERNAL_SERVER_ERROR).body(Result.error("Internal server error"));
+        boolean updateResult = userService.updatePassword(id, passwordUpdateRequest.getOldPassword(), passwordUpdateRequest.getNewPassword());
+        if (updateResult) {
+            return ResponseEntity.ok(Result.ok("Password updated successfully"));
+        } else {
+            return ResponseEntity.status(HttpStatus.SC_BAD_REQUEST).body(Result.error("Password update failed"));
         }
     }
 

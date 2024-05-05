@@ -43,7 +43,7 @@ public class BlindBoxMapperTest {
     @DirtiesContext
     @Test
     public void testSelectBlindBoxesByUserId() {
-        Long userId = 1L;
+        Long userId = 2L;
         List<BlindBox> blindBoxes = blindBoxMapper.selectBlindBoxesByUserId(userId);
         assertNotNull(blindBoxes);
         assertFalse(blindBoxes.isEmpty());
@@ -54,7 +54,7 @@ public class BlindBoxMapperTest {
     @Test
     public void testSelectBlindBoxByUserIdAndArtworkId() {
         Long userId = 2L;
-        Long artworkId = 2L;
+        Long artworkId = 1L;
         BlindBox blindBox = blindBoxMapper.selectBlindBoxByUserIdAndArtworkId(userId, artworkId);
         assertNotNull(blindBox);
         assertEquals(userId, blindBox.getUser_id());
@@ -64,10 +64,9 @@ public class BlindBoxMapperTest {
     @DirtiesContext
     @Test
     public void testSelectBlindBoxByBlindBoxId() {
-        Long blindBoxId = 1L; 
-        BlindBox blindBox = blindBoxMapper.selectBlindBoxByBlindBoxId(blindBoxId);
+        BlindBox blindBox = blindBoxMapper.selectBlindBoxByBlindBoxId(1L);
         assertNotNull(blindBox);
-        assertEquals(blindBoxId, blindBox.getId());
+        assertEquals(1L, blindBox.getId());
     }
 
     @DirtiesContext

@@ -55,8 +55,8 @@ public class WishlistMapperTest {
     @Test
     public void testInsertWishlist(){
         Wishlist wishlist = new Wishlist();
-        wishlist.setUser_id(2L);
-        wishlist.setArtwork_id(1L);
+        wishlist.setUser_id(4L);
+        wishlist.setArtwork_id(5L);
 
         wishlistMapper.insertWishlist(wishlist);
     }

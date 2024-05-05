@@ -3,7 +3,6 @@ package hu.elte.inf.backend.service.impl;
 import hu.elte.inf.backend.dao.ArtworkMapper;
 import hu.elte.inf.backend.sqlEntity.Artwork;
 import hu.elte.inf.backend.service.ArtworkService;
-import hu.elte.inf.backend.common.exceptionEnd.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.HashMap;

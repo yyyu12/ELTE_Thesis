@@ -27,12 +27,12 @@ public class ArtistServiceImpl implements ArtistService {
     public void insertArtist(Artist artist) {
         Artist existingArtist = artistMapper.getArtistByName(artist.getName());
         if (existingArtist != null) {
-            throw new ArtistExistException("The Artist already exists.");
+            throw new ArtistExistException("The Artist already exists");
         }
 
         int rowsInserted = artistMapper.insertArtist(artist);
         if (rowsInserted == 0) {
-            throw new IllegalStateException("Failed to insert artist.");
+            throw new IllegalStateException("Failed to insert artist");
         }
     }
 
@@ -41,12 +41,12 @@ public class ArtistServiceImpl implements ArtistService {
     public void deleteArtist(Long id) {
         Artist artist = artistMapper.getArtistById(id);
         if (artist == null) {
-            throw new ArtistNotFoundException("Artist with id " + id + " does not exist.");
+            throw new ArtistNotFoundException("Artist with id " + id + " does not exist");
         }
 
         int rowsDeleted = artistMapper.deleteArtist(id);
         if (rowsDeleted == 0) {
-            throw new IllegalStateException("No artist was deleted.");
+            throw new IllegalStateException("No artist was deleted");
         }
     }
 
@@ -55,7 +55,7 @@ public class ArtistServiceImpl implements ArtistService {
     public Artist updateArtist(Artist artist) {
         int rowsUpdated = artistMapper.updateArtist(artist);
         if (rowsUpdated == 0) {
-            throw new ArtistNotFoundException("No artist found with ID " + artist.getId() + ", or no new data provided for update.");
+            throw new ArtistNotFoundException("No artist found with ID " + artist.getId() + ", or no new data provided for update");
         }
         return artistMapper.getArtistById(artist.getId());
     }

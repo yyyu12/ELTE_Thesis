@@ -2,6 +2,7 @@ package hu.elte.inf.backend.common;
 
 import hu.elte.inf.backend.common.Result;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
@@ -22,22 +23,35 @@ public class GlobalExceptionHandler {
     }
 
     // Data already exists exception
-    @ExceptionHandler(value = {ArtistExistException.class, ArtworkAlreadyExistsException.class, CartItemAlreadyExists.class, WishlistItemAlreadyExists.class})
+    @ExceptionHandler(value = {UsernameDuplicatedException.class, EmailDuplicateException.class, ArtistExistException.class, ArtworkAlreadyExistsException.class, CartItemAlreadyExists.class, WishlistItemAlreadyExists.class})
     public ResponseEntity<Result> handleConflictException(RuntimeException ex, WebRequest request) {
         return ResponseEntity.status(HttpStatus.SC_CONFLICT)
                 .body(Result.error(HttpStatus.SC_CONFLICT, ex.getMessage()));
     }
 
-    // Invalid request parameters
-    @ExceptionHandler(BindException.class)
-    public ResponseEntity<Result> handleBindException(BindException ex) {
-        List<String> errors = ex.getBindingResult().getFieldErrors().stream()
-                .map(fieldError -> fieldError.getField() + ": " + fieldError.getDefaultMessage())
-                .collect(Collectors.toList());
-        String errorMessage = "Invalid request parameters: " + String.join(", ", errors);
-        return ResponseEntity.status(HttpStatus.SC_BAD_REQUEST)
-                .body(Result.error(HttpStatus.SC_BAD_REQUEST, errorMessage));
+    // Bad request exception
+    
+
+    // Unauthorized access exception
+    @ExceptionHandler(PasswordNotMatchException.class)
+    public ResponseEntity<Result> handleUnauthorizedException(RuntimeException ex, WebRequest request) {
+        return ResponseEntity.status(HttpStatus.SC_UNAUTHORIZED)
+                .body(Result.error(HttpStatus.SC_UNAUTHORIZED, ex.getMessage()));
     }
+
+    // Invalid request parameters
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<Result> handleValidationExceptions(MethodArgumentNotValidException ex) {
+        List<String> errors = ex.getBindingResult()
+            .getAllErrors()
+            .stream()
+            .map(error -> error.getDefaultMessage())
+            .collect(Collectors.toList());
+
+        return ResponseEntity.status(HttpStatus.SC_BAD_REQUEST)
+            .body(Result.error(HttpStatus.SC_BAD_REQUEST, String.join(", ", errors)));
+    }
+
 
     // Internal server error
     @ExceptionHandler(Exception.class)

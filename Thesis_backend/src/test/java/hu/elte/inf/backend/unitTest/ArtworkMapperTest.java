@@ -32,7 +32,7 @@ public class ArtworkMapperTest {
     public void findAllArtworksTest() {
         List<Artwork> artworkList = artworkMapper.findAllArtworks();
         assertNotNull(artworkList);
-        assertEquals(artworkList.size(), 2);
+        assertEquals(artworkList.size(), 11);
     }
 
     @DirtiesContext
@@ -48,13 +48,13 @@ public class ArtworkMapperTest {
     public void findArtworksByArtistIdTest() {
         List<Artwork> artworkList = artworkMapper.findArtworksByArtistId(1L);
         assertNotNull(artworkList);
-        assertEquals(artworkList.size(), 1);
+        assertEquals(artworkList.size(), 2);
     }
 
     @DirtiesContext
     @Test
     public void findArtworksByUserIdTest() {
-        List<Artwork> artworkList = artworkMapper.findArtworksByUserId(1L);
+        List<Artwork> artworkList = artworkMapper.findArtworksByUserId(2L);
         assertNotNull(artworkList);
         assertEquals(artworkList.size(), 1);
     }
@@ -90,8 +90,8 @@ public class ArtworkMapperTest {
     @DirtiesContext
     @Test
     public void deleteArtworkTest() {
-        int result = artworkMapper.deleteArtwork(2L);
-        assertEquals(result, 1);
+        int result = artworkMapper.deleteArtwork(11L);
+        assertEquals(1, result);
     }
 
     @DirtiesContext

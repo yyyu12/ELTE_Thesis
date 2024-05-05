@@ -27,7 +27,7 @@ public class ArtistMapperTest {
     public void findAllArtistsTest(){
         List<Artist> artistList = artistMapper.findAllArtists();
         assertNotNull(artistList);
-        assertEquals(artistList.size(),2);
+        assertEquals(artistList.size(),6);
     }
 
     @DirtiesContext
@@ -35,13 +35,13 @@ public class ArtistMapperTest {
     public void getArtistByIdTest(){
         Artist artist = artistMapper.getArtistById(1L);
         assertNotNull(artist);
-        assertEquals(artist.getName(), "Anjana Jain");
+        assertEquals(artist.getName(), "Geert Lemmers");
     }
 
     @DirtiesContext
     @Test
     public void getArtistByNameTest(){
-        Artist artist = artistMapper.getArtistByName("Anjana Jain");
+        Artist artist = artistMapper.getArtistByName("Geert Lemmers");
         assertNotNull(artist);
         assertEquals(artist.getId(), 1L);
     }
@@ -50,8 +50,8 @@ public class ArtistMapperTest {
     @Test
     public void insertArtistTest(){
         Artist artist = new Artist();
-        artist.setName("Geert Lemmers");
-        artist.setBio("Welcome to my page! I am Geert Lemmers. artist fine photo art, new media and paintings. Have a look at my work. If you have any questions contact me. Almost everything is possible.");
+        artist.setName("Test Artist");
+        artist.setBio("Test Bio");
 
         int affectedRows = artistMapper.insertArtist(artist);
         assertEquals(affectedRows, 1);
@@ -60,7 +60,12 @@ public class ArtistMapperTest {
     @DirtiesContext
     @Test
     public void deleteArtistTest(){
-        int affectedRows = artistMapper.deleteArtist(2L);
+        Artist artist = new Artist();
+        artist.setName("Test Artist");
+        artist.setBio("Test Bio");
+        artistMapper.insertArtist(artist);
+
+        int affectedRows = artistMapper.deleteArtist(artist.getId());
         assertEquals(affectedRows, 1);
     }
 
