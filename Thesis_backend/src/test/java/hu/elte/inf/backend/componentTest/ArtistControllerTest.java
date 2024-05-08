@@ -1,10 +1,8 @@
 package hu.elte.inf.backend.componentTest;
 
 import hu.elte.inf.backend.sqlEntity.Artist;
-import hu.elte.inf.backend.sqlEntity.User;
 import hu.elte.inf.backend.controller.ArtistController;
 import hu.elte.inf.backend.service.impl.ArtistServiceImpl;
-import hu.elte.inf.backend.controller.response.ArtistResponse;
 import hu.elte.inf.backend.controller.request.ArtistInsertRequest;
 import hu.elte.inf.backend.controller.request.ArtistUpdateRequest;
 import hu.elte.inf.backend.common.exceptionEnd.ArtistExistException;
@@ -30,13 +28,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyLong;
-import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.doThrow;

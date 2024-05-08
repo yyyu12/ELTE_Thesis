@@ -45,12 +45,12 @@
         WHERE id = #{id}
     </update>
 
-    <!-- 更新用户密码 -->
+    <!-- Update user password -->
     <update id="updateUserPassword">
         UPDATE user_account SET password = #{newPassword} WHERE id = #{id}
     </update>
 
-    <!-- 删除用户 -->
+    <!-- Delete User -->
     <delete id="deleteUser" parameterType="long">
         DELETE FROM user_account WHERE id = #{id}
     </delete>

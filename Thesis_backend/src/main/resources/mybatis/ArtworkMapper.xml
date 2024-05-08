@@ -42,13 +42,12 @@
     </insert>
 
 
-    <!-- 删除特定艺术品 -->
+    <!-- Delete Artwork -->
     <delete id="deleteArtwork" parameterType="long">
         DELETE FROM artworks  WHERE id = #{id}
     </delete>
 
-    <!-- 更新艺术品信息 -->
-    <!-- 动态更新艺术品信息 -->
+    <!-- Update Artwork Info -->
     <update id="updateArtwork" parameterType="hu.elte.inf.backend.sqlEntity.Artwork">
         UPDATE artworks
         <set>

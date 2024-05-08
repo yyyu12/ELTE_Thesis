@@ -87,7 +87,7 @@ public class ArtistController {
      * @return
      */
     @PutMapping("/updateArtistInfo/{id}")
-    public ResponseEntity<Result> updateUserInfo(@PathVariable Long id, @Validated @RequestBody ArtistUpdateRequest artistUpdateRequest) {
+    public ResponseEntity<Result> updateArtistInfo(@PathVariable Long id, @Validated @RequestBody ArtistUpdateRequest artistUpdateRequest) {
         Artist artist = new Artist();
         BeanUtils.copyProperties(artistUpdateRequest, artist);
         artist.setId(id);
